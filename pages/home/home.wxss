@@ -1,0 +1,277 @@
+.container {
+  padding: 5rpx 0;
+  box-sizing: border-box;
+}
+
+.home-nav {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.logo-image {
+  flex: 1;
+}
+
+.caibashi-logo {
+  width: 192rpx;
+  height: 65rpx;
+}
+
+.icon-help {
+  font-size: 50rpx;
+  color: #11a24a;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+
+.search-border {
+  display: inline-block;
+  border: 1rpx solid #d6d6d6;
+  border-radius: 50rpx;
+  padding: 0 30rpx 15rpx;
+  box-sizing: border-box;
+  margin-right: 30rpx;
+}
+
+.icon-search {
+  font-size: 30rpx;
+  color: #999;
+  padding-right: 10rpx;
+}
+
+.search-text {
+  display: inline-block;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.advertising {
+  width: 100%;
+}
+
+.advertising-image {
+  width: 100%;
+}
+
+.sort-nave {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.sort-content {
+  display: flex;
+  width: 20%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.sort-image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.check-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100rpx;
+  height: 100rpx;
+  border: 1rpx solid #e6e6e6;
+  border-radius: 50%;
+  color: #666;
+}
+
+.sort-title {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.activity-swiper {
+  width: 100%;
+  margin-top: 15rpx;
+}
+
+swiper {
+  width: 100%;
+  height: 200rpx;
+}
+
+.invite-image {
+  width: 100%;
+  height: 150rpx;
+}
+
+.new-user-image {
+  width: 100%;
+  height: 200rpx;
+}
+
+.discount {
+  width: 98%;
+}
+
+.discount-image {
+  width: 100%;
+  height: 356rpx;
+}
+
+.marketing-container {
+  width: 100%;
+  padding: 10rpx 8rpx 0;
+  box-sizing: border-box;
+}
+
+.marketing-image {
+  width: 100%;
+  height: 280rpx;
+}
+
+.marketing-goods-content {
+  display: flex;
+  flex-direction: row;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.marketing-goods-image {
+  width: 260rpx;
+  height: 350rpx;
+}
+
+.marketing-goods-img {
+  width: 100%;
+  max-height: 300rpx;
+}
+
+.marketing-goods-detail {
+  flex: 1;
+  padding: 0 8rpx 0 18rpx;
+  box-sizing: border-box;
+}
+
+.marketing-goods-name {
+  display: block;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.icon-shichengjiesuan-1 {
+  display: block;
+  font-size: 50rpx;
+  color: #11A24A;
+  line-height: 1;
+}
+
+.marketing-goods-advertising {
+  display: block;
+  font-size: 36rpx;
+  color: #999;
+}
+.marketing-different-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 15rpx 0;
+}
+
+.goods-different-price {
+  width: 190rpx;
+}
+
+.goods-remarks {
+  flex: 1;
+  border-left: 1rpx solid #e6e6e6;
+  padding: 0 8rpx;
+  box-sizing: border-box; 
+  margin: 5rpx 0;
+}
+.market-price-text, .market-price-number, .market-price-standard, .market-price-remark {
+  font-size: 26rpx;
+  color: #999;
+}
+.marketing-goods-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.marketing-sell-price {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.before-point {
+  color: #11A24A;
+}
+
+.marketing-sell-price-unit {
+  font-size: 24rpx;
+  color: #fe3059;
+}
+
+.icon-sort-add {
+  font-size: 40rpx;
+  color: #11A24A;
+}
+
+.sort-expand-container {
+  width: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.sort-expand-image {
+  width: 100%;
+  height: 304rpx;
+}
+
+.sort-expand-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 5rpx;
+  box-sizing: border-box;
+}
+
+.sort-expand-detail {
+  width: 260rpx;
+  /* height: 362rpx; */
+  text-align: center;
+  margin: 0 10rpx;
+}
+
+.sort-expand-goods-image {
+  width: 224rpx;
+  height: 224rpx;
+}
+
+.sort-expand-goods-name {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.already-bottom {
+  font-size: 30rpx;
+  color: #b3b3b3;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.text-color {
+  color: #fe3059;
+}

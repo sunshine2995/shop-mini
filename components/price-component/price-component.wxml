@@ -1,0 +1,6 @@
+<view class="price-template">
+  <text class="goods-sign text-color">{{priceDesc}}￥</text>
+  <text class="before-point text-color">{{first}}</text>
+  <text class="after-point text-color" wx:if="{{second}}">.{{second}}</text>
+  <text class="goods-unit text-color">/{{unit}}</text>
+</view>
