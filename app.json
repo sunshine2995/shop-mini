@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "菜巴士·送菜到家",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#11A24A",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home/home.png",
+        "selectedIconPath": "images/home/home_select.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "个人中心",
+        "iconPath": "images/home/sort.png",
+        "selectedIconPath": "images/home/sort_select.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
