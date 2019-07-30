@@ -10,15 +10,15 @@
     </view>
   </view>
   <view class="advertising">
-    <image class="advertising-image" src='{{customImg}}'></image>
+    <image class="advertising-image" src='{{customImg}}' data-path="{{customPath}}" bindtap="bindJumpPath"></image>
   </view>
   <view class="sort-nave">
-  <block wx:for="{{sortList}}" wx:key="index" wx:for-item="sort">
-    <view class="sort-content">
-      <image class="sort-image" src="{{sort.smallImgUrl}}"></image>
-      <text class="sort-title">{{sort.name}}</text>
-    </view>
-  </block>
+    <block wx:for="{{sortList}}" wx:key="index" wx:for-item="sort">
+      <view class="sort-content">
+        <image class="sort-image" src="{{sort.smallImgUrl}}"></image>
+        <text class="sort-title">{{sort.name}}</text>
+      </view>
+    </block>
     <!-- <view class="sort-content"> -->
       <!-- <text class="check-more">更多</text> -->
       <!-- <text class="sort-title">查看更多</text> -->

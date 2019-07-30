@@ -10,6 +10,13 @@ Page({
       url: url,
     })
   },
+  bindJumpPath: function(event) {
+    const path = event.currentTarget.dataset.path;
+    console.log(path, 'ffff');
+    wx.navigateTo({
+      url: '/pages/welcome/welcome',
+    })
+  },
   onLoad: function() {
     wx.showLoading({
       title: '加载中',

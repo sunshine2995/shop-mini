@@ -12,6 +12,10 @@ function getCustom() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/custom`, );
 }
 
+function getUser() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/me`);
+}
+
 function getSortList() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one`);
 }
@@ -25,4 +29,5 @@ function getSortList() {
 module.exports = {
   getCustom,
   getSortList,
+  getUser,
 }
