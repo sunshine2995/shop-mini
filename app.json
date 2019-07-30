@@ -4,6 +4,7 @@
     "pages/goodsDetail/goodsDetail",
     "pages/index/index",
     "pages/logs/logs"
+    "pages/goodsDescription/goodsDescription",
   ],
   "window": {
     "backgroundTextStyle": "light",

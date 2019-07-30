@@ -78,35 +78,35 @@
           <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
           <text class="sort-expand-goods-name">小葱拌豆腐一清二白</text>
           <view class="sort-expand-goods-price">
-            <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color'></price-component>
+            <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
           <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
-            <price-component price="{{8}}" unit="{{'份起'}}" text-color='text-color'></price-component>
+            <price-component price="{{8}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
           <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
-            <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color'></price-component>
+            <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
           <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
-            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color'></price-component>
+            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
           <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
-            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color'></price-component>
+            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
@@ -123,7 +123,7 @@
           <image class="sort-expand-goods-image" src="/images/home/fruit.jpg"></image>
           <text class="sort-expand-goods-name">黄柠檬</text>
           <view class="sort-expand-goods-price">
-            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color'></price-component>
+            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">

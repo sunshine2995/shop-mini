@@ -1,4 +1,4 @@
-<view class="price-template">
+<view class="price-template custom-template">
   <text class="goods-sign text-color">{{priceDesc}}￥</text>
   <text class="before-point text-color">{{first}}</text>
   <text class="after-point text-color" wx:if="{{second}}">.{{second}}</text>

@@ -1,14 +1,13 @@
 //(Component构造器)
 Component({
   //一些组件选项
-  externalClasses: ['text-color'],
+  externalClasses: ['text-color', 'custom-template'],
 
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
   //组件的对外属性，属性设置中可包含三个字段,type 表示属性类型、 value 表示属性初始值、 observer 表示属性值被更改时的响应函数    
   properties: {
-    // 活动封面
     price: {
       type: String,
       value: "",
@@ -29,7 +28,6 @@ Component({
       value: "http://img.youpenglai.cn/meetingpic/0b24376c43b1c372076aa65253b2f0ca123.jpg"
     },
 
-    // 活动标题
     activityTitle: {
       type: String,
       value: "我是Title"

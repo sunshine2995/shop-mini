@@ -265,6 +265,9 @@ swiper {
   font-size: 26rpx;
   color: #999;
 }
+.sort-expand-goods-price {
+  margin-top: 15rpx;
+}
 
 .already-bottom {
   font-size: 30rpx;
@@ -274,4 +277,7 @@ swiper {
 }
 .text-color {
   color: #fe3059;
+}
+.custom-template {
+  justify-content: center;
 }
