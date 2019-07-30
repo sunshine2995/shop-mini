@@ -1,0 +1,249 @@
+.GoodsContainer {
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+}
+
+swiper {
+  width: 750rpx;
+  height: 610rpx;
+}
+
+.goods-detail-image {
+  width: 100%;
+  height: 610rpx;
+}
+
+.goods-name-status {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18rpx 10rpx 8rpx;
+  box-sizing: border-box;
+}
+
+.goods-name {
+  flex: 1;
+  font-size: 40rpx;
+}
+
+.icon-shoucang {
+  font-size: 40rpx;
+  color: #999;
+}
+
+.goods-advertise-desc {
+  padding: 5rpx 10rpx 15rpx;
+  box-sizing: border-box;
+  border-bottom: 6rpx solid #f4f4f3;
+}
+
+.goods-advertise {
+  font-size: 45rpx;
+  color: #808080;
+  width: 99%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.goods-desc {
+  color: #999;
+  text-align: justify;
+}
+.choose-standard {
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.goods-price {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 25rpx 0;
+  box-sizing: border-box;
+  margin: 0 20rpx;
+  border-bottom: 3rpx solid #f4f4f3;
+  animation: ease-in 1s ease-out infinite;
+  -webkit-animation: ease-in 1s ease-out infinite;
+  /* animation-name: diagonal-slide;
+  animation-duration: 5s;
+  animation-iteration-count: 10; */
+
+}
+
+@keyframes ease-in {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.goods-price-hide {
+  display: none;
+}
+
+.text-color-red {
+  color: #fe3059;
+}
+
+.text-color {
+  color: #666;
+}
+
+.text-color-line {
+  color: #666;
+  text-decoration: line-through;
+}
+
+.goods-text-standard-stock {
+  display: flex;
+  flex-direction: row;
+  padding: 26rpx 10rpx;
+  box-sizing: border-box;
+  border-bottom: 6rpx solid #f4f4f3;
+}
+
+.choose-text {
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+
+.goods-standard-stock-content {
+  flex: 1;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+
+.goods-standard-stock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15rpx;
+}
+
+.goods-standard, .goods-standard-active {
+  font-size: 30rpx;
+  border: 1rpx solid #fe3059;
+  border-radius: 10rpx;
+  padding: 5rpx;
+  box-sizing: border-box;
+}
+
+.goods-standard-active {
+  background-color: #fe3059;
+  color: #fff;
+}
+
+.goods-standard {
+  color: #fe3059;
+}
+
+.goods-stock {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.explain-desc-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 108rpx;
+  padding: 26rpx 0;
+  box-sizing: border-box;
+  margin: 0 10rpx;
+  border-bottom: 2rpx solid #f4f4f3;
+}
+
+.explain-name {
+  width: 120rpx;
+  font-size: 29rpx;
+  color: #666;
+  padding: 0 18rpx;
+  box-sizing: border-box;
+}
+
+.explain-desc-sign {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.no-icon {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.explain-desc {
+  font-size: 29rpx;
+  color: #999;
+}
+
+.explain-sign {
+  font-size: 40rpx;
+  color: #11a24a;
+  line-height: 1;
+  padding: 0 5rpx;
+}
+
+.icon-right {
+  font-size: 40rpx;
+  color: #999;
+  text-align: right;
+}
+
+.bottom-promotion {
+  width: 100%;
+  text-align: center;
+  margin: 26rpx auto;
+}
+
+.promotion-image {
+  width: 720rpx;
+  height: 254rpx;
+}
+
+.bottom-cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.cart-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 190rpx;
+  background-color: #4a4c5b;
+  color: #fff;
+  height: 100rpx;
+}
+
+.icon-shopping-cart {
+  font-size: 60rpx;
+}
+
+.cart-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: -webkit-linear-gradient(left, #11a24a 0%, #56b743 100%); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #11a24a 0%, #56b743 100%); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #11a24a 0%, #56b743 100%); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #11a24a 0%, #56b743 100%); /* 标准的语法（必须放在最后） */
+  font-size: 40rpx;
+  color: #fff;
+  height: 100rpx;
+}

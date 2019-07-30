@@ -1,0 +1,91 @@
+<view class='GoodsContainer'>
+  <view class="goods-swiper-image">
+    <swiper vertical="{{false}}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
+      <block wx:for="{{images}}" wx:key="index">
+        <swiper-item>
+          <image class="goods-detail-image" src='{{item.img}}'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='goods-name-status'>
+    <text class='goods-name'>生菜</text>
+    <icon class='iconfont icon-shoucang'></icon>
+  </view>
+  <view class='goods-advertise-desc'>
+    <text class='goods-advertise'>清热安神|清肝利胆</text>
+    <text class='goods-desc'>
+    清热安神、清肝利胆、养胃的功效。适宜胃病、维生素C缺乏者；适宜高胆固醇、神经衰弱者食用，生食、常食可有利于女生保持身材苗条
+    </text>
+  </view>
+  <view class='choose-standard'>
+    <view class="{{index==active?'goods-price':'goods-price-hide'}}" wx:for="{{goodsSkuList}}" wx:key="index">
+      <price-component price="{{item.sell_price}}" unit="{{'份起'}}" text-color="text-color-red"></price-component>
+      <price-component priceDesc="{{'市场价'}}" price="{{item.market_price}}" unit="{{'份'}}" text-color="text-color-line"></price-component>
+      <price-component priceDesc="{{'单价'}}" price="{{item.unit_price}}" unit="{{'份'}}" text-color="text-color"></price-component>
+    </view>
+    <view class='goods-text-standard-stock'>
+      <view class='choose-text'>选份量</view>
+      <view class='goods-standard-stock-content'>
+        <view class='goods-standard-stock' wx:for="{{goodsSkuList}}" wx:key="index" data-index="{{index}}" bindtap="toggle">
+          <view class="{{index==active?'goods-standard-active':'goods-standard'}}">
+            {{item.name}}
+          </view>
+          <view class='goods-stock'>
+            库存{{item.stock}}份
+          </view>
+        </view>
+        <!-- <view class='goods-standard-stock'>
+          <view class='goods-standard'>
+            330-540g
+          </view>
+          <view class='goods-stock'>
+            库存999份
+          </view>
+        </view> -->
+      </view>
+    </view>
+  </view>
+  <view class='explain-desc-name'>
+    <text class='explain-name'>菜巴士</text>
+    <view class='explain-desc-sign'>
+      <text class='explain-desc'>满28元免配送费</text>
+      <text class='explain-sign'>·</text>
+      <text class='explain-desc'>祁东县城</text>
+      <text class='explain-sign'>·</text>
+      <text class='explain-desc'>最快约半小时送达</text>
+    </view>
+  </view>
+  <view class='explain-desc-name' bindtap='goToDescripte'>
+    <text class='explain-name'>服 务</text>
+    <view class='explain-desc-sign'>
+      <view class='no-icon'>
+        <text class='explain-desc'>支持8小时内退换货</text>
+        <text class='explain-sign'>·</text>
+        <text class='explain-desc'>定时配送</text>
+      </view>
+      <view class='explain-icon'>
+        <icon class='iconfont icon-right'></icon>
+      </view>
+    </view>
+  </view>
+  <view class='explain-desc-name'>
+    <text class='explain-name'>公平称</text>
+    <view class='explain-desc-sign'>
+      <text class='explain-desc'>实称结算</text>
+      <text class='explain-sign'>·</text>
+      <text class='explain-desc'>多退少补</text>
+    </view>
+  </view>
+  <view class='bottom-promotion'>
+    <image class='promotion-image' src='https://img.caibashi.com/ec423e0cd60a92f973ed3f535324d341.png'></image>
+  </view>
+  <view class='bottom-cart'>
+    <view class='cart-icon'>
+      <icon class='iconfont icon-shopping-cart'></icon>
+    </view>
+    <view class='cart-text'>
+      <text>加入购物车</text>
+    </view>
+  </view>
+</view>

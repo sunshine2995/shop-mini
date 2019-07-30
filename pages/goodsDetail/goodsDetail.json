@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "price-component": "/components/price-component/price-component"
+  }
+}
