@@ -9,6 +9,10 @@
     "pages/userCenter/problem/problem",
     "pages/userCenter/about/order/order",
     "pages/userCenter/about/delivery/delivery",
+    "pages/userCenter/about/memberRecharge/recharge/recharge",
+    "pages/userCenter/about/memberRecharge/member/member",
+    "pages/userCenter/about/memberRecharge/manage",
+    "pages/userCenter/about/memberRecharge/coupon/coupon",
   ],
   "window": {
     "backgroundTextStyle": "light",

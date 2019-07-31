@@ -1,0 +1,15 @@
+/* pages/userCenter/about/memberRecharge/manage.wxss */
+.problem-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #666;
+  padding: 26rpx 20rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #ebebeb;
+}
+.icon-right {
+  font-size: 45rpx;
+  color: #999;
+}

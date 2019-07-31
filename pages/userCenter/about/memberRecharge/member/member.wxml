@@ -1,0 +1,14 @@
+<!--pages/userCenter/about/memberRecharge/member/member.wxml-->
+<view class='aboutMemberContainer'>
+  <view class='about-content'>
+    <view class='about-title'>
+      <text class='title'>会员卡说明</text>
+    </view>
+    <view class='content'>
+      <text class='text'>1、会员卡暂不支持提现；</text>
+      <text class='text'>2、会员卡在个人中心—会员—查看；</text>
+      <text class='text'>3、会员仅限在菜巴士线上商城使用；</text>
+      <text class='text'>4、会员用户可享受专属会员日的会员价、会员折扣、和更多优惠券，仅限线上用户。</text>
+    </view>
+  </view>
+</view>
