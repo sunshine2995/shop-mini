@@ -6,6 +6,9 @@
     "pages/welcome/welcome",
     "pages/goodsDescription/goodsDescription",
     "pages/logs/logs",
+    "pages/userCenter/problem/problem",
+    "pages/userCenter/about/order/order",
+    "pages/userCenter/about/delivery/delivery",
   ],
   "window": {
     "backgroundTextStyle": "light",

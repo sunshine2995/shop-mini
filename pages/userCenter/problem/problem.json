@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "bottomContact": "/components/bottomContact/bottomContact"
+  },
+  "navigationBarTitleText": "常见问题",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#11A24A"
+}

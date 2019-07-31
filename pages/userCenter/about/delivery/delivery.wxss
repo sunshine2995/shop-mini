@@ -1,0 +1,2 @@
+/* pages/userCenter/about/delivery/delivery.wxss */
+@import "../order/order.wxss"

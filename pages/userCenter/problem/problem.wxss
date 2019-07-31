@@ -1,0 +1,15 @@
+/* pages/userCenter/problem/problem.wxss */
+.problem-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 36rpx;
+  color: #666;
+  padding: 26rpx 20rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #ebebeb;
+}
+.icon-right {
+  font-size: 50rpx;
+  color: #999;
+}
