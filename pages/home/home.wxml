@@ -39,7 +39,7 @@
     </swiper>
   </view>
   <view class="discount">
-    <image class="discount-image" src='/images/home/home_discount.png'></image>
+    <image class="discount-image" src='https://img.caibashi.com/1111ab48a0fe1d35ef702cf3159e6ca7.png' bindtap="goToDiscount"></image>
   </view>
   <view class="marketing-container">
     <image class="marketing-image" src='https://img.caibashi.com/e45a72a6946f21ebf86d4a66ef1bda07.jpg'></image>
@@ -71,39 +71,39 @@
     </view>
   </view>
   <view class="sort-expand-container">
-    <image class="sort-expand-image" src='/images/home/vegetables.png'></image>
+    <image class="sort-expand-image" src='https://img.caibashi.com/223a8968e7654aa721bb28b8cec56bf7.png'></image>
     <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
       <view class="sort-expand-content">
         <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
+          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
           <text class="sort-expand-goods-name">小葱拌豆腐一清二白</text>
           <view class="sort-expand-goods-price">
             <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
+          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
             <price-component price="{{8}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
+          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
             <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
+          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
             <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
           </view>
         </view>
         <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/vegetable.jpg"></image>
+          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
           <text class="sort-expand-goods-name">商品名字</text>
           <view class="sort-expand-goods-price">
             <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
@@ -116,11 +116,11 @@
     </scroll-view>
   </view>
   <view class="sort-expand-container">
-    <image class="sort-expand-image" src='/images/home/home_fruits.png'></image>
+    <image class="sort-expand-image" src='https://img.caibashi.com/6fa79368826cb51c0d6ec2c0532bc3bc.png'></image>
     <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
       <view class="sort-expand-content">
         <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/fruit.jpg"></image>
+          <image class="sort-expand-goods-image" src="https://img.caibashi.com/c52324f2d97cffd1ca8829d6693691af.jpg"></image>
           <text class="sort-expand-goods-name">黄柠檬</text>
           <view class="sort-expand-goods-price">
             <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
