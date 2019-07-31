@@ -1,0 +1,193 @@
+.discountContainer {
+  min-height: 100vh;
+  background-color: #fe3059;
+}
+
+.discount-image {
+  width: 100%;
+  height: 372rpx;
+}
+
+.discount-content {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.discount-goods-container {
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+
+.discount-goods-content {
+  display: flex;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  margin: 0 20rpx;
+  border-bottom: 2rpx solid #f4f4f3;
+}
+
+.discount-goods-image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fe3059;
+  width: 256rpx;
+  height: 368rpx;
+  border-radius: 8rpx;
+  padding: 8rpx;
+  box-sizing: border-box;
+}
+
+.discount-goods-img {
+  width: 100%;
+  max-height: 200rpx;
+  border-radius: 8rpx;
+}
+
+.discount-goods-text {
+  color: #fff;
+  padding-bottom: 30rpx;
+  box-sizing: border-box;
+}
+
+.discount-goods-surplus {
+  position: absolute;
+  top: 8rpx;
+  left: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 113rpx;
+  height: 113rpx;
+  font-size: 26rpx;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #f9374a;
+  opacity: 0.8;
+}
+
+.discount-goods-detail {
+  flex: 1;
+  padding: 0 8rpx 0 18rpx;
+  box-sizing: border-box;
+}
+
+.discount-goods-name {
+  display: block;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.icon-shichengjiesuan-1 {
+  display: block;
+  font-size: 50rpx;
+  color: #11a24a;
+  line-height: 1;
+}
+
+.discount-goods-advertising {
+  display: block;
+  font-size: 36rpx;
+  color: #999;
+}
+
+.discount-different-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 15rpx 0;
+}
+
+.goods-different-price {
+  width: 190rpx;
+}
+
+.goods-remarks {
+  flex: 1;
+  border-left: 1rpx solid #e6e6e6;
+  padding: 0 15rpx 0 8rpx;
+  box-sizing: border-box;
+  margin: 5rpx 0;
+}
+
+.discount-price-text, .discount-price-number, .discount-price-standard,
+.discount-price-remark {
+  font-size: 26rpx;
+  color: #999;
+  padding-bottom: 8rpx;
+  box-sizing: border-box;
+}
+
+.discount-price-number {
+  text-decoration: line-through;
+}
+
+.discount-limit-number {
+  width: 30%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fe3059;
+  border: 2rpx solid #fe3059;
+  border-radius: 10rpx;
+  padding: 5rpx;
+  box-sizing: border-box;
+}
+
+.discount-goods-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #fe3059;
+  color: #fff;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  margin-top: 8rpx;
+  margin-right: 30rpx;
+}
+
+.not-begin {
+  background-color: #999;
+}
+
+.activity-begin {
+  opacity: 0.8;
+}
+
+.split-line {
+  padding: 0 8rpx;
+  box-sizing: border-box;
+}
+
+.right-now {
+}
+
+.discount-sell-price {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.before-point {
+  color: #11a24a;
+}
+
+.discount-sell-price-unit {
+  font-size: 24rpx;
+  color: #fe3059;
+}
+
+.icon-sort-add {
+  font-size: 40rpx;
+  color: #11a24a;
+}
+
+.text-color {
+  color: #fe3059;
+}

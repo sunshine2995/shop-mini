@@ -5,6 +5,7 @@
     "pages/index/index",
     "pages/welcome/welcome",
     "pages/goodsDescription/goodsDescription",
+    "pages/goodsDiscount/goodsDiscount",
     "pages/logs/logs",
     "pages/userCenter/problem/problem",
     "pages/userCenter/about/order/order",

@@ -164,7 +164,7 @@ swiper {
   width: 120rpx;
   font-size: 29rpx;
   color: #666;
-  padding: 0 18rpx;
+  padding: 0 15rpx;
   box-sizing: border-box;
 }
 
