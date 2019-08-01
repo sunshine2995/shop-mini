@@ -18,6 +18,8 @@
     "pages/userCenter/about/memberRecharge/coupon/coupon",
     "pages/userCenter/balance/balance",
     "pages/userCenter/historyBill/historyBill",
+    "pages/sortEmpty/sortEp",
+    "pages/cart/cart"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,15 +33,19 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页",
-        "iconPath": "images/home/home.png",
-        "selectedIconPath": "images/home/home_select.png"
+        "text": "首页"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "个人中心",
-        "iconPath": "images/home/sort.png",
-        "selectedIconPath": "images/home/sort_select.png"
+        "pagePath": "pages/sortEmpty/sortEp",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的"
       }
     ]
   },
