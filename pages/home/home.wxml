@@ -3,11 +3,14 @@
     <view class="logo-image">
       <image class="caibashi-logo" src="/images/home/home_title.png"></image>
     </view>
-    <icon class="iconfont icon-help"></icon>
-    <view class="search-border">
+    <navigator url="/pages/userCenter/customerService/customerService" class='help-service' hover-class="none">
+      <icon class="iconfont icon-help"></icon>
+      <text class='text-help'>客服</text>
+    </navigator>
+    <navigator url="/pages/goodsSearch/goodsSearch" class='search-border' hover-class="none">
       <icon class="iconfont icon-search" />
-      <text class="search-text">找你要的菜</text>
-    </view>
+      <text class="search-text">找你要的菜{{cartNUM}}</text>
+    </navigator>
   </view>
   <view class="advertising">
     <image class="advertising-image" src='{{customImg}}' data-path="{{customPath}}" bindtap="bindJumpPath"></image>
@@ -15,25 +18,26 @@
   <view class="sort-nave">
     <block wx:for="{{sortList}}" wx:key="index" wx:for-item="sort">
       <view class="sort-content">
-        <image class="sort-image" src="{{sort.smallImgUrl}}"></image>
+        <image class="sort-image" wx:if="{{sort.small_img_url}}" src="{{sort.small_img_url}}"></image>
         <text class="sort-title">{{sort.name}}</text>
       </view>
     </block>
-    <!-- <view class="sort-content"> -->
-      <!-- <text class="check-more">更多</text> -->
-      <!-- <text class="sort-title">查看更多</text> -->
-    <!-- </view> -->
+    <view class="sort-content">
+      <text class="check-more">更多</text>
+      <text class="sort-title">查看更多</text>
+    </view>
   </view>
   <view class="activity-swiper">
     <swiper vertical="{{false}}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
       <block wx:for="{{inviteImages}}" wx:key="index">
         <swiper-item>
-          <image class="invite-image" src='{{item.img}}'></image>
+          <!-- <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}" bindtap="bindViewTap"></image> -->
+          <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}"></image>
         </swiper-item>
       </block>
       <block wx:for="{{images}}" wx:key="index">
         <swiper-item>
-          <image class="new-user-image" src='{{item.img}}'></image>
+          <image class="new-user-image" src='{{item.img}}' data-url="{{item.url}}"></image>
         </swiper-item>
       </block>
     </swiper>
@@ -41,96 +45,70 @@
   <view class="discount">
     <image class="discount-image" src='https://img.caibashi.com/1111ab48a0fe1d35ef702cf3159e6ca7.png' bindtap="goToDiscount"></image>
   </view>
-  <view class="marketing-container">
-    <image class="marketing-image" src='https://img.caibashi.com/e45a72a6946f21ebf86d4a66ef1bda07.jpg'></image>
-    <view class="marketing-goods-content">
-      <view class="marketing-goods-image">
-        <image class="marketing-goods-img" src='https://img.caibashi.com/c20d52256ba8c6f9880cbb4c4d697c0a.JPG'></image>
-      </view>
-      <view class="marketing-goods-detail">
-        <text class='marketing-goods-name'>12头 鲜活鲍鱼</text>
-        <icon class='iconfont icon-shichengjiesuan-1'></icon>
-        <text class='marketing-goods-advertising'>肥美鲜香</text>
-        <view class='marketing-different-price'>
-          <view class='goods-different-price'>
-            <text class='market-price-text'>市场价</text>
-            <text class='market-price-number'>￥12元/个</text>
+
+  <block wx:for="{{marketingTypeList}}" wx:key="index" wx:for-item="marketingType">
+    <view class="marketing-container">
+      <image class="marketing-image" src='{{marketingType.img_url}}'></image>
+      <block wx:for="{{marketingType.goods_spu_info}}" wx:key="index" wx:for-item="goodSpu">
+        <view class="marketing-goods-content" data-good-id='{{goodSpu.id}}' bindtap='goDetail'>
+          <view class="marketing-goods-image">
+            <image class="marketing-goods-img" src='{{goodSpu.thumbnail_url}}'></image>
           </view>
-          <view class='goods-remarks'>
-            <text class='market-price-standard'>规格</text>
-            <text class='market-price-remark'>备注</text>
+          <view class="marketing-goods-detail">
+            <text class='marketing-goods-name'>{{goodSpu.name}}</text>
+            <icon class='iconfont icon-shichengjiesuan-1'></icon>
+            <text class='marketing-goods-advertising'>{{goodSpu.advertising}}</text>
+            <block wx:for="{{goodSpu.goods_sku_list}}" wx:key="index" wx:for-item="goodSku">
+              <view class='marketing-different-price'>
+                <view class='goods-different-price' wx:if='{{goodSpu.is_standard}}'>
+                  <text class='market-price-text'>市场价</text>
+                  <text class='market-price-number'>￥{{goodSku.market_price}}/{{goodSku.goods_sku_unit.name}}</text>
+                </view>
+                <view class='goods-different-price' wx:else>
+                  <text class='market-price-text'>单价</text>
+                  <text class='market-price-number'>￥{{goodSku.unit_price}}/{{goodSku.goods_sku_unit.name}}</text>
+                </view>
+                <view class='goods-remarks'>
+                  <text class='market-price-standard'>{{goodsSku.name}}</text>
+                  <text class='market-price-remark'>{{goodsSku.remark}}</text>
+                </view>
+              </view>
+              <view class='marketing-goods-price'>
+                <view class='marketing-sell-price' wx:if='{{goodSpu.is_standard}}'>
+                  <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color='text-color'></price-component>
+                </view>
+                <view class='marketing-sell-price' wx:else>
+                  <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color='text-color '></price-component>
+                </view>
+                <icon class="iconfont icon-sort-add"></icon>
+              </view>
+            </block>
           </view>
         </view>
-        <view class='marketing-goods-price'>
-          <view class='marketing-sell-price'>
-            <price-component price="{{8.88}}" unit="{{'个'}}" text-color='text-color'></price-component>
-          </view>
-          <icon class="iconfont icon-sort-add"></icon>
-        </view>
-      </view>
+      </block>
     </view>
-  </view>
-  <view class="sort-expand-container">
-    <image class="sort-expand-image" src='https://img.caibashi.com/223a8968e7654aa721bb28b8cec56bf7.png'></image>
-    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-      <view class="sort-expand-content">
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
-          <text class="sort-expand-goods-name">小葱拌豆腐一清二白</text>
-          <view class="sort-expand-goods-price">
-            <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
-          </view>
+  </block>
+
+  <block wx:for="{{categoryOneList}}" wx:key="index" wx:for-item="categoryOne">
+    <view class="sort-expand-container">
+      <image class="sort-expand-image" src='{{categoryOne.category_one_big_img_url}}'></image>
+      <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+        <view class="sort-expand-content">
+          <block wx:for="{{categoryOne.goods_spu_list}}" wx:key="index" wx:for-item="goodSpu">
+            <view class="sort-expand-detail" data-good-id='{{goodSpu.id}}' bindtap='goDetail'>
+              <image class="sort-expand-goods-image" src="{{goodSpu.thumbnail_url}}"></image>
+              <text class="sort-expand-goods-name">{{goodSpu.name}}</text>
+              <view class="sort-expand-goods-price" wx:if='{{goodSpu.is_standard}}'>
+                <price-component price="{{goodSpu.goods_sku_info.sell_price}}" unit="{{goodSpu.goods_sku_info.goods_sku_unit.name+'起'}}" text-color='text-color ' custom-template='custom-template '></price-component>
+              </view>
+              <view class="sort-expand-goods-price" wx:else>
+                <price-component price="{{goodSpu.goods_sku_info.sell_price}}" unit="{{goodSpu.goods_sku_info.goods_sku_sell_unit.name+'起'}}" text-color='text-color ' custom-template='custom-template '></price-component>
+              </view>
+            </view>
+          </block>
         </view>
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
-          <text class="sort-expand-goods-name">商品名字</text>
-          <view class="sort-expand-goods-price">
-            <price-component price="{{8}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
-          </view>
-        </view>
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
-          <text class="sort-expand-goods-name">商品名字</text>
-          <view class="sort-expand-goods-price">
-            <price-component price="{{8.3}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
-          </view>
-        </view>
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
-          <text class="sort-expand-goods-name">商品名字</text>
-          <view class="sort-expand-goods-price">
-            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
-          </view>
-        </view>
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="https://img.caibashi.com/7030a6588b8e49efcce6021f33849bba.jpg"></image>
-          <text class="sort-expand-goods-name">商品名字</text>
-          <view class="sort-expand-goods-price">
-            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
-          </view>
-        </view>
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/home_more.png"></image>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-  <view class="sort-expand-container">
-    <image class="sort-expand-image" src='https://img.caibashi.com/6fa79368826cb51c0d6ec2c0532bc3bc.png'></image>
-    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-      <view class="sort-expand-content">
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="https://img.caibashi.com/c52324f2d97cffd1ca8829d6693691af.jpg"></image>
-          <text class="sort-expand-goods-name">黄柠檬</text>
-          <view class="sort-expand-goods-price">
-            <price-component price="{{8.88}}" unit="{{'份起'}}" text-color='text-color' custom-template='custom-template'></price-component>
-          </view>
-        </view>
-        <view class="sort-expand-detail">
-          <image class="sort-expand-goods-image" src="/images/home/home_more.png"></image>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
+      </scroll-view>
+    </view>
+  </block>
   <view class="already-bottom">我是有底线的~</view>
 </view>

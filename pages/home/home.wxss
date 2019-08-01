@@ -6,7 +6,6 @@
 .home-nav {
   display: flex;
   width: 100%;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 20rpx 0;
@@ -21,12 +20,21 @@
   width: 192rpx;
   height: 65rpx;
 }
+.help-service {
+  display: flex;
+  align-items: center;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
 
 .icon-help {
   font-size: 50rpx;
   color: #11a24a;
-  padding-right: 20rpx;
-  box-sizing: border-box;
+}
+
+.text-help {
+  font-size: 30rpx;
+  color: #11a24a;
 }
 
 .search-border {
@@ -56,6 +64,7 @@
 
 .advertising-image {
   width: 100%;
+  height: 386rpx;
 }
 
 .sort-nave {
@@ -86,7 +95,7 @@
   justify-content: center;
   width: 100rpx;
   height: 100rpx;
-  border: 1rpx solid #e6e6e6;
+  /* border: 1rpx solid #e6e6e6; */
   border-radius: 50%;
   color: #666;
 }
@@ -168,7 +177,7 @@ swiper {
 .icon-shichengjiesuan-1 {
   display: block;
   font-size: 50rpx;
-  color: #11A24A;
+  color: #11a24a;
   line-height: 1;
 }
 
@@ -177,6 +186,7 @@ swiper {
   font-size: 36rpx;
   color: #999;
 }
+
 .marketing-different-price {
   display: flex;
   flex-direction: row;
@@ -193,18 +203,22 @@ swiper {
   flex: 1;
   border-left: 1rpx solid #e6e6e6;
   padding: 0 8rpx;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   margin: 5rpx 0;
 }
-.market-price-text, .market-price-number, .market-price-standard, .market-price-remark {
+
+.market-price-text, .market-price-number, .market-price-standard,
+.market-price-remark {
   font-size: 26rpx;
   color: #999;
 }
+
 .marketing-goods-price {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 .marketing-sell-price {
   flex: 1;
   display: flex;
@@ -213,7 +227,7 @@ swiper {
 }
 
 .before-point {
-  color: #11A24A;
+  color: #11a24a;
 }
 
 .marketing-sell-price-unit {
@@ -223,12 +237,12 @@ swiper {
 
 .icon-sort-add {
   font-size: 40rpx;
-  color: #11A24A;
+  color: #11a24a;
 }
 
 .sort-expand-container {
   width: 100%;
-  padding: 10rpx 20rpx;
+  padding: 30rpx 20rpx;
   box-sizing: border-box;
 }
 
@@ -265,6 +279,7 @@ swiper {
   font-size: 26rpx;
   color: #999;
 }
+
 .sort-expand-goods-price {
   margin-top: 15rpx;
 }
@@ -275,9 +290,11 @@ swiper {
   padding: 30rpx;
   box-sizing: border-box;
 }
+
 .text-color {
   color: #fe3059;
 }
+
 .custom-template {
   justify-content: center;
 }
