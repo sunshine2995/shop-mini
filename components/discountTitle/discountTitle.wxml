@@ -1,0 +1,7 @@
+<view class='discount-title' wx:if='{{rebate}}'>
+  <text class='discount-time'>{{time}}</text>
+  <text class='discount-rebate'>{{rebate}}</text>
+</view>
+<view class='discount-title' wx:else>
+  <text class='discount-rebate'>{{time}}</text>
+</view>
