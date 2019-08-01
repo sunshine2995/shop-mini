@@ -3,14 +3,17 @@
   box-sizing: border-box;
 }
 
-swiper {
+.image-swiper {
   width: 750rpx;
-  height: 610rpx;
+}
+.default-swiper-swiper {
+  width: 100%;
+  height: 260rpx;
 }
 
-.goods-detail-image {
+.goods-detail-image, .goods-default-image {
   width: 100%;
-  height: 610rpx;
+  height: auto；
 }
 
 .goods-name-status {

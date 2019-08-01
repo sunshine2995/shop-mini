@@ -1,6 +1,10 @@
+
+var GoodsService = require('../../utils/services/GoodsService.js');
+
 Page({
   data: {
     active: 0,
+    spuId: 0,
   },
 
   toggle(e) {
@@ -15,37 +19,44 @@ Page({
     })
   },
 
-  onLoad: function() {
-    var images = [{
-      img: "https://img.caibashi.com/a1d0984a51fc4283b8810929082ff1e7.jpg@2o",
-    }, {
-      img: "https://img.caibashi.com/254ea50f75c043e5c0e6a47090e1ce5f.png",
-    }, {
-      img: "https://img.caibashi.com/6086464e1432b219c9415e27298344a4.PNG",
-    }, {
-      img: "https://img.caibashi.com/254ea50f75c043e5c0e6a47090e1ce5f.png",
-    }, ]
+  getDetail() {
+    GoodsService.getDetail(this.data.spuId)
+      .then((res) => {
+        var goodsInfo = res.data.data;
+        this.setData({
+          goodsInfo: goodsInfo,
+        });
+        this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
+      })
+      .catch(() => {
 
-    var goodsSkuList = [{
-      id: 297,
-      name: "330-540/g",
-      market_price: "12.48",
-      unit_price: "11.00",
-      stock: 999,
-      sell_price: "11.88",
-    }, {
-      id: 682,
-      name: "1600-2000/大条",
-      market_price: "44.80",
-      unit_price: "12.00",
-      stock: 998,
-      sell_price: "44.00",
-    }]
-    var sell_price = goodsSkuList[0].sell_price;
-    this.setData({
-      images: images,
-      goodsSkuList: goodsSkuList,
-      sell_price: sell_price,
-    });
+      })
+  },
+
+  onLoad(option) {
+    this.data.spuId = option.goodId;
+    this.getDetail();
+  },
+  //图片滑动事件
+  change(e) {
+    var index = e.detail.current;
+    var imgUrls = this.data.goodsInfo.goods_spu_details_image;
+    this.imgH(imgUrls[index].details_img_url);
+  },
+  //获取图片的高度，把它设置成swiper的高度
+  imgH(e) {
+    var that = this;
+    var winWid = wx.getSystemInfoSync().windowWidth * 2;
+    wx.getImageInfo({//获取图片长宽等信息
+      src: e,
+      success: function (res) {
+        var imgw = res.width;
+        var imgh = res.height;
+        var swiperH = winWid * imgh / imgw;
+        that.setData({
+          swiperHeight: swiperH, //设置高度
+        })
+      }
+    })
   }
 })
