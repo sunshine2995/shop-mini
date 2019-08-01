@@ -106,6 +106,9 @@
               </view>
             </view>
           </block>
+          <view class="sort-expand-detail">
+            <image class="sort-expand-goods-image" src="/images/home/home_more.png"></image>
+          </view>
         </view>
       </scroll-view>
     </view>
