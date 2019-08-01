@@ -1,0 +1,173 @@
+<view class='userContainer'>
+  <view class='user-content'>
+    <view class='user-detail'>
+      <view class='user-avatarUrl'>
+        <image class='user-img' src='{{userInfo.headimgurl}}'></image>
+      </view>
+      <view class='user-info'>
+        <text class='user-name'>{{userInfo.nickname}}</text>
+        <text class='user-phone'>{{userInfo.phone}}</text>
+      </view>
+    </view>
+    <view class="activity-swiper">
+      <swiper vertical="{{false}}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
+        <swiper-item>
+          <image class="invite-image" src='https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png'></image>
+        </swiper-item>
+        <swiper-item>
+          <image class="invite-image" src='https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png'></image>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <view class='integration'>
+    <navigator class='balance' url='/pages/userCenter/balance/balance' hover-class="none">
+      <text class='number' wx:if='{{userInfo.balance}}'>￥{{userInfo.balance}}元</text>
+      <text class='number' wx:else>0</text>
+      <text class='text'>余额</text>
+    </navigator>
+    <view class='red-envelopes'>
+      <text class='number' wx:if='{{userInfo.coupons_number}}'>{{userInfo.coupons_number}}</text>
+      <text class='number' wx:else>0</text>
+      <text class='text'>红包</text>
+    </view>
+    <view class='common-menu'>
+      <text class='number' wx:if='{{userInfo.collection_numbers}}'>{{ userInfo.collection_numbers }}</text>
+      <text class='number' wx:else>0</text>
+      <text class='text'>收藏</text>
+    </view>
+    <navigator class='integral' url='/pages/userCenter/point/point' hover-class="none">
+      <text class='number' wx:if='{{userInfo.user_integral}}'>{{ userInfo.user_integral }}</text>
+      <text class='number' wx:else>0</text>
+      <text class='text'>积分</text>
+    </navigator>
+  </view>
+  <view class='order-moudle'>
+    <view class='all-order'>
+      <text>我的订单</text>
+      <view class='order-icon'>
+        <text>全部订单</text>
+        <icon class='iconfont icon-right'></icon>
+      </view>
+    </view>
+    <view class='order-status'>
+      <view class='order-type'>
+        <icon class='iconfont icon-pending-payment'></icon>
+        <text class='order-type-text'>待付款</text>
+      </view>
+      <view class='order-type'>
+        <icon class='iconfont icon-store'></icon>
+        <text class='order-type-text'>待分拣</text>
+      </view>
+      <view class='order-type'>
+        <icon class='iconfont icon-chengzhong'></icon>
+        <text class='order-type-text'>分拣中</text>
+      </view>
+      <view class='order-type'>
+        <icon class='iconfont icon-to-be-delivered'></icon>
+        <text class='order-type-text'>待配送</text>
+      </view>
+      <view class='order-type'>
+        <icon class='iconfont icon-to-be-received'></icon>
+        <text class='order-type-text'>待收货</text>
+      </view>
+    </view>
+  </view>
+  <view class='recharge-moudle'>
+    <view class='go-to-recharge'>
+      <text>充值有礼</text>
+      <view class='order-icon'>
+        <text>充值中心</text>
+        <icon class='iconfont icon-right'></icon>
+      </view>
+    </view>
+    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+      <view class='recharge-type'>
+        <view>
+          <image class="recharge-image" src='https://img.caibashi.com/341166a47499db68f9eca5f46d1bf86d.png'></image>
+        </view>
+        <view>
+          <image class="recharge-image" src='https://img.caibashi.com/e41b0be41493f18a6a51cc309175513a.png'></image>
+        </view>
+        <view>
+          <image class="recharge-image" src='https://img.caibashi.com/a9293a4320fa06561849ea4d2fa273a5.png'></image>
+        </view>
+        <view>
+          <image class="recharge-image" src='https://img.caibashi.com/6dccdb289f7c91915da6df5c518516d6.png'></image>
+        </view>
+        <view>
+          <image class="recharge-image" src='https://img.caibashi.com/a89c6f31341cc91ed2368d639a95e4fe.png'></image>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='activity-moudle'>
+    <view class='activity-title'>
+      <text>活动中心</text>
+    </view>
+    <view class='activity-content'>
+      <view class='activity-type'>
+        <icon class='iconfont icon-huodong'></icon>
+        <text class='activity-type-text'>充值赠礼</text>
+      </view>
+      <view class='activity-type'>
+        <icon class='iconfont icon-fenxiang1'></icon>
+        <text class='activity-type-text'>分享充值送</text>
+      </view>
+      <view class='activity-type'>
+        <icon class='iconfont icon-jinlingyingcaiwangtubiao04'></icon>
+        <text class='activity-type-text'>邀请有礼</text>
+      </view>
+    </view>
+  </view>
+  <!-- <view class='service-moudle'>
+    <view class='service-title'>
+      <text>我的服务</text>
+    </view>
+    <view class='service-content'>
+      <navigator class='service-type' url='/pages/userCenter/feedback/feedback' hover-class="none">
+        <icon class='iconfont icon-message'></icon>
+        <text class='service-type-text'>留言反馈</text>
+      </navigator>
+      
+      <navigator class='service-type' url='/pages/userCenter/enterprise/enterprise' hover-class="none">
+        <icon class='iconfont icon-qiyedinggou'></icon>
+        <text class='service-type-text'>企业订购</text>
+      </navigator>
+
+      <navigator class='service-type' url='/pages/userCenter/customerService/customerService' hover-class="none">
+        <icon class='iconfont icon-help'></icon>
+        <text class='service-type-text'>联系客服</text>
+      </navigator>
+
+      <navigator class='service-type' url='/pages/userCenter/join/join' hover-class="none">
+        <icon class='iconfont icon-cooperation'></icon>
+        <text class='service-type-text'>合作加盟</text>
+      </navigator>
+
+      <navigator class='service-type' url='/pages/userCenter/problem/problem' hover-class="none">
+        <icon class='iconfont icon-problem'></icon>
+        <text class='service-type-text'>常见问题</text>
+      </navigator>
+
+      <view class='service-type'>
+        <icon class='iconfont icon-address-manage'></icon>
+        <text class='service-type-text'>收货地址</text>
+      </view>
+
+      <view class='service-type'>
+        <icon class='iconfont icon-recharge'></icon>
+        <text class='service-type-text'>充值中心</text>
+      </view>
+
+      <navigator class='service-type' url='/pages/userCenter/exchange/exchange' hover-class="none">
+        <icon class='iconfont icon-exchange'></icon>
+        <text class='service-type-text'>兑换礼卡</text>
+      </navigator>
+      <view class='service-type'>
+        <icon class='iconfont icon-exchange'></icon>
+        <text class='service-type-text'>我的赠礼</text>
+      </view>
+    </view>
+  </view> -->
+</view>

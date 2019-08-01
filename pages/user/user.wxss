@@ -1,0 +1,178 @@
+.user-content {
+  background: linear-gradient(#11a24a 0%, #56b743 100%);
+  background: -webkit-linear-gradient(#11a24a 0%, #56b743 100%);
+  background: -o-linear-gradient(#56b743 0%, #56b743 100%);
+}
+
+.user-detail {
+  display: flex;
+  padding: 45rpx;
+  box-sizing: border-box;
+}
+
+.user-img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.user-info {
+  color: #fff;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+
+.user-name {
+  font-size: 36rpx;
+}
+
+.user-phone {
+  font-size: 30rpx;
+}
+
+.activity-swiper {
+  width: 100%;
+  margin-top: 15rpx;
+}
+
+swiper {
+  width: 100%;
+  height: 150rpx;
+}
+
+.invite-image {
+  width: 100%;
+  height: 150rpx;
+}
+
+.integration {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #ebebeb;
+}
+
+.balance, .red-envelopes, .common-menu, .integral {
+  flex: 1;
+  flex-shrink: 1;
+  font-size: 30rpx;
+  color: #808080;
+  border-right: 2rpx solid #ebebeb;
+  text-align: center;
+  padding: 0 8rpx;
+  box-sizing: border-box;
+}
+
+.balance {
+  flex: 1.5;
+}
+
+.integral {
+  border-right: unset;
+}
+
+.order-moudle, .recharge-moudle, .activity-moudle, .service-moudle {
+  border-bottom: 2rpx solid #ebebeb;
+}
+
+.all-order, .go-to-recharge, .activity-title, .service-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 30rpx;
+  color: #666;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.order-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+icon-right {
+  display: block;
+  line-height: 1;
+  padding-left: 10rpx;
+  box-sizing: border-box;
+}
+
+.order-status, .activity-content, .service-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.activity-type, .service-type {
+  text-align: center;
+  width: 33%;
+  color: #999;
+  margin-bottom: 20rpx;
+}
+
+.activity-type-text, .service-type-text {
+  padding: 15rpx 0;
+  box-sizing: border-box;
+}
+
+.order-type {
+  flex: 1;
+  text-align: center;
+  color: #666;
+}
+
+.order-type-text {
+  font-size: 30rpx;
+  padding: 15rpx 0 26rpx;
+  box-sizing: border-box;
+}
+.activity-type-text, .service-type-text {
+  font-size: 30rpx;
+}
+
+.icon-huodong, .icon-fenxiang1, .icon-jinlingyingcaiwangtubiao04 {
+  font-size: 40rpx;
+}
+
+/* .icon-fenxiang1 {
+  font-size: 45rpx;
+} */
+
+.icon-pending-payment, .icon-to-be-delivered, .icon-store, .icon-to-be-received {
+  font-size: 50rpx;
+  color: #999;
+}
+
+.icon-chengzhong {
+  font-size: 45rpx;
+  color: #999;
+}
+
+.recharge-type {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 5rpx;
+  box-sizing: border-box;
+}
+
+.recharge-image {
+  width: 260rpx;
+  height: 143rpx;
+  margin: 0 10rpx 26rpx;
+}
+
+.icon-message, .icon-qiyedinggou, .icon-help, .icon-cooperation, .icon-problem,
+.icon-address-manage, .icon-recharge, .icon-exchange, .icon-exchange {
+  font-size: 45rpx;
+}
+
+.icon-recharge, .icon-address-manage {
+  font-size: 50rpx;
+}
