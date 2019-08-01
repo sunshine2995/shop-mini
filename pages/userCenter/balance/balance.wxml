@@ -1,0 +1,36 @@
+<!--pages/userCenter/balance/balance.wxml-->
+<view class='balanceContainer'>
+  <Curtain isShowCurtain="{{isShowCurtain}}" />
+  <view class='curtain-explain' wx:if='{{isShowCurtain}}'>
+    <text class='explain-title'>余额说明</text>
+    <text class='explain-text'>1、储值余额暂不支持提现;</text>
+    <text class='explain-text'>2、储值余额在个人中心-余额-查看;</text>
+    <text class='explain-text'>3、本卡余额可在菜巴士线上商城使用，可在结算页面选择“余额支付”;</text>
+    <button type='primary' class='ok' bindtap='hideCurtain'> 知道啦 </button>
+  </view>
+  <view class='content'>
+    <view class='adverdting-image-history-bill'>
+      <image class='adverdting-image' src='https://img.caibashi.com/f136c24b3b2e44bcd66fb29cd3e1cc25.png'></image>
+      <navigator url='/pages/userCenter/historyBill/historyBill' hover-class="none">
+        <text class='history-bill'>历史账单</text>
+      </navigator>
+    </view>
+    <view class='balance-content'>
+      <text class='balance-text'>仅剩余额</text>
+      <view class='balance-number-explain'>
+        <view class='balance-dign-number'>
+          <text class='balance-sign'>￥</text>
+          <text class='balance-number'>666.99</text>
+        </view>
+        <view class='balance-explain-icon' bindtap='showCurtain'>
+          <text class='balance-explain'>余额说明</text>
+          <icon class='iconfont icon-help-desc'></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='bottom-recharge '>
+    <image class='recharge-image ' src='https://img.caibashi.com/4e8248f31db27f7fa074b42eb15e11cb.png '></image>
+    <view class='recharge '>立即充值</view>
+  </view>
+</view>

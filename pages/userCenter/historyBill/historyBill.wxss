@@ -1,0 +1,30 @@
+/* pages/userCenter/historyBill/historyBill.wxss */
+
+.bill-content, .bill-type-orderNo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bill-content {
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #ebebeb;
+}
+.bill-type, .bill-money {
+  font-size: 30rpx;
+}
+.bill-order-number {
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.bill-order-number, .bill-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.bill-time {
+  padding: 15rpx 0 10rpx;
+  box-sizing: border-box;
+}

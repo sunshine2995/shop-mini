@@ -1,0 +1,131 @@
+/* pages/userCenter/balance/balance.wxss */
+.adverdting-image-history-bill {
+  position: relative;
+}
+.history-bill {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  font-size: 26rpx;
+  color: #666;
+  padding: 5rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #b3b3b3;
+  border-radius: 10rpx;
+}
+.adverdting-image {
+  width: 100%;
+  height: 430rpx;
+}
+
+.balance-content {
+  margin: 0 30rpx;
+  padding: 30rpx 0;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #ebebeb;
+}
+
+.balance-text {
+  font-size: 24rpx;
+}
+
+.balance-number-explain {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+
+.balance-dign-number {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.balance-sign {
+  font-size: 24rpx;
+}
+
+.balance-number {
+  line-height: 1;
+  font-size: 40rpx;
+  color: #fe3059;
+}
+
+.balance-explain-icon {
+  display: flex;
+  align-items: flex-end;
+}
+
+.balance-explain {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.icon-help-desc {
+  font-size: 36rpx;
+  line-height: 1;
+  color: #999;
+  margin-left: 20rpx;
+}
+
+.bottom-recharge {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 36rpx;
+  color: #fff;
+}
+
+.recharge-image {
+  display: block;
+  width: 100%;
+  height: 170rpx;
+}
+
+.recharge {
+  text-align: center;
+  background-color: #4a4c5b;
+  padding: 26rpx;
+  box-sizing: border-box;
+}
+
+.curtain-explain {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 220;
+  width: 100%;
+  padding: 80rpx 80rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.explain-title {
+  text-align: center;
+  font-size: 45rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.explain-text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.ok {
+  width: 88%;
+  line-height: 1;
+  padding: 20rpx 10rpx;
+  box-sizing: border-box;
+  margin: 40rpx auto;
+}
+
+.button-hover {
+  background-color: #009b48;
+}
