@@ -1,0 +1,6 @@
+<!--pages/userCenter/point/point.wxml-->
+<view class='pointContainer'>
+  <view class='tip'>
+    <image class='tip-image' src='https://img.caibashi.com/553716a05e319c72d2cff865b4648369.png' mode='widthFix'></image>
+  </view>
+</view>

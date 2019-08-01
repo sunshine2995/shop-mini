@@ -1,0 +1,9 @@
+/* pages/userCenter/point/point.wxss */
+.tip {
+  text-align: center;
+  margin: 120rpx auto;
+}
+.tip-image {
+  width: 490rpx;
+  height: auto;
+}
