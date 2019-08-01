@@ -1,88 +1,50 @@
 <view class='discountContainer'>
   <image class='discount-image' src='https://img.caibashi.com/aba044f2eb9893c78c1cff9d227c141f.png'></image>
   <view class='discount-content'>
-    <discountTitle time="{{'今日折扣 15:00 - 16:00'}}" rebate="{{'下单享9折'}}" /> 
-    <view class='discount-goods-container'>
-      <view class='discount-goods-content' bindtap='goToDetail'>
-        <view class='discount-goods-image'>
-          <image class='discount-goods-img' src='https://img.caibashi.com/2441ab646f43963d3ed0625ef5b578e8.jpg'></image>
-          <text class='discount-goods-text'>限时8折</text>
-          <text class='discount-goods-surplus'>仅999件</text>
-        </view>
-        <view class="discount-goods-detail">
-          <text class='discount-goods-name'>猪/五花肉</text>
-          <icon class='iconfont icon-shichengjiesuan-1'></icon>
-          <text class='discount-goods-advertising'>美容的秘密武器</text>
-          <view class='discount-different-price'>
-            <view class='goods-different-price'>
-              <text class='discount-price-number'>￥12元/个</text>
-              <price-component price="{{8.88}}" unit="{{'个'}}" text-color='text-color'></price-component>
-            </view>
-            <view class='goods-remarks'>
-              <text class='discount-price-standard'>480-500g/份</text>
-              <text class='discount-price-remark'>480-500g/份</text>
-            </view>
-          </view>
-          <view class='discount-limit-number'>限购3件</view>
-          <view class='discount-goods-price'>
-            <text class='activity-begin'>活动已开始</text>
-            <text class='split-line'>|</text>
-            <text class='right-now'> 马上抢</text>
-          </view>
-        </view>
+    <block wx:for="{{discountList}}" wx:key="index" wx:for-item="discountInfo">
+      <view class='discount-title-style'>
+        <discountTitle time="{{discountInfo.discount_main_info.discount_name_time}}" rebate="{{discountInfo.discount_main_info.discount_name_rebate}}" />
       </view>
-      <view class='discount-goods-content'>
-        <view class='discount-goods-image'>
-          <image class='discount-goods-img' src='https://img.caibashi.com/39b1bd8a7b7d2eb5776673e04d9c3765.jpg'></image>
-          <text class='discount-goods-text'>限时8折</text>
-        </view>
-        <view class="discount-goods-detail">
-          <text class='discount-goods-name'>12头 鲜活鲍鱼</text>
-          <icon class='iconfont icon-shichengjiesuan-1'></icon>
-          <text class='discount-goods-advertising'>肥美鲜香</text>
-          <view class='discount-different-price'>
-            <view class='goods-different-price'>
-              <text class='discount-price-number'>￥12元/个</text>
-              <price-component price="{{8.88}}" unit="{{'个'}}" text-color='text-color'></price-component>
+      <view class='discount-goods-container'>
+        <block wx:for="{{discountInfo.discount_sku_info}}" wx:key="index" wx:for-item="goods">
+          <view class='discount-goods-content'  data-good-id='{{goods.id}}' bindtap='goToDetail'>
+            <view class='discount-goods-image'>
+              <image class='discount-goods-img' src='{{goods.thumbnail_url}}' mode='widthFix'></image>
+              <text class='discount-goods-text' wx:if='{{goods.marketing}}'>{{goods.marketing.marketing_simple_name}}</text>
+              <text class='discount-goods-surplus' wx:if='{{goods.stock < 10 && discountInfo.discount_main_info.is_begin}}'>仅{{goods.stock}}件</text>
             </view>
-            <view class='goods-remarks'>
-              <text class='discount-price-standard'>480-500g/份</text>
-              <text class='discount-price-remark'>480-500g/份</text>
+            <view class="discount-goods-detail">
+              <text class='discount-goods-name'>{{ goods.spu_name }}</text>
+              <icon class='iconfont icon-shichengjiesuan-1'></icon>
+              <text class='discount-goods-advertising'>{{ goods.advertising }}</text>
+              <view class='discount-different-price'>
+                <view class='goods-different-price'>
+                  <text class='discount-price-number'>￥{{goods.sell_price}}元/{{goods.goods_sku_unit.name}}</text>
+                  <price-component price="{{goods.marketing.marketing_price}}" unit="{{goods.goods_sku_unit.name}}" text-color='text-color'></price-component>
+                </view>
+                <view class='goods-remarks'>
+                  <text class='discount-price-standard'>{{goods.name}}</text>
+                  <text class='discount-price-remark'>{{goods.remark}}</text>
+                </view>
+              </view>
+              <view class='discount-limit-number'>限购3件</view>
+              <view class='discount-goods-price' wx:if='{{goods.stock !== 0 && discountInfo.discount_main_info.is_begin}}'>
+                <text class='activity-begin'>活动已开始</text>
+                <text class='split-line'>|</text>
+                <text class='right-now'> 马上抢</text>
+              </view>
+              <view class='discount-goods-price not-begin' wx:if='{{goods.stock !== 0 && !discountInfo.discount_main_info.is_begin}}'>
+                <text class='activity-begin'>即将开始</text>
+                <text class='split-line'>|</text>
+                <text class='right-now'> 马上抢</text>
+              </view>
+              <view class='discount-goods-price not-begin' wx:if='{{goods.stock === 0}}'>
+                <text class='right-now'>已抢完</text>
+              </view>
             </view>
           </view>
-          <view class='discount-limit-number'>限购3件</view>
-          <view class='discount-goods-price not-begin'>
-            <text class='activity-begin'>即将开始</text>
-            <text class='split-line'>|</text>
-            <text class='right-now'> 马上抢</text>
-          </view>
-        </view>
+        </block>
       </view>
-      <view class='discount-goods-content'>
-        <view class='discount-goods-image'>
-          <image class='discount-goods-img' src='https://img.caibashi.com/39b1bd8a7b7d2eb5776673e04d9c3765.jpg'></image>
-          <text class='discount-goods-text'>限时8折</text>
-        </view>
-        <view class="discount-goods-detail">
-          <text class='discount-goods-name'>猪/五花肉</text>
-          <icon class='iconfont icon-shichengjiesuan-1'></icon>
-          <text class='discount-goods-advertising'>美容的秘密武器</text>
-          <view class='discount-different-price'>
-            <view class='goods-different-price'>
-              <text class='discount-price-number'>￥12元/个</text>
-              <price-component price="{{8.88}}" unit="{{'个'}}" text-color='text-color'></price-component>
-            </view>
-            <view class='goods-remarks'>
-              <text class='discount-price-standard'>480-500g/份</text>
-              <text class='discount-price-remark'>480-500g/份</text>
-            </view>
-          </view>
-          <view class='discount-limit-number'>限购3件</view>
-          <view class='discount-goods-price not-begin'>
-            <text class='right-now'>已抢完</text>
-          </view>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
 </view>

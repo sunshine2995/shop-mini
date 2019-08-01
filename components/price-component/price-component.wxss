@@ -11,6 +11,6 @@
 }
 
 .before-point {
-  font-size: 34rpx;
+  font-size: 38rpx;
   line-height: 1;
 }

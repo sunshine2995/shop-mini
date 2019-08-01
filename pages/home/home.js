@@ -28,13 +28,7 @@ Page({
       url: path,
     })
   },
-
-  goToDiscount() {
-    wx.navigateTo({
-      url: '/pages/goodsDiscount/goodsDiscount',
-    })
-  },
-
+  
   onLoad: function() {
     wx.showLoading({
       title: '加载中',

@@ -6,6 +6,7 @@
 .image-swiper {
   width: 750rpx;
 }
+
 .default-swiper-swiper {
   width: 100%;
   height: 260rpx;
@@ -13,7 +14,7 @@
 
 .goods-detail-image, .goods-default-image {
   width: 100%;
-  height: auto；
+  height: auto；;
 }
 
 .goods-name-status {
@@ -55,9 +56,26 @@
   color: #999;
   text-align: justify;
 }
+
 .choose-standard {
   padding: 20rpx 0;
   box-sizing: border-box;
+}
+
+.goods-sell-price {
+  display: flex;
+  align-items: flex-end;
+}
+
+.discount-rebate {
+  background-color: #fe3059;
+  border: 1px solid #fe3059;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  color: #fff;
+  padding: 5rpx 15rpx;
+  box-sizing: border-box;
+  margin: 0 20rpx;
 }
 
 .goods-price {
@@ -74,7 +92,6 @@
   /* animation-name: diagonal-slide;
   animation-duration: 5s;
   animation-iteration-count: 10; */
-
 }
 
 @keyframes ease-in {
@@ -95,12 +112,12 @@
   color: #fe3059;
 }
 
-.text-color {
+.invalid-price, .invalid-price-line {
+  font-size: 24rpx;
   color: #666;
 }
 
-.text-color-line {
-  color: #666;
+.invalid-price-line {
   text-decoration: line-through;
 }
 
@@ -171,6 +188,26 @@
   box-sizing: border-box;
 }
 
+.discount-explain {
+  width: 120rpx;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+
+.discount-explain-name {
+  text-align: center;
+  width: 88rpx;
+  font-size: 29rpx;
+  color: #fe3059;
+  border: 1px solid #fe3059;
+  border-radius: 5rpx;
+  padding: 5rpx 8rpx;
+  box-sizing: border-box;
+}
+.discount-explain-desc {
+  color: #fe3059;
+  font-size: 29rpx;
+}
 .explain-desc-sign {
   flex: 1;
   display: flex;
@@ -201,7 +238,9 @@
   color: #999;
   text-align: right;
 }
-
+.discount-explain-icon .icon-right { 
+  color: #fe3059;
+}
 .bottom-promotion {
   width: 100%;
   text-align: center;

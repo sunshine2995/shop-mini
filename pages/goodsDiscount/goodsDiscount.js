@@ -1,67 +1,34 @@
-Page({
+var GoodsService = require('../../utils/services/GoodsService.js');
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
-    
+
   },
 
-  goToDetail() {
+  goToDetail(e) {
+    const id = e.currentTarget.dataset.goodId;
     wx.navigateTo({
-      url: "/pages/goodsDetail/goodsDetail",
+      url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
     })
   },
-  onLoad: function (options) {
-    
+  onLoad: function(options) {
+    wx.showLoading({
+      title: '',
+    })
+    this.getDiscountList();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
+  getDiscountList() {
+    GoodsService.getDiscountList()
+      .then((res) => {
+        wx.hideLoading();
+        var discountList = res.data.data;
+        this.setData({
+          discountList: discountList,
+        });
+      })
+      .catch(() => {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  }
 })

@@ -42,9 +42,9 @@
       </block>
     </swiper>
   </view>
-  <view class="discount">
-    <image class="discount-image" src='https://img.caibashi.com/1111ab48a0fe1d35ef702cf3159e6ca7.png' bindtap="goToDiscount"></image>
-  </view>
+  <navigator url='/pages/goodsDiscount/goodsDiscount' class='discount'>
+    <image class="discount-image" src='https://img.caibashi.com/1111ab48a0fe1d35ef702cf3159e6ca7.png'></image>
+  </navigator>
 
   <block wx:for="{{marketingTypeList}}" wx:key="index" wx:for-item="marketingType">
     <view class="marketing-container">

@@ -9,14 +9,24 @@
 }
 
 .discount-content {
-  padding: 20rpx;
+  padding: 0 20rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.discount-title-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40rpx; 
+  padding-bottom: 20rpx; 
   box-sizing: border-box;
 }
 
 .discount-goods-container {
   background-color: #fff;
   border-radius: 20rpx;
-  margin-top: 20rpx;
+  padding-top: 20rpx;
+  box-sizing: border-box;
 }
 
 .discount-goods-content {
@@ -35,7 +45,7 @@
   align-items: center;
   background-color: #fe3059;
   width: 256rpx;
-  height: 368rpx;
+  height: 360rpx;
   border-radius: 8rpx;
   padding: 8rpx;
   box-sizing: border-box;
@@ -43,7 +53,8 @@
 
 .discount-goods-img {
   width: 100%;
-  max-height: 200rpx;
+  height: auto;
+  /* max-height: 200rpx; */
   border-radius: 8rpx;
 }
 
@@ -77,7 +88,7 @@
 
 .discount-goods-name {
   display: block;
-  font-size: 30rpx;
+  font-size: 34rpx;
   color: #666;
 }
 
@@ -135,6 +146,7 @@
   border-radius: 10rpx;
   padding: 5rpx;
   box-sizing: border-box;
+  margin-top: 40rpx;
 }
 
 .discount-goods-price {
