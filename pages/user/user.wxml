@@ -31,11 +31,11 @@
       <text class='number' wx:else>0</text>
       <text class='text'>红包</text>
     </view>
-    <view class='common-menu'>
+    <navigator class='common-menu' url='/pages/userCenter/collection/collection' hover-class="none">
       <text class='number' wx:if='{{userInfo.collection_numbers}}'>{{ userInfo.collection_numbers }}</text>
       <text class='number' wx:else>0</text>
       <text class='text'>收藏</text>
-    </view>
+    </navigator>
     <navigator class='integral' url='/pages/userCenter/point/point' hover-class="none">
       <text class='number' wx:if='{{userInfo.user_integral}}'>{{ userInfo.user_integral }}</text>
       <text class='number' wx:else>0</text>

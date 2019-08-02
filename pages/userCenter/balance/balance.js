@@ -1,4 +1,5 @@
-// pages/userCenter/balance/balance.js
+const UserService = require('../../../utils/services/UseService.js');
+
 Page({
 
   /**
@@ -19,9 +20,25 @@ Page({
       isShowCurtain: this.data.isShowCurtain,
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
+  getUser() {
+    UserService.getUser()
+      .then((res) => {
+        wx.hideLoading();
+        var userInfo = res.data.data;
+        this.setData({
+          userInfo: userInfo,
+        });
+      })
+      .catch(() => {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      })
+  },
+
   onLoad: function (options) {
 
   },
@@ -37,7 +54,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showLoading({
+      title: '',
+    })
+    this.getUser();
   },
 
   /**

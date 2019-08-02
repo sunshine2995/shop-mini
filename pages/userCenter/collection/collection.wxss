@@ -1,0 +1,50 @@
+/* pages/userCenter/collection/collection.wxss */
+
+.collection-empty {
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  padding-top: 260rpx;
+  box-sizing: border-box;
+}
+
+.go-shopping {
+  width: 60%;
+  margin: 20rpx auto;
+}
+
+.collection-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  margin: 0 20rpx;
+  border-bottom: 1px solid #f4f4f3;
+}
+
+.collection-goods-image {
+  width: 20%;
+}
+
+.goods-image {
+  width: 100%;
+  height: auto;
+}
+.collection-goods-info {
+  flex: 1;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+
+.goods-standard-price{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #999;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+}
+.goods-name {
+  font-size: 32rpx;
+}

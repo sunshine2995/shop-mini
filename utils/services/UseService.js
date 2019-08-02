@@ -8,15 +8,23 @@ const wxRequest = require('../wxRequest.js');
 // }
 const BaseUrl = "https://sso.caibasi.com";
 
-function getCustom() {
+export function getCustom() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/custom`, );
 }
 
-function getUser() {
+export function getUser() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/user/me`);
 }
 
-function getSortList() {
+export function getHistoryBill(page) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/logs?page=${page}&size=2`);
+}
+
+export function getUserInfo() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/info`);
+}
+
+export function getSortList() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one`);
 }
 
@@ -26,8 +34,8 @@ function getSortList() {
 //   });
 // }
 
-module.exports = {
-  getCustom,
-  getSortList,
-  getUser,
-}
+// module.exports = {
+//   getCustom,
+//   getSortList,
+//   getUser,
+// }

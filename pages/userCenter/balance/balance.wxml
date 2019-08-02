@@ -20,7 +20,7 @@
       <view class='balance-number-explain'>
         <view class='balance-dign-number'>
           <text class='balance-sign'>￥</text>
-          <text class='balance-number'>666.99</text>
+          <text class='balance-number'>{{userInfo.balance}}</text>
         </view>
         <view class='balance-explain-icon' bindtap='showCurtain'>
           <text class='balance-explain'>余额说明</text>

@@ -3,14 +3,16 @@ Page({
   data: {
 
   },
-  onLoad: function(options) {
-    this.getUser();
+
+  onShow: function () {
+    this.getUserInfo();
     wx.showLoading({
-      title: '加载中',
+      title: '',
     })
   },
-  getUser() {
-    UserService.getUser()
+  
+  getUserInfo() {
+    UserService.getUserInfo()
       .then((res) => {
         wx.hideLoading();
         var userInfo = res.data.data;
