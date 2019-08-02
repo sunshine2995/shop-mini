@@ -1,4 +1,3 @@
-
 var GoodsService = require('../../utils/services/GoodsService.js');
 
 Page({
@@ -29,13 +28,51 @@ Page({
         this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
       })
       .catch(() => {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      })
+  },
 
+  changeStatus() {
+    GoodsService.getChangeStatus(this.data.spuId)
+      .then((res) => {
+        this.setData({
+          collectionStatus: Boolean(res.data.data.status),
+        });
+      })
+      .catch(() => {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      })
+  },
+
+  getCollectStatus() {
+    GoodsService.getCollectStatus(this.data.spuId)
+      .then((res) => {
+        this.getDetail();
+        var collectionStatus = Boolean(res.data.data.status);
+        this.setData({
+          collectionStatus: collectionStatus,
+        });
+      })
+      .catch((res) => {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 2000
+        })
       })
   },
 
   onLoad(option) {
     this.data.spuId = option.goodId;
-    this.getDetail();
+    this.getCollectStatus();
   },
   //图片滑动事件
   change(e) {
@@ -47,9 +84,9 @@ Page({
   imgH(e) {
     var that = this;
     var winWid = wx.getSystemInfoSync().windowWidth * 2;
-    wx.getImageInfo({//获取图片长宽等信息
+    wx.getImageInfo({ //获取图片长宽等信息
       src: e,
-      success: function (res) {
+      success: function(res) {
         var imgw = res.width;
         var imgh = res.height;
         var swiperH = winWid * imgh / imgw;

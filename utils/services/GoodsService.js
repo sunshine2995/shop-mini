@@ -17,3 +17,15 @@ export function getDiscountList() {
 export function getDetail(spuId) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/details/${spuId}`);
 }
+
+export function getCollectStatus(spuId) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/check/collections/?goods_spu_id=${spuId}`);
+}
+
+export function getChangeStatus(spuId) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/collect?goods_spu_id=${spuId}`);
+}
+
+export function getCollectList(spuId) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/collections`);
+}

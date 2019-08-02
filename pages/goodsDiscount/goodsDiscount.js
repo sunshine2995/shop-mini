@@ -11,7 +11,8 @@ Page({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
     })
   },
-  onLoad: function(options) {
+
+  onShow: function(options) {
     wx.showLoading({
       title: '',
     })
@@ -27,8 +28,12 @@ Page({
           discountList: discountList,
         });
       })
-      .catch(() => {
-
+      .catch((res) => {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 2000
+        })
       })
   },
 })

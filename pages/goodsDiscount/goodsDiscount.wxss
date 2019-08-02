@@ -1,9 +1,9 @@
 .discountContainer {
   min-height: 100vh;
-  background-color: #fe3059;
 }
 
 .discount-image {
+  display: block;
   width: 100%;
   height: 372rpx;
 }
@@ -11,6 +11,7 @@
 .discount-content {
   padding: 0 20rpx 20rpx;
   box-sizing: border-box;
+  background-color: #fe3059;
 }
 
 .discount-title-style {
@@ -202,4 +203,11 @@
 
 .text-color {
   color: #fe3059;
+}
+.already-bottom {
+  text-align: center;
+  font-size: 30rpx;
+  color: #b3b3b3;
+  padding: 30rpx;
+  box-sizing: border-box;
 }

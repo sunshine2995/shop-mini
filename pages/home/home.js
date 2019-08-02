@@ -28,8 +28,8 @@ Page({
       url: path,
     })
   },
-  
-  onLoad: function() {
+
+  onShow: function() {
     wx.showLoading({
       title: '加载中',
     })
@@ -110,7 +110,7 @@ Page({
           customPath: customPath,
         });
       })
-      .catch(() => {
+      .catch((res) => {
         wx.showToast({
           title: res.data.message,
           icon: 'none',

@@ -25,6 +25,5 @@ Component({
   },
   
   ready: function () {
-    console.log(this.properties.isShowCurtain);
   },
 })

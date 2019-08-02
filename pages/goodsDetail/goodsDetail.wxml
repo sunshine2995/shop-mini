@@ -19,7 +19,7 @@
   </view>
   <view class='goods-name-status'>
     <text class='goods-name'>{{goodsInfo.name}}</text>
-    <icon class='iconfont icon-shoucang'></icon>
+    <icon bindtap='changeStatus' class="{{collectionStatus === true?'iconfont icon-shoucang icon-shoucang-active':'iconfont icon-shoucang'}}"></icon>
   </view>
   <view class='goods-advertise-desc'>
     <text class='goods-advertise'>{{goodsInfo.advertising}}</text>

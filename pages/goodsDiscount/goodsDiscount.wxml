@@ -47,4 +47,5 @@
       </view>
     </block>
   </view>
+  <view class="already-bottom">我是有底线的~</view>
 </view>

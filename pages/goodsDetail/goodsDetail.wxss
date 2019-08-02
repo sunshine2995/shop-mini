@@ -35,7 +35,9 @@
   font-size: 40rpx;
   color: #999;
 }
-
+.icon-shoucang-active {
+  color: #11a24a;
+}
 .goods-advertise-desc {
   padding: 5rpx 10rpx 15rpx;
   box-sizing: border-box;
