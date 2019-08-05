@@ -17,9 +17,11 @@
     "pages/userCenter/about/memberRecharge/manage",
     "pages/userCenter/about/memberRecharge/coupon/coupon",
     "pages/userCenter/balance/balance",
+    "pages/goodsSearch/goodsSearch",
     "pages/userCenter/historyBill/historyBill",
     "pages/sortEmpty/sortEp",
-    "pages/cart/cart"
+    "pages/cart/cart",
+    "pages/userCenter/collection/collection"
   ],
   "window": {
     "backgroundTextStyle": "light",

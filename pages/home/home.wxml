@@ -56,7 +56,7 @@
           </view>
           <view class="marketing-goods-detail">
             <text class='marketing-goods-name'>{{goodSpu.name}}</text>
-            <icon class='iconfont icon-shichengjiesuan-1'></icon>
+            <icon class='iconfont icon-shichengjiesuan-1' wx:if='{{!goodSpu.is_standard}}'></icon>
             <text class='marketing-goods-advertising'>{{goodSpu.advertising}}</text>
             <block wx:for="{{goodSpu.goods_sku_list}}" wx:key="index" wx:for-item="goodSku">
               <view class='marketing-different-price'>

@@ -1,0 +1,106 @@
+<!--pages/goodsSearch/goodsSearch.wxml-->
+<view class='SearchContainer'>
+  <view class='search-input'>
+    <view class='text-input'>
+      <input bindinput="bindKeyInput" bindconfirm='bindconfirm' confirm-type='search' value="{{inputVal}}" placeholder="请输入关键字" placeholder-class='placeholder' confirm-type='search' />
+      <icon class='iconfont icon-cancel' wx:if="{{inputVal !== ''}}" catchtap='clearInput'></icon>
+    </view>
+    <icon class='iconfont icon-search' bindtap='fuzzySearchGoodsSpu'></icon>
+  </view>
+  <block wx:if='{{showHistory}}'>
+    <view class='history-keywords' wx:if='{{HotList.length > 0}}'>
+      <text class='histort-title'>热门搜索</text>
+      <view class='keywords-record'>
+        <block wx:for="{{HotList}}" wx:key="index" wx:for-item="hot">
+          <text class='keywords' data-new-val='{{hot}}' bindtap='exchangeVal'>{{hot}}</text>
+        </block>
+      </view>
+    </view>
+    <view class='history-keywords' wx:if='{{HistoryList.length > 0}}'>
+      <text class='histort-title'>历史搜索</text>
+      <view class='keywords-record'>
+        <block wx:for="{{HistoryList}}" wx:key="index" wx:for-item="history">
+          <text class='keywords' data-new-val='{{history}}' bindtap='exchangeVal'>{{history}}</text>
+        </block>
+      </view>
+    </view>
+    <view class='recommend-part'>
+      <text class='histort-title '>推荐商品</text>
+      <view class='recommend-container'>
+        <!-- <block wx:for="{{HistoryList}}" wx:key="index" wx:for-item="history"> -->
+        <view class='recommend-content'>
+          <view class='recommend-image'>
+            <image class='recommend-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' mode='widthFix'></image>
+          </view>
+          <view class='recommended-goods-name'>商品名称</view>
+          <view class='recommended-goods-price'>
+            <price-component price="{{4}}" unit="{{'zhu'}}" text-color='text-color'></price-component>
+            <icon class='iconfont icon-sort-add'></icon>
+          </view>
+        </view>
+        <view class='recommend-content'>
+          <view class='recommend-image'>
+            <image class='recommend-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' mode='widthFix'></image>
+          </view>
+          <view class='recommended-goods-name'>商品名称</view>
+          <view class='recommended-goods-price'>
+            <price-component price="{{4}}" unit="{{'zhu'}}" text-color='text-color'></price-component>
+            <icon class='iconfont icon-sort-add'></icon>
+          </view>
+        </view>
+        <view class='recommend-content'>
+          <view class='recommend-image'>
+            <image class='recommend-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' mode='widthFix'></image>
+          </view>
+          <view class='recommended-goods-name'>商品名称</view>
+          <view class='recommended-goods-price'>
+            <price-component price="{{4}}" unit="{{'zhu'}}" text-color='text-color'></price-component>
+            <icon class='iconfont icon-sort-add'></icon>
+          </view>
+        </view>
+        <!-- </block> -->
+      </view>
+    </view>
+  </block>
+  <block wx:elif='{{showSpuName && goodsList.length > 0}}'>
+    <block wx:for="{{goodsList}}" wx:key="index" wx:for-item="good">
+      <view class='good-name-list' data-good-id='{{good.goods_spu_id}}' bindtap='goToDetail'>
+        <searchHighlightTextView class="result-item" datas='{{good}}' keywords='{{inputVal}}' />
+      </view>
+    </block>
+  </block>
+  <block wx:elif='{{!showSpuName && goodsDetailList.length > 0}}'>
+    <block wx:for="{{goodsDetailList}}" wx:key="index" wx:for-item="goods">
+      <view class='goods-detail-content' data-good-id='{{goods.id}}' bindtap='goToDetail'>
+        <view class='goods-image'>
+          <image class='goods-img' src='{{goods.thumbnail_url}}' mode='widthFix' wx:if='{{goods.thumbnail_url}}'></image>
+          <image class='goods-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else></image>
+        </view>
+        <view class='goods-detail'>
+          <text class='goods-name'>{{goods.name}}</text>
+          <icon class='iconfont icon-shichengjiesuan-1' wx:if='{{!goods.is_standard}}'></icon>
+          <text class='goods-advertising'>{{goods.advertising}}</text>
+          <block wx:for="{{goods.goods_sku_list}}" wx:key="index" wx:for-item="goodSku">
+            <view class='different-price'>
+              <view class='goods-different-price' wx:if='{{goods.is_standard}}'>
+                <text class='goods-price-text-line'>市场价 ￥{{goodSku.market_price}}/{{goodSku.goods_sku_unit.name}}</text>
+                <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color='text-color'></price-component>
+              </view>
+              <view class='goods-different-price' wx:else>
+                <text class='goods-price-text'>单价 ￥{{goodSku.unit_price}}/{{goodSku.goods_sku_unit.name}}</text>
+                <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color='text-color '></price-component>
+              </view>
+              <view class='goods-remarks'>
+                <text class='goods-price-standard'>{{goodSku.name}}</text>
+                <text class='goods-price-remark'>{{goodSku.remark}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <text class='empty-tip'>暂无此商品~</text>
+  </block>
+</view>

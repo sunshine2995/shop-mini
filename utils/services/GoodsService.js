@@ -29,3 +29,15 @@ export function getChangeStatus(spuId) {
 export function getCollectList(spuId) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/user/collections`);
 }
+
+export function fuzzySearchGoodsIdName(searchVal) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/fuzzy_search?q=${searchVal}`);
+}
+
+export function fuzzySearchGoodsSpu(searchVal) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/fuzzy_search/goods_spu?q=${searchVal}`);
+} 
+
+export function getHotSearch() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/hot_search/10`);
+} 

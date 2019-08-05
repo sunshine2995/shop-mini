@@ -30,9 +30,6 @@ Page({
   },
 
   onShow: function() {
-    wx.showLoading({
-      title: '加载中',
-    })
     var inviteImages = [{
       img: "https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png",
       url: '/pages/test/test',
@@ -60,8 +57,12 @@ Page({
   },
 
   getSortList() {
+    wx.showLoading({
+      title: '加载中',
+    })
     UserService.getSortList()
       .then((res) => {
+        wx.hideLoading();
         var sortTitle = res.data.data;
         this.setData({
           sortList: sortTitle,
@@ -73,8 +74,12 @@ Page({
   },
 
   getMarketingAlltype() {
+    wx.showLoading({
+      title: '加载中',
+    })
     GoodsService.getMarketingAlltype()
       .then((res) => {
+        wx.hideLoading();
         var marketingTypeList = res.data.data;
         this.setData({
           marketingTypeList: marketingTypeList,
@@ -87,8 +92,12 @@ Page({
 
 
   getCategoryOneAllGoods() {
+    wx.showLoading({
+      title: '加载中',
+    })
     GoodsService.getCategoryOneAllGoods()
       .then((res) => {
+        wx.hideLoading();
         var categoryOneList = res.data.data;
         this.setData({
           categoryOneList: categoryOneList,
@@ -99,7 +108,13 @@ Page({
       })
   },
 
+  onReachBottom: function () {
+  },
+
   getCustom() {
+    wx.showLoading({
+      title: '加载中',
+    })
     UserService.getCustom()
       .then((res) => {
         wx.hideLoading();

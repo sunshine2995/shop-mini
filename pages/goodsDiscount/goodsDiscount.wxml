@@ -15,7 +15,7 @@
             </view>
             <view class="discount-goods-detail">
               <text class='discount-goods-name'>{{ goods.spu_name }}</text>
-              <icon class='iconfont icon-shichengjiesuan-1'></icon>
+              <icon class='iconfont icon-shichengjiesuan-1' wx:if='{{!goods.is_standard}}'></icon>
               <text class='discount-goods-advertising'>{{ goods.advertising }}</text>
               <view class='discount-different-price'>
                 <view class='goods-different-price'>
