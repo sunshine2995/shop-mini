@@ -1,0 +1,5 @@
+<!--components/bottomContact/bottomContact.wxml-->
+<view class='bottom-contact'>
+  <view class='phone-service' bindtap="freeTell">电话客服</view>
+  <view class='online-service' bindtap="goOnline">在线客服</view>
+</view>
