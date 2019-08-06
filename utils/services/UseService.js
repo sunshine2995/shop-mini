@@ -17,7 +17,7 @@ export function getUser() {
 }
 
 export function getHistoryBill(page) {
-  return wxRequest.wxPromise("GET", `${BaseUrl}/user/logs?page=${page}&size=2`);
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/logs?page=${page}&size=11`);
 }
 
 export function getUserInfo() {
@@ -26,6 +26,12 @@ export function getUserInfo() {
 
 export function getSortList() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one`);
+}
+
+export function codeSubmit(code) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/activity/use_activation_code`,{
+    code,
+  });
 }
 
 // function login(code) {

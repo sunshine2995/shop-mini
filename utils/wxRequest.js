@@ -1,5 +1,5 @@
 function wxPromise(method, url, data) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     wx.request({
       url: url,
       method: method,
@@ -8,18 +8,18 @@ function wxPromise(method, url, data) {
         "Content-Type": "application/json",
         'Authorization': wx.getStorageSync('token'),
       },
-      success: function (res) {
-        setTimeout(function () {
+      success: function(res) {
+        setTimeout(function() {
           wx.hideLoading();
         }, 100);
         if (res.data.code == 200) {
           resolve(res);
         } else {
-         
+          reject(res);
         }
       },
-      fail: function (res) {
-        setTimeout(function () {
+      fail: function(res) {
+        setTimeout(function() {
           wx.hideLoading();
         }, 100);
         reject(res);

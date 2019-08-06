@@ -1,4 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "历史账单"
+  "navigationBarTitleText": "历史账单",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
 }

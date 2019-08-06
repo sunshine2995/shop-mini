@@ -28,3 +28,15 @@
   padding: 15rpx 0 10rpx;
   box-sizing: border-box;
 }
+.reach-bottom {
+  text-align: center;
+  color: #999;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.empty {
+  text-align: center;
+  color: #666;
+  padding-top: 200rpx;
+  box-sizing: border-box;
+}
