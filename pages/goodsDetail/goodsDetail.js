@@ -1,17 +1,51 @@
 var GoodsService = require('../../utils/services/GoodsService.js');
+var CartService = require('../../utils/services/CartService.js');
 
 Page({
   data: {
     active: 0,
     spuId: 0,
+    selectSkuId: 0,
   },
 
   toggle(e) {
-    var active = e.currentTarget.dataset.index;
+    const active = e.currentTarget.dataset.index;
+    this.data.selectSkuId = e.currentTarget.dataset.skuId;
     this.setData({
       active: active,
     })
   },
+
+  getCartCount() {
+    CartService.getCartCount()
+      .then((res) => {
+        wx.setStorageSync('cartNum', res.data.data);
+        this.setData({
+          cartNum: res.data.data,
+        })
+      });
+  },
+
+  addCart() {
+    CartService.addCart(this.data.selectSkuId)
+      .then((res) => {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 2000
+        });
+        wx.hideToast();
+        this.getCartCount();
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
   goToDescripte() {
     wx.navigateTo({
       url: '/pages/goodsDescription/goodsDescription',
@@ -22,10 +56,12 @@ Page({
     GoodsService.getDetail(this.data.spuId)
       .then((res) => {
         var goodsInfo = res.data.data;
+        this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
         this.setData({
           goodsInfo: goodsInfo,
         });
         this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
+        this.getCartCount();
       })
       .catch(() => {
         wx.showToast({
@@ -74,12 +110,14 @@ Page({
     this.data.spuId = option.goodId;
     this.getCollectStatus();
   },
+
   //图片滑动事件
   change(e) {
     var index = e.detail.current;
     var imgUrls = this.data.goodsInfo.goods_spu_details_image;
     this.imgH(imgUrls[index].details_img_url);
   },
+
   //获取图片的高度，把它设置成swiper的高度
   imgH(e) {
     var that = this;

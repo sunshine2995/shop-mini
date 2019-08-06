@@ -1,12 +1,16 @@
 "use strict";
 var UserService = require('../../utils/services/UseService.js');
 var GoodsService = require('../../utils/services/GoodsService.js');
+var CartService = require('../../utils/services/CartService.js');
 const app = getApp()
 
 Page({
   data: {
     UserInfo: [],
+    idSelected: [],
+    goodSkuId: [],
   },
+
 
   goDetail(e) {
     const id = e.currentTarget.dataset.goodId;
@@ -80,14 +84,66 @@ Page({
     GoodsService.getMarketingAlltype()
       .then((res) => {
         wx.hideLoading();
-        var marketingTypeList = res.data.data;
+        const marketingTypeList = res.data.data;
         this.setData({
           marketingTypeList: marketingTypeList,
         });
+        this.data.goodSkuId = [];
+        marketingTypeList.forEach((item) => {
+          item.goods_spu_info.forEach((spu) => {
+            spu.goods_sku_list.forEach((sku) => {
+              this.data.goodSkuId.push(sku.id);
+            });
+          });
+        });
+        this.getCartNumber();
       })
       .catch(() => {
 
       })
+  },
+
+  getCartCount() {
+    CartService.getCartCount()
+    .then((res) => {
+      wx.setStorageSync('cartNum', res.data.data);
+    });
+  },
+
+  getCartNumber() {
+    CartService.getAllCarts().then((res) => {
+      const carts = res.data.data.valid_carts;
+      this.data.idSelected = [];
+      carts.forEach((cart) => {
+        this.data.goodSkuId.forEach((goodId) => {
+          if (+cart.goods_sku_id === +goodId) {
+            this.data.idSelected.push({
+              id: +cart.goods_sku_id,
+              num: +cart.goods_sku_num,
+            });
+          }
+        });
+      });
+      this.setData({
+        idSelected: this.data.idSelected,
+      });
+      this.getCartCount();
+    });
+  },
+
+  addCart(e) {
+    const goodsSkuId = e.currentTarget.dataset.goodSkuId;
+    CartService.addCart(goodsSkuId)
+      .then((res) => {
+        this.data.idSelected.forEach((item) => {
+          if (+item.id === +goodsSkuId) {
+            item.num = res.data.data.goods_sku_num;
+          }
+        });
+        this.getCartNumber();
+      })
+      .catch(() => {
+      });
   },
 
 

@@ -7,7 +7,7 @@
       <icon class="iconfont icon-help"></icon>
       <text class='text-help'>客服</text>
     </navigator>
-    <navigator url="/pages/home/home" class='search-border' hover-class="none">
+    <navigator url="/pages/goodsSearch/goodsSearch" class='search-border' hover-class="none">
       <icon class="iconfont icon-search" />
       <text class="search-text">找你要的菜{{cartNUM}}</text>
     </navigator>
@@ -80,7 +80,12 @@
                 <view class='marketing-sell-price' wx:else>
                   <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color='text-color '></price-component>
                 </view>
-                <icon class="iconfont icon-sort-add"></icon>
+                <view class='add-cart-num'>
+                  <icon class="iconfont icon-sort-add" data-good-sku-id='{{goodSku.id}}' catchtap='addCart'></icon>
+                  <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
+                    <text class='cart-num' wx:if='{{goodSku.id === select.id}}'>{{select.num}}</text>
+                  </block>
+                </view>
               </view>
             </block>
           </view>

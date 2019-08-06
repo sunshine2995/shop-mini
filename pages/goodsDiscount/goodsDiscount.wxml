@@ -7,7 +7,7 @@
       </view>
       <view class='discount-goods-container'>
         <block wx:for="{{discountInfo.discount_sku_info}}" wx:key="index" wx:for-item="goods">
-          <view class='discount-goods-content'  data-good-id='{{goods.id}}' bindtap='goToDetail'>
+          <view class='discount-goods-content' data-good-id='{{goods.id}}' bindtap='goToDetail'>
             <view class='discount-goods-image'>
               <image class='discount-goods-img' src='{{goods.thumbnail_url}}' mode='widthFix'></image>
               <text class='discount-goods-text' wx:if='{{goods.marketing}}'>{{goods.marketing.marketing_simple_name}}</text>
@@ -28,10 +28,13 @@
                 </view>
               </view>
               <view class='discount-limit-number'>限购3件</view>
-              <view class='discount-goods-price' wx:if='{{goods.stock !== 0 && discountInfo.discount_main_info.is_begin}}'>
+              <view class='discount-goods-price' wx:if='{{goods.stock !== 0 && discountInfo.discount_main_info.is_begin}}' data-good-sku-id='{{goods.id}}' catchtap='addCart'>
                 <text class='activity-begin'>活动已开始</text>
                 <text class='split-line'>|</text>
                 <text class='right-now'> 马上抢</text>
+                <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
+                  <text class='cart-num' wx:if='{{goods.id === select.id}}'>{{select.num}}</text>
+                </block>
               </view>
               <view class='discount-goods-price not-begin' wx:if='{{goods.stock !== 0 && !discountInfo.discount_main_info.is_begin}}'>
                 <text class='activity-begin'>即将开始</text>

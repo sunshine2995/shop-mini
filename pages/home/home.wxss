@@ -20,6 +20,7 @@
   width: 192rpx;
   height: 65rpx;
 }
+
 .help-service {
   display: flex;
   align-items: center;
@@ -235,9 +236,31 @@ swiper {
   color: #fe3059;
 }
 
+.add-cart-num {
+  position: relative;
+}
+
 .icon-sort-add {
-  font-size: 40rpx;
+  font-size: 60rpx;
   color: #11a24a;
+}
+
+.cart-num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -20rpx;
+  right: -15rpx;
+  background-color: #fe3059;
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 24rpx;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10rpx;
+  box-sizing: border-box;
 }
 
 .sort-expand-container {
