@@ -3,7 +3,7 @@
     <view class="logo-image">
       <image class="caibashi-logo" src="/images/home/home_title.png"></image>
     </view>
-    <navigator url="/pages/home/home" class='help-service' hover-class="none">
+    <navigator url="/pages/userCenter/customerService/customerService" class='help-service' hover-class="none">
       <icon class="iconfont icon-help"></icon>
       <text class='text-help'>客服</text>
     </navigator>

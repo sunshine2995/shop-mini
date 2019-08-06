@@ -1,0 +1,9 @@
+<!--pages/userCenter/enterprise/enterprise.wxml-->
+<view class='enterprise-container'>
+  <view class='enterprise-content'>
+    <image class='enterprise-image' src='https://img.caibashi.com/6f18b2c70ac0ea4e71764d0315d14956.png'></image>
+  </view>
+  <view>
+    <bottomContact phoneNumber="{{phoneNumber}}" />
+  </view>
+</view>

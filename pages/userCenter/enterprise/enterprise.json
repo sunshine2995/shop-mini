@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bottomContact": "/components/bottomContact/bottomContact"
+  },
+  "navigationBarTitleText": "企业订购"
+}

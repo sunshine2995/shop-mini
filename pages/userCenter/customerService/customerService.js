@@ -1,4 +1,4 @@
-// pages/userCenter/problem/problem.js
+// pages/userCenter/customerService/customerService.js
 const UserService = require('../../../utils/services/UseService.js');
 
 Page({
@@ -24,83 +24,80 @@ Page({
       .then((res) => {
         const shopInfo = res.data.data;
         this.data.phoneNumber = shopInfo.shop_contract;
-        // this.setData({
-        //   phoneNumber: this.data.phoneNumber,
-        // });
       })
       .catch(() => {
 
       });
   },
 
-  goAboutOrder() {
-    wx.navigateTo({
-      url: '/pages/userCenter/about/order/order',
-    })
-  },
-  goDelivery() {
-    wx.navigateTo({
-      url: '/pages/userCenter/about/delivery/delivery',
-    })
-  },
-  goMemberRecharge() {
-    wx.navigateTo({
-      url: '/pages/userCenter/about/memberRecharge/manage',
-    })
-  },
+
+  freeTell() {
+    if (this.data.phoneNumber) {
+      wx.makePhoneCall({
+        phoneNumber: this.data.phoneNumber,
+      })
+    } else {
+      wx.showToast({
+        title: '店长没有设置电话',
+        icon: 'none',
+        duration: 2000
+      });
+    }
+  }, 
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     this.getUser();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

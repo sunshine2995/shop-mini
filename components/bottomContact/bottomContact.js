@@ -22,9 +22,17 @@ Component({
    */
   methods: {
     freeTell() {
-      wx.makePhoneCall({
-        phoneNumber: this.properties.phoneNumber,
-      })
+      if (this.properties.phoneNumber) {
+        wx.makePhoneCall({
+          phoneNumber: this.properties.phoneNumber,
+        })
+      } else {
+        wx.showToast({
+          title: '店长没有设置电话',
+          icon: 'none',
+          duration: 2000
+        });
+      }
     },
     goOnline() {
       wx.navigateTo({

@@ -120,15 +120,15 @@
       </view>
     </view>
   </view>
-  <!-- <view class='service-moudle'>
+  <view class='service-moudle'>
     <view class='service-title'>
       <text>我的服务</text>
     </view>
     <view class='service-content'>
-      <navigator class='service-type' url='/pages/userCenter/feedback/feedback' hover-class="none">
+      <view class='service-type'>
         <icon class='iconfont icon-message'></icon>
         <text class='service-type-text'>留言反馈</text>
-      </navigator>
+      </view>
       
       <navigator class='service-type' url='/pages/userCenter/enterprise/enterprise' hover-class="none">
         <icon class='iconfont icon-qiyedinggou'></icon>
@@ -160,14 +160,14 @@
         <text class='service-type-text'>充值中心</text>
       </view>
 
-      <navigator class='service-type' url='/pages/userCenter/exchange/exchange' hover-class="none">
+      <view class='service-type'>
         <icon class='iconfont icon-exchange'></icon>
         <text class='service-type-text'>兑换礼卡</text>
-      </navigator>
+      </view>
       <view class='service-type'>
         <icon class='iconfont icon-exchange'></icon>
         <text class='service-type-text'>我的赠礼</text>
       </view>
     </view>
-  </view> -->
+  </view>
 </view>

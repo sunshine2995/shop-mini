@@ -24,6 +24,11 @@ export function getUserInfo() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/user/info`);
 }
 
+export function getShopInfo(shopId) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch/${shopId}`);
+}
+
+
 export function getSortList() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one`);
 }
