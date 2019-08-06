@@ -38,6 +38,12 @@ export function fuzzySearchGoodsSpu(searchVal) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/fuzzy_search/goods_spu?q=${searchVal}`);
 } 
 
+// 热门搜索
 export function getHotSearch() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/hot_search/10`);
 } 
+
+// 搜索处推荐
+export function getRecommended() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/recommended`);
+}

@@ -119,7 +119,7 @@
   <view class='bottom-cart '>
     <view class='cart-icon '>
       <icon class='iconfont icon-shopping-cart '></icon>
-      <text>{{cartNum}}</text>
+      <text class='cart-num'>{{cartNum}}</text>
     </view>
     <view class='cart-text' bindtap='addCart'>
       <text>加入购物车</text>

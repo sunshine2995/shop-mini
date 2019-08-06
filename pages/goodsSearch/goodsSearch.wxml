@@ -27,38 +27,24 @@
     <view class='recommend-part'>
       <text class='histort-title '>推荐商品</text>
       <view class='recommend-container'>
-        <!-- <block wx:for="{{HistoryList}}" wx:key="index" wx:for-item="history"> -->
-        <view class='recommend-content'>
-          <view class='recommend-image'>
-            <image class='recommend-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' mode='widthFix'></image>
+        <block wx:for="{{recommendedList}}" wx:key="index" wx:for-item="recommended">
+          <view class='recommend-content'>
+            <view class='recommend-image' data-good-id='{{recommended.id}}' bindtap='goToDetail'>
+              <image class='recommend-img' src='{{recommended.thumbnail_url}}' wx:if='{{recommended.thumbnail_url}}'></image>
+              <image class='recommend-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' wx:else></image>
+            </view>
+            <view class='recommended-goods-name'>{{recommended.name}}</view>
+            <view class='recommended-goods-price'>
+              <price-component price="{{recommended.goods_sku_info.sell_price}}" unit="{{recommended.goods_sku_info.goods_sku_sell_unit_name}}" text-color='text-color'></price-component>
+              <view class='add-cart-num'>
+                <icon class="iconfont icon-sort-add" data-good-sku-id='{{recommended.goods_sku_info.id}}' catchtap='addCart'></icon>
+                <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
+                  <text class='cart-num' wx:if='{{recommended.goods_sku_info.id === select.id}}'>{{select.num}}</text>
+                </block>
+              </view>
+            </view>
           </view>
-          <view class='recommended-goods-name'>商品名称</view>
-          <view class='recommended-goods-price'>
-            <price-component price="{{4}}" unit="{{'zhu'}}" text-color='text-color'></price-component>
-            <icon class='iconfont icon-sort-add'></icon>
-          </view>
-        </view>
-        <view class='recommend-content'>
-          <view class='recommend-image'>
-            <image class='recommend-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' mode='widthFix'></image>
-          </view>
-          <view class='recommended-goods-name'>商品名称</view>
-          <view class='recommended-goods-price'>
-            <price-component price="{{4}}" unit="{{'zhu'}}" text-color='text-color'></price-component>
-            <icon class='iconfont icon-sort-add'></icon>
-          </view>
-        </view>
-        <view class='recommend-content'>
-          <view class='recommend-image'>
-            <image class='recommend-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' mode='widthFix'></image>
-          </view>
-          <view class='recommended-goods-name'>商品名称</view>
-          <view class='recommended-goods-price'>
-            <price-component price="{{4}}" unit="{{'zhu'}}" text-color='text-color'></price-component>
-            <icon class='iconfont icon-sort-add'></icon>
-          </view>
-        </view>
-        <!-- </block> -->
+        </block>
       </view>
     </view>
   </block>

@@ -14,6 +14,20 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const throttle = (fn, interval)=> {
+  var enterTime = 0;
+  var gapTime = interval || 300;
+  return function () {
+    var context = this;
+    var backTime = new Date();
+    if (backTime - enterTime > gapTime) {
+      fn.call(context, arguments);
+      enterTime = backTime;
+    }
+  };
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  throttle: throttle,
 }

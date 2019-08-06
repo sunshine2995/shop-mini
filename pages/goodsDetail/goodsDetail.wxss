@@ -265,6 +265,7 @@
 }
 
 .cart-icon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -275,9 +276,25 @@
 }
 
 .icon-shopping-cart {
-  font-size: 60rpx;
+  font-size: 65rpx;
 }
-
+.cart-num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 3rpx;
+  right: 25rpx;
+  background-color: #fe3059;
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 24rpx;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
 .cart-text {
   flex: 1;
   display: flex;
