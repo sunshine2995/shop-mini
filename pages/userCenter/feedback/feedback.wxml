@@ -1,0 +1,32 @@
+<view class="feedback-container">
+  <view class='feedback-message'>
+    <text class='title'>我要留言</text>
+    <view class='input-message'>
+      <textarea class="weui-textarea" bindinput="bindTextAreaChange" placeholder="请输入您的反馈建议..." value="{{info}}" maxlength="{{noteMaxLen}}" focus />
+      <view class="weui-textarea-counter">{{noteNowLen}}/{{noteMaxLen}}</view>
+    </view>
+  </view>
+  <view class='feedback-image'>
+    <text class='title'>上传截图(选填1~4张)</text>
+  </view>
+  <view class="upload-image">
+    <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
+      <view class='add-delete'>
+        <image class='show-image' src="{{item }}" bindtap="listenerButtonPreviewImage" data-index="{{index}}" />
+        <icon class='iconfont icon-add' data-index='{{index}}' bindtap='deleteImage'></icon>
+      </view>
+    </block>
+    <block wx:if="{{tempFilePaths.length <= 3}}">
+      <image class='add-image' src='https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png' bindtap="upload"></image>
+    </block>
+  </view>
+  <view class='feedback-contact'>
+    <text class='title'>联系电话</text>
+    <view class='input-contact'>
+      <input bindinput="bindKeyInput" placeholder="请输入您的手机号码" focus='{{true}}' type='number' />
+    </view>
+  </view>
+  <view class='submit-feedback'>
+    <button loading="{{loading}}" type='primary' bindtap='addFeedback'> 立即提交 </button>
+  </view>
+</view>

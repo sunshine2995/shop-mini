@@ -1,0 +1,12 @@
+<!--pages/userCenter/exchange/exchange.wxml-->
+<view class='exchange-container'>
+  <view class='input-exchange-number'>
+    <text class='exchange-title'>输入兑换码</text>
+    <view class='input-number'>
+      <input bindinput="bindKeyInput" placeholder="请输入正确的15位兑换码" placeholder-class='placeholder' />
+    </view>
+  </view>
+  <view class='submit-exchange' bindtap='codeSubmit'>
+    <button loading="{{loading}}" type='primary'> 立即兑换 </button>
+  </view>
+</view>

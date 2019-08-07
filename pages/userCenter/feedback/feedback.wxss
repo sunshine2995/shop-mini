@@ -1,0 +1,66 @@
+.feedback-container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.title {
+  font-size: 40rpx;
+  color: #666;
+  margin: 20rpx;
+}
+.input-message, .input-contact {
+  border: 2rpx solid #f4f4f3;
+  border-radius: 10rpx;
+  margin: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.weui-textarea {
+  width: 100%;
+  height: 8em;
+  font-size: 30rpx;
+}
+.weui-textarea-counter {
+  color: #999;
+}
+.feedback-image {
+  margin: 60rpx 0 20rpx;
+}
+.feedback-image, .feedback-contact {
+  border-top: 2rpx solid #ebebeb;
+}
+.upload-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 60rpx 10rpx;
+}
+.add-image, .show-image {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 10rpx;
+}
+.add-delete {
+  position: relative;
+}
+.icon-add {
+  position: absolute;
+  top: -26rpx;
+  right: 0;
+  border-radius: 50%;
+  color: #fe3059;
+  font-size: 55rpx;
+  line-height: 1;
+  transform:rotate(45deg);
+}
+
+.submit-feedback {
+  margin: 120rpx 20rpx;
+}
+
+.button-hover {
+  color:rgba(255, 255, 255, 0.6);
+  background-color: #11a24a;
+}

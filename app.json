@@ -8,6 +8,8 @@
     "pages/goodsDescription/goodsDescription",
     "pages/goodsDiscount/goodsDiscount",
     "pages/logs/logs",
+    "pages/userCenter/feedback/feedback",
+    "pages/userCenter/exchange/exchange",
     "pages/userCenter/enterprise/enterprise",
     "pages/userCenter/customerService/customerService",
     "pages/userCenter/join/join",

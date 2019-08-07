@@ -1,0 +1,35 @@
+/* pages/userCenter/exchange/exchange.wxss */
+
+.exchange-container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.exchange-title {
+  font-size: 36rpx;
+  color: #999;
+  margin: 20rpx;
+}
+
+.placeholder {
+  font-size: 26rpx;
+  color: #b3b3b3;
+}
+
+.input-number {
+  color: #666;
+  border: 2rpx solid #f4f4f3;
+  border-radius: 10rpx;
+  margin: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.submit-exchange {
+  margin: 120rpx 20rpx;
+}
+
+.button-hover {
+  color:rgba(255, 255, 255, 0.6);
+  background-color: #11a24a;
+}

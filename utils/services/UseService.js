@@ -39,6 +39,10 @@ export function codeSubmit(code) {
   });
 }
 
+export function addFeedback(feedback) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/center/feedback`, feedback);
+}
+
 // function login(code) {
 //   return wxRequest.wxPromise("POST", `${BaseUrl}/wxapp/login`, {
 //     code,
