@@ -1,0 +1,79 @@
+/* pages/address/list/list.wxss */
+.AddressListContainer {
+  background-color: #f4f4f3;
+  min-height: 100vh;
+  padding: 2rpx 0 20rpx;
+}
+.address-list-empty {
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  padding-top: 260rpx;
+  box-sizing: border-box;
+}
+
+.go-add {
+  width: 60%;
+  margin: 20rpx auto;
+}
+.go-add-again {
+  width: 88%;
+  margin: 50rpx auto;
+}
+.address-content {
+  background-color: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+.address-name-phone, .address-type-operation, .address-operation {
+  display: flex;
+}
+.name, .phone {
+  font-size: 30rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+.default {
+  font-size: 26rpx;
+  line-height: 1;
+  color: #11A24A;
+  border: 1px solid #11A24A;
+  border-radius: 30rpx;
+  padding: 5rpx 10rpx;
+  box-sizing: border-box;
+}
+.address {
+  font-size: 28rpx;
+  color: #999;
+  margin: 5rpx 0;
+}
+.address-type {
+  width: fit-content;
+  font-size: 26rpx;
+  line-height: 1;
+  color: #b3b3b3;
+  border: 1px solid #999;
+  border-radius: 10rpx;
+  padding: 3rpx 10rpx;
+  box-sizing: border-box;
+}
+.address-type-operation {
+  align-items: flex-end;
+  justify-content: space-between;
+  border-top: 1px solid #ebebeb;
+  margin-top: 20rpx;
+}
+.address-operation {
+  align-items: flex-end;
+}
+.edit, .delete {
+  font-size: 26rpx;
+  color: #999;
+}
+.icon-edit, .icon-delete {
+  color: #999;
+  line-height: 1;
+  padding: 0 5rpx 0 15rpx;
+  box-sizing: border-box;
+}

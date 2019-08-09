@@ -26,7 +26,10 @@
     "pages/userCenter/historyBill/historyBill",
     "pages/sortEmpty/sortEp",
     "pages/cart/cart",
-    "pages/userCenter/collection/collection"
+    "pages/userCenter/collection/collection",
+    "pages/address/add/address",
+    "pages/address/list/list",
+    "pages/address/edit/address"
   ],
   "window": {
     "backgroundTextStyle": "light",

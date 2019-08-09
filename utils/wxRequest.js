@@ -12,7 +12,7 @@ function wxPromise(method, url, data) {
         setTimeout(function() {
           wx.hideLoading();
         }, 100);
-        if (res.data.code == 200) {
+        if (res.data.code == 200 || res.data.infocode == 10000) {
           resolve(res);
         } else {
           reject(res);

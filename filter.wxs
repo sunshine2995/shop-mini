@@ -34,6 +34,21 @@ module.exports = {
     }
   },
 
+  addressType: function(type) {
+    switch (+type) {
+      case 1:
+        return "家";
+      case 2:
+        return "单位";
+      case 3:
+        return "朋友家";
+      case 4:
+        return "父母家";
+      default:
+        return "其他";
+    }
+  },
+
   numToFixed: function(num, digits = 2) {
     if (typeof num !== 'number') {
       num = Number(num)
@@ -41,8 +56,16 @@ module.exports = {
     return num.toFixed(digits)
   },
 
+  showAddress: function(province, city, area) {
+    if (province === city) {
+      return city + ' ' + area;
+    } else {
+      return province + ' ' + city + ' ' + area;
+    }
+  },
+
   formatTime: function(date) {
-    var formatNumber = function (n) {
+    var formatNumber = function(n) {
       n = n.toString()
       return n[1] ? n : '0' + n
     };
@@ -57,7 +80,7 @@ module.exports = {
   },
 
 
-  dateFormat: function (strDate, format = "yyyy-MM-dd hh:mm:ss") {
+  dateFormat: function(strDate, format = "yyyy-MM-dd hh:mm:ss") {
     // 解决ios出现NaN问题
     var realDate = strDate ? getDate(strDate.replace(getRegExp('-', 'g'), '/')) : getDate();
     var regYear = getRegExp("(y+)", "i");
