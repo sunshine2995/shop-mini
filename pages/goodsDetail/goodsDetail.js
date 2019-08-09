@@ -5,14 +5,17 @@ Page({
   data: {
     active: 0,
     spuId: 0,
+    stock: 0,
     selectSkuId: 0,
   },
 
   toggle(e) {
     const active = e.currentTarget.dataset.index;
     this.data.selectSkuId = e.currentTarget.dataset.skuId;
+    this.data.stock = e.currentTarget.dataset.stock;
     this.setData({
       active: active,
+      stock: this.data.stock,
     })
   },
 
@@ -57,8 +60,10 @@ Page({
       .then((res) => {
         var goodsInfo = res.data.data;
         this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
+        this.data.stock = goodsInfo.goods_sku_list[0].stock;
         this.setData({
           goodsInfo: goodsInfo,
+          stock: this.data.stock,
         });
         this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
         this.getCartCount();

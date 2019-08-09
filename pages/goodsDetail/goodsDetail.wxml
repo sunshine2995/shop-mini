@@ -59,7 +59,7 @@
     <view class='goods-text-standard-stock '>
       <view class='choose-text '>选份量</view>
       <view class='goods-standard-stock-content '>
-        <view class='goods-standard-stock ' wx:for="{{goodsInfo.goods_sku_list}}" wx:key="index" data-index="{{index}}" data-sku-id='{{goodSku.id}}' wx:for-item="goodSku" bindtap="toggle">
+        <view class='goods-standard-stock ' wx:for="{{goodsInfo.goods_sku_list}}" wx:key="index" data-index="{{index}}" data-sku-id='{{goodSku.id}}' data-stock="{{goodSku.stock}}"  wx:for-item="goodSku" bindtap="toggle">
           <view class="{{index==active?'goods-standard-active ':'goods-standard '}}">
             {{goodSku.name}}
           </view>
@@ -121,7 +121,10 @@
       <icon class='iconfont icon-shopping-cart '></icon>
       <text class='cart-num'>{{cartNum}}</text>
     </view>
-    <view class='cart-text' bindtap='addCart'>
+    <view class='cart-text cart-text-green' bindtap='addCart' wx:if='{{stock}}'>
+      <text>加入购物车</text>
+    </view>
+    <view class='cart-text cart-text-gray' wx:else>
       <text>加入购物车</text>
     </view>
   </view>

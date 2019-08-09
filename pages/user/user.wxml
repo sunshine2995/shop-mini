@@ -150,10 +150,10 @@
         <text class='service-type-text'>常见问题</text>
       </navigator>
 
-      <view class='service-type'>
+      <navigator class='service-type' url='/pages/address/list/list' hover-class="none">
         <icon class='iconfont icon-address-manage'></icon>
         <text class='service-type-text'>收货地址</text>
-      </view>
+      </navigator>
 
       <view class='service-type'>
         <icon class='iconfont icon-recharge'></icon>
