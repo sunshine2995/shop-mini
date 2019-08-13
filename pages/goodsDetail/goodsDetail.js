@@ -19,6 +19,12 @@ Page({
     })
   },
 
+  goToCart() {
+    wx.switchTab({
+      url: '/pages/cart/cart',
+    })
+  },
+
   getCartCount() {
     CartService.getCartCount()
       .then((res) => {

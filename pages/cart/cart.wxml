@@ -1,2 +1,115 @@
 <!--pages/cart/cart.wxml-->
-<text>todo...</text>
+<wxs module="filter" src="../../filter.wxs"></wxs>
+<view class='CartContainer'>
+  <view class='cart-empty' wx:if='{{validCarts.length === 0}}'>
+    <view class='activity-image'>
+      <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
+    </view>
+    <view class='empty-image' bindtap='goCollectGood'>
+      <image class='empty-img' src='https://img.caibashi.com/b9a60e09c089c595a96f4639866cde26.png' mode='widthFix'></image>
+      <button type='primary' class='go-shopping'>去挑好物</button>
+    </view>
+    <view class='guess-like-list'>
+      <view class='guess-title'>你可能喜欢</view>
+      <view class='guess-container'>
+        <block wx:for="{{guessList}}" wx:key="index" wx:for-item="guess">
+          <view class='guess-content'>
+            <view class='guess-image' data-good-id='{{guess.id}}' bindtap='goToDetail'>
+              <image class='guess-img' src='{{guess.thumbnail_url}}' wx:if='{{guess.thumbnail_url}}'></image>
+              <image class='guess-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' wx:else></image>
+            </view>
+            <view class='guess-goods-name'>{{guess.name}}</view>
+            <view class='guess-goods-price'>
+              <price-component price="{{guess.goods_sku_info.sell_price}}" unit="{{guess.goods_sku_info.goods_sku_sell_unit_name}}" text-color='text-color'></price-component>
+              <view class='add-cart-num'>
+                <icon class="iconfont icon-sort-add" data-good-sku-id='{{guess.goods_sku_info.id}}' catchtap='addCart'></icon>
+                <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
+                  <text class='cart-num' wx:if='{{guess.goods_sku_info.id === select.id}}'>{{select.num}}</text>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='activity-new-user'>
+      <image class='activity-new-user-img' src='https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png' mode='widthFix'></image>
+    </view>
+  </view>
+  <block wx:else>
+    <view class='delete'>
+      <text class='header_text'>菜巴士 | 满28免配送费</text>
+      <icon class='iconfont icon-delete'></icon>
+    </view>
+    <view class='activity-image'>
+      <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
+    </view>
+    <view class='main'>
+      <view class='shop' wx:for='{{validCarts}}' wx:key='this'>
+        <view class='shop_check_box' data-index='{{index}}' catchtap='checkTap'>
+          <icon class='iconfont icon-selected' wx-if='{{item.check}}'></icon>
+          <icon class='iconfont icon-Unselected' wx-if='{{!item.check}}'></icon>
+          <!-- <image class='check_img' hidden='{{item.check}}' src='../../img/check_icon_false.png'></image> -->
+          <!-- <image class='check_img' hidden='{{!item.check}}' src='../../img/check_icon_true.png'></image> -->
+        </view>
+        <image class='shop_img' src='{{item.thumbnail_url}}' mode='aspectFill' wx:if='{{item.thumbnail_url}}'>
+        </image>
+        <image class='shop_img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='aspectFill' wx:else>
+        </image>
+        <view class='shop_detail' data-good-id='{{item.goods_spu_id}}' bindtap='goToDetail'>
+          <text class='shop_name'>{{item.goods_spu_name}}</text>
+          <text class='shop_type'>{{item.sku_name}}</text>
+          <view class='shop_detail_bottom'>
+            <text class='shop_price'>￥{{item.price}}</text>
+            <view class='num_change'>
+              <icon class='iconfont icon-jianhao' data-index='{{index}}' catchtap='decrementQuantity'></icon>
+              <!-- <image 
+                        class='minus_icon' 
+                        hidden='{{item.num<2}}' 
+                        src='../../img/minus_icon.png' 
+                        data-index='{{index}}' 
+                        data-types='minus'  
+                        catchtap='numchangeTap'>
+                    </image> -->
+              <!-- <image class='minus_icon' hidden='{{item.num>=2}}' src='../../img/minus_icon_false.png'>
+          </image> -->
+              <text class='shop_num'>{{item.goods_sku_num}}</text>
+              <icon class='iconfont icon-sort-add' data-index='{{index}}' catchtap='incrementQuantity'></icon>
+              <!-- <image class='add_icon' data-index='{{index}}' data-types='add' catchtap='numchangeTap' src='../../img/add_icon.png'>
+          </image> -->
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='price-container'>
+      <view class='total-original'>
+        <text>商品原价</text>
+        <text>￥{{filter.numToFixed(total)}}</text>
+      </view>
+      <view class='discount-total'>
+        <text>商品优惠</text>
+        <text>-￥{{filter.numToFixed(total)}}</text>
+      </view>
+      <view class='weight-total'>
+        <text>小计</text>
+        <text class='weight-price'>￥{{filter.numToFixed(total)}}</text>
+      </view>
+    </view>
+
+    <view class='bottom-cart'>
+      <view class='check_box'>
+        <icon class='iconfont icon-selected' wx-if='{{allsel}}' catchtap='allcheckTap'></icon>
+        <icon class='iconfont icon-Unselected' wx-if='{{!allsel}}' catchtap='allcheckTap'></icon>
+        <text class='check_text' catchtap='allcheckTap'>全选</text>
+      </view>
+      <view class='cart-icon '>
+        <text class='footer_total_price' hidden='{{adminShow}}'>合计：￥{{filter.numToFixed(total)}}</text>
+        <text class='footer_total_text'>其他优惠金额见结算页面</text>
+      </view>
+      <view class='cart-text cart-text-green' catchtap='goclearingTap'>
+        <text class='footer_total' hidden='{{adminShow}}'>下单</text>
+      </view>
+    </view>
+  </block>
+</view>
