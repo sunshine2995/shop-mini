@@ -1,7 +1,9 @@
 /**app.wxss**/
+
 page {
   min-height: 100vh;
 }
+
 .container {
   width: 100%;
   overflow-x: hidden;
@@ -11,19 +13,20 @@ page {
   align-items: center;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
 text {
   display: block;
 }
 
 @font-face {
-  font-family: 'iconfont';  /* project id 1029995 */
-  src: url('//at.alicdn.com/t/font_1029995_sbxwko0udja.eot');
-  src: url('//at.alicdn.com/t/font_1029995_sbxwko0udja.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1029995_sbxwko0udja.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1029995_sbxwko0udja.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1029995_sbxwko0udja.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1029995_sbxwko0udja.svg#iconfont') format('svg');
+  font-family: 'iconfont'; /* project id 1029995 */
+  src: url('//at.alicdn.com/t/font_1029995_qpqynklnadm.eot');
+  src: url('//at.alicdn.com/t/font_1029995_qpqynklnadm.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1029995_qpqynklnadm.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1029995_qpqynklnadm.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1029995_qpqynklnadm.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1029995_qpqynklnadm.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -68,6 +71,10 @@ text {
 
 .icon-shoutidai:before {
   content: "\e63a";
+}
+
+.icon-fenlei-copy:before {
+  content: "\e654";
 }
 
 .icon-right:before {
@@ -144,6 +151,10 @@ text {
 
 .icon-tongji:before {
   content: "\e63d";
+}
+
+.icon-selected:before {
+  content: "\e659";
 }
 
 .icon-duizhangguanli1:before {
@@ -334,6 +345,10 @@ text {
   content: "\e61a";
 }
 
+.icon-delete1:before {
+  content: "\e658";
+}
+
 .icon-fenlei3:before {
   content: "\e791";
 }
@@ -360,6 +375,10 @@ text {
 
 .icon-ruku:before {
   content: "\e646";
+}
+
+.icon-Unselected:before {
+  content: "\e65a";
 }
 
 .icon-huiyuanzengpin:before {
@@ -445,4 +464,3 @@ text {
 .icon-gift:before {
   content: "\e66d";
 }
-

@@ -65,12 +65,14 @@ Page({
           goodsInfo: goodsInfo,
           stock: this.data.stock,
         });
-        this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
+        if (goodsInfo.goods_spu_details_image.length > 0) {
+          this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
+        }
         this.getCartCount();
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000
         })
