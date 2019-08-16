@@ -81,7 +81,7 @@
                   <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color='text-color '></price-component>
                 </view>
                 <view class='add-cart-num'>
-                  <icon class="iconfont icon-sort-add" data-good-sku-id='{{goodSku.id}}' catchtap='addCart'></icon>
+                  <icon class="iconfont icon-sort-add" data-good-sku-id='{{goodSku.id}}' catchtap='getGoodsAttr'></icon>
                   <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
                     <text class='cart-num' wx:if='{{goodSku.id === select.id}}'>{{select.num}}</text>
                   </block>
@@ -101,7 +101,8 @@
         <view class="sort-expand-content">
           <block wx:for="{{categoryOne.goods_spu_list}}" wx:key="index" wx:for-item="goodSpu">
             <view class="sort-expand-detail" data-good-id='{{goodSpu.id}}' bindtap='goDetail'>
-              <image class="sort-expand-goods-image" src="{{goodSpu.thumbnail_url}}"></image>
+              <image class="sort-expand-goods-image" src="{{goodSpu.thumbnail_url}}" wx:if='{{goodSpu.thumbnail_url}}'></image>
+              <image class="sort-expand-goods-image" src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg" wx:else></image>
               <text class="sort-expand-goods-name">{{goodSpu.name}}</text>
               <view class="sort-expand-goods-price" wx:if='{{goodSpu.is_standard}}'>
                 <price-component price="{{goodSpu.goods_sku_info.sell_price}}" unit="{{goodSpu.goods_sku_info.goods_sku_unit.name+'起'}}" text-color='text-color ' custom-template='custom-template '></price-component>

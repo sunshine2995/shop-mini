@@ -37,7 +37,7 @@
             <view class='recommended-goods-price'>
               <price-component price="{{recommended.goods_sku_info.sell_price}}" unit="{{recommended.goods_sku_info.goods_sku_sell_unit_name}}" text-color='text-color'></price-component>
               <view class='add-cart-num'>
-                <icon class="iconfont icon-sort-add" data-good-sku-id='{{recommended.goods_sku_info.id}}' catchtap='addCart'></icon>
+                <icon class="iconfont icon-sort-add" data-good-sku-id='{{recommended.goods_sku_info.id}}' catchtap='getGoodsAttr'></icon>
                 <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
                   <text class='cart-num' wx:if='{{recommended.goods_sku_info.id === select.id}}'>{{select.num}}</text>
                 </block>

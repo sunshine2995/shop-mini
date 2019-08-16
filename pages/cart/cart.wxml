@@ -1,7 +1,7 @@
 <!--pages/cart/cart.wxml-->
 <wxs module="filter" src="../../filter.wxs"></wxs>
 <view class='CartContainer'>
-  <view class='cart-empty' wx:if='{{validCarts.length === 0}}'>
+  <view class='cart-empty' wx:if='{{validCarts.length === 0 && invalidCarts.length === 0}}'>
     <view class='activity-image'>
       <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
     </view>
@@ -22,7 +22,7 @@
             <view class='guess-goods-price'>
               <price-component price="{{guess.goods_sku_info.sell_price}}" unit="{{guess.goods_sku_info.goods_sku_sell_unit_name}}" text-color='text-color'></price-component>
               <view class='add-cart-num'>
-                <icon class="iconfont icon-sort-add" data-good-sku-id='{{guess.goods_sku_info.id}}' catchtap='addCart'></icon>
+                <icon class="iconfont icon-sort-add" data-good-sku-id='{{guess.goods_sku_info.id}}' catchtap='getGoodsAttr'></icon>
                 <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
                   <text class='cart-num' wx:if='{{guess.goods_sku_info.id === select.id}}'>{{select.num}}</text>
                 </block>
@@ -37,46 +37,98 @@
     </view>
   </view>
   <block wx:else>
-    <view class='delete'>
-      <text class='header_text'>菜巴士 | 满28免配送费</text>
-      <icon class='iconfont icon-delete'></icon>
-    </view>
-    <view class='activity-image'>
-      <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
-    </view>
-    <view class='main'>
-      <view class='shop' wx:for='{{validCarts}}' wx:key='this'>
-        <view class='shop_check_box' data-index='{{index}}' catchtap='checkTap'>
-          <icon class='iconfont icon-selected' wx-if='{{item.check}}'></icon>
-          <icon class='iconfont icon-Unselected' wx-if='{{!item.check}}'></icon>
-          <!-- <image class='check_img' hidden='{{item.check}}' src='../../img/check_icon_false.png'></image> -->
-          <!-- <image class='check_img' hidden='{{!item.check}}' src='../../img/check_icon_true.png'></image> -->
+    <view class='cart-container'>
+      <view class='delete'>
+        <text class='header_text'>菜巴士 | 满28免配送费</text>
+        <icon class='iconfont icon-delete' bindtap='deleteGoods'></icon>
+      </view>
+      <view class='activity-image'>
+        <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
+      </view>
+      <view class='main'>
+        <view class="cart-goods" wx:for='{{validCarts}}' wx:key='this'>
+          <view class='discount-rule' wx:if='{{item.marketing_name_time}}'>
+            <text class='discount_title'>限时折扣</text>
+            <discountTitle time="{{item.marketing_name_time}}" discount-rebate='discount-rebate' discount-time='discount-time' />
+          </view>
+          <view class='shop'>
+            <view class='shop_check_box' data-index='{{index}}' catchtap='checkTap'>
+              <icon class='iconfont icon-selected' wx-if='{{item.check}}'></icon>
+              <icon class='iconfont icon-Unselected' wx-if='{{!item.check}}'></icon>
+            </view>
+            <view class="discount-goods-image" wx:if='{{item.marketing_name_time}}'>
+              <image class='discount-goods-img' src='{{item.thumbnail_url}}' mode='widthFix' wx:if='{{item.thumbnail_url}}'></image>
+              <image class='discount-goods-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else></image>
+              <text class='discount-goods-text' wx:if='{{item.marketing_simple_name}}'>{{item.marketing_simple_name}}</text>
+            </view>
+            <view wx:else class="goods-image">
+              <image class='shop-img' src='{{item.thumbnail_url}}' mode='widthFix' wx:if='{{item.thumbnail_url}}'>
+              </image>
+              <image class='shop-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+              </image>
+            </view>
+            <view class='shop-detail' data-good-id='{{item.goods_spu_id}}' bindtap='goToDetail'>
+              <text class='shop-name'>{{item.goods_spu_name}}</text>
+              <text class='shop-type' wx:if='{{item.sku_name}}'>{{item.sku_name}}</text>
+              <text class='shop-type' wx:else>默认规格</text>
+              <text class='shop-pass-price' wx:if="{{item.marketing_price}}">{{item.price}}/{{item.spu_unit_name}}</text>
+              <view class='discount-limit-number' wx:if="{{item.marketing_price}}">限购3件</view>
+              <view class='shop-detail-bottom'>
+                <view class='shop-price' wx:if="{{item.marketing_price}}">
+                  <price-component price="{{item.marketing_price}}" unit="{{item.spu_unit_name}}" text-color="text-color"></price-component>
+                </view>
+                <view class='shop-price' wx:else>
+                  <price-component price="{{item.price}}" unit="{{item.spu_unit_name}}" text-color="text-color"></price-component>
+                </view>
+                <view class='num-change'>
+                  <icon class='iconfont icon-jianhao' data-index='{{index}}' catchtap='decrementQuantity'></icon>
+                  <text class='shop_num'>{{item.goods_sku_num}}</text>
+                  <icon class='iconfont icon-sort-add' data-index='{{index}}' catchtap='incrementQuantity'></icon>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="goods-attr-icon" wx:if='{{item.goods_attr}}' data-good-sku-id='{{item.goods_sku_id}}' catchtap='getGoodsAttr'>
+            <text class="goods-attr">注：{{item.goods_attr}}</text>
+            <icon class="iconfont icon-down"></icon>
+          </view>
+          <view class="sale-out-tip" wx:if='{{item.stock < item.goods_sku_num}}'>
+            <icon class="iconfont icon-jingtanhao"></icon>
+            <text>当前库存仅剩 {{ item.stock }} 件,请减少购买数量</text>
+          </view>
         </view>
-        <image class='shop_img' src='{{item.thumbnail_url}}' mode='aspectFill' wx:if='{{item.thumbnail_url}}'>
-        </image>
-        <image class='shop_img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='aspectFill' wx:else>
-        </image>
-        <view class='shop_detail' data-good-id='{{item.goods_spu_id}}' bindtap='goToDetail'>
-          <text class='shop_name'>{{item.goods_spu_name}}</text>
-          <text class='shop_type'>{{item.sku_name}}</text>
-          <view class='shop_detail_bottom'>
-            <text class='shop_price'>￥{{item.price}}</text>
-            <view class='num_change'>
-              <icon class='iconfont icon-jianhao' data-index='{{index}}' catchtap='decrementQuantity'></icon>
-              <!-- <image 
-                        class='minus_icon' 
-                        hidden='{{item.num<2}}' 
-                        src='../../img/minus_icon.png' 
-                        data-index='{{index}}' 
-                        data-types='minus'  
-                        catchtap='numchangeTap'>
-                    </image> -->
-              <!-- <image class='minus_icon' hidden='{{item.num>=2}}' src='../../img/minus_icon_false.png'>
-          </image> -->
-              <text class='shop_num'>{{item.goods_sku_num}}</text>
-              <icon class='iconfont icon-sort-add' data-index='{{index}}' catchtap='incrementQuantity'></icon>
-              <!-- <image class='add_icon' data-index='{{index}}' data-types='add' catchtap='numchangeTap' src='../../img/add_icon.png'>
-          </image> -->
+      </view>
+      <view class='invalid-carts' wx:if='{{invalidCarts.length > 0}}'>
+        <view class='clear-invalid'>
+          <text class='invaild-title'>已失效商品</text>
+          <text bindtap='deleteInvalidGoods'>清空失效商品</text>
+          <icon bindtap='deleteInvalidGoods' class='iconfont icon-delete'></icon>
+        </view>
+        <view class='invalid-goods' wx:for='{{invalidCarts}}' wx:key='this' wx:for-item="invalid">
+          <view class='mask'></view>
+          <view class='shop_check_box' data-index='{{index}}' catchtap='checkTap'>
+            <icon class='iconfont icon-Unselected'></icon>
+          </view>
+          <view class='shop-image'>
+            <image class='shop-img' src='{{invalid.thumbnail_url}}' mode='widthFix' wx:if='{{invalid.thumbnail_url}}'>
+            </image>
+            <image class='shop-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+            </image>
+            <view class='undercarriage'>已下架</view>
+            <view class="goods-attr-gray" wx:if='{{invalid.goods_attr}}'>
+              <text class="goods-attr">注：{{invalid.goods_attr}}</text>
+            </view>
+          </view>
+          <view class='shop_detail' data-good-id='{{invalid.goods_spu_id}}' bindtap='goToDetail'>
+            <text class='shop-name'>{{invalid.goods_spu_name}}</text>
+            <text class='shop-type'>{{invalid.sku_name}}</text>
+            <view class='shop-detail-bottom'>
+              <view class='shop-price'>
+                <price-component price="{{invalid.price}}" unit="{{invalid.spu_unit_name}}" text-color="text-gray"></price-component>
+              </view>
+              <view class='num-change'>
+                <text class='shop-num'>{{invalid.goods_sku_num}}</text>
+              </view>
             </view>
           </view>
         </view>
@@ -89,11 +141,11 @@
       </view>
       <view class='discount-total'>
         <text>商品优惠</text>
-        <text>-￥{{filter.numToFixed(total)}}</text>
+        <text>-￥{{filter.numToFixed(discountMoney)}}</text>
       </view>
       <view class='weight-total'>
         <text>小计</text>
-        <text class='weight-price'>￥{{filter.numToFixed(total)}}</text>
+        <text class='weight-price'>￥{{filter.numToFixed(finallyMoney)}}</text>
       </view>
     </view>
 
@@ -104,11 +156,11 @@
         <text class='check_text' catchtap='allcheckTap'>全选</text>
       </view>
       <view class='cart-icon '>
-        <text class='footer_total_price' hidden='{{adminShow}}'>合计：￥{{filter.numToFixed(total)}}</text>
+        <text class='footer_total_price'>合计：￥{{filter.numToFixed(finallyMoney)}}</text>
         <text class='footer_total_text'>其他优惠金额见结算页面</text>
       </view>
-      <view class='cart-text cart-text-green' catchtap='goclearingTap'>
-        <text class='footer_total' hidden='{{adminShow}}'>下单</text>
+      <view class='cart-text cart-text-green' bindtap="goSubmit">
+        <text class='footer_total'>下单</text>
       </view>
     </view>
   </block>

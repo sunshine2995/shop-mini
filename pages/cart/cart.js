@@ -2,9 +2,11 @@
 var CartService = require('../../utils/services/CartService.js')
 Page({
   data: {
-    adminShow: false, //管理      
-    validCarts: [], //购物车数据      
-    total: 0, //总金额      
+    validCarts: [], //有效购物车数据      
+    invalidCarts: [], //失效购物车数据      
+    total: 0, //总金额    
+    discountMoney: 0, //折扣优惠金额  
+    finallyMoney: 0, //总金额-折扣优惠金额
     allsel: false, //全选      
     selarr: [], //选择的商品   
     hintText: '', //提示的内容      
@@ -12,6 +14,15 @@ Page({
     guessList: [], //猜你喜欢列表
     idSelected: [], // 已被选在购物车的商品id列表
     goodSkuId: [], // 推荐商品的skuId列表
+    invalidSkuIds: [], // 失效商品id列表
+    selectedIds: [], // 被选中商品的Id列表
+
+    // 属性相关
+    skuId: 0,
+    carts: [], // 购物车信息
+    cartIds: [], // 购物车商品id
+    goodsAttrs: [], // 商品属性列表
+    goodsAttr: '', // 商品属性
   },
 
   goToDetail(e) {
@@ -19,6 +30,20 @@ Page({
     wx.navigateTo({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
     })
+  },
+
+  goSubmit() {
+    if (this.data.selectedIds.length === 0) {
+      wx.showToast({
+        title: '未选择商品呢',
+        icon: 'none',
+      })
+    } else {
+      wx.showToast({
+        title: '选好商品了',
+        icon: 'none',
+      })
+    }
   },
 
   goCollectGood() {
@@ -31,72 +56,73 @@ Page({
   allcheckTap: function() {
     let shopcar = this.data.validCarts,
       allsel = !this.data.allsel, //点击全选后allsel变化
-      total = 0;
+      total = 0,
+      discountMoney = 0,
+      finallyMoney = 0;
     for (let i = 0, len = shopcar.length; i < len; i++) {
       shopcar[i].check = allsel; //所有商品的选中状态和allsel值一样
       if (allsel) { //如果为选中状态则计算商品的价格
         total += shopcar[i].price * shopcar[i].goods_sku_num;
+        if (shopcar[i].reduce_money) {
+          discountMoney += shopcar[i].reduce_money * shopcar[i].goods_sku_num;
+        }
       }
     }
+    finallyMoney = total - discountMoney;
     this.data.selarr = allsel ? shopcar : []; //如果选中状态为true那么所有商品为选中状态，将物品加入选中变量，否则为空    
     this.setData({
       allsel: allsel,
       validCarts: shopcar,
       total: total,
+      discountMoney: discountMoney,
+      finallyMoney: finallyMoney,
       selarr: this.data.selarr
     });
-    console.log(this.data.selarr, 'allcheckTap')
+    this.data.selectedIds = [];
+    this.data.selarr.forEach((item) => {
+      this.data.selectedIds.push(item.goods_sku_id);
+    });
+    wx.setStorageSync('selectedIds', this.data.selectedIds);
   },
-  //点击移除商品  
-  deleteshopTap: function() {
-    var allsel = this.data.allsel,
-      shopcar = this.data.validCarts,
-      selarr = this.data.selarr;
-    if (allsel) {
-      shopcar = [];
-      this.setData({
-        allsel: false
-      });
-    } else {
-      console.log(selarr);
-      for (var i = 0, len = selarr.length; i < len; i++) { //将选中的商品从购物车移除        
-        console.log(selarr[i].id);
-        for (var lens = shopcar.length - 1, j = lens; j >= 0; j--) {
-          console.log(shopcar[j].id);
-          if (selarr[i].id == shopcar[j].id) {
-            shopcar.splice(j, 1);
-          }
-        }
-      }
+
+  //判断是否为全选  
+  judgmentAll() {
+    let shopcar = this.data.validCarts,
+      shoplen = shopcar.length,
+      lenIndex = 0; //选中的物品的个数    
+    for (let i = 0; i < shoplen; i++) { //计算购物车选中的商品的个数    
+      shopcar[i].check && lenIndex++;
     }
     this.setData({
-      validCarts: shopcar,
-      total: 0
+      allsel: lenIndex == shoplen //如果购物车选中的个数和购物车里货物的总数相同，则为全选，反之为未全选    
     });
+    this.data.selectedIds = [];
+    this.data.selarr.forEach((item) => {
+      this.data.selectedIds.push(item.goods_sku_id);
+    });
+    wx.setStorageSync('selectedIds', this.data.selectedIds);
   },
-  //点击加入收藏夹，这里按自己需求写吧  
-  addcollectTap: function() {
 
-  },
-  //点击管理按钮，是否显示管理的选项  
-  adminTap: function() {
-    this.setData({
-      adminShow: !this.data.adminShow
-    });
-  },
   //点击单个选择按钮  
   checkTap(e) {
     const Index = e.currentTarget.dataset.index;
-    console.log(this.data.validCarts, 'his.data.validCarts')
     let shopcar = this.data.validCarts,
       total = this.data.total,
-      selarr = this.data.selarr;
+      discountMoney = this.data.discountMoney,
+      selarr = this.data.selarr,
+      finallyMoney = this.data.finallyMoney;
     shopcar[Index].check = !shopcar[Index].check || false;
     if (shopcar[Index].check) {
       total += shopcar[Index].goods_sku_num * shopcar[Index].price;
+      if (shopcar[Index].reduce_money) {
+        discountMoney += shopcar[Index].reduce_money * shopcar[Index].goods_sku_num;
+      }
       selarr.push(shopcar[Index]);
     } else {
       total -= shopcar[Index].goods_sku_num * shopcar[Index].price;
+      if (shopcar[Index].reduce_money) {
+        discountMoney -= shopcar[Index].reduce_money * shopcar[Index].goods_sku_num;
+      }
       for (let i = 0, len = selarr.length; i < len; i++) {
         if (shopcar[Index].id == selarr[i].id) {
           selarr.splice(i, 1);
@@ -104,69 +130,36 @@ Page({
         }
       }
     }
+    finallyMoney = total - discountMoney;
     this.setData({
       validCarts: shopcar,
       total: total,
+      discountMoney: discountMoney,
+      finallyMoney: finallyMoney,
       selarr: selarr
     });
     console.log(selarr, 'checkTap')
     this.judgmentAll(); //每次按钮点击后都判断是否满足全选的条件  
-  },
-  //点击加减按钮  
-  numchangeTap(e) {
-    let Index = e.currentTarget.dataset.index, //点击的商品下标值        
-      shopcar = this.data.validCarts,
-      types = e.currentTarget.dataset.types, //是加号还是减号        
-      total = this.data.total; //总计    
-    switch (types) {
-      case 'add':
-        // shopcar[Index].goods_sku_num++; //对应商品的数量+1      
-        shopcar[Index].check && (total += +shopcar[Index].price); //如果商品为选中的，则合计价格+商品单价     
-        this.incrementQuantity(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num++);
-        break;
-      case 'minus':
-        if (shopcar[Index].goods_sku_num > 1) {
-          // shopcar[Index].goods_sku_num--; //对应商品的数量-1   
-          shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价    
-          this.decrementQuantity(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num--);
-        } else {
-          var _this = this;
-          wx.showModal({
-            title: '删除商品',
-            content: '确定要删除该商品吗？',
-            confirmColor: '#11A24A',
-            success(res) {
-              if (res.confirm) {
-                _this.deleteCart(shopcar[Index].goods_sku_id)
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
-        break;
-    }
-    total = Number(total.toFixed(2));
-    this.setData({
-      validCarts: shopcar,
-      total: total,
-    });
   },
 
   incrementQuantity(e) {
     let Index = e.currentTarget.dataset.index; //点击的商品下标值        
     let shopcar = this.data.validCarts;
     let total = this.data.total; //总计  
+    let discountMoney = this.data.discountMoney;
+    let finallyMoney = this.data.finallyMoney; //实际  
     shopcar[Index].check && (total += +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价   
+    shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney += +shopcar[Index].reduce_money);
     total = Number(total.toFixed(2));
-    console.log(shopcar, this.data.validCarts, 'ffffffff')
+    finallyMoney = total - discountMoney;
     CartService.updateCart(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num + 1)
       .then((res) => {
         shopcar[Index].goods_sku_num = shopcar[Index].goods_sku_num + 1;
         this.setData({
           validCarts: shopcar,
           total: total,
+          discountMoney: discountMoney,
+          finallyMoney: finallyMoney,
         });
         this.getCartCount();
       })
@@ -181,7 +174,9 @@ Page({
   decrementQuantity(e) {
     let Index = e.currentTarget.dataset.index, //点击的商品下标值        
       shopcar = this.data.validCarts,
-      total = this.data.total; //总计  
+      total = this.data.total, //总计  
+      discountMoney = this.data.discountMoney,
+     finallyMoney = this.data.finallyMoney; //实际  
     if (shopcar[Index].goods_sku_num === 1) {
       var _this = this;
       wx.showModal({
@@ -191,11 +186,14 @@ Page({
         success(res) {
           if (res.confirm) {
             _this.deleteCart(shopcar[Index].goods_sku_id)
-            shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价   
+            shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价  
+            shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney -= +shopcar[Index].reduce_money);
             total = Number(total.toFixed(2));
-            console.log(total, 'ffff');
+            finallyMoney = total - discountMoney;
             _this.setData({
               total: total,
+              discountMoney: discountMoney,
+              finallyMoney: finallyMoney,
             });
           } else if (res.cancel) {}
         }
@@ -204,11 +202,15 @@ Page({
       CartService.updateCart(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num - 1)
         .then((res) => {
           shopcar[Index].goods_sku_num = shopcar[Index].goods_sku_num - 1;
-          shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价   
+          shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价  
+          shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney -= +shopcar[Index].reduce_money);
           total = Number(total.toFixed(2));
+          finallyMoney = total - discountMoney;
           this.setData({
             validCarts: shopcar,
             total: total,
+            discountMoney: discountMoney,
+            finallyMoney: finallyMoney,
           });
           this.getCartCount();
         })
@@ -225,24 +227,93 @@ Page({
   deleteCart(skuId) {
     CartService.deleteCart(skuId)
       .then((res) => {
+        this.data.selectedIds.forEach((item, index) => {
+          if (skuId === item) {
+            this.data.selectedIds.splice(index, 1);
+          }
+        })
+        wx.setStorageSync('selectedIds', this.data.selectedIds);
         this.data.validCarts.forEach((item, index) => {
           if (skuId === item.goods_sku_id) {
             this.data.validCarts.splice(index, 1);
           }
-          this.getCartCount();
           this.setData({
             validCarts: this.data.validCarts,
+            selectedIds: this.data.selectedIds,
           });
         })
-        wx.showToast({
-          title: res.data.data.message,
-        })
+        this.getCartCount();
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
         })
       })
+  },
+
+  // 删除选中商品
+  deleteGoods() {
+    if (this.data.selectedIds.length === 0) {
+      wx.showToast({
+        title: '请选择要删除的商品',
+        icon: 'none',
+      })
+    } else {
+      var _this = this;
+      wx.showModal({
+        title: '批量删除商品',
+        content: '确定要删除选中商品吗？',
+        confirmColor: '#11A24A',
+        success(res) {
+          if (res.confirm) {
+            wx.showLoading({
+              title: '',
+            })
+            CartService.deleteCarts(_this.data.selectedIds.map(Number))
+              .then((res) => {
+                wx.setStorageSync('selectedIds', []);
+                wx.hideLoading();
+                _this.getAllCarts();
+                _this.selectedIds = [];
+              })
+              .catch((error) => {
+                wx.showToast({
+                  title: error.data.message,
+                  icon: 'none',
+                })
+              });
+          } else if (res.cancel) {}
+        }
+      })
+    };
+  },
+
+  // 清空失效商品
+  deleteInvalidGoods() {
+    var _this = this;
+    wx.showModal({
+      title: '清除失效商品',
+      content: '确定要清除失效商品吗？',
+      confirmColor: '#11A24A',
+      success(res) {
+        if (res.confirm) {
+          console.log(_this.data.invalidSkuIds.map(Number))
+          CartService.deleteCarts(_this.data.invalidSkuIds.map(Number))
+            .then((res) => {
+              wx.showToast({
+                title: res.data.message,
+              })
+              _this.getAllCarts();
+            })
+            .catch((error) => {
+              wx.showToast({
+                title: error.data.message,
+                icon: 'none',
+              })
+            });
+        } else if (res.cancel) {}
+      }
+    })
   },
 
   // 获取购物车数量
@@ -253,18 +324,88 @@ Page({
       });
   },
 
-  addCart(e) {
-    const goodsSkuId = e.currentTarget.dataset.goodSkuId;
-    CartService.addCart(goodsSkuId)
+
+  // 获取商品属性
+  getGoodsAttr(e) {
+    this.data.skuId = e.currentTarget.dataset.goodSkuId;
+    this.data.goodsAttr = '';
+    this.data.goodsAttrs = [];
+    this.data.carts.forEach((cart) => {
+      this.data.cartIds.push(cart.goods_sku_id);
+    });
+    CartService.getGoodsAttr(this.data.skuId).then((res) => {
+      res.data.data.forEach((item, index) => {
+        this.data.goodsAttrs.push(item);
+      });
+      if (this.data.goodsAttrs.length > 0) {
+        var _this = this;
+        wx.showActionSheet({
+          itemList: _this.data.goodsAttrs,
+          success(res) {
+            console.log(res.tapIndex)
+            _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
+            console.log(_this.data.goodsAttr)
+            if (_this.data.carts.length === 0) {
+              CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
+                .then((res) => {
+                  _this.data.idSelected.forEach((item) => {
+                    if (+item.id === +_this.data.skuId) {
+                      item.num = res.data.data.goods_sku_num;
+                    }
+                  });
+                  _this.getAllCarts();
+                })
+                .catch((error) => {
+                  wx.showToast({
+                    title: error.data.message,
+                    icon: 'none',
+                  })
+                });
+            } else {
+              CartService.editGoodsAttr(_this.data.skuId, _this.data.goodsAttr)
+                .then((res) => {
+                  wx.showToast({
+                    title: res.data.message,
+                    icon: 'none',
+                  })
+                  _this.data.carts.forEach((item) => {
+                    if (_this.data.skuId === item.goods_sku_id) {
+                      item.goods_attr = _this.data.goodsAttr;
+                    }
+                  });
+                  _this.setData({
+                    validCarts: _this.data.carts,
+                  });
+                })
+                .catch((error) => {
+                  wx.showToast({
+                    title: error.data.message,
+                    icon: 'none',
+                  })
+                });
+            }
+          },
+          fail(res) {
+            console.log(res.errMsg)
+          }
+        })
+      } else {
+        this.addCart();
+      }
+    });
+  },
+
+  addCart() {
+    CartService.addCart(this.data.skuId, this.data.goodsAttr)
       .then((res) => {
         this.data.idSelected.forEach((item) => {
-          if (+item.id === +goodsSkuId) {
+          if (+item.id === +this.data.skuId) {
             item.num = res.data.data.goods_sku_num;
           }
         });
         this.getAllCarts();
       })
-      .catch(() => { });
+      .catch(() => {});
   },
 
   // 猜你喜欢
@@ -289,22 +430,7 @@ Page({
       })
   },
 
-  //判断是否为全选  
-  judgmentAll() {
-    let shopcar = this.data.validCarts,
-      shoplen = shopcar.length,
-      lenIndex = 0; //选中的物品的个数    
-    for (let i = 0; i < shoplen; i++) { //计算购物车选中的商品的个数    
-      shopcar[i].check && lenIndex++;
-    }
-    this.setData({
-      allsel: lenIndex == shoplen //如果购物车选中的个数和购物车里货物的总数相同，则为全选，反之为未全选    
-    });
-    console.log(this.data.selarr, 'judgmentAll')
-  },
-  onLoad: function(options) {
-
-  },
+  onLoad: function(options) {},
   onReady: function() {
 
   },
@@ -313,24 +439,52 @@ Page({
     CartService.getAllCarts()
       .then((res) => {
         this.getCartCount();
-        if (res.data.data.valid_carts.length === 0) {
+        if (res.data.data.valid_carts.length === 0 && res.data.data.invalid_carts.length === 0) {
+          this.data.carts = res.data.data.valid_carts;
+          this.data.validCarts = res.data.data.valid_carts;
+          this.data.invalidCarts = res.data.data.invalid_carts;
+          this.setData({
+            validCarts: this.data.validCarts,
+            invalidCarts: this.data.invalidCarts,
+          });
           this.getLikeList();
         } else {
           this.data.validCarts = res.data.data.valid_carts;
+          this.data.carts = res.data.data.valid_carts;
+          this.data.invalidCarts = res.data.data.invalid_carts;
+          this.data.invalidCarts.forEach((item) => {
+            this.data.invalidSkuIds.push(item.goods_sku_id);
+          });
           this.data.selarr = [];
-          console.log(this.data.validCarts, 'res');
-          console.log(this.data.selarr, 'getAllCarts')
+          var selectedIds = wx.getStorageSync('selectedIds');
           var total = 0;
+          var discountMoney = 0;
+          var finallyMoney = 0;
+          this.data.validCarts.forEach((item) => {
+            selectedIds.forEach((selectedId) => {
+              if (+item.goods_sku_id === +selectedId) {
+                item.check = true;
+              }
+            })
+          })
+          console.log(this.data.validCarts, 'res');
           var selarr = this.data.selarr;
           for (let i = 0, len = this.data.validCarts.length; i < len; i++) { //这里是对选中的商品的价格进行总结    
             if (this.data.validCarts[i].check) {
               total += this.data.validCarts[i].goods_sku_num * this.data.validCarts[i].price;
+              if (this.data.validCarts[i].reduce_money) {
+                discountMoney -= this.data.validCarts[i].reduce_money * this.data.validCarts[i].goods_sku_num;
+              }
+              finallyMoney = total - discountMoney;
               selarr.push(this.data.validCarts[i]);
             }
           }
           this.setData({
             validCarts: this.data.validCarts,
+            invalidCarts: this.data.invalidCarts,
             total: total,
+            discountMoney: discountMoney,
+            finallyMoney: finallyMoney,
             selarr: selarr
           });
           this.judgmentAll(); //判断是否全选  
@@ -340,29 +494,9 @@ Page({
 
       })
   },
+
   /**   * 生命周期函数--监听页面显示   */
   onShow() {
-    // var shopcarData = [{ //购物车   
-    //   id: '1',
-    //   name: '折后i啊手动阀就是点击发送的金佛啊是是假的佛山折后i啊手动阀就是点击发送的金佛啊是是假的佛山',
-    //   price: '230',
-    //   num: 1,
-    //   types: '白色/39码',
-    //   check: true
-    // }, {
-    //   id: '2',
-    //   name: '啊哈额和福特好热惊讶所以就如同撒打发士大夫',
-    //   price: '332',
-    //   num: 1,
-    //   types: '粉色/38码'
-    // }, {
-    //   id: '3',
-    //   name: '啊如何呀还是大范围推广哇额饿啊日hers的说法的事发生的',
-    //   price: '120',
-    //   num: 1,
-    //   types: '白色/41码',
-    //   check: true
-    // }];
     this.getAllCarts();
   }
 })

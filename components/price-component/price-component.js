@@ -11,6 +11,19 @@ Component({
     price: {
       type: String,
       value: "",
+      observer: function (newVal, oldVal) {
+        var first = '';
+        var second = '';
+        if (String(Number(newVal)).split('.').length > 1) {
+          [first, second] = String(Number(newVal)).split('.');
+        } else {
+          [first] = String(Number(newVal)).split('.');
+        }
+        this.setData({
+          first: first,
+          second: second,
+        })
+      }
     },
 
     unit: {
@@ -51,18 +64,7 @@ Component({
     },
   },
 
-  ready: function () {
-    var first = '';
-    var second = '';
-    if (String(Number(this.properties.price)).split('.').length > 1) {
-      [first, second] = String(Number(this.properties.price)).split('.');
-    } else {
-      [first] = String(Number(this.properties.price)).split('.');
-    }
-    this.setData({
-      first: first,
-      second: second,
-    })
+  ready () {
   },
   // 组件生命周期函数，可以为函数，或一个在methods段中定义的方法名
   attached: function() {},

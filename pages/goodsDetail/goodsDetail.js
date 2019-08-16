@@ -6,7 +6,12 @@ Page({
     active: 0,
     spuId: 0,
     stock: 0,
+    // 属性相关
     selectSkuId: 0,
+    carts: [], // 购物车信息
+    cartIds: [], // 购物车商品id
+    goodsAttrs: [], // 商品属性列表
+    goodsAttr: '', // 商品属性
   },
 
   toggle(e) {
@@ -35,8 +40,58 @@ Page({
       });
   },
 
+  getAllCarts() {
+    CartService.getAllCarts().then((res) => {
+      this.data.carts = res.data.data.valid_carts;
+    });
+  },
+
+  getGoodsAttr() {
+    this.data.goodsAttr = '';
+    this.data.goodsAttrs = [];
+    this.data.carts.forEach((cart) => {
+      this.data.cartIds.push(cart.goods_sku_id);
+    });
+    CartService.getGoodsAttr(this.data.selectSkuId).then((res) => {
+      res.data.data.forEach((item, index) => {
+        this.data.goodsAttrs.push(item);
+      });
+      if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.selectSkuId)) {
+        var _this = this;
+        wx.showActionSheet({
+          itemList: _this.data.goodsAttrs,
+          success(res) {
+            console.log(res.tapIndex)
+            _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
+            CartService.addCart(_this.data.selectSkuId, _this.data.goodsAttr)
+              .then((res) => {
+                _this.getCartCount();
+                _this.getAllCarts();
+              })
+              .catch((error) => {
+                wx.showToast({
+                  title: error.data.message,
+                  icon: 'none',
+                })
+              });
+          },
+          fail(res) {
+            console.log(res.errMsg)
+          }
+        })
+      } else {
+        this.addCart();
+      }
+    });
+  },
+
   addCart() {
-    CartService.addCart(this.data.selectSkuId)
+    this.data.carts.forEach((cart) => {
+      if (this.data.selectSkuId === cart.goods_sku_id) {
+        this.data.goodsAttr = cart.goods_attr;
+      }
+    });
+    CartService.addCart(this.data.selectSkuId, this.data.goodsAttr)
       .then((res) => {
         wx.showToast({
           title: res.data.message,
@@ -75,6 +130,7 @@ Page({
           this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
         }
         this.getCartCount();
+        this.getAllCarts();
       })
       .catch((error) => {
         wx.showToast({

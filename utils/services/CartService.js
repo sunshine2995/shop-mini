@@ -12,9 +12,10 @@ export function getAllCarts() {
 }
 
 // 添加购物车
-export function addCart(skuId) {
+export function addCart(skuId,goodsAttr) {
   return wxRequest.wxPromise("POST", `${BaseUrl}/cart`, {
     goods_sku_id: skuId,
+    goods_attr: goodsAttr,
   });
 }
 
@@ -50,5 +51,18 @@ export function checkout(skuIds, giftId) {
 // 获取猜你喜欢的列表
 export function getLikeList() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/guess_u_like`);
+}
+
+// 修改商品属性
+export function editGoodsAttr(skuId, goodsAttr) {
+  return wxRequest.wxPromise("PUT", `${BaseUrl}/cart/goods_attr`, {
+    goods_sku_id: skuId,
+    goods_attr: goodsAttr,
+  });
+}
+
+// 获取商品属性
+export function getGoodsAttr(skuId) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/goods_attr?goods_sku_id=${skuId}`);
 }
 

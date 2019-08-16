@@ -18,16 +18,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
   padding-top: 40rpx;
   padding-bottom: 20rpx;
   box-sizing: border-box;
 }
+.discount-rebate {
+  font-size: 36rpx;
+}
+.discount-time {
+  font-size: 32rpx;
+} 
 
 .discount-goods-container {
   background-color: #fff;
   border-radius: 20rpx;
-  padding-top: 20rpx;
-  box-sizing: border-box;
+  /* padding-top: 20rpx;
+  box-sizing: border-box; */
 }
 
 .discount-goods-content {
