@@ -2,15 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fe3059;
-  color: #fff;
 }
 .discount-rebate, .discount-time {
   display: inline-block;
-}
-.discount-rebate {
-  font-size: 36rpx;
-}
-.discount-time {
-  font-size: 32rpx;
 }
