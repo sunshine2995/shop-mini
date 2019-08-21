@@ -37,6 +37,8 @@ App({
   },
   globalData: {
     userInfo: null,
+    userData: {},
+    shopInfo: {},
   },
   // 登录
   login() {

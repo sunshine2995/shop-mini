@@ -19,6 +19,35 @@ Page({
 
   },
 
+  getUser() {
+    UserService.getUser()
+      .then((res) => {
+        app.globalData.userData = res.data.data;
+        this.getShopInfo();
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+  
+  getShopInfo() {
+    UserService.getShopInfo(app.globalData.userData.current_subbranch_id)
+      .then((res) => {
+        app.globalData.shopInfo = res.data.data;
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
 
   goDetail(e) {
     const id = e.currentTarget.dataset.goodId;
