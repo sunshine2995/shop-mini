@@ -25,25 +25,25 @@ Page({
     // customItem: '全部',
 
     typeOptions: [{
-      value: 1,
-      text: '家',
-    },
-    {
-      value: 2,
-      text: '单位',
-    },
-    {
-      value: 3,
-      text: '朋友家',
-    },
-    {
-      value: 4,
-      text: '父母家',
-    },
-    {
-      value: 5,
-      text: '其他',
-    },
+        value: 1,
+        text: '家',
+      },
+      {
+        value: 2,
+        text: '单位',
+      },
+      {
+        value: 3,
+        text: '朋友家',
+      },
+      {
+        value: 4,
+        text: '父母家',
+      },
+      {
+        value: 5,
+        text: '其他',
+      },
     ],
     active: 0,
     defaultCheck: true,
@@ -61,7 +61,7 @@ Page({
   },
 
   // 监听textarea
-  bindTextAreaChange: throttle.throttle(function (e) {
+  bindTextAreaChange: throttle.throttle(function(e) {
     console.log('bindTextAreaChange')
     var _this = this;
     _this.data.address.street = e[0].detail.value;
@@ -90,7 +90,7 @@ Page({
     self.mapCtx = wx.createMapContext("map");
     if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')) {
       self.mapCtx.getCenterLocation({
-        success: function (res) {
+        success: function(res) {
           if (res.latitude && res.longitude) {
             self.data.latitude = res.latitude;
             self.data.longitude = res.longitude;
@@ -151,8 +151,7 @@ Page({
         });
 
       })
-      .catch((error) => {
-      })
+      .catch((error) => {})
   },
 
   // 地址转经纬度
@@ -176,8 +175,7 @@ Page({
         });
 
       })
-      .catch((error) => {
-      })
+      .catch((error) => {})
   },
 
   markertap(e) {
@@ -290,7 +288,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var self = this;
     self.data.address.id = options.addressId;
     myAmapFun = new amapFile.AMapWX({
@@ -304,8 +302,9 @@ Page({
     //     self.getAddressByLocation()
     //   }
     // })
+
     myAmapFun.getRegeo({
-      success: function (res) {
+      success: function(res) {
         wx.hideLoading();
         console.log(res, 'myAmapFun.getRegeo')
         self.data.address.province = res[0].regeocodeData.addressComponent.province;
@@ -333,7 +332,7 @@ Page({
           region: [self.data.address.province, self.data.address.city, self.data.address.area],
         });
       },
-      fail: function (info) {
+      fail: function(info) {
         //失败回调
       }
     });
@@ -342,40 +341,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
 
-  onShow: function () { },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

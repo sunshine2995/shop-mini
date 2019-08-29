@@ -16,7 +16,6 @@ Page({
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
-
   },
 
   getUser() {
@@ -33,7 +32,7 @@ Page({
         })
       });
   },
-  
+
   getShopInfo() {
     UserService.getShopInfo(app.globalData.userData.current_subbranch_id)
       .then((res) => {
@@ -56,6 +55,7 @@ Page({
     })
   },
 
+  // 活动页跳转页面
   bindViewTap: function(event) {
     const url = event.currentTarget.dataset.url;
     wx.navigateTo({
@@ -73,24 +73,25 @@ Page({
   onShow: function() {
     var inviteImages = [{
       img: "https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png",
-      url: '/pages/test/test',
+      url: '/pages/activity/newUser/newUser',
     }, {
       img: "https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png",
-      url: '/pages/test/test',
+        url: '/pages/activity/newUser/newUser',
     }]
 
     var images = [{
       img: "https://img.caibashi.com/8c4ab7f7ee0fbb5a8b9413a9e1ddac27.png",
-      url: '/pages/test/test',
+      url: '/pages/activity/newUser/newUser',
     }, {
       img: "https://img.caibashi.com/0f276789b03f793bdf076d3d49e474e3.png",
-      url: '/pages/test/test',
+      url: '/pages/activity/newUser/newUser',
     }]
 
     this.setData({
       images: images,
       inviteImages: inviteImages,
     });
+    this.getUser();
     this.getSortList();
     this.getCustom();
     this.getMarketingAlltype();
@@ -142,9 +143,9 @@ Page({
 
   getCartCount() {
     CartService.getCartCount()
-    .then((res) => {
-      wx.setStorageSync('cartNum', res.data.data);
-    });
+      .then((res) => {
+        wx.setStorageSync('cartNum', res.data.data);
+      });
   },
 
   getCartNumber() {
@@ -175,7 +176,6 @@ Page({
     this.data.goodsAttr = '';
     this.data.goodsAttrs = [];
     this.data.cartIds = [];
-    console.log(this.data.carts,'this.data.carts')
     this.data.carts.forEach((cart) => {
       this.data.cartIds.push(cart.goods_sku_id);
     });
@@ -183,15 +183,12 @@ Page({
       res.data.data.forEach((item, index) => {
         this.data.goodsAttrs.push(item);
       });
-      console.log(this.data.goodsAttrs.length, 'length', this.data.cartIds, 'this.data.cartIds', this.data.skuId,'this.data.skuId');
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
         var _this = this;
         wx.showActionSheet({
           itemList: _this.data.goodsAttrs,
           success(res) {
-            console.log(res.tapIndex)
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            console.log(_this.data.goodsAttr)
             CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
               .then((res) => {
                 _this.data.idSelected.forEach((item) => {
@@ -209,7 +206,6 @@ Page({
               });
           },
           fail(res) {
-            console.log(res.errMsg)
           }
         })
       } else {
@@ -223,7 +219,6 @@ Page({
       if (this.data.skuId === cart.goods_sku_id) {
         this.data.goodsAttr = cart.goods_attr;
       }
-      console.log(this.data.skuId, 'addCART', this.data.goodsAttr, 'gggggg');
     });
     CartService.addCart(this.data.skuId, this.data.goodsAttr)
       .then((res) => {
@@ -234,7 +229,11 @@ Page({
         });
         this.getCartNumber();
       })
-      .catch(() => {
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+        })
       });
   },
 
@@ -256,8 +255,7 @@ Page({
       })
   },
 
-  onReachBottom: function () {
-  },
+  onReachBottom: function() {},
 
   getCustom() {
     wx.showLoading({

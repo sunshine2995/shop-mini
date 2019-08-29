@@ -64,6 +64,16 @@ module.exports = {
     }
   },
 
+  //地址拼接
+  addressToName: function (address) {
+    if (address.buyer_province === address.buyer_city) {
+      return address.buyer_city + address.buyer_district + address.buyer_address;
+    } else {
+      return address.buyer_province + address.buyer_city + address.buyer_district + address.buyer_address;
+    }
+  },
+ 
+  // 时间格式化
   formatTime: function(date) {
     var formatNumber = function(n) {
       n = n.toString()
@@ -78,6 +88,23 @@ module.exports = {
     var second = date.getSeconds();
     return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
   },
+
+  // 时间格式化只有日期
+  formatData: function (date) {
+    var formatNumber = function (n) {
+      n = n.toString()
+      return n[1] ? n : '0' + n
+    };
+    var date = getDate(date);
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    return [year, month, day].map(formatNumber).join('-')
+  },
+
 
 
   dateFormat: function(strDate, format = "yyyy-MM-dd hh:mm:ss") {

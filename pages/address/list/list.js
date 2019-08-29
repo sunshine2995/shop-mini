@@ -1,5 +1,6 @@
 // pages/address/list/list.js
 var AddressService = require('../../../utils/services/AddressService.js');
+var app = getApp();
 
 Page({
 
@@ -37,6 +38,14 @@ Page({
       })
   },
   
+  chooseAddress(e) {
+    const id = e.currentTarget.dataset.addressId;
+    app.globalData.chooseAddress = id;
+    wx.navigateTo({
+      url: `/pages/order/submit/submit`,
+    })
+  },
+
   editAddress(e) {
     const id = e.currentTarget.dataset.addressId;
     wx.navigateTo({

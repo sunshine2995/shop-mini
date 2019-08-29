@@ -7,7 +7,7 @@
     <button type='primary' class='go-add'> 添加地址 </button>
   </navigator>
   <block wx:else>
-    <view class='address-content' wx:for='{{validList}}' wx:key="index" wx:for-item="address">
+    <view class='address-content' wx:for='{{validList}}' wx:key="index" wx:for-item="address" data-address-id="{{address.id}}" bindtap="chooseAddress">
       <view class='address-name-phone'>
         <text class='name'>{{address.buyer_name}}</text>
         <text class='phone'>{{address.buyer_phone}}</text>

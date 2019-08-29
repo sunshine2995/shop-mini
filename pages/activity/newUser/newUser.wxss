@@ -1,0 +1,46 @@
+/* pages/activity/newUser/newUser.wxss */
+
+.new-user-content {
+  position: relative;
+}
+
+.new-user-image {
+  display: block;
+  width: 100%;
+}
+
+.rule, .receive {
+  width: 80%;
+  text-align: center;
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 30rpx;
+  color: #9c704b;
+  border: 1px solid #9c704b;
+  border-radius: 50rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.receive {
+  top: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: none;
+}
+
+.receive text {
+  width: 40%;
+  display: inline-block;
+  text-align: center;
+  background-color: #11a24a;
+  color: #fff;
+  border: 1px solid #11a24a;
+  border-radius: 50rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}

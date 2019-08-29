@@ -29,8 +29,9 @@
     "pages/userCenter/collection/collection",
     "pages/address/add/address",
     "pages/address/list/list",
-    "pages/address/edit/address"
+    "pages/address/edit/address",
     "pages/userCenter/couponList/coupon",
+    "pages/activity/newUser/newUser",
   ],
   "window": {
     "backgroundTextStyle": "light",
