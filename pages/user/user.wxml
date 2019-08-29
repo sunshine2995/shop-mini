@@ -26,11 +26,11 @@
       <text class='number' wx:else>0</text>
       <text class='text'>余额</text>
     </navigator>
-    <view class='red-envelopes'>
+    <navigator class='red-envelopes' url='/pages/userCenter/couponList/coupon' hover-class="none">
       <text class='number' wx:if='{{userInfo.coupons_number}}'>{{userInfo.coupons_number}}</text>
       <text class='number' wx:else>0</text>
       <text class='text'>红包</text>
-    </view>
+    </navigator>
     <navigator class='common-menu' url='/pages/userCenter/collection/collection' hover-class="none">
       <text class='number' wx:if='{{userInfo.collection_numbers}}'>{{ userInfo.collection_numbers }}</text>
       <text class='number' wx:else>0</text>
@@ -83,20 +83,8 @@
     </view>
     <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
       <view class='recharge-type'>
-        <view>
-          <image class="recharge-image" src='https://img.caibashi.com/341166a47499db68f9eca5f46d1bf86d.png'></image>
-        </view>
-        <view>
-          <image class="recharge-image" src='https://img.caibashi.com/e41b0be41493f18a6a51cc309175513a.png'></image>
-        </view>
-        <view>
-          <image class="recharge-image" src='https://img.caibashi.com/a9293a4320fa06561849ea4d2fa273a5.png'></image>
-        </view>
-        <view>
-          <image class="recharge-image" src='https://img.caibashi.com/6dccdb289f7c91915da6df5c518516d6.png'></image>
-        </view>
-        <view>
-          <image class="recharge-image" src='https://img.caibashi.com/a89c6f31341cc91ed2368d639a95e4fe.png'></image>
+        <view wx:for="{{rechargeImg}}" wx:key="index">
+          <image class="recharge-image" src='{{item.img}}'></image>
         </view>
       </view>
     </scroll-view>

@@ -30,6 +30,7 @@
     "pages/address/add/address",
     "pages/address/list/list",
     "pages/address/edit/address"
+    "pages/userCenter/couponList/coupon",
   ],
   "window": {
     "backgroundTextStyle": "light",

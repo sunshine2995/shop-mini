@@ -1,0 +1,64 @@
+<!--pages/userCenter/couponList/coupon.wxml-->
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+
+<view class="CouponContainer">
+  <view class='coupon-empty' wx:if='{{!couponList.length && !expiredCouponList.length}}' bindtap='goCollectGood'>
+    <text>无可用红包</text>
+    <button type='primary' class='go-recharge'> 充值送红包 </button>
+  </view>
+  <view class="coupon-list" wx:else>
+    <text class="coupon-title">可用红包</text>
+    <view class="coupon-container" wx:for='{{couponList}}' wx:key="index" wx:for-item="coupon">
+      <view class="coupon-content">
+        <view class="coupon-message">
+          <view class="money">
+            <view class="amount">
+              <text class="amount-number">{{ coupon.coupons_type.money }}</text>
+              <text class="sign">元</text>
+            </view>
+            <view class="amount-odds">满{{ coupon.coupons_type.start_money }}使用</view>
+          </view>
+          <view class="name">
+            <view class="coupon">
+              <text class="coupon_title">{{ coupon.name }}</text>
+              <text class="only-left" v-if="coupon.coupons_type.valid_time < 10">还剩{{ coupon.coupons_type.valid_time }}天过期</text>
+            </view>
+            <view class="generate-time">
+              <text class="time">有效期: {{ filter.formatTime(coupon.send_time) }}至{{ filter.formatTime(coupon.generate_time) }}</text>
+            </view>
+            <view class="now-user">
+              <text>全场通用</text>
+              <text class="go-to-user">立即使用</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <text class="coupon-title">过期红包</text>
+    <view class="coupon-container" wx:for='{{expiredCouponList}}' wx:key="index" wx:for-item="coupon">
+      <view class="coupon-content">
+        <view class="coupon-message">
+          <view class="money">
+            <view class="expired-amount">
+              <text class="amount-number">{{ coupon.coupons_type.money }}</text>
+              <text class="sign">元</text>
+            </view>
+            <view class="expired-amount-odds">满{{ coupon.coupons_type.start_money }}使用</view>
+          </view>
+          <view class="name">
+            <view class="coupon">
+              <text class="coupon_title">{{ coupon.name }}</text>
+            </view>
+            <view class="generate-time">
+              <text class="time">有效期: {{ filter.formatTime(coupon.send_time) }}至{{ filter.formatTime(coupon.generate_time) }}</text>
+            </view>
+            <view class="now-user">
+              <text>全场通用</text>
+              <text class="expired-coupon">已过期</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
