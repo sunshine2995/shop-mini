@@ -83,5 +83,5 @@
       </label>
     </checkbox-group>
   </view>
-  <button class="address-button" type="primary" form-type="submit">添加</button>
+  <button class="address-button" type="primary" form-type="submit">保存</button>
 </form>

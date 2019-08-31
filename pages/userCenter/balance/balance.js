@@ -8,12 +8,14 @@ Page({
   data: {
     isShowCurtain: false,
   },
+  
   hideCurtain() {
     this.data.isShowCurtain = false;
     this.setData({
       isShowCurtain: this.data.isShowCurtain,
     });
   },
+
   showCurtain() {
     this.data.isShowCurtain = true;
     this.setData({

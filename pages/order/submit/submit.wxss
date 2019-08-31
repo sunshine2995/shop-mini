@@ -1,0 +1,423 @@
+/* pages/order/submit/submit.wxss */
+
+.SubmitContainer {
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+
+.order-tab {
+  display: flex;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.deal, .active {
+  text-align: center;
+  flex: 1;
+  background-color: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border: 2px solid #11a24a;
+}
+
+.deal {
+  font-size: 34rpx;
+  color: #11a24a;
+}
+
+.active {
+  border: 2px solid #11a24a;
+  background-color: #11a24a;
+  color: #fff;
+}
+
+.order-content, .goods-amount {
+  border: 6px solid #ebebeb;
+  border-bottom: unset;
+}
+
+.address, .time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+}
+
+.address {
+  padding: 36rpx 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #009b48;
+}
+
+.get-by-self {
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #ebebeb;
+}
+
+.goMap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.goMap, .shop-time, .shop-address {
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+
+.user-contact {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.user-contact text {
+  font-size: 30rpx;
+}
+
+.input-contact {
+  font-size: 30rpx;
+  color: #666;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border: 1px solid #ebebeb;
+  margin-left: 30rpx;
+}
+
+.input-placeholder {
+  font-size: 28rpx;
+}
+
+.shop-index {
+  display: flex;
+  align-items: flex-end;
+}
+
+.shop-index text {
+  line-height: 1;
+}
+
+.icon-store, .icon-dingwei {
+  font-size: 36rpx;
+}
+
+.shop-time {
+  color: #11a24a;
+}
+
+.time {
+  padding: 10rpx 0 20rpx 0;
+  box-sizing: border-box;
+  margin: 20rpx 20rpx;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.choose-address {
+  color: #666;
+}
+
+.icon-right {
+  font-size: 40rpx;
+  color: #666;
+}
+
+.arrive-type {
+  font-size: 30rpx;
+  color: #666;
+  text-align: left;
+}
+
+.right-now {
+  flex: 1;
+  text-align: right;
+  color: #009b48;
+}
+
+.time .icon-right {
+  color: #009b48;
+}
+
+.image-group {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-right: 20rpx;
+}
+
+.goods-image-list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.goods-image {
+  width: 160rpx;
+  height: 160rpx;
+  padding: 15rpx 10rpx;
+  box-sizing: border-box;
+}
+
+.total-number {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 28rpx;
+  padding-left: 15rpx;
+  box-sizing: border-box;
+}
+
+.total-number text {
+  width: 90rpx;
+}
+
+.total-number .icon-right {
+  font-size: 43rpx;
+}
+
+.gift-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.gift-goods-image {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  -webkit-flex-shrink: 0;
+}
+
+.gift-image {
+  width: 20%;
+}
+
+.gift-img {
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+}
+
+.gift-name {
+  display: inline-block;
+  text-align: left;
+  color: #666;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.gift-name text {
+  font-size: 30rpx;
+  display: block;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+
+.total, .total-red {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  margin: 0 26rpx 0 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f4f4f3;
+}
+
+.total-red {
+  color: #fe3059;
+}
+
+.red-envelope {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fe3059;
+  padding: 30rpx 0;
+  margin: 0 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f4f4f3;
+}
+
+.red-envelope-icon {
+  display: flex;
+  align-items: center;
+}
+
+.red-envelope-icon text {
+  line-height: 1;
+  padding-top: 8rpx;
+  box-sizing: border-box;
+}
+
+.red-envelope-icon .icon-right {
+  color: #fe3059;
+  font-size: 35rpx;
+  line-height: 1;
+  padding-right: -10rpx;
+}
+
+.goods-total-shipping {
+  padding: 30rpx 0;
+  margin: 0 26rpx 0 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f4f4f3;
+}
+
+.goods-total, .goods-shipping {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1;
+}
+
+.goods-total, .total {
+  color: #666;
+}
+
+.goods-shipping {
+  font-size: 30rpx;
+  color: #999;
+  padding-top: 15rpx;
+  box-sizing: border-box;
+}
+
+.total-money {
+  text-align: right;
+  font-size: 40rpx;
+  padding-top: 10rpx;
+  padding-right: 26rpx;
+  box-sizing: border-box;
+}
+
+.total-money text {
+  display: inline-block;
+  font-size: 34rpx;
+  color: #fe3059;
+}
+
+.order-message {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.message-textarea {
+  flex: 1;
+  font-size: 30rpx;
+  height: 6em;
+  margin: 16rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+  border: 1px solid #f4f4f3;
+}
+
+.placeholder {
+  font-size: 30rpx;
+  color: #999;
+  padding: 10rpx;
+  box-sizing: border-box;
+  z-index: 0;
+}
+
+.bottom_contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 199;
+  border-top: 3px solid #ebebeb;
+}
+
+.pay-money, .pay-for {
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  padding: 30rpx 26rpx;
+  box-sizing: border-box;
+}
+
+.pay-money {
+  text-align: left;
+  width: 60%;
+  background-color: #4a4c5b;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+
+.pay-for {
+  width: 40%;
+  background-color: #11a24a;
+}
+.Curtain {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: height 0.3s linear;
+}
+
+.choose-pay-type {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 220;
+  width: 100%;
+  padding: 40rpx 40rpx 100rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.choose-title, .pay-type {
+  display: flex;
+  align-items: center;
+}
+
+.choose-title {
+  padding: 20rpx 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.pay-type {
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.pay-title {
+  flex: 1;
+  text-align: center;
+  color: #666;
+}
+
+.cancel-pay {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.wx-pay, .balance-pay {
+  font-size: 40rpx;
+  color: #666;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+
+.wx-pay-image, .cancel-pay-image {
+  width: 50rpx;
+  height: 50rpx;
+}

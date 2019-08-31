@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "Curtain": "/components/Curtain/Curtain"
+  },
+  "navigationBarTitleText": "确认订单"
+}

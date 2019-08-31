@@ -1,0 +1,159 @@
+<!--pages/order/submit/submit.wxml-->
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+
+<view class="SubmitContainer">
+  <cover-view class="Curtain" wx:if='{{isShowCurtain}}'>
+    <cover-view class='choose-pay-type'>
+      <cover-view class='choose-title'>
+        <cover-view class="pay-title">选择支付方式</cover-view>
+        <cover-image class='cancel-pay' bindtap="cancelPay" src="https://img.caibashi.com/0ed4036c520f66f18314d99d6b3a4ad5.png"></cover-image>
+      </cover-view>
+      <cover-view class="pay-type" data-pay-type='{{1}}' bindtap="pay">
+        <cover-image class='wx-pay-image' src="https://img.caibashi.com/53395cb81974e687f3b72a4055ebfe96.png"></cover-image>
+        <cover-view class="wx-pay">微信支付</cover-view>
+      </cover-view>
+      <cover-view class="pay-type" data-pay-type='{{2}}' bindtap="pay" wx:if='{{isEnough}}'>
+        <cover-image class='cancel-pay-image' src="https://img.caibashi.com/5ed5d2ac36be24e218628a02504576c5.png"></cover-image>
+        <cover-view class="balance-pay">余额支付</cover-view>
+      </cover-view>
+      <cover-view class="pay-type" bindtap="payNotEnough" wx:else>
+        <cover-image class='cancel-pay-image' src="https://img.caibashi.com/1c2801d3f0c818c1a748e38d2a2e7472.png"></cover-image>
+        <cover-view class="balance-pay">余额不足（余额仅余{{balance}}元）</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+  <view class="order-tab">
+    <view class="active" wx:if="{{showWait}}" bindtap="todoShow">
+      送菜到家
+    </view>
+    <view class="deal" wx:else bindtap="todoShow">
+      送菜到家
+    </view>
+    <view class="active" wx:if="{{!showWait}}" bindtap="fixedShow">
+      到店自取
+    </view>
+    <view class="deal" wx:else bindtap="fixedShow">
+      到店自取
+    </view>
+  </view>
+  <block wx:if='{{showWait}}'>
+    <navigator url="/pages/address/list/list" class="order-content">
+      <view class="address" wx:if='{{!defaultAddress.id || !defaultAddress.satisfy_display}}'>
+        <text class="choose-address">请选择收货地址</text>
+        <icon class="iconfont icon-right"></icon>
+      </view>
+      <view class="address" wx:else>
+        <view class="address-name">
+          <text class="choose-address">{{filter.addressToName(defaultAddress)}}</text>
+          <text class="choose-address">{{defaultAddress.buyer_name}}({{ defaultAddress.sex === 1 ? '先生' : '女士' }}) {{ defaultAddress.buyer_phone }}</text>
+        </view>
+        <icon class="iconfont icon-right"></icon>
+      </view>
+    </navigator>
+  </block>
+  <view class="order-content" wx:else>
+    <view class="get-by-self">
+      <view class="goMap">
+        <view class="shop-index">
+          <icon class="iconfont icon-store"></icon>
+          <text>{{ shopInfo.name }}</text>
+        </view>
+        <icon class="iconfont icon-dingwei"></icon>
+      </view>
+      <text selectable='true' class="shop-time">营业时间：{{ shopInfo.shop_business_time }}</text>
+      <text selectable='true' class="shop-address">{{ shopInfo.address }}</text>
+    </view>
+    <view class="user-contact">
+      <text>联系电话</text>
+      <view class='input-contact'>
+        <input bindinput="bindKeyInput" placeholder-class='input-placeholder' value="{{mobile}}" placeholder="请输入您的手机号码" focus='{{flase}}' type='number' />
+      </view>
+    </view>
+  </view>
+  <view class="goods-amount">
+    <view class="time">
+      <text class="arrive-type">菜巴士配送</text>
+      <block wx:if="{{arriveDate}}">
+        <picker class="right-now" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+          <text class="right-now">大约{{arriveDate}}送达</text>
+        </picker>
+      </block>
+      <block wx:else>
+        <picker class="right-now" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+          <text class="right-now">选择送出时间</text>
+          <!-- <view class="picker">
+          当前选择：{{multiArray[0][multiIndex[0]].name}} {{multiArray[1][multiIndex[1]].name}}
+        </view> -->
+        </picker>
+      </block>
+      <i class="iconfont icon-right"></i>
+    </view>
+    <view class="image-group">
+      <scroll-view class="scroll-view_H" scroll-x style="width: 80%">
+        <view class='goods-image-list'>
+          <view wx:for='{{orderMessage.goods}}' wx:key='this' wx:for-item="goods">
+            <image class="goods-image" src='{{goods.thumbnail_url}}'></image>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="total-number">
+        <text>共{{orderMessage.total_num}}件</text>
+        <icon class="iconfont icon-right"></icon>
+      </view>
+    </view>
+    <view class="gift-info" wx:if='{{giftData.name}}'>
+      <view class="gift-goods-image">
+        <view class="gift-image">
+          <image class="gift-img" src="{{giftData.image_url}}" wx:if="{{giftData.image_url}}" mode="widthFix" />
+          <image class="gift-img" src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg" mode="widthFix" wx:else />
+        </view>
+        <view class="gift-name">
+          <text>{{ giftData.name }}</text>
+          <text>( 赠品 )</text>
+        </view>
+      </view>
+    </view>
+    <view class="price-container">
+      <view class="total">
+        <text>商品原价</text>
+        <text>￥{{ orderMessage.goods_amount }}</text>
+      </view>
+      <view class="total-red">
+        <text>商品优惠</text>
+        <text>-￥{{ reduceMoney }}</text>
+      </view>
+      <view class="red-envelope" bindtap="chooseCoupon">
+        <text>可用红包</text>
+        <view class="red-envelope-icon" wx:if='{{redMoney > 0}}'>-￥{{ redMoney }}</view>
+        <view class="red-envelope-icon" wx:else>
+          <text>去选择红包</text>
+          <icon class="iconfont icon-right"></icon>
+        </view>
+      </view>
+      <view class="goods-total-shipping">
+        <view class="goods-total">
+          <text>商品实付</text>
+          <text>￥{{ finallyMoneyNoShipping }}</text>
+        </view>
+        <view class="goods-shipping" wx:if='{{showWait}}'>
+          <text>配送费</text>
+          <text>￥{{ orderMessage.shipping_cost }}</text>
+        </view>
+      </view>
+      <view class='total-money'>
+        合计:
+        <text wx:if='{{showWait}}'>￥{{ finallyMoney }}</text>
+        <text wx:else>￥{{ finallyMoneyNoShipping }}</text>
+      </view>
+      <view class="order-message">
+        <text>订单备注：</text>
+        <textarea class="message-textarea" auto-focus='{{flase}}' bindinput="bindTextAreaChange" placeholder="请输入您的备注信息..." placeholder-class='placeholder' value="{{info}}" focus='{{flase}}' />
+      </view>
+    </view>
+  </view>
+  <cover-view class='bottom_contact'>
+    <cover-view class='pay-money' wx:if='{{showWait}}'>付款￥{{finallyMoney}}元</cover-view>
+    <cover-view class='pay-money' wx:else>付款￥{{finallyMoneyNoShipping}}元</cover-view>
+    <cover-view class='pay-for' bindtap="choosePayType">去支付</cover-view>
+  </cover-view>
+</view>

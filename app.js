@@ -39,6 +39,9 @@ App({
     userInfo: null,
     userData: {},
     shopInfo: {},
+    deliveryEnd: '',
+    chooseGiftId: 0,
+    chooseAddress: 0,
   },
   // 登录
   login() {
