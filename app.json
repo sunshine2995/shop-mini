@@ -33,6 +33,7 @@
     "pages/address/edit/address",
     "pages/userCenter/couponList/coupon",
     "pages/activity/newUser/newUser",
+    "pages/recharge/recharge"
   ],
   "window": {
     "backgroundTextStyle": "light",

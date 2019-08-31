@@ -83,7 +83,7 @@
     </view>
     <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
       <view class='recharge-type'>
-        <view wx:for="{{rechargeImg}}" wx:key="index">
+        <view wx:for="{{rechargeImg}}" wx:key="index" data-recharge-id="{{item.id}}" bindtap="toRecharge">
           <image class="recharge-image" src='{{item.img}}'></image>
         </view>
       </view>

@@ -1,0 +1,56 @@
+<!--pages/recharge/recharge.wxml-->
+<view class="RechargeContainer">
+  <Curtain isShowCurtain="{{isShowCurtain}}" />
+  <view class='curtain-explain' wx:if='{{isShowCurtain}}'>
+    <text class='explain-title'>余额说明</text>
+    <text class='explain-text'>1、储值余额暂不支持提现;</text>
+    <text class='explain-text'>2、储值余额在个人中心-余额-查看;</text>
+    <text class='explain-text'>3、本卡余额可在菜巴士线上商城使用，可在结算页面选择“余额支付”;</text>
+    <button type='primary' class='ok' bindtap='hideCurtain'> 知道啦 </button>
+  </view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab">
+    <swiper-item wx:for="{{rechargeImg}}" wx:key="index">
+      <view class="avatar">
+        <image class="avatar-img" mode="widthFix" src="{{item.img}}"></image>
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class="money-tab">
+    <view wx:for="{{rechargeImg}}" wx:key="index" class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">{{item.name}}</view>
+  </view>
+  <view class="recharge-gift">
+    <text class="gift-title">充值赠礼</text>
+    <text class="gift-tip" wx:if='{{!giftList.length}}'>此金额无赠品</text>
+    <view class="gift-tip" wx:else>
+      <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+        <view class="gift-content">
+          <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{giftList}}" wx:key='this'>
+              <image class="goods-image" src='{{item.image_url}}' mode="widthFix"></image>
+              <text>{{item.name}}</text>
+              <radio value="{{item.id}}" checked="{{item.checked}}" />
+            </label>
+          </radio-group>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="pay-type">
+    <text>支付方式</text>
+    <view class="explain-container" bindtap='showCurtain'>
+      <text>充值说明</text>
+      <icon class="iconfont icon-help-desc"></icon>
+    </view>
+  </view>
+  <view class="wx-pay">
+    <icon class="iconfont icon-wxPay"></icon>
+    <view class="desc">
+      <text>微信支付</text>
+      <text class="desc-explain">亿万用户的选择，更快更安全</text>
+    </view>
+    <checkbox-group bindchange="checkboxChange">
+      <checkbox value="1" checked="{{true}}" />{{item.value}}
+    </checkbox-group>
+  </view>
+  <view class='pay-for' bindtap="submitRechargeOrder">去支付</view>
+</view>

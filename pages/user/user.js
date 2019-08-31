@@ -1,18 +1,46 @@
 var UserService = require('../../utils/services/UseService.js');
+var OrderService = require('../../utils/services/OrderService.js')
 
 var app = getApp();
 Page({
   data: {
-
+    rechargeImg: [], //充值图片
   },
 
   onShow: function() {
-    console.log(app.globalData.userData, 'app.globalData')
     this.getUserInfo();
     this.getUser();
+    this.getRechargeList();
     wx.showLoading({
       title: '',
     })
+  },
+
+  toRecharge(e) {
+    const rechargeId = e.currentTarget.dataset.rechargeId;
+    wx.navigateTo({
+      url: `/pages/recharge/recharge?rechargeId=${rechargeId}`,
+    })
+  },
+
+  getRechargeList() {
+    OrderService.getRechargeList()
+      .then((res) => {
+        this.data.rechargeImg = [];
+        res.data.data.forEach((item) => {
+          this.data.rechargeImg.push({ img: item.img_url, name: item.name, id: item.id, money: item.recharge_amount })
+        })
+        this.setData({
+          rechargeImg: this.data.rechargeImg,
+        })
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
   },
 
   getUser() {
