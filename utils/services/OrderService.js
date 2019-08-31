@@ -41,3 +41,17 @@ export function submitRechargeOrder(paymentType, totalAmount, rechargeTypeId, gi
 export function getRechargeList() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/user/recharge`);
 }
+
+// 余额支付
+export function balancePay(orderNo) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/order/balance-pay`, {
+    order_no: orderNo,
+  });
+}
+
+// 微信支付
+export function WxPay(orderNo) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/order/mini_pay`, {
+    orderNo: orderNo,
+  });
+}

@@ -6,13 +6,14 @@ const BaseUrl = "https://sso.caibasi.com";
 export function getCartCount() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/cart/count`);
 }
- // 获取所有购物车列表
+
+// 获取所有购物车列表
 export function getAllCarts() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/cart/get`);
 }
 
 // 添加购物车
-export function addCart(skuId,goodsAttr) {
+export function addCart(skuId, goodsAttr) {
   return wxRequest.wxPromise("POST", `${BaseUrl}/cart`, {
     goods_sku_id: skuId,
     goods_attr: goodsAttr,
@@ -41,12 +42,6 @@ export function deleteCarts(goodsSkuIds) {
   });
 }
 
-export function checkout(skuIds, giftId) {
-  return wxRequest.wxPromise("POST", `${BaseUrl}/cart/checkout`, {
-    goods_sku_ids: skuIds,
-    gift_id: giftId,
-  });
-}
 
 // 获取猜你喜欢的列表
 export function getLikeList() {
@@ -66,3 +61,10 @@ export function getGoodsAttr(skuId) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/goods_attr?goods_sku_id=${skuId}`);
 }
 
+// 确认订单商品
+export function checkout(skuIds, giftId) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/cart/checkout`, {
+    goods_sku_ids: skuIds,
+    gift_id: giftId,
+  });
+}

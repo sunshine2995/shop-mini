@@ -16,6 +16,9 @@ Page({
         wx.hideLoading();
         this.data.isLoading = false;
         var billList = this.data.billList.concat(res.data.data.content);
+        billList.forEach((item) => {
+          item.create_time = moment(item.create_time).format('YYYY/MM/DD HH:mm')
+        })
         this.data.total = res.data.data.total_elements;
         this.setData({
           billList: billList,
@@ -48,7 +51,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
+    moment.suppressDeprecationWarnings = true;
     wx.showLoading({
       title: '',
     })

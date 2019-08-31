@@ -64,3 +64,13 @@ export function getLocationByAddress(address) {
 export function getAddressByLocation(location) {
   return wxRequest.wxPromise("GET", `https://restapi.amap.com/v3/geocode/regeo?location=${location}&key=${key}`);
 }
+
+// 获取默认地址
+export function getDefaultAddress() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/get_default_address`);
+}
+
+// 根据id获取地址
+export function getAddress(addressId) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/user/get_address?addressId=${addressId}`);
+}
