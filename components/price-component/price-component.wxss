@@ -5,12 +5,14 @@
   line-height: 1;
 }
 
-.goods-sign, .before-point, .after-point, .goods-unit {
+.goods-sign, .special-before-point, .special-after-point, .after-point, .goods-unit {
   font-size: 26rpx;
-  /* color: #fe3059; */
 }
 
 .before-point {
   font-size: 38rpx;
   line-height: 1;
+}
+.special-before-point, .special-after-point {
+  font-weight: bold;
 }

@@ -98,7 +98,6 @@ Page({
           icon: 'none',
           duration: 2000
         });
-        wx.hideToast();
         this.getCartCount();
       })
       .catch((error) => {

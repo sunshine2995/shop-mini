@@ -1,0 +1,261 @@
+/* pages/order/detail/detail.wxss */
+
+.OrderDetail {
+  background-color: #f2f2f2;
+  min-height: 100vh;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+
+.detail-container {
+  margin: 15rpx;
+}
+
+.order-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #11a24a;
+  font-size: 36rpx;
+  color: #fff;
+  padding: 40rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.icon-pay-success {
+  font-size: 50rpx;
+}
+
+.detail-content {
+  background-color: #fff;
+  padding: 15rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding: 15rpx 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.now {
+  color: #666;
+  line-height: 1;
+  border-left: 4px solid #11a24a;
+  padding-left: 5rpx;
+  box-sizing: border-box;
+}
+
+.cai-go-home {
+  color: #999;
+}
+
+.user-name-info {
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.name-icon {
+  display: flex;
+  align-items: flex-end;
+}
+
+.icon-store {
+  font-size: 45rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+
+.user-name-address, .driver-time {
+  background-color: #fff;
+  padding: 15rpx 20rpx 0;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 15rpx;
+}
+
+.user-name-address text, .driver-type text {
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  box-sizing: border-box;
+}
+
+.driver-type {
+  display: flex;
+}
+
+.right-info {
+  padding-left: 40rpx;
+  box-sizing: border-box;
+}
+
+.content {
+  padding: 26rpx 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.goods-content {
+  position: relative;
+  display: flex;
+  padding: 5rpx 0;
+  box-sizing: border-box;
+  margin: 10rpx 0;
+}
+
+.mask {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.5);
+  z-index: 20;
+}
+
+.icon-yituikuan {
+  color: #fe3059;
+  font-size: 100rpx;
+}
+
+.goods-detail {
+  flex: 1;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.goods-image {
+  width: 20%;
+}
+
+.goods-img {
+  width: 100%;
+  border-radius: 10rpx;
+}
+
+.goods-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #666;
+  padding-bottom: 10rpx;
+  box-sizing: border-box;
+}
+
+.goods-spu {
+}
+
+.num-icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon-yichengzhong- {
+  font-size: 40rpx;
+  color: #11a24a;
+}
+
+.icon-yifenjian1 {
+  font-size: 40rpx;
+}
+
+.goods-num {
+  font-size: 26rpx;
+}
+
+.goods-price {
+  display: flex;
+}
+
+.goods-standard {
+  width: 50%;
+}
+
+.goods-money {
+  width: 50%;
+  border-left: 1px solid #e6e6e6;
+}
+.text-black {
+  font-size: 30rpx;
+}
+
+.standard-row, .money-row {
+  width: 100%;
+  display: flex;
+  font-size: 26rpx;
+  margin: 15rpx 0;
+}
+
+.standard-row {
+  padding-right: 10rpx;
+  box-sizing: border-box;
+}
+.standard-row text:nth-child(2), .money-row text:nth-child(2) {
+  padding-left: 10rpx;
+  box-sizing: border-box;
+}
+.refund {
+  color: #fe3059;
+}
+
+.money-row {
+  padding-left: 15rpx;
+  box-sizing: border-box;
+}
+
+.refund-reason {
+  display: flex;
+  font-size: 28rpx;
+}
+
+.refund-title {
+  color: #fe3059;
+}
+.sum {
+
+}
+.goods-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+  color: #666;
+}
+.discount-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+  color: #fe3059;
+}
+.red-price {
+  color: #fe3059;
+}
+.finally_pay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #666;
+  border-top: 1px solid #e6e6e6;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+.tip text:nth-child(1) {
+  font-size: 36rpx;
+}
+.tip text:nth-child(2) {
+  font-size: 26rpx;
+}
+.weight {
+  font-weight: bold;
+}

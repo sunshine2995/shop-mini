@@ -55,3 +55,24 @@ export function WxPay(orderNo) {
     orderNo: orderNo,
   });
 }
+
+
+// 订单详情
+export function getOrderDetail(orderNo) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/order/${orderNo}`);
+}
+
+// 不同状态下的订单数量
+export function getStatusNum() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/order/get_amount`);
+}
+
+// 获取全部订单信息
+export function getAllOrderDetails(page) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/order/all-orders?page=${page}&size=10`);
+}
+
+// 不同状态下的订单信息
+export function getStatusDetails(status, page) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/order/all-orders?status=${status}&page=${page}&size=10`);
+}

@@ -247,6 +247,9 @@ Page({
           icon: 'none',
           duration: 2000
         })
+        wx.navigateTo({
+          url: '/pages/recharge/recharge',
+        })
       })
       .catch((error) => {
         wx.showToast({
