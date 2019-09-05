@@ -11,7 +11,7 @@ Page({
     isShowCurtain: false, // 遮罩层
     paymentType: 1,  // 支付方式
     totalAmount: 0, // 充值金额
-    rechargeTypeId: 1, //充值金额的Id
+    rechargeTypeId: 4, //充值金额的Id
     giftId: 0, // 赠礼Id
     giftList: [], // 赠礼列表
 
@@ -185,7 +185,9 @@ Page({
 
   onLoad(option) {
     var that = this;
-    that.data.rechargeTypeId = +option.rechargeId;
+    if (+option.rechargeId) {
+      that.data.rechargeTypeId = +option.rechargeId;
+    }
     that.getRechargeGift();
     that.getRechargeList();
     //  高度自适应

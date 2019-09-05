@@ -9,14 +9,9 @@ Page({
   },
 
   goCollectGood() {
-    wx.switchTab({
-      url: '/pages/home/home',
+    wx.navigateTo({
+      url: '/pages/recharge/recharge',
     })
-  },
-
-  onLoad: function(options) {
-    // 页面创建时执行
-    console.log(options, 'options')
   },
 
   onShow: function() {

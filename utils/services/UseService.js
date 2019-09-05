@@ -57,6 +57,12 @@ export function getMyCoupons() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/user/my_coupons`);
 }
 
+// 某金额下用户红包
+export function getCouponsList(money) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/order/coupons_list`, {
+    order_money: money,
+  });
+}
 
 // function login(code) {
 //   return wxRequest.wxPromise("POST", `${BaseUrl}/wxapp/login`, {

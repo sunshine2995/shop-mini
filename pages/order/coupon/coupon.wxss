@@ -1,0 +1,181 @@
+/* pages/order/coupon/coupon.wxss */
+
+.CouponContainer {
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.coupon-empty {
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  padding-top: 260rpx;
+  box-sizing: border-box;
+}
+
+.go-recharge {
+  width: 60%;
+  margin: 20rpx auto;
+}
+
+.need-more {
+  display: flex;
+  align-items: flex-end;
+  color: #fe3059;
+  padding: 15rpx 0;
+  box-sizing: border-box;
+}
+
+.icon-jingtanhao {
+  padding-right: 15rpx;
+  box-sizing: border-box;
+}
+
+.coupon-list {
+  font-size: 30rpx;
+  padding: 20rpx 20rpx 60rpx;
+  box-sizing: border-box;
+}
+
+.coupon-title {
+  text-align: left;
+  padding: 20rpx 5rpx;
+  box-sizing: border-box;
+}
+
+.coupon-content {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  font-size: 34rpx;
+  color: #999;
+  text-align: left;
+  margin-bottom: 20rpx;
+}
+
+.price-not-enough .amount {
+  background-color: #666;
+}
+
+.price-not-enough .amount-odds {
+  background-color: #999;
+}
+
+.coupon-message {
+  flex: 1;
+  display: flex;
+  font-size: 34rpx;
+}
+
+.money {
+  font-size: 40rpx;
+  color: #fff;
+}
+
+.amount, .expired-amount {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 200rpx;
+  padding: 35rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.amount {
+  background-color: #fe3059;
+}
+
+.expired-amount {
+  background-color: #666;
+}
+
+.amount-number {
+  line-height: 1;
+  font-size: 60rpx;
+}
+
+.sign {
+  width: auto;
+  display: inline-block;
+  padding: unset;
+  font-size: 30rpx;
+}
+
+.amount-odds, .expired-amount-odds {
+  text-align: center;
+  font-size: 32rpx;
+  padding: 16rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.amount-odds {
+  background-color: #f55c7a;
+}
+
+.expired-amount-odds {
+  background-color: #999;
+}
+
+.name {
+  background-color: #efefef;
+  flex: 1;
+  padding: 20rpx 0 0 20rpx;
+  box-sizing: border-box;
+}
+
+.coupon {
+  display: flex;
+  align-items: center;
+}
+
+.coupon_title {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1;
+  border: 1px solid #b3b3b3;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.only-left {
+  font-size: 26rpx;
+  color: red;
+}
+
+.generate-time {
+  font-size: 26rpx;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+
+.now-user {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15rpx 0 10rpx;
+  box-sizing: border-box;
+}
+
+.go-to-user, .expired-coupon {
+  display: block;
+  border-radius: 35rpx;
+  color: #fff;
+  line-height: 1;
+  padding: 10rpx 15rpx;
+  box-sizing: border-box;
+  margin-right: 26rpx;
+}
+
+.go-to-user {
+  border: 1px solid #fe3059;
+  background-color: #fe3059;
+}
+
+.expired-coupon {
+  border: 1px solid #666;
+  background-color: #666;
+}

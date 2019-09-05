@@ -34,7 +34,8 @@
     "pages/address/edit/address",
     "pages/userCenter/couponList/coupon",
     "pages/activity/newUser/newUser",
-    "pages/recharge/recharge"
+    "pages/recharge/recharge",
+    "pages/order/coupon/coupon"
   ],
   "window": {
     "backgroundTextStyle": "light",

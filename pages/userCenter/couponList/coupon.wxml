@@ -21,7 +21,7 @@
           <view class="name">
             <view class="coupon">
               <text class="coupon_title">{{ coupon.name }}</text>
-              <text class="only-left" v-if="coupon.coupons_type.valid_time < 10">还剩{{ coupon.coupons_type.valid_time }}天过期</text>
+              <text class="only-left" wx:if="{{coupon.coupons_type.valid_time < 10}}">还剩{{ coupon.coupons_type.valid_time }}天过期</text>
             </view>
             <view class="generate-time">
               <text class="time">有效期: {{ filter.formatData(coupon.send_time) }}至{{ filter.formatData(coupon.generate_time) }}</text>

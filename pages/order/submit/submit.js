@@ -128,7 +128,7 @@ Page({
 
   chooseCoupon() {
     wx.navigateTo({
-      url: `/pages/userCenter/couponList/coupon?money=${this.data.orderMessage.now_amount}`,
+      url: `/pages/order/coupon/coupon?money=${this.data.orderMessage.now_amount}`,
     })
   },
 
@@ -248,7 +248,7 @@ Page({
           duration: 2000
         })
         wx.navigateTo({
-          url: '/pages/recharge/recharge',
+          url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
         })
       })
       .catch((error) => {
@@ -272,7 +272,7 @@ Page({
           'paySign': data.paySign,
           'success': function(res) {
             wx.navigateTo({
-              url: '/pages/recharge/recharge',
+              url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
             })
           },
           'fail': function(res) {},
@@ -517,6 +517,13 @@ Page({
     });
 
   },
+  
+  onLoad(options) {
+    if (options.money && options.couponId) {
+      this.data.redMoney = options.money;
+      this.data.couponId = options.couponId;
+    }
+  },
 
   onShow() {
     var pages = getCurrentPages() //获取加载的页面
@@ -525,7 +532,9 @@ Page({
     moment.suppressDeprecationWarnings = true;
     this.data.mobile = app.globalData.userData.phone;
     this.data.skuIds = wx.getStorageSync('selectedIds');
-    this.checkout();
+    if (this.data.skuIds.length) {
+      this.checkout();
+    }
     this.getDeliveryTime();
     if (app.globalData.deliveryEnd) {
       if (moment(app.globalData.deliveryEnd).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')) {
