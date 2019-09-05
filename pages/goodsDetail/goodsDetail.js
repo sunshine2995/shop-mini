@@ -118,6 +118,7 @@ Page({
   getDetail() {
     GoodsService.getDetail(this.data.spuId)
       .then((res) => {
+        wx.hideLoading();
         var goodsInfo = res.data.data;
         this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
         this.data.stock = goodsInfo.goods_sku_list[0].stock;
@@ -175,6 +176,9 @@ Page({
   },
 
   onLoad(option) {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.data.spuId = option.goodId;
     this.getCollectStatus();
   },

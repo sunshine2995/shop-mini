@@ -34,9 +34,11 @@
           <price-component price="{{goodSku.marketing.marketing_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color="text-color-red"></price-component>
           <text class='discount-rebate'>{{goodSku.marketing.marketing_simple_name}}</text>
           <text class='invalid-price-line'>￥{{goodSku.sell_price}}/{{goodSku.goods_sku_unit.name}}</text>
+        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
         <view class='goods-sell-price' wx:else>
           <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color="text-color-red"></price-component>
+        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
       </block>
       <block wx:else>
@@ -44,9 +46,11 @@
           <price-component price="{{goodSku.marketing.marketing_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color="text-color-red"></price-component>
           <text class='discount-rebate'>{{goodSku.marketing.marketing_simple_name}}</text>
           <text class='invalid-price-line'>￥{{goodSku.sell_price}}/{{goodSku.goods_sku_sell_unit.name}}</text>
+        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
         <view class='goods-sell-price' wx:else>
           <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color="text-color-red"></price-component>
+        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
       </block>
       <block wx:if='{{goodsInfo.is_standard}}'>

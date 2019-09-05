@@ -42,17 +42,19 @@
       </block>
     </swiper>
   </view>
-  <navigator url='/pages/goodsDiscount/goodsDiscount' class='discount'>
+  <navigator url='/pages/goodsDiscount/goodsDiscount' hover-class="none" class='discount'>
     <image class="discount-image" src='https://img.caibashi.com/1111ab48a0fe1d35ef702cf3159e6ca7.png'></image>
   </navigator>
 
   <block wx:for="{{marketingTypeList}}" wx:key="index" wx:for-item="marketingType">
     <view class="marketing-container">
-      <image class="marketing-image" src='{{marketingType.img_url}}'></image>
+      <image class="marketing-image" src='{{marketingType.img_url}}' mode="widthFix" wx:if='{{marketingType.img_url}}'></image>
+      <image class="marketing-goods-img" src='https://img.caibashi.com/70220270ae96342b16e9fb46afad5b68.png' mode="widthFix" wx:else></image>
       <block wx:for="{{marketingType.goods_spu_info}}" wx:key="index" wx:for-item="goodSpu">
         <view class="marketing-goods-content" data-good-id='{{goodSpu.id}}' bindtap='goDetail'>
           <view class="marketing-goods-image">
-            <image class="marketing-goods-img" src='{{goodSpu.thumbnail_url}}'></image>
+            <image class="marketing-goods-img" src='{{goodSpu.thumbnail_url}}' wx:if='{{goodSpu.thumbnail_url}}' mode="widthFix"></image>
+            <image class="marketing-goods-img" src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' wx:else mode="widthFix"></image>
           </view>
           <view class="marketing-goods-detail">
             <text class='marketing-goods-name'>{{goodSpu.name}}</text>
@@ -76,9 +78,11 @@
               <view class='marketing-goods-price'>
                 <view class='marketing-sell-price' wx:if='{{goodSpu.is_standard}}'>
                   <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color='text-color'></price-component>
+                  <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
                 </view>
                 <view class='marketing-sell-price' wx:else>
                   <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color='text-color '></price-component>
+                  <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
                 </view>
                 <view class='add-cart-num'>
                   <icon class="iconfont icon-sort-add" data-good-sku-id='{{goodSku.id}}' catchtap='getGoodsAttr'></icon>

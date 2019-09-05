@@ -75,11 +75,17 @@
   background-color: #fe3059;
   border: 1px solid #fe3059;
   border-radius: 10rpx;
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #fff;
-  padding: 5rpx 15rpx;
+  padding: 5rpx 10rpx;
   box-sizing: border-box;
-  margin: 0 20rpx;
+  margin: 0 10rpx;
+}
+.icon-jiangjia {
+  font-size: 40rpx;
+  color: #fe3059;
+  padding-left: 10rpx;
+  box-sizing: border-box;
 }
 
 .goods-price {
