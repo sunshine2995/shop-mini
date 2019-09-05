@@ -15,6 +15,41 @@
   box-sizing: border-box;
   border-bottom: 1px solid #efefef;
 }
+.gift-content {
+  display: flex;
+  padding: 20rpx 20rpx 20rpx 70rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #efefef;
+}
+.gift-num {
+  color: #333;
+}
+
+.gift-tips, .gift-goods {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  border-top: 1px solid #ebebeb;
+  padding: 26rpx;
+  box-sizing: border-box;
+}
+
+.gift-tips {
+  color: #fe3059;
+}
+
+.gift-goods {
+  color: #11A24A;
+}
+
+.gift-tips .icon-right {
+  font-size: 40rpx;
+}
+
+.gift-goods .icon-right {
+  font-size: 40rpx;
+}
 
 .invalid-carts {
   border-top: 4px solid #f4f4f3;
@@ -377,9 +412,11 @@
   box-sizing: border-box;
   margin-top: 10rpx;
 }
+
 .icon-down {
   margin-top: -10rpx;
 }
+
 .goods-attr-gray {
   font-size: 28rpx;
   color: #999;

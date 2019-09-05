@@ -1,7 +1,8 @@
 <!--pages/cart/cart.wxml-->
 <wxs module="filter" src="../../filter.wxs"></wxs>
+
 <view class='CartContainer'>
-  <view class='cart-empty' wx:if='{{validCarts.length === 0 && invalidCarts.length === 0}}'>
+  <view class='cart-empty' wx:if="{{!validCarts.length&& !invalidCarts.length}}">
     <view class='activity-image'>
       <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
     </view>
@@ -46,6 +47,35 @@
         <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
       </view>
       <view class='main'>
+        <view class="gift-goods-content" wx:if="{{showGiftButton}}">
+          <view bindtap="goToChooseGift" class="gift-goods">
+            <text>{{ giftTip }}</text>
+            <icon class="iconfont icon-right"></icon>
+          </view>
+          <view class="gift-content" wx:if='{{chooseGiftId}}'>
+            <view class="goods-image">
+              <image class='shop-img' src='{{giftData.image_url}}' mode='widthFix' wx:if='{{giftData.image_url}}'>
+              </image>
+              <image class='shop-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+              </image>
+            </view>
+            <view class='shop-detail'>
+              <text class='shop-name'>{{giftData.name}}</text>
+              <view class='shop-detail-bottom'>
+                <view class='shop-price'>
+                  <price-component price="0" unit="{{giftData.unit_name}}" text-color="text-color"></price-component>
+                </view>
+                <view class='num-change'>
+                  <text class='gift-num'>{{ giftData.per_number }}{{ giftData.unit_name }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view bindtap="goHome" class="gift-tips" wx:if="{{showGiftTip}}">
+          <text>{{ giftTip }}</text>
+          <icon class="iconfont icon-right"></icon>
+        </view>
         <view class="cart-goods" wx:for='{{validCarts}}' wx:key='this'>
           <view class='discount-rule' wx:if='{{item.marketing_name_time}}'>
             <text class='discount_title'>限时折扣</text>
@@ -98,7 +128,7 @@
           </view>
         </view>
       </view>
-      <view class='invalid-carts' wx:if='{{invalidCarts.length > 0}}'>
+      <view class='invalid-carts' wx:if='{{invalidCarts.length}}'>
         <view class='clear-invalid'>
           <text class='invaild-title'>已失效商品</text>
           <text bindtap='deleteInvalidGoods'>清空失效商品</text>
@@ -106,7 +136,7 @@
         </view>
         <view class='invalid-goods' wx:for='{{invalidCarts}}' wx:key='this' wx:for-item="invalid">
           <view class='mask'></view>
-          <view class='shop_check_box' data-index='{{index}}' catchtap='checkTap'>
+          <view class='shop_check_box' data-index='{{index}}'>
             <icon class='iconfont icon-Unselected'></icon>
           </view>
           <view class='shop-image'>

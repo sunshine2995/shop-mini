@@ -1,5 +1,8 @@
 // pages/cart/cart.js
 var CartService = require('../../utils/services/CartService.js')
+var GiftService = require('../../utils/services/GiftService.js')
+const app = getApp()
+
 Page({
   data: {
     validCarts: [], //有效购物车数据      
@@ -23,12 +26,25 @@ Page({
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
+
+    // 赠礼相关
+    showGiftTip: false, // 是否显示赠礼提示
+    showGiftButton: false, // 是否显示赠礼按钮
+    giftTip: '', // 赠礼提示
+    giftData: {}, // 已选择赠礼信息
+    chooseGiftId: 0, // 已选择赠礼Id
   },
 
   goToDetail(e) {
     const id = e.currentTarget.dataset.goodId;
     wx.navigateTo({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
+    })
+  },
+
+  goHome() {
+    wx.switchTab({
+      url: '/pages/home/home',
     })
   },
 
@@ -39,9 +55,8 @@ Page({
         icon: 'none',
       })
     } else {
-      wx.showToast({
-        title: '选好商品了',
-        icon: 'none',
+      wx.navigateTo({
+        url: '/pages/order/submit/submit',
       })
     }
   },
@@ -52,8 +67,14 @@ Page({
     })
   },
 
+  goToChooseGift() {
+    wx.navigateTo({
+      url: `/pages/activity/chooseGift/chooseGift?money=${this.data.finallyMoney}`,
+    })
+  },
+
   //点击全选  
-  allcheckTap: function() {
+  allcheckTap() {
     let shopcar = this.data.validCarts,
       allsel = !this.data.allsel, //点击全选后allsel变化
       total = 0,
@@ -69,7 +90,15 @@ Page({
       }
     }
     finallyMoney = total - discountMoney;
-    this.data.selarr = allsel ? shopcar : []; //如果选中状态为true那么所有商品为选中状态，将物品加入选中变量，否则为空    
+    this.getCartGift(finallyMoney);
+    if (allsel) {
+      shopcar.forEach((item) => {
+        this.data.selarr.push(item);
+      });
+    } else {
+      this.data.selarr = [];
+    }
+    // this.data.selarr = allsel ? shopcar : []; //如果选中状态为true那么所有商品为选中状态，将物品加入选中变量，否则为空    
     this.setData({
       allsel: allsel,
       validCarts: shopcar,
@@ -123,14 +152,21 @@ Page({
       if (shopcar[Index].reduce_money) {
         discountMoney -= shopcar[Index].reduce_money * shopcar[Index].goods_sku_num;
       }
-      for (let i = 0, len = selarr.length; i < len; i++) {
-        if (shopcar[Index].id == selarr[i].id) {
-          selarr.splice(i, 1);
-          break;
+      selarr.forEach((item, index) => {
+        if (shopcar[Index].goods_sku_id == item.goods_sku_id) {
+          selarr.splice(index, 1);
         }
-      }
+      });
+      // for (let i = 0, len = selarr.length; i < len; i++) {
+      //   if (shopcar[Index].id == selarr[i].id) {
+      //     selarr.splice(i, 1);
+      //     console.log('splice1111111')
+      //     break;
+      //   }
+      // }
     }
     finallyMoney = total - discountMoney;
+    this.getCartGift(finallyMoney);
     this.setData({
       validCarts: shopcar,
       total: total,
@@ -138,7 +174,6 @@ Page({
       finallyMoney: finallyMoney,
       selarr: selarr
     });
-    console.log(selarr, 'checkTap')
     this.judgmentAll(); //每次按钮点击后都判断是否满足全选的条件  
   },
 
@@ -152,6 +187,7 @@ Page({
     shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney += +shopcar[Index].reduce_money);
     total = Number(total.toFixed(2));
     finallyMoney = total - discountMoney;
+    this.getCartGift(finallyMoney);
     CartService.updateCart(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num + 1)
       .then((res) => {
         shopcar[Index].goods_sku_num = shopcar[Index].goods_sku_num + 1;
@@ -172,11 +208,13 @@ Page({
   },
 
   decrementQuantity(e) {
+    console.log('decrementQuantity')
     let Index = e.currentTarget.dataset.index, //点击的商品下标值        
       shopcar = this.data.validCarts,
       total = this.data.total, //总计  
       discountMoney = this.data.discountMoney,
-     finallyMoney = this.data.finallyMoney; //实际  
+      finallyMoney = this.data.finallyMoney; //实际  
+    this.getCartGift(finallyMoney);
     if (shopcar[Index].goods_sku_num === 1) {
       var _this = this;
       wx.showModal({
@@ -447,8 +485,10 @@ Page({
             validCarts: this.data.validCarts,
             invalidCarts: this.data.invalidCarts,
           });
+          console.log(this.data.validCarts,'this.data.validCarts')
           this.getLikeList();
         } else {
+          console.log(this.data.validCarts.length, 'res.data.data.valid_carts.length', this.data.invalidCarts.length, 'res.data.data.invalid_carts.length');
           this.data.validCarts = res.data.data.valid_carts;
           this.data.carts = res.data.data.valid_carts;
           this.data.invalidCarts = res.data.data.invalid_carts;
@@ -460,25 +500,30 @@ Page({
           var total = 0;
           var discountMoney = 0;
           var finallyMoney = 0;
-          this.data.validCarts.forEach((item) => {
-            selectedIds.forEach((selectedId) => {
-              if (+item.goods_sku_id === +selectedId) {
-                item.check = true;
-              }
+
+          if (selectedIds.length) {
+            this.data.validCarts.forEach((item) => {
+              selectedIds.forEach((selectedId) => {
+                if (+item.goods_sku_id === +selectedId) {
+                  item.check = true;
+                }
+              })
             })
-          })
+          }
           console.log(this.data.validCarts, 'res');
           var selarr = this.data.selarr;
           for (let i = 0, len = this.data.validCarts.length; i < len; i++) { //这里是对选中的商品的价格进行总结    
             if (this.data.validCarts[i].check) {
               total += this.data.validCarts[i].goods_sku_num * this.data.validCarts[i].price;
               if (this.data.validCarts[i].reduce_money) {
-                discountMoney -= this.data.validCarts[i].reduce_money * this.data.validCarts[i].goods_sku_num;
+                discountMoney += this.data.validCarts[i].reduce_money * this.data.validCarts[i].goods_sku_num;
               }
               finallyMoney = total - discountMoney;
               selarr.push(this.data.validCarts[i]);
             }
           }
+
+          this.getCartGift(finallyMoney);
           this.setData({
             validCarts: this.data.validCarts,
             invalidCarts: this.data.invalidCarts,
@@ -489,14 +534,75 @@ Page({
           });
           this.judgmentAll(); //判断是否全选  
         }
+
+        this.getLikeList();
       })
       .catch((error) => {
 
       })
   },
 
+  showCartGift() {
+    GiftService.showCartGift(app.globalData.chooseGiftId)
+      .then((res) => {
+        this.data.giftData = res.data.data;
+        this.setData({
+          giftData: this.data.giftData,
+          chooseGiftId: app.globalData.chooseGiftId,
+        })
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
+
+  getCartGift(money) {
+    wx.showLoading({
+      title: '',
+    })
+    GiftService.getCartGift(money)
+      .then((res) => {
+        wx.hideLoading();
+        if (res.data.data.flag === 0) {
+          this.data.showGiftTip = true;
+          app.globalData.chooseGiftId = 0;
+          this.setData({
+            giftData: this.data.giftData,
+            chooseGiftId: app.globalData.chooseGiftId,
+          })
+        } else {
+          this.data.showGiftTip = false;
+        }
+        console.log(app.globalData.chooseGiftId, this.data.showGiftTip)
+        // this.data.showGiftTip = res.data.data.flag === 0;
+        this.data.showGiftButton = res.data.data.flag === 1;
+        this.data.giftTip = res.data.data.reason;
+        this.setData({
+          showGiftTip: this.data.showGiftTip,
+          showGiftButton: this.data.showGiftButton,
+          giftTip: this.data.giftTip,
+        });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
   /**   * 生命周期函数--监听页面显示   */
   onShow() {
     this.getAllCarts();
-  }
+    this.data.chooseGiftId = app.globalData.chooseGiftId;
+    if (this.data.chooseGiftId !== 0) {
+      this.showCartGift();
+    }
+  }, 
 })

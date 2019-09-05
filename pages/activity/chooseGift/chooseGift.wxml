@@ -1,0 +1,46 @@
+<!--pages/activity/chooseGift/chooseGift.wxml-->
+
+<!-- <image src="https://img.caibashi.com/94d6329ece5780387d8e55e45c643f84.jpg"></image>
+<image src="https://img.caibashi.com/11f2334540d340a0eb3baa7d85d5549f.png"></image>
+<image src="https://img.caibashi.com/4a4a6f9090d288c4022ab8f49ebcddd7.bmp"></image>
+<image src="https://img.caibashi.com/a985eed4c5cf42643eaa3f1c302f9c93.gif"></image>
+<image src="https://img.caibashi.com/77c4850077b5992f9689f75876cd011f.tif"></image> -->
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<view class="ChooseGift">
+  <view class='invalid-gift' wx:if='{{satisfyList.length}}'>
+    <view class='clear-invalid'>
+      <text class='invaild-title'>可用赠礼</text>
+    </view>
+    <view class='invalid-goods' wx:for='{{satisfyList}}' wx:key='this' wx:for-item="satisfy" data-gift-id='{{satisfy.id}}' bindtap='goToCart'>
+      <view class='gift-image'>
+        <image class='gift-img' src='{{satisfy.image_url}}' mode='widthFix' wx:if='{{satisfy.image_url}}'>
+        </image>
+        <image class='gift-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+        </image>
+      </view>
+      <view class='gift_detail'>
+        <text class='gift-name'>{{satisfy.name}}</text>
+        <text class='gift-type'>{{ satisfy.per_number }}{{ satisfy.unit_name }}/份</text>
+        <text class='gift-type'>{{ filter.formatData(satisfy.valid_time) }}前有效</text>
+      </view>
+    </view>
+  </view>
+  <view class='invalid-gift' wx:if='{{dissatisfyList.length}}'>
+    <view class='clear-invalid'>
+      <text class='invaild-title'>不可用赠礼</text>
+    </view>
+    <view class='invalid-goods' wx:for='{{dissatisfyList}}' wx:key='this' wx:for-item="dissatisfy">
+      <view class='gift-image'>
+        <image class='gift-img' src='{{dissatisfy.image_url}}' mode='widthFix' wx:if='{{dissatisfy.image_url}}'>
+        </image>
+        <image class='gift-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+        </image>
+      </view>
+      <view class='gift_detail'>
+        <text class='gift-name'>{{dissatisfy.name}}</text>
+        <text class='gift-type'>{{ dissatisfy.per_number }}{{ dissatisfy.unit_name }}/份</text>
+        <text class='gift-type'>{{ filter.formatData(dissatisfy.valid_time) }}前有效</text>
+      </view>
+    </view>
+  </view>
+</view>
