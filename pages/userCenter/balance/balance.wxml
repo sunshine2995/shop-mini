@@ -29,8 +29,8 @@
       </view>
     </view>
   </view>
-  <view class='bottom-recharge '>
+  <navigator url="/pages/recharge/recharge" class='bottom-recharge '>
     <image class='recharge-image ' src='https://img.caibashi.com/4e8248f31db27f7fa074b42eb15e11cb.png '></image>
     <view class='recharge '>立即充值</view>
-  </view>
+  </navigator>
 </view>

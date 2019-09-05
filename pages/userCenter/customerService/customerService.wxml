@@ -1,7 +1,7 @@
 <!--pages/userCenter/customerService/customerService.wxml-->
 <view class='customer-service-container'>
   <view class='wx-content'>
-    <text class='wx-name'>微信客服 suxingfu868</text>
+    <text class='wx-name'>微信客服</text>
     <image class='wx-qr' src='https://img.caibashi.com/744b793f33b33ddf13c0530a29cc9219.png'></image>
     <text class='tip'>扫一扫</text>
   </view>

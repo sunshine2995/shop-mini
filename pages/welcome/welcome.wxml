@@ -1,4 +1,4 @@
 <view class='welcomeContainer'>
   <image class='go-to-shopping' src='https://img.caibashi.com/5d7f71f14e8d5d8a683d4969920ebf87.png'></image>
-  <image class='go-to-recharge' src='https://img.caibashi.com/8b23466a26c52c09b7060e090db97add.png'></image>
+  <image class='go-to-recharge' bindtap="rechargePage" src='https://img.caibashi.com/8b23466a26c52c09b7060e090db97add.png'></image>
 </view>
