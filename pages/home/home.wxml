@@ -29,15 +29,15 @@
   </view>
   <view class="activity-swiper">
     <swiper vertical="{{false}}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
+      <block wx:for="{{images}}" wx:key="index">
+        <swiper-item>
+          <image class="new-user-image" src='{{item.img}}' data-url="{{item.url}}" bindtap="bindViewTap" mode='widthFix'></image>
+        </swiper-item>
+      </block>
       <block wx:for="{{inviteImages}}" wx:key="index">
         <swiper-item>
           <!-- <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}" bindtap="bindViewTap"></image> -->
-          <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}"></image>
-        </swiper-item>
-      </block>
-      <block wx:for="{{images}}" wx:key="index">
-        <swiper-item>
-          <image class="new-user-image" src='{{item.img}}' data-url="{{item.url}}"></image>
+          <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}" mode='widthFix'></image>
         </swiper-item>
       </block>
     </swiper>

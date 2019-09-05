@@ -12,10 +12,23 @@ Page({
     totalNumber: 0, // 商品总件数
     differencePrice: 0, // 商品差价
     finallyRefundMoney: 0, // 最终退款金额
+    orderNo: '', // 订单号
+    ifSubmit: false, // 是否下完订单之后跳转的
   },
 
   onLoad: function(options) {
+    console.log(options,'options----');
+    this.data.orderNo = options.orderNo;
+    this.data.ifSubmit = options.ifSubmit;
+  },
 
+  // 返回键返回到指定页面
+  onUnload() {
+    if(this.data.ifSubmit) {
+      wx.navigateTo({
+        url: '/pages/order/list/list',
+      })
+    }
   },
 
   onShow: function() {
@@ -31,7 +44,7 @@ Page({
 
   getOrderDetail() {
     // OrderService.getOrderDetail('20190902174937376732')
-    OrderService.getOrderDetail('20190902175117337574')
+    OrderService.getOrderDetail(this.data.orderNo)
       .then((res) => {
         this.data.order = res.data.data.order;
         if (res.data.data.order.gift) {

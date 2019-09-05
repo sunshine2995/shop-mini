@@ -3,9 +3,41 @@
 
 <view class="OrderDetail">
   <view class="detail-container">
-    <view class="order-status">
+    <view class="order-status" wx:if="{{order.status === 3 && order.delivery_type === 1}}">
       <text>待配送</text>
       <icon class="iconfont icon-pay-success"></icon>
+    </view>
+    <view class="order-status" wx:if="{{order.status === 3 && order.delivery_type === 0}}">
+      <text>到店自取</text>
+      <icon class="iconfont icon-pay-success"></icon>
+    </view>
+    <view class="order-status" wx:if="{{order.status === 7}}">
+      <text>待评价</text>
+      <icon class="iconfont icon-order-complate"></icon>
+    </view>
+    <view class="order-status" wx:if="{{order.status === 8}}">
+      <text>已评价</text>
+      <icon class="iconfont icon-order-complate"></icon>
+    </view>
+    <view class="order-status" wx:if="{{order.status === 6}}">
+      <text>待收货</text>
+      <icon class="iconfont icon-to-be-received"></icon>
+    </view>
+    <view class="order-status" wx:if="{{order.status === 1 || order.status === 2}}">
+      <text>等待支付</text>
+      <icon class="iconfont icon-pending-payment"></icon>
+    </view>
+    <view class="order-status" wx:if="{{order.status === 11}}">
+      <text>待分拣</text>
+      <icon class="iconfont icon-daishouhuo"></icon>
+    </view>
+    <view class="order-status" wx:if="{{order.status === 12}}">
+      <text>分拣中</text>
+      <icon class="iconfont icon-kucun"></icon>
+    </view>
+    <view class="order-refund" wx:if="{{order.status === 9}}">
+      <text>退款成功</text>
+      <text>退款原因：{{ order.refund_reason }}</text>
     </view>
     <view class="detail-content">
       <view class="title">
@@ -20,6 +52,12 @@
           <view class="goods-image">
             <image class="goods-img" wx:if='{{item.goods_spu_thumbnail_url}}' src="{{item.goods_spu_thumbnail_url}}" mode="widthFix"></image>
             <image class="goods-img" wx:else src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg" mode="widthFix"></image>
+            <view class="mask-gift" wx:if="{{item.is_gift === 1}}">
+              <i class="iconfont icon-gift"></i>
+            </view>
+            <view class="goods-attr" wx:if="{{item.goods_attr}}">
+              {{ item.goods_attr }}
+            </view>
           </view>
           <view class="goods-detail">
             <view class="goods-name">
