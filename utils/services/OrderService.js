@@ -76,3 +76,27 @@ export function getAllOrderDetails(page) {
 export function getStatusDetails(status, page) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/order/all-orders?status=${status}&page=${page}&size=10`);
 }
+
+// 删除订单
+export function deleteOrder(orderNo) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/order/delete/${orderNo}`);
+}
+
+// 再来一单
+export function OnceMoreOrder(orderNo) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/order/once_more`, {
+    order_no: orderNo,
+  });
+}
+
+// 评价订单
+export function rateOrder(orderNo, evaluateInfo) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/order/rate/${orderNo}`, evaluateInfo);
+}
+
+// 更改送达时间
+export function getDeliveryEnd(orderNo, deliveryEnd) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/order/bind_new_time/${orderNo}`, {
+    delivery_end: deliveryEnd
+  });
+}
