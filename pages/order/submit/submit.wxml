@@ -14,11 +14,11 @@
       </cover-view>
       <cover-view class="pay-type" data-pay-type='{{2}}' bindtap="pay" wx:if='{{isEnough}}'>
         <cover-image class='cancel-pay-image' src="https://img.caibashi.com/5ed5d2ac36be24e218628a02504576c5.png"></cover-image>
-        <cover-view class="balance-pay">余额支付</cover-view>
+        <cover-view class="balance-pay">余额支付（剩余{{balance}}元）</cover-view>
       </cover-view>
       <cover-view class="pay-type" bindtap="payNotEnough" wx:else>
         <cover-image class='cancel-pay-image' src="https://img.caibashi.com/1c2801d3f0c818c1a748e38d2a2e7472.png"></cover-image>
-        <cover-view class="balance-pay">余额不足（余额仅余{{balance}}元）</cover-view>
+        <cover-view class="balance-pay">余额不足（仅余{{balance}}元）</cover-view>
       </cover-view>
     </cover-view>
   </cover-view>

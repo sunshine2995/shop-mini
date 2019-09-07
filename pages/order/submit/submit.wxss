@@ -359,7 +359,6 @@
   background-color: #11a24a;
 }
 .Curtain {
-
   display: flex;
   align-items: center;
   justify-content: center;

@@ -36,6 +36,7 @@
     "pages/activity/newUser/newUser",
     "pages/activity/chooseGift/chooseGift",
     "pages/recharge/recharge",
+    "pages/order/list/list",
     "pages/order/coupon/coupon"
   ],
   "window": {

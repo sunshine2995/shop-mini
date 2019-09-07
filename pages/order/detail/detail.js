@@ -6,7 +6,7 @@ const moment = require('../../../utils/moment.js');
 Page({
 
   data: {
-    order: {}, // order地址相关信息
+    order: {}, // order金额地址等相关信息
     giftInfo: {}, // 赠礼相关信息
     orderItems: [], // order商品信息
     totalNumber: 0, // 商品总件数
@@ -17,7 +17,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options,'options----');
     this.data.orderNo = options.orderNo;
     this.data.ifSubmit = options.ifSubmit;
   },

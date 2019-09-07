@@ -39,8 +39,8 @@ Page({
 
   cancelPay() {
     if (this.data.orderNo) {
-      wx.switchTab({
-        url: '/pages/home/home',
+      wx.navigateTo({
+        url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
       })
     } else {
       this.data.isShowCurtain = false;
@@ -58,17 +58,25 @@ Page({
   },
 
   bindMultiPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e, e.detail.value)
-    this.data.multiIndex = e.detail.value;
-    const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
-    this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
-    this.data.arriveDate = this.data.multiArray[0][this.data.multiIndex[0]].name + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].name;
-    app.globalData.deliveryEnd = this.data.deliveryEnd;
-    this.setData({
-      multiIndex: this.data.multiIndex,
-      arriveDate: this.data.arriveDate
-    })
+    if (this.data.multiArray[0][0].name === '店铺已打烊') {
+      wx.showToast({
+        title: '店铺已打烊',
+        icon: 'none'
+      })
+    } else {
+      console.log('picker发送选择改变，携带值为', e, e.detail.value)
+      this.data.multiIndex = e.detail.value;
+      const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
+      this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
+      this.data.arriveDate = this.data.multiArray[0][this.data.multiIndex[0]].name + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].name;
+      app.globalData.deliveryEnd = this.data.deliveryEnd;
+      this.setData({
+        multiIndex: this.data.multiIndex,
+        arriveDate: this.data.arriveDate
+      })
+    }
   },
+
   bindMultiPickerColumnChange: function(e) {
     console.log('修改的列为', e.detail.column, e, '，值为', e.detail.value);
     var data = {
@@ -78,9 +86,15 @@ Page({
     data.multiIndex[e.detail.column] = e.detail.value;
     if (e.detail.column == 0) { //第1列
       if (e.detail.value == 0) {
-        this.setData({
-          multiArray: [this.data.multiArray[0], this.data.todayTimes]
-        })
+        if (this.data.todayTimes.length) {
+          this.setData({
+            multiArray: [this.data.multiArray[0], this.data.todayTimes]
+          })
+        } else {
+          this.setData({
+            multiArray: [this.data.multiArray[0], this.data.durationTimes]
+          })
+        }
       };
       if (e.detail.value == 1 || e.detail.value == 2) {
         this.setData({
@@ -140,7 +154,8 @@ Page({
         this.data.orderMessage = res.data.data;
         this.data.finallyMoney = Number((this.data.orderMessage.total_now_amount - this.data.redMoney).toFixed(2));
         this.data.finallyMoneyNoShipping = Number((this.data.orderMessage.now_amount - this.data.redMoney).toFixed(2));
-        this.data.reduceMoney = Number((this.data.orderMessage.goods_amount - this.data.orderMessage.now_amount).toFixed(2));
+        this.data.reduceMoney = Number((+this.data.orderMessage.goods_amount - +this.data.orderMessage.now_amount).toFixed(2));
+        this.getDeliveryTime();
         this.setData({
           giftData: res.data.data.gift,
           orderMessage: res.data.data,
@@ -150,10 +165,8 @@ Page({
         })
       })
       .catch((error) => {
-        wx.showToast({
-          title: error.data.message,
-          icon: 'none',
-          duration: 2000
+        wx.switchTab({
+          url: '/pages/cart/cart',
         })
       });
   },
@@ -275,7 +288,9 @@ Page({
               url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
             })
           },
-          'fail': function(res) {},
+          'fail': function(res) {
+
+          },
           'complete': function(res) {}
         })
       })
@@ -483,31 +498,55 @@ Page({
       const aa = (moment.duration(moment(todayTime).valueOf()).as('minutes') + i * distance) * 60 * 1000;
       reduceMoneyTimes.push({
         value: moment(aa).format('HH:mm:ss'),
-        text: moment(aa).format('HH:mm'),
+        name: moment(aa).format('HH:mm'),
       });
     }
 
     if (+this.data.reduceMoney > 0) {
-      this.data.multiArray[0] = [{
-        name: '今天',
-        value: moment().format('YYYY/MM/DD')
-      }, ]
-      this.data.multiArray[1] = reduceMoneyTimes;
-    } else {
-      this.data.multiArray[0] = [{
+      if (reduceMoneyTimes.length) {
+        this.data.multiArray[0] = [{
           name: '今天',
           value: moment().format('YYYY/MM/DD')
-        },
-        {
-          name: moment().add(1, 'days').format('YYYY/MM/DD'),
-          value: moment().add(1, 'days').format('YYYY/MM/DD'),
-        },
-        {
-          name: moment().add(2, 'days').format('YYYY/MM/DD'),
-          value: moment().add(2, 'days').format('YYYY/MM/DD'),
-        },
-      ]
-      this.data.multiArray[1] = this.data.todayTimes;
+        }, ]
+        this.data.multiArray[1] = reduceMoneyTimes;
+      } else {
+        this.data.multiArray[0] = [{
+          name: '店铺已打烊',
+          value: moment().format('YYYY/MM/DD')
+        }, ]
+        this.data.multiArray[1] = [{
+          name: '明天早点来',
+          value: moment().format('YYYY/MM/DD')
+        }, ];
+      }
+    } else {
+      if (this.data.todayTimes.length) {
+        this.data.multiArray[0] = [{
+            name: '今天',
+            value: moment().format('YYYY/MM/DD')
+          },
+          {
+            name: moment().add(1, 'days').format('YYYY/MM/DD'),
+            value: moment().add(1, 'days').format('YYYY/MM/DD'),
+          },
+          {
+            name: moment().add(2, 'days').format('YYYY/MM/DD'),
+            value: moment().add(2, 'days').format('YYYY/MM/DD'),
+          },
+        ]
+        this.data.multiArray[1] = this.data.todayTimes;
+      } else {
+        this.data.multiArray[0] = [{
+            name: moment().add(1, 'days').format('YYYY/MM/DD'),
+            value: moment().add(1, 'days').format('YYYY/MM/DD'),
+          },
+          {
+            name: moment().add(2, 'days').format('YYYY/MM/DD'),
+            value: moment().add(2, 'days').format('YYYY/MM/DD'),
+          },
+        ]
+        this.data.multiArray[1] = this.data.durationTimes;
+      }
     }
     this.setData({
       multiArray: this.data.multiArray,
@@ -517,7 +556,7 @@ Page({
     });
 
   },
-  
+
   onLoad(options) {
     if (options.money && options.couponId) {
       this.data.redMoney = options.money;
@@ -532,9 +571,9 @@ Page({
     moment.suppressDeprecationWarnings = true;
     this.data.mobile = app.globalData.userData.phone;
     this.data.skuIds = wx.getStorageSync('selectedIds');
-    if (this.data.skuIds.length) {
-      this.checkout();
-    }
+    // if (this.data.skuIds.length) {
+    this.checkout();
+    // }
     this.getDeliveryTime();
     if (app.globalData.deliveryEnd) {
       if (moment(app.globalData.deliveryEnd).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')) {
