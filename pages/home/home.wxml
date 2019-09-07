@@ -71,8 +71,8 @@
                   <text class='market-price-number'>￥{{goodSku.unit_price}}/{{goodSku.goods_sku_unit.name}}</text>
                 </view>
                 <view class='goods-remarks'>
-                  <text class='market-price-standard'>{{goodsSku.name}}</text>
-                  <text class='market-price-remark'>{{goodsSku.remark}}</text>
+                  <text class='market-price-standard'>{{goodSku.name}}</text>
+                  <text class='market-price-remark'>{{goodSku.remark}}</text>
                 </view>
               </view>
               <view class='marketing-goods-price'>

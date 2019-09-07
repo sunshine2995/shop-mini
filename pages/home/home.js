@@ -92,17 +92,17 @@ Page({
       inviteImages: inviteImages,
     });
     this.getUser();
-    this.getSortList();
+    this.getOneCategory();
     this.getCustom();
     this.getMarketingAlltype();
     this.getCategoryOneAllGoods();
   },
 
-  getSortList() {
+  getOneCategory() {
     wx.showLoading({
       title: '加载中',
     })
-    UserService.getSortList()
+    GoodsService.getOneCategory()
       .then((res) => {
         wx.hideLoading();
         var sortTitle = res.data.data;
