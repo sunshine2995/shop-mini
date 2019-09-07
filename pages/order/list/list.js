@@ -63,7 +63,6 @@ Page({
     ifEvaluate: false, // 是否从评论跳转的
   },
 
-
   onUnload() {
     if (this.data.ifEvaluate) {
       wx.navigateTo({
@@ -176,9 +175,7 @@ Page({
       this.data.multiIndex = e.detail.value;
       const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
       this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
-      // app.globalData.deliveryEnd = this.data.deliveryEnd;
       this.getDeliveryEnd();
-      // console.log(app.globalData.deliveryEnd, 'app.globalData.deliveryEnd')
       this.setData({
         multiIndex: this.data.multiIndex,
       })
@@ -211,7 +208,6 @@ Page({
         console.log(this.data.multiArray[0],this.data.multiArray[1],'this.data.multiArray')
       };
     };
-    // this.setData(data);
   },
 
   getDeliveryEnd() {
@@ -362,9 +358,6 @@ Page({
     let deliveryType;
     let discountAmount;
     let finallyMoney;
-
-    // const orderNo = '20190831115528402611';
-    // const orderNo = e.currentTarget.dataset.orderNo;
     const orderNo = e.currentTarget.dataset.orderNo;
     this.data.orderNo = orderNo;
     this.data.orderList.forEach((item) => {
@@ -573,12 +566,6 @@ Page({
       });
   },
 
-  // onUnload() {
-  //   wx.switchTab({
-  //     url: '/pages/user/user',
-  //   });
-  // },
-
   // # 1/待支付 2/支付中 3/已付款 4/支付失败 5/待配送 6/待发货（配送中） 7/待评价（已收货） 8/已评价 9/已退款
   getStatusDetails(status) {
     wx.showLoading({
@@ -666,7 +653,6 @@ Page({
 
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function () {
-    console.log(this.data.currentTab, 'this.data.currentTab----')
     if (this.data.currentTab > 3) {
       this.setData({
         scrollLeft: 300
@@ -682,11 +668,9 @@ Page({
     moment.suppressDeprecationWarnings = true;
     this.data.balance = app.globalData.userData.balance;
     this.orderList = [];
-    // this.getDeliveryTime();
     this.data.statusList.forEach((item, index) => {
       if (item.status === this.data.status) {
         this.data.currentTab = index;
-        console.log(index, 'index----')
       }
     });
     this.checkStatus();

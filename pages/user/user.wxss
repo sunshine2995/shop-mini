@@ -125,6 +125,22 @@ icon-right {
   flex: 1;
   text-align: center;
   color: #666;
+  position: relative;
+}
+
+.status-num {
+  position: absolute;
+  top: 5rpx;
+  right: 10rpx;
+  width: 35rpx;
+  height: 35rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fe3059;
+  font-size: 24rpx;
+  color: #fff;
 }
 
 .order-type-text {
@@ -132,6 +148,7 @@ icon-right {
   padding: 15rpx 0 26rpx;
   box-sizing: border-box;
 }
+
 .activity-type-text, .service-type-text {
   font-size: 30rpx;
 }
@@ -144,13 +161,8 @@ icon-right {
   font-size: 45rpx;
 } */
 
-.icon-pending-payment, .icon-to-be-delivered, .icon-store, .icon-to-be-received {
-  font-size: 50rpx;
-  color: #999;
-}
-
-.icon-chengzhong {
-  font-size: 45rpx;
+.icon-pending-payment, .icon-to-be-delivered, .icon-store, .icon-to-be-received, .icon-chengzhong {
+  font-size: 60rpx;
   color: #999;
 }
 

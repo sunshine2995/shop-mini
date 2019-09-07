@@ -1,18 +1,50 @@
 var UserService = require('../../utils/services/UseService.js');
 var OrderService = require('../../utils/services/OrderService.js')
+var OrderService = require('../../utils/services/OrderService.js')
 
 var app = getApp();
 Page({
   data: {
     rechargeImg: [], //充值图片
+    statusNumList: {}, // 不同状态订单数量
   },
 
   onShow: function() {
     this.getUserInfo();
     this.getUser();
     this.getRechargeList();
+    this.getStatusNum();
     wx.showLoading({
       title: '',
+    })
+  },
+
+
+  getStatusNum() {
+    wx.showLoading({
+      title: '加载中',
+    })
+    OrderService.getStatusNum()
+      .then((res) => {
+        wx.hideLoading();
+        this.data.statusNumList = res.data.data;
+          this.setData({
+            statusNumList: this.data.statusNumList,
+          });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
+  orderList(e) {
+    const status = e.currentTarget.dataset.status;
+    wx.navigateTo({
+      url: `/pages/order/list/list?status=${status}`,
     })
   },
 

@@ -43,33 +43,38 @@
     </navigator>
   </view>
   <view class='order-moudle'>
-    <view class='all-order'>
+    <navigator class='all-order' url='/pages/order/list/list' hover-class="none">
       <text>我的订单</text>
       <view class='order-icon'>
         <text>全部订单</text>
         <icon class='iconfont icon-right'></icon>
       </view>
-    </view>
+    </navigator>
     <view class='order-status'>
-      <view class='order-type'>
+      <view class='order-type' data-status="待付款" bindtap="orderList">
         <icon class='iconfont icon-pending-payment'></icon>
         <text class='order-type-text'>待付款</text>
+        <text class="status-num" wx:if='{{statusNumList.wait_pay > 0}}'>{{statusNumList.wait_pay}}</text>
       </view>
-      <view class='order-type'>
+      <view class='order-type' data-status="待分拣" bindtap="orderList">
         <icon class='iconfont icon-store'></icon>
         <text class='order-type-text'>待分拣</text>
+        <text class="status-num" wx:if='{{statusNumList.wait_sorted > 0}}'>{{statusNumList.wait_sorted}}</text>
       </view>
-      <view class='order-type'>
+      <view class='order-type' data-status="分拣中" bindtap="orderList">
         <icon class='iconfont icon-chengzhong'></icon>
         <text class='order-type-text'>分拣中</text>
+        <text class="status-num" wx:if='{{statusNumList.sorting > 0}}'>{{statusNumList.sorting}}</text>
       </view>
-      <view class='order-type'>
+      <view class='order-type' data-status="待配送" bindtap="orderList">
         <icon class='iconfont icon-to-be-delivered'></icon>
         <text class='order-type-text'>待配送</text>
+        <text class="status-num" wx:if='{{statusNumList.wait_delivery > 0}}'>{{statusNumList.wait_delivery}}</text>
       </view>
-      <view class='order-type'>
+      <view class='order-type' data-status="待收货" bindtap="orderList">
         <icon class='iconfont icon-to-be-received'></icon>
         <text class='order-type-text'>待收货</text>
+        <text class="status-num" wx:if='{{statusNumList.wait_confirm > 0}}'>{{statusNumList.wait_confirm}}</text>
       </view>
     </view>
   </view>
@@ -117,7 +122,7 @@
         <icon class='iconfont icon-message'></icon>
         <text class='service-type-text'>留言反馈</text>
       </navigator>
-      
+
       <navigator class='service-type' url='/pages/userCenter/enterprise/enterprise' hover-class="none">
         <icon class='iconfont icon-qiyedinggou'></icon>
         <text class='service-type-text'>企业订购</text>
