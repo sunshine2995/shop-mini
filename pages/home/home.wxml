@@ -84,7 +84,10 @@
                   <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color='text-color '></price-component>
                   <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
                 </view>
-                <view class='add-cart-num'>
+                <view class='add-cart-num' wx:if='{{!goodSku.stock}}'>
+                  <icon class="iconfont icon-yiqiangwan"></icon>
+                </view>
+                <view class='add-cart-num' wx:else>
                   <icon class="iconfont icon-sort-add" data-good-sku-id='{{goodSku.id}}' catchtap='getGoodsAttr'></icon>
                   <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
                     <text class='cart-num' wx:if='{{goodSku.id === select.id}}'>{{select.num}}</text>

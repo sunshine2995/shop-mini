@@ -40,7 +40,8 @@
     "pages/activity/chooseGift/chooseGift",
     "pages/recharge/recharge",
     "pages/order/list/list",
-    "pages/order/coupon/coupon"
+    "pages/order/coupon/coupon",
+    "pages/userCenter/myGift/myGift"
   ],
   "window": {
     "backgroundTextStyle": "light",

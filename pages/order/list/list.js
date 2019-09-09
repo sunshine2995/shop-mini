@@ -611,7 +611,7 @@ Page({
   swichNav(e) {
     const index = e.target.dataset.current;
     // var cur = e.target.dataset.current;
-    if (this.data.currentTaB == index) {
+    if (this.data.currentTab == index) {
       return false;
     } else {
       this.setData({

@@ -19,4 +19,9 @@ export function showCartGift(giftId) {
 // 获取充值页当前充值金额下的赠礼
 export function getRechargeGift(rechargeId) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/user/recharge/gift/${rechargeId}`);
+}
+
+// 获取我的赠礼
+export function getMyGift() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/activity/gift`);
 } 

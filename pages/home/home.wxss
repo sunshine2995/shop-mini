@@ -250,6 +250,10 @@ swiper {
   font-size: 60rpx;
   color: #11a24a;
 }
+.icon-yiqiangwan {
+  font-size: 60rpx;
+  color: #999;
+}
 
 .cart-num {
   display: flex;

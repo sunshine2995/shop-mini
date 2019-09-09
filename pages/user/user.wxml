@@ -157,10 +157,10 @@
         <icon class='iconfont icon-exchange'></icon>
         <text class='service-type-text'>兑换礼卡</text>
       </navigator>
-      <view class='service-type'>
+      <navigator class='service-type' url='/pages/userCenter/myGift/myGift' hover-class="none">
         <icon class='iconfont icon-exchange'></icon>
         <text class='service-type-text'>我的赠礼</text>
-      </view>
+      </navigator>
     </view>
   </view>
 </view>

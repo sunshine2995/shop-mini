@@ -12,6 +12,7 @@ Page({
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
+    
   },
 
   toggle(e) {
