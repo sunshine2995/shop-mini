@@ -34,11 +34,11 @@
           <price-component price="{{goodSku.marketing.marketing_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color="text-color-red"></price-component>
           <text class='discount-rebate'>{{goodSku.marketing.marketing_simple_name}}</text>
           <text class='invalid-price-line'>￥{{goodSku.sell_price}}/{{goodSku.goods_sku_unit.name}}</text>
-        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
         <view class='goods-sell-price' wx:else>
           <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color="text-color-red"></price-component>
-        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
       </block>
       <block wx:else>
@@ -46,11 +46,11 @@
           <price-component price="{{goodSku.marketing.marketing_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color="text-color-red"></price-component>
           <text class='discount-rebate'>{{goodSku.marketing.marketing_simple_name}}</text>
           <text class='invalid-price-line'>￥{{goodSku.sell_price}}/{{goodSku.goods_sku_sell_unit.name}}</text>
-        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
         <view class='goods-sell-price' wx:else>
           <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color="text-color-red"></price-component>
-        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
         </view>
       </block>
       <block wx:if='{{goodsInfo.is_standard}}'>
@@ -63,7 +63,7 @@
     <view class='goods-text-standard-stock '>
       <view class='choose-text '>选份量</view>
       <view class='goods-standard-stock-content '>
-        <view class='goods-standard-stock ' wx:for="{{goodsInfo.goods_sku_list}}" wx:key="index" data-index="{{index}}" data-sku-id='{{goodSku.id}}' data-stock="{{goodSku.stock}}"  wx:for-item="goodSku" bindtap="toggle">
+        <view class='goods-standard-stock ' wx:for="{{goodsInfo.goods_sku_list}}" wx:key="index" data-index="{{index}}" data-sku-id='{{goodSku.id}}' data-stock="{{goodSku.stock}}" wx:for-item="goodSku" bindtap="toggle">
           <view class="{{index==active?'goods-standard-active ':'goods-standard '}}" wx:if='{{goodSku.name}}'>
             {{goodSku.name}}
           </view>
@@ -80,20 +80,21 @@
   <view class='explain-desc-name '>
     <text class='explain-name '>菜巴士</text>
     <view class='explain-desc-sign '>
-      <text class='explain-desc '>满28元免配送费</text>
-      <text class='explain-sign '>·</text>
-      <text class='explain-desc '>祁东县城</text>
-      <text class='explain-sign '>·</text>
-      <text class='explain-desc '>最快约半小时送达</text>
+      <text class='explain-desc' wx:if='{{shipping !== 0}}'>满{{shipping}}元免配送费</text>
+      <text class='explain-desc' wx:else>免配送费</text>
+      <text class='explain-sign'>·</text>
+      <text class='explain-desc' wx:if='{{subbranchArea}}'>{{subbranchArea}}</text>
+      <text class='explain-sign' wx:if='{{subbranchArea}}'>·</text>
+      <text class='explain-desc'>最快约半小时送达</text>
     </view>
   </view>
-  <view class='explain-desc-name ' bindtap='goToDescripte '>
-    <text class='explain-name '>服 务</text>
-    <view class='explain-desc-sign '>
-      <view class='no-icon '>
-        <text class='explain-desc '>支持8小时内退换货</text>
-        <text class='explain-sign '>·</text>
-        <text class='explain-desc '>定时配送</text>
+  <view class='explain-desc-name' bindtap='goToDescripte '>
+    <text class='explain-name'>服 务</text>
+    <view class='explain-desc-sign'>
+      <view class='no-icon'>
+        <text class='explain-desc'>支持8小时内退换货</text>
+        <text class='explain-sign'>·</text>
+        <text class='explain-desc'>定时配送</text>
       </view>
       <view class='explain-icon '>
         <icon class='iconfont icon-right '></icon>

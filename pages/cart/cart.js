@@ -1,6 +1,6 @@
 // pages/cart/cart.js
-var CartService = require('../../utils/services/CartService.js')
-var GiftService = require('../../utils/services/GiftService.js')
+var CartService = require('../../utils/services/CartService.js');
+var GiftService = require('../../utils/services/GiftService.js');
 var UserService = require('../../utils/services/UseService.js');
 const app = getApp()
 
@@ -35,6 +35,7 @@ Page({
     giftData: {}, // 已选择赠礼信息
     userInfo: {}, // 用户信息
     chooseGiftId: 0, // 已选择赠礼Id
+    shipping: 0, // 免配送费条件
   },
 
   goToDetail(e) {
@@ -74,6 +75,23 @@ Page({
       url: `/pages/activity/chooseGift/chooseGift?money=${this.data.finallyMoney}`,
     })
   },
+
+  getshippingCharge() {
+    UserService.getshippingCharge()
+      .then((res) => {
+        this.setData({
+          shipping: +res.data.data.start_price,
+        })
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
 
   getUser() {
     UserService.getUser()
@@ -616,6 +634,8 @@ Page({
 
   /**   * 生命周期函数--监听页面显示   */
   onShow() {
+    this.getUser();
+    this.getshippingCharge();
     this.getAllCarts();
     this.data.chooseGiftId = app.globalData.chooseGiftId;
     if (this.data.chooseGiftId !== 0) {

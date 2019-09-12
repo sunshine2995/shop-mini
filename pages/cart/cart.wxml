@@ -40,7 +40,8 @@
   <block wx:else>
     <view class='cart-container'>
       <view class='delete'>
-        <text class='header_text'>菜巴士 | 满28免配送费</text>
+        <text class='header_text' wx:if='{{shipping !== 0}}'>菜巴士 | 满{{shipping}}免配送费</text>
+        <text class='header_text' wx:else>菜巴士 | 免配送费</text>
         <icon class='iconfont icon-delete' bindtap='deleteGoods'></icon>
       </view>
       <view class='activity-image'>

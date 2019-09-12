@@ -35,11 +35,6 @@ export function getShopInfo(shopId) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch/${shopId}`);
 }
 
-// 获取首页一级分类标题、图片
-export function getSortList() {
-  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one`);
-}
-
 // 用户兑换券
 export function codeSubmit(code) {
   return wxRequest.wxPromise("POST", `${BaseUrl}/activity/use_activation_code`,{
@@ -62,6 +57,11 @@ export function getCouponsList(money) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/order/coupons_list`, {
     order_money: money,
   });
+}
+
+// 运费信息
+export function getshippingCharge() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch/postfee`);
 }
 
 // function login(code) {

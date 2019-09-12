@@ -1,5 +1,6 @@
 var GoodsService = require('../../utils/services/GoodsService.js');
 var CartService = require('../../utils/services/CartService.js');
+var UserService = require('../../utils/services/UseService.js');
 
 Page({
   data: {
@@ -12,7 +13,56 @@ Page({
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
-    
+    subbranchArea: '', // 配送地址
+    shipping: 0, // 免配送费条件
+
+  },
+  getUser() {
+    UserService.getUser()
+      .then((res) => {
+        const shopId = res.data.data.current_subbranch_id;
+        this.getShopInfo(shopId);
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
+  getShopInfo(shopId) {
+    UserService.getShopInfo(shopId)
+      .then((res) => {
+        this.setData({
+          subbranchArea: res.data.data.subbranch_area,
+        })
+        console.log(this.data.subbranchArea,'subbranchArea')
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
+  getshippingCharge() {
+    UserService.getshippingCharge()
+      .then((res) => {
+        this.setData({
+          shipping: +res.data.data.start_price,
+        })
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
   },
 
   toggle(e) {
@@ -182,6 +232,8 @@ Page({
     })
     this.data.spuId = option.goodId;
     this.getCollectStatus();
+    this.getUser();
+    this.getshippingCharge();
   },
 
   //图片滑动事件
