@@ -690,8 +690,8 @@ Page({
     if (option.status) {
       this.data.status = option.status;
     }
-    if (options.ifEvaluate) {
-      this.data.ifEvaluate = options.ifEvaluate;
+    if (option.ifEvaluate) {
+      this.data.ifEvaluate = option.ifEvaluate;
     }
     // var that = this;
     //  高度自适应

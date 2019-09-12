@@ -11,7 +11,11 @@ Page({
     orderNo: '', // 订单号
     orderList: [], // 订单商品信息
     refundList: [], // 订单退款商品信息
+
+    tempFilePaths: [],
+    imgList: [],
   },
+  
   // 监听字数
   bindTextAreaChange: function(e) {
     var that = this
@@ -26,6 +30,7 @@ Page({
   },
 
   onLoad(option) {
+    this.data.tempFilePaths = [];
     this.data.orderNo = option.orderNo;
     this.getOrderDetail();
   },
@@ -112,6 +117,7 @@ Page({
       good_star: this.data.goodStar,
       content: this.data.info,
       items: goodsValue,
+      img_urls: this.data.imgList,
     };
 
     OrderService.rateOrder(this.data.orderNo, evaluteInfo)
@@ -143,6 +149,114 @@ Page({
           duration: 2000
         })
       });
+  },
+
+  /**
+   * 上传图片方法
+   */
+  upload: function () {
+    let that = this;
+    wx.chooseImage({
+      count: 4, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: res => {
+        wx.showToast({
+          title: '正在上传...',
+          icon: 'loading',
+          mask: true,
+          duration: 1000
+        })
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+
+        that.data.tempFilePaths = that.data.tempFilePaths.concat(res.tempFilePaths);
+        console.log(that.data.tempFilePaths, 'fffff');
+        that.setData({
+          tempFilePaths: that.data.tempFilePaths
+        })
+        /**
+         * 上传完成后把文件上传到服务器
+         */
+        var count = 0;
+        this.data.imgList = [];
+        for (var i = 0, h = that.data.tempFilePaths.length; i < h; i++) {
+          //上传文件
+          wx.uploadFile({
+            url: 'https://upload.caibashi.com/uploads/',
+            filePath: that.data.tempFilePaths[i],
+            name: 'file',
+            header: {
+              "Content-Type": "multipart/form-data"
+            },
+            success: function (res) {
+              if (res.statusCode === 406) {
+                wx.showToast({
+                  title: JSON.parse(res.data).message,
+                  icon: 'loading',
+                  mask: true,
+                  duration: 2000
+                })
+              } else if (res.statusCode === 200) {
+                wx.showToast({
+                  title: '上传成功',
+                  icon: 'loading',
+                  mask: true,
+                  duration: 1000
+                })
+                count++;
+                that.data.imgList.push(JSON.parse(res.data).url);
+                console.log(JSON.parse(res.data).url, 'JSON.parse(res.data).url');
+                
+                console.log(that.data.imgList, 'ggg');
+                //如果是最后一张,则隐藏等待中  
+                if (count == that.data.tempFilePaths.length) {
+                  wx.hideToast();
+                }
+              }
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'loading',
+                mask: true,
+                duration: 3000
+              })
+            }
+          });
+
+        }
+      }
+    })
+  },
+  /**
+   * 预览图片方法
+   */
+  listenerButtonPreviewImage: function (e) {
+    let index = e.target.dataset.index;
+    let that = this;
+    wx.previewImage({
+      current: that.data.tempFilePaths[index],
+      urls: that.data.tempFilePaths,
+      success: function (res) {
+        //console.log(res);
+      },
+      fail: function () {
+        //console.log('fail')
+      }
+    })
+  },
+
+  deleteImage(e) {
+    var that = this;
+    var imgList = that.data.tempFilePaths;
+    var index = e.currentTarget.dataset.index;
+    imgList.splice(index, 1);
+    that.data.imgList.splice(index,1);
+    that.setData({
+      tempFilePaths: imgList,
+    });
+    console.log(index,that.data.tempFilePaths, 'that.data.tempFilePaths')
+    console.log(index,that.data.imgList,'that.data.imgList')
   },
 
 })

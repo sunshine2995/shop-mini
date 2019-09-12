@@ -32,6 +32,20 @@
       </view>
     </view>
   </view>
+  <view class='feedback-image'>
+    <text class='title'>上传截图(选填0~4张)</text>
+  </view>
+  <view class="upload-image">
+    <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
+      <view class='add-delete'>
+        <image class='show-image' src="{{item }}" bindtap="listenerButtonPreviewImage" data-index="{{index}}" />
+        <icon class='iconfont icon-add' data-index='{{index}}' bindtap='deleteImage'></icon>
+      </view>
+    </block>
+    <block wx:if="{{tempFilePaths.length <= 3}}">
+      <image class='add-image' src='https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png' bindtap="upload"></image>
+    </block>
+  </view>
   <view class="good-evaluate">
     <view class="good-content" wx:for="{{orderList}}" wx:key='index'>
       <view class="good-image">

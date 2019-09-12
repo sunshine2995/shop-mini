@@ -63,6 +63,44 @@
   background: #5bc2c6;
   color: #fff;
 }
+
+.feedback-image {
+  padding: 20rpx;
+  margin: 50rpx 30rpx 0;
+  box-sizing: border-box;
+}
+.feedback-image, .feedback-contact {
+  border-top: 1rpx solid #ebebeb;
+}
+.upload-image {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0 30rpx 50rpx;
+  padding: 50rpx 0;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #ebebeb;
+}
+.add-image, .show-image {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 10rpx;
+}
+.add-delete {
+  position: relative;
+}
+.icon-add {
+  position: absolute;
+  top: -26rpx;
+  right: 0;
+  border-radius: 50%;
+  color: #fe3059;
+  font-size: 55rpx;
+  line-height: 1;
+  transform:rotate(45deg);
+}
+
 .good-content {
   display: flex;
   align-items: center;
