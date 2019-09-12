@@ -42,6 +42,7 @@ App({
     deliveryEnd: '',
     chooseGiftId: 0,
     chooseAddress: 0,
+    sortOneId: 0,
   },
   // 登录
   login() {

@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/user/user",
-    "pages/order/detail/detail",
     "pages/home/home",
+    "pages/sort/sort",
+    "pages/cart/cart",
+    "pages/order/detail/detail",
     "pages/order/submit/submit",
     "pages/goodsDetail/goodsDetail",
-    "pages/cart/cart",
     "pages/index/index",
     "pages/welcome/welcome",
     "pages/goodsDescription/goodsDescription",
@@ -30,7 +31,6 @@
     "pages/userCenter/balance/balance",
     "pages/goodsSearch/goodsSearch",
     "pages/userCenter/historyBill/historyBill",
-    "pages/sortEmpty/sortEp",
     "pages/userCenter/collection/collection",
     "pages/address/add/address",
     "pages/address/list/list",
@@ -58,7 +58,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/sortEmpty/sortEp",
+        "pagePath": "pages/sort/sort",
         "text": "分类"
       },
       {

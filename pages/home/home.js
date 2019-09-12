@@ -55,6 +55,19 @@ Page({
     })
   },
 
+  goToSort(e) {
+    app.globalData.sortOneId = e.currentTarget.dataset.oneId;
+    wx.switchTab({
+      url: '/pages/sort/sort',
+    })
+  },
+
+  toSort() {
+    wx.switchTab({
+      url: '/pages/sort/sort',
+    })
+  },
+
   // 活动页跳转页面
   bindViewTap: function(event) {
     const url = event.currentTarget.dataset.url;

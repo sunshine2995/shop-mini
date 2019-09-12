@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "price-component": "/components/price-component/price-component"
+  },
+  "navigationBarBackgroundColor": "#f4f4f3"
+}
