@@ -25,11 +25,14 @@
       <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
         <view class="gift-content">
           <radio-group class="radio-group" bindchange="radioChange">
-            <label class="radio" wx:for="{{giftList}}" wx:key='this'>
-              <image class="goods-image" src='{{item.image_url}}' mode="widthFix"></image>
-              <text>{{item.name}}</text>
-              <radio value="{{item.id}}" checked="{{item.checked}}" />
-            </label>
+            <view class="gift-list" wx:for="{{giftList}}" wx:key='this'>
+              <label class="radio">
+                <image class="goods-image" src='{{item.image_url}}' wx:if='{{item.image_url}}'></image>
+                <image class="goods-image" src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.png' wx:else></image>
+                <text>{{item.name}}</text>
+                <radio value="{{item.id}}" checked="{{item.checked}}" />
+              </label>
+            </view>
           </radio-group>
         </view>
       </scroll-view>
