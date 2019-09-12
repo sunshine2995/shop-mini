@@ -44,7 +44,8 @@
         <icon class='iconfont icon-delete' bindtap='deleteGoods'></icon>
       </view>
       <view class='activity-image'>
-        <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
+        <image class='activity-img' wx:if='{{!userInfo.is_new_user}}' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
+        <image class='activity-img' wx:else src='https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png' mode='widthFix'></image>
       </view>
       <view class='main'>
         <view class="gift-goods-content" wx:if="{{showGiftButton}}">
@@ -63,7 +64,7 @@
               <text class='shop-name'>{{giftData.name}}</text>
               <view class='shop-detail-bottom'>
                 <view class='shop-price'>
-                  <price-component price="0" unit="{{giftData.unit_name}}" text-color="text-color"></price-component>
+                  <price-component price="0" unit="{{giftData.sell_unit_name}}" text-color="text-color"></price-component>
                 </view>
                 <view class='num-change'>
                   <text class='gift-num'>{{ giftData.per_number }}{{ giftData.unit_name }}</text>

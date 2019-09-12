@@ -20,7 +20,7 @@
       </view>
       <view class='gift_detail'>
         <text class='gift-name'>{{satisfy.name}}</text>
-        <text class='gift-type'>{{ satisfy.per_number }}{{ satisfy.unit_name }}/份</text>
+        <text class='gift-type'>{{ satisfy.per_number }}{{ satisfy.unit_name }}/{{satisfy.sell_unit_name}}</text>
         <text class='gift-type'>{{ filter.formatData(satisfy.valid_time) }}前有效</text>
       </view>
     </view>
@@ -38,7 +38,7 @@
       </view>
       <view class='gift_detail'>
         <text class='gift-name'>{{dissatisfy.name}}</text>
-        <text class='gift-type'>{{ dissatisfy.per_number }}{{ dissatisfy.unit_name }}/份</text>
+        <text class='gift-type'>{{ dissatisfy.per_number }}{{ dissatisfy.unit_name }}/{{dissatisfy.sell_unit_name}}</text>
         <text class='gift-type'>{{ filter.formatData(dissatisfy.valid_time) }}前有效</text>
       </view>
     </view>

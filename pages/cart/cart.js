@@ -1,6 +1,7 @@
 // pages/cart/cart.js
 var CartService = require('../../utils/services/CartService.js')
 var GiftService = require('../../utils/services/GiftService.js')
+var UserService = require('../../utils/services/UseService.js');
 const app = getApp()
 
 Page({
@@ -32,6 +33,7 @@ Page({
     showGiftButton: false, // 是否显示赠礼按钮
     giftTip: '', // 赠礼提示
     giftData: {}, // 已选择赠礼信息
+    userInfo: {}, // 用户信息
     chooseGiftId: 0, // 已选择赠礼Id
   },
 
@@ -71,6 +73,22 @@ Page({
     wx.navigateTo({
       url: `/pages/activity/chooseGift/chooseGift?money=${this.data.finallyMoney}`,
     })
+  },
+
+  getUser() {
+    UserService.getUser()
+      .then((res) => {
+        this.setData({
+          userInfo: res.data.data,
+        })
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
   },
 
   //点击全选  
@@ -510,7 +528,6 @@ Page({
               })
             })
           }
-          console.log(this.data.validCarts, 'res');
           var selarr = this.data.selarr;
           for (let i = 0, len = this.data.validCarts.length; i < len; i++) { //这里是对选中的商品的价格进行总结    
             if (this.data.validCarts[i].check) {
