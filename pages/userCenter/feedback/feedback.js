@@ -89,7 +89,6 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
 
         that.data.tempFilePaths = res.tempFilePaths.concat(that.data.tempFilePaths);
-        console.log(that.data.tempFilePaths, 'fffff');
         that.setData({
           tempFilePaths: that.data.tempFilePaths
         })
@@ -107,39 +106,51 @@ Page({
               "Content-Type": "multipart/form-data"
             },
             success: function(res) {
-              count++;
-              that.data.imgList.push(JSON.parse(res.data).url);
-              console.log(that.data.imgList, JSON.parse(res.data).url, 'JSON.parse(res.data).url');
-              const list = {
-                img_url1: '',
-                img_url2: '',
-                img_url3: '',
-                img_url4: '',
-              };
-              for (let i = 0; i < that.data.imgList.length; i++) {
-                const index = i + 1;
-                const key = `img_url${index}`;
-                list[key] = that.data.imgList[i];
-              }
+              if (res.statusCode === 406) {
+                wx.showToast({
+                  title: JSON.parse(res.data).message,
+                  icon: 'loading',
+                  mask: true,
+                  duration: 2000
+                })
+              } else if (res.statusCode === 200) {
+                wx.showToast({
+                  title: '上传成功',
+                  icon: 'loading',
+                  mask: true,
+                  duration: 2000
+                })
+                count++;
+                that.data.imgList.push(JSON.parse(res.data).url);
+                const list = {
+                  img_url1: '',
+                  img_url2: '',
+                  img_url3: '',
+                  img_url4: '',
+                };
+                for (let i = 0; i < that.data.imgList.length; i++) {
+                  const index = i + 1;
+                  const key = `img_url${index}`;
+                  list[key] = that.data.imgList[i];
+                }
 
-              that.data.feedback = Object.assign({}, list, {
-                content: that.data.feedback.content,
-                contact: that.data.feedback.contact
-              });
+                that.data.feedback = Object.assign({}, list, {
+                  content: that.data.feedback.content,
+                  contact: that.data.feedback.contact
+                });
 
-              console.log(that.data.imgList, that.data.feedback, 'ggg');
-              //如果是最后一张,则隐藏等待中  
-              if (count == that.data.tempFilePaths.length) {
-                wx.hideToast();
+                //如果是最后一张,则隐藏等待中  
+                if (count == that.data.tempFilePaths.length) {
+                  wx.hideToast();
+                }
               }
             },
             fail: function(res) {
-              wx.hideToast();
-              wx.showModal({
-                title: '错误提示',
-                content: '上传图片失败',
-                showCancel: false,
-                success: function(res) {}
+              wx.showToast({
+                title: '上传失败',
+                icon: 'loading',
+                mask: true,
+                duration: 3000
               })
             }
           });

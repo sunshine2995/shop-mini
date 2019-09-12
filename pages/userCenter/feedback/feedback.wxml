@@ -7,7 +7,7 @@
     </view>
   </view>
   <view class='feedback-image'>
-    <text class='title'>上传截图(选填1~4张)</text>
+    <text class='title'>上传截图(选填0~4张)</text>
   </view>
   <view class="upload-image">
     <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
