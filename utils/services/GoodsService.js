@@ -47,3 +47,15 @@ export function getHotSearch() {
 export function getRecommended() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/recommended`);
 }
+
+// 一级分类标题
+export function getOneCategory() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one`);
+}
+
+// 某一级分类下的二级分类
+export function getAllGoods(OneId) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one/new/goods?category_one_id=${OneId}`);
+}
+
+
