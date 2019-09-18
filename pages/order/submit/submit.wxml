@@ -53,7 +53,7 @@
   </block>
   <view class="order-content" wx:else>
     <view class="get-by-self">
-      <view class="goMap">
+      <view class="goMap" bindtap="getMapPosition">
         <view class="shop-index">
           <icon class="iconfont icon-store"></icon>
           <text>{{ shopInfo.name }}</text>

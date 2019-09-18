@@ -117,6 +117,15 @@ Page({
     })
   },
 
+  getMapPosition() {
+    const latitude = +this.data.shopInfo.latitude;
+    const longitude = +this.data.shopInfo.longitude;
+    wx.openLocation({
+      latitude,
+      longitude,
+      scale: 18
+    })
+  },
 
   todoShow() {
     if (!this.data.showWait) {
