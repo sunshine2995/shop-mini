@@ -1,0 +1,31 @@
+/* pages/userCenter/profile/profile.wxss */
+.profileContainer {
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.title {
+  text-align: center;
+  font-size: 45rpx;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+.caption {
+  display: inline-block;
+  font-size: 30rpx;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+.content {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #666;
+  padding: 0 0 10rpx; 
+  box-sizing: border-box;
+}
+.caption text {
+  display: inline-block;
+}
+.caption text:nth-child(1) {
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
