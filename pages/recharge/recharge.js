@@ -1,6 +1,7 @@
 var app = getApp();
 var OrderService = require('../../utils/services/OrderService.js')
 var GiftService = require('../../utils/services/GiftService.js')
+var UserService = require('../../utils/services/UseService.js')
 
 Page({
   data: {
@@ -9,17 +10,58 @@ Page({
     scrollLeft: 0, //tab标题的滚动条位置
     rechargeImg: [], //充值图片
     isShowCurtain: false, // 遮罩层
-    paymentType: 1,  // 支付方式
+    paymentType: 1, // 支付方式
     totalAmount: 0, // 充值金额
     rechargeTypeId: 4, //充值金额的Id
     giftId: 0, // 赠礼Id
     giftList: [], // 赠礼列表
+    isShowCurtain: false, // 遮罩层
+    isShowMobile: false, // 是否展示绑定手机号的遮罩
+    phoneNum: '', // 用户手机号
 
+  },
+
+  getTipMobile() {
+    this.setData({
+      isShowCurtain: true,
+      isShowMobile: true,
+    });
+  },
+
+  getExplain() {
+    this.setData({
+      isShowCurtain: true,
+      isShowMobile: false,
+    });
+  },
+
+  bindPhone() {
+    this.getUser();
+    this.setData({
+      isShowCurtain: false,
+      isShowMobile: false,
+    });
+  },
+
+  getUser() {
+    UserService.getUser()
+      .then((res) => {
+        this.setData({
+          phoneNum: res.data.data.phone,
+        })
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
   },
 
   // 更换赠礼
   radioChange(e) {
-    console.log(e,'---e');
+    console.log(e, '---e');
   },
 
   checkboxChange(e) {
@@ -29,13 +71,13 @@ Page({
   getRechargeGift() {
     GiftService.getRechargeGift(this.data.rechargeTypeId)
       .then((res) => {
-        this.data.giftList= res.data.data;
+        this.data.giftList = res.data.data;
         if (this.data.giftList.length) {
           this.data.giftId = this.data.giftList[0].id;
         } else {
           this.data.giftId = 0;
         }
-        this.data.giftList.forEach((item,index) => {
+        this.data.giftList.forEach((item, index) => {
           if (index === 0) {
             item.checked = true;
           } else {
@@ -56,7 +98,12 @@ Page({
   },
 
   submitRechargeOrder() {
-    if (!this.data.paymentType) {
+    if (!this.data.phoneNum) {
+      this.setData({
+        isShowCurtain: true,
+        isShowMobile: true,
+      });
+    } else if (!this.data.paymentType) {
       wx.showToast({
         title: '未勾选支付方式',
         icon: 'none',
@@ -89,13 +136,13 @@ Page({
           'package': data.package,
           'signType': data.signType,
           'paySign': data.paySign,
-          'success': function (res) {
+          'success': function(res) {
             wx.switchTab({
               url: '/pages/user/user',
             })
           },
-          'fail': function (res) {},
-          'complete': function (res) { }
+          'fail': function(res) {},
+          'complete': function(res) {}
         })
       })
       .catch((error) => {
@@ -111,13 +158,18 @@ Page({
   getRechargeList() {
     OrderService.getRechargeList()
       .then((res) => {
-        console.log(this.data.rechargeTypeId,'rechargeTypeId')
-        res.data.data.forEach((item,index) => {
+        console.log(this.data.rechargeTypeId, 'rechargeTypeId')
+        res.data.data.forEach((item, index) => {
           if (+item.id === +this.data.rechargeTypeId) {
             this.data.currentTab = index;
             this.data.totalAmount = item.recharge_amount;
           }
-          this.data.rechargeImg.push({ img: item.img_url, name: item.name, id: item.id, money: item.recharge_amount })
+          this.data.rechargeImg.push({
+            img: item.img_url,
+            name: item.name,
+            id: item.id,
+            money: item.recharge_amount
+          })
         })
         this.setData({
           rechargeImg: this.data.rechargeImg,
@@ -176,18 +228,12 @@ Page({
     });
   },
 
-  showCurtain() {
-    this.data.isShowCurtain = true;
-    this.setData({
-      isShowCurtain: this.data.isShowCurtain,
-    });
-  },
-
   onLoad(option) {
     var that = this;
     if (+option.rechargeId) {
       that.data.rechargeTypeId = +option.rechargeId;
     }
+    that.getUser();
     that.getRechargeGift();
     that.getRechargeList();
     //  高度自适应

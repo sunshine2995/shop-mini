@@ -1,7 +1,15 @@
 <!--pages/cart/cart.wxml-->
 <wxs module="filter" src="../../filter.wxs"></wxs>
 
-<view class='CartContainer'>
+<view class="CartContainer {{!phoneNum?'tip':''}}">
+  <Curtain isShowCurtain="{{isShowCurtain}}" />
+  <view class='mobile-container' wx:if='{{isShowCurtain}}'>
+    <bind bind:bindPhone='bindPhone' bind:hideCurtain='hideCurtain'></bind>
+  </view>
+  <view class="tip-mobile" wx:if='{{!phoneNum}}' bindtap="showCurtain">
+    <icon class="iconfont icon-warn"></icon>
+    <text>未绑定手机号码的提示</text>
+  </view>
   <view class='cart-empty' wx:if="{{!validCarts.length&& !invalidCarts.length}}">
     <view class='activity-image'>
       <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>

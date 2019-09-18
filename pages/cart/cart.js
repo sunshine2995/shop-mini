@@ -36,6 +36,27 @@ Page({
     userInfo: {}, // 用户信息
     chooseGiftId: 0, // 已选择赠礼Id
     shipping: 0, // 免配送费条件
+    isShowCurtain: false, // 遮罩层
+    phoneNum: '', // 用户手机号
+  },
+
+  hideCurtain() {
+    this.setData({
+      isShowCurtain: false,
+    });
+  },
+
+  showCurtain() {
+    this.setData({
+      isShowCurtain: true,
+    });
+  },
+
+  bindPhone() {
+    this.getUser();
+    this.setData({
+      isShowCurtain: false,
+    });
   },
 
   goToDetail(e) {
@@ -56,6 +77,10 @@ Page({
       wx.showToast({
         title: '未选择商品呢',
         icon: 'none',
+      })
+    } else if (!this.data.phoneNum) {
+      this.setData({
+        isShowCurtain: true,
       })
     } else {
       wx.navigateTo({
@@ -98,6 +123,7 @@ Page({
       .then((res) => {
         this.setData({
           userInfo: res.data.data,
+          phoneNum: res.data.data.phone,
         })
       })
       .catch((error) => {
@@ -521,7 +547,7 @@ Page({
             validCarts: this.data.validCarts,
             invalidCarts: this.data.invalidCarts,
           });
-          console.log(this.data.validCarts,'this.data.validCarts')
+          console.log(this.data.validCarts, 'this.data.validCarts')
           this.getLikeList();
         } else {
           console.log(this.data.validCarts.length, 'res.data.data.valid_carts.length', this.data.invalidCarts.length, 'res.data.data.invalid_carts.length');
@@ -641,5 +667,5 @@ Page({
     if (this.data.chooseGiftId !== 0) {
       this.showCartGift();
     }
-  }, 
+  },
 })

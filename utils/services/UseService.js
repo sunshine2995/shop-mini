@@ -37,7 +37,7 @@ export function getShopInfo(shopId) {
 
 // 用户兑换券
 export function codeSubmit(code) {
-  return wxRequest.wxPromise("POST", `${BaseUrl}/activity/use_activation_code`,{
+  return wxRequest.wxPromise("POST", `${BaseUrl}/activity/use_activation_code`, {
     code,
   });
 }
@@ -62,6 +62,21 @@ export function getCouponsList(money) {
 // 运费信息
 export function getshippingCharge() {
   return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch/postfee`);
+}
+
+// 获取验证码
+export function sendBindCode(phone) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/user/send_bind_code`, {
+    phone,
+  });
+}
+
+// 绑定手机号
+export function bindPhone(phone, code) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/user/bind`, {
+    phone,
+    code,
+  });
 }
 
 // function login(code) {

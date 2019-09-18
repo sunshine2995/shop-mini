@@ -39,7 +39,8 @@
     "pages/recharge/recharge",
     "pages/order/list/list",
     "pages/order/coupon/coupon",
-    "pages/userCenter/myGift/myGift"
+    "pages/userCenter/myGift/myGift",
+    "pages/userCenter/profile/profile"
   ],
   "window": {
     "backgroundTextStyle": "light",

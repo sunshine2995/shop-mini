@@ -7,6 +7,26 @@ Page({
   data: {
     rechargeImg: [], //充值图片
     statusNumList: {}, // 不同状态订单数量
+    isShowCurtain: false, // 遮罩层
+  },
+
+  hideCurtain() {
+    this.setData({
+      isShowCurtain: false,
+    });
+  },
+
+  showCurtain() {
+    this.setData({
+      isShowCurtain: true,
+    });
+  },
+
+  bindPhone() {
+    this.getUserInfo();
+    this.setData({
+      isShowCurtain: false,
+    });
   },
 
   onShow: function() {
@@ -120,5 +140,5 @@ Page({
           duration: 2000
         })
       });
-  }
+  },
 })

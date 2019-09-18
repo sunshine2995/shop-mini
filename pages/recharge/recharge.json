@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "Curtain": "/components/Curtain/Curtain"
+    "Curtain": "/components/Curtain/Curtain",
+    "bind": "/components/bind/bind"
   },
   "navigationBarTitleText": "充值中心"
 }

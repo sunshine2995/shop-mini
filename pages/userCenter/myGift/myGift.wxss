@@ -6,6 +6,7 @@
   padding-top: 1rpx;
   box-sizing: border-box;
 }
+
 .invalid-gift {
   margin: 20rpx 20rpx 0;
 }
@@ -23,6 +24,7 @@
   width: 160rpx;
   margin: 0 20rpx;
 }
+
 .activity_name {
   text-align: center;
   font-size: 28rpx;
@@ -54,9 +56,16 @@
   color: #666;
   line-height: 50rpx;
 }
+
 .gift-desc {
   display: block;
   font-size: 30rpx;
   color: #999;
   line-height: 50rpx;
+}
+
+.empty {
+  color: #666;
+  padding: 150rpx 0;
+  text-align: center;
 }

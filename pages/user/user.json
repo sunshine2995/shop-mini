@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "Curtain": "/components/Curtain/Curtain",
+    "bind": "/components/bind/bind"
+  }
+}

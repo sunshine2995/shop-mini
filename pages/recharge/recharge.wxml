@@ -1,7 +1,14 @@
 <!--pages/recharge/recharge.wxml-->
-<view class="RechargeContainer">
+<view class="RechargeContainer {{!phoneNum?'tip':''}}">
   <Curtain isShowCurtain="{{isShowCurtain}}" />
-  <view class='curtain-explain' wx:if='{{isShowCurtain}}'>
+  <view class='mobile-container' wx:if='{{isShowCurtain && isShowMobile}}'>
+    <bind bind:bindPhone='bindPhone' bind:hideCurtain='hideCurtain'></bind>
+  </view>
+  <view class="tip-mobile" wx:if='{{!phoneNum}}' bindtap="getTipMobile">
+    <icon class="iconfont icon-warn"></icon>
+    <text>为了您的账户安全需要绑定手机号</text>
+  </view>
+  <view class='curtain-explain' wx:if='{{isShowCurtain && !isShowMobile}}'>
     <text class='explain-title'>余额说明</text>
     <text class='explain-text'>1、储值余额暂不支持提现;</text>
     <text class='explain-text'>2、储值余额在个人中心-余额-查看;</text>
@@ -40,7 +47,7 @@
   </view>
   <view class="pay-type">
     <text>支付方式</text>
-    <view class="explain-container" bindtap='showCurtain'>
+    <view class="explain-container" bindtap='getExplain'>
       <text>充值说明</text>
       <icon class="iconfont icon-help-desc"></icon>
     </view>

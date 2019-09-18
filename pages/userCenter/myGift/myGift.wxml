@@ -12,11 +12,12 @@
       </view>
       <view class='gift_detail'>
         <text class='gift-name'>{{gift.name}}</text>
-        <text class='gift-type'>{{ gift.per_number }}{{ gift.unit_name }}/份</text>
+        <text class='gift-type'>{{ gift.per_number }}{{ gift.unit_name }}/{{gift.sell_unit_name}}</text>
         <text class='gift-type'>共{{ gift.total_number }}{{ gift.unit_name }}，剩余{{ gift.gifts_remain_amount }}{{ gift.unit_name }}</text>
         <text class='gift-type'>{{ filter.formatData(gift.expiration_time) }}前有效</text>
         <text class='gift-desc'>{{gift.rule_desc}}</text>
       </view>
     </view>
   </view>
+  <view class="empty">暂无赠礼~</view>
 </view>

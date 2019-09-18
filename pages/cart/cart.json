@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "price-component": "/components/price-component/price-component",
-    "discountTitle": "/components/discountTitle/discountTitle"
+    "discountTitle": "/components/discountTitle/discountTitle",
+    "Curtain": "/components/Curtain/Curtain",
+    "bind": "/components/bind/bind"
   }
 }

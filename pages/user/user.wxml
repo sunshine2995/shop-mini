@@ -1,4 +1,9 @@
 <view class='userContainer'>
+
+  <Curtain isShowCurtain="{{isShowCurtain}}" />
+  <view class='mobile-container' wx:if='{{isShowCurtain}}'>
+    <bind bind:bindPhone='bindPhone' bind:hideCurtain='hideCurtain'></bind>
+  </view>
   <view class='user-content'>
     <view class='user-detail'>
       <view class='user-avatarUrl'>
@@ -6,16 +11,21 @@
       </view>
       <view class='user-info'>
         <text class='user-name'>{{userInfo.nickname}}</text>
-        <text class='user-phone'>{{userInfo.phone}}</text>
+        <text class='user-phone' wx:if='{{userInfo.phone}}'>{{userInfo.phone}}</text>
+        <text class='user-phone' wx:else bindtap="showCurtain">去绑定手机号</text>
       </view>
     </view>
     <view class="activity-swiper">
       <swiper vertical="{{false}}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
         <swiper-item>
-          <image class="invite-image" src='https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png'></image>
+          <navigator url="/pages/activity/share/share" hover-class="none">
+            <image class="invite-image" src='https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png'></image>
+          </navigator>
         </swiper-item>
         <swiper-item>
-          <image class="invite-image" src='https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png'></image>
+          <navigator url="/pages/activity/invite/invite" hover-class="none">
+            <image class="invite-image" src='https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png'></image>
+          </navigator>
         </swiper-item>
       </swiper>
     </view>
@@ -99,18 +109,18 @@
       <text>活动中心</text>
     </view>
     <view class='activity-content'>
-      <view class='activity-type'>
+      <navigator class='activity-type' url="/pages/activity/prepaidGift/prepaidGift" hover-class="none">
         <icon class='iconfont icon-huodong'></icon>
         <text class='activity-type-text'>充值赠礼</text>
-      </view>
-      <view class='activity-type'>
+      </navigator>
+      <navigator url="/pages/activity/share/share" class='activity-type' hover-class="none">
         <icon class='iconfont icon-fenxiang1'></icon>
         <text class='activity-type-text'>分享充值送</text>
-      </view>
-      <view class='activity-type'>
+      </navigator>
+      <navigator url="/pages/activity/invite/invite" class='activity-type' hover-class="none">
         <icon class='iconfont icon-jinlingyingcaiwangtubiao04'></icon>
         <text class='activity-type-text'>邀请有礼</text>
-      </view>
+      </navigator>
     </view>
   </view>
   <view class='service-moudle'>
