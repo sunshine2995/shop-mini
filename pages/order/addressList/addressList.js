@@ -1,4 +1,4 @@
-// pages/address/list/list.js
+// pages/order/addressList/addressList.js
 var AddressService = require('../../../utils/services/AddressService.js');
 var app = getApp();
 
@@ -11,12 +11,11 @@ Page({
 
   },
 
-  onUnload() {
+  addAddress() {
     wx.navigateTo({
-      url: '/pages/user/user',
+      url: '/pages/address/add/address',
     })
   },
-
 
   getAddressList() {
     wx.showLoading({
@@ -44,61 +43,24 @@ Page({
         }, 2000)
       })
   },
-  
 
-  editAddress(e) {
+  chooseAddress(e) {
     const id = e.currentTarget.dataset.addressId;
+    app.globalData.chooseAddress = id;
     wx.navigateTo({
-      url: `/pages/address/edit/address?addressId=${id}`,
+      url: `/pages/order/submit/submit`,
     })
   },
 
-  deleteAddress(e) {
-    console.log(e)
-    const addressId = e.currentTarget.dataset.addressId;
-    AddressService.removeAddress(addressId)
-      .then((res) => {
-        wx.showToast({
-          title: res.data.data.message,
-          icon: 'none',
-          duration: 3000,
-          success: function() {
-            setTimeout(function() {
-              wx.hideToast();
-            }, 2000);
-          }
-        });
-        this.data.validList.forEach((item, index) => {
-          if (+item.id === addressId) {
-            this.data.validList.splice(index, 1);
-          }
-        });
-        this.data.invalidList.forEach((item, index) => {
-          if (+item.id === addressId) {
-            this.data.invalidList.splice(index, 1);
-          }
-        });
-        const totalList = this.data.validList.concat(this.data.invalidList);
-        this.setData({
-          validList: this.data.validList,
-          invalidList: this.data.invalidList,
-          totalList: totalList,
-        })
-      })
-      .catch((error) => {
-        wx.showToast({
-          title: error.data.message,
-          icon: 'none',
-        });
-      })
-  },
-
-  onLoad: function(options) {
-    this.getAddressList();
+  overTip() {
+    wx.showToast({
+      title: '该地址已超出配送范围',
+      icon: 'none',
+    });
   },
 
   onShow: function() {
-    // this.getAddressList();
+    this.getAddressList();
   },
 
   /**

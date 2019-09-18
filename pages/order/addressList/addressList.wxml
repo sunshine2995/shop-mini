@@ -1,4 +1,4 @@
-<!--pages/address/list/list.wxml-->
+<!--pages/order/addressList/addressList.wxml-->
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 
 <view class='AddressListContainer'>
@@ -7,7 +7,7 @@
     <button type='primary' class='go-add'> 添加地址 </button>
   </navigator>
   <block wx:else>
-    <view class='address-content' wx:for='{{validList}}' wx:key="index" wx:for-item="address">
+    <view class='address-content' wx:for='{{validList}}' wx:key="index" wx:for-item="address" data-address-id="{{address.id}}" bindtap="chooseAddress">
       <view class='address-name-phone'>
         <text class='name'>{{address.buyer_name}}</text>
         <text class='phone'>{{address.buyer_phone}}</text>
@@ -16,16 +16,11 @@
       <view class='address'>{{filter.showAddress(address.buyer_province,address.buyer_city,address.buyer_district)}}{{address.buyer_address}}</view>
       <view class='address-type-operation'>
         <view class='address-type'>{{filter.addressType(address.address_type)}}</view>
-        <view class='address-operation'>
-          <icon class='iconfont icon-edit' data-address-id="{{address.id}}" bindtap='editAddress'></icon>
-          <text class='edit' data-address-id="{{address.id}}" bindtap='editAddress'>编辑</text>
-          <icon class='iconfont icon-delete' data-address-id="{{address.id}}" bindtap='deleteAddress'></icon>
-          <text class='delete' data-address-id="{{address.id}}" bindtap='deleteAddress'>删除</text>
-        </view>
       </view>
     </view>
     <view class="invalid-address" wx:if='{{invalidList.length}}'>以下地址超出配送范围</view>
-    <view class='address-content' wx:for='{{invalidList}}' wx:key="index" wx:for-item="address">
+    <view class='address-content invalid-address-content' wx:for='{{invalidList}}' wx:key="index" wx:for-item="address">
+    <view class="mask" bindtap="overTip"></view>
       <view class='address-name-phone'>
         <text class='name'>{{address.buyer_name}}</text>
         <text class='phone'>{{address.buyer_phone}}</text>
@@ -34,16 +29,10 @@
       <view class='address'>{{filter.showAddress(address.buyer_province,address.buyer_city,address.buyer_district)}}{{address.buyer_address}}</view>
       <view class='address-type-operation'>
         <view class='address-type'>{{filter.addressType(address.address_type)}}</view>
-        <view class='address-operation'>
-          <icon class='iconfont icon-edit' data-address-id="{{address.id}}" bindtap='editAddress'></icon>
-          <text class='edit' data-address-id="{{address.id}}" bindtap='editAddress'>编辑</text>
-          <icon class='iconfont icon-delete' data-address-id="{{address.id}}" bindtap='deleteAddress'></icon>
-          <text class='delete' data-address-id="{{address.id}}" bindtap='deleteAddress'>删除</text>
-        </view>
       </view>
     </view>
-    <navigator url='/pages/address/add/address' hover-class='none'>
+    <view bindtap="addAddress">
       <button type='primary' class='go-add-again'> 添加地址 </button>
-    </navigator>
+    </view>
   </block>
 </view>

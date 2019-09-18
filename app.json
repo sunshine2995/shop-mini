@@ -40,6 +40,7 @@
     "pages/order/list/list",
     "pages/order/coupon/coupon",
     "pages/userCenter/myGift/myGift",
+    "pages/order/addressList/addressList",
     "pages/userCenter/profile/profile"
   ],
   "window": {

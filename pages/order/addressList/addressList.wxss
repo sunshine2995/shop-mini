@@ -1,9 +1,11 @@
-/* pages/address/list/list.wxss */
+/* pages/order/addressList/addressList.wxss */
+
 .AddressListContainer {
   background-color: #f4f4f3;
   min-height: 100vh;
   padding: 2rpx 0 20rpx;
 }
+
 .address-list-empty {
   text-align: center;
   font-size: 28rpx;
@@ -16,16 +18,19 @@
   width: 60%;
   margin: 20rpx auto;
 }
+
 .go-add-again {
   width: 88%;
   margin: 50rpx auto;
 }
+
 .address-content {
   background-color: #fff;
   padding: 20rpx;
   box-sizing: border-box;
   margin-top: 20rpx;
 }
+
 .invalid-address {
   font-size: 32rpx;
   color: #666;
@@ -35,28 +40,49 @@
   border-top: 1px solid #ebebeb;
 }
 
+.invalid-address-content {
+  position: relative;
+}
+.invalid-address-content .address-name-phone {
+  color: #666;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  z-index: 20;
+}
+
 .address-name-phone, .address-type-operation, .address-operation {
   display: flex;
 }
+
 .name, .phone {
   font-size: 30rpx;
   padding-right: 20rpx;
   box-sizing: border-box;
 }
+
 .default {
   font-size: 26rpx;
   line-height: 1;
-  color: #11A24A;
-  border: 1px solid #11A24A;
+  color: #11a24a;
+  border: 1px solid #11a24a;
   border-radius: 30rpx;
   padding: 5rpx 10rpx;
   box-sizing: border-box;
 }
+
 .address {
   font-size: 28rpx;
   color: #999;
   margin: 5rpx 0;
 }
+
 .address-type {
   width: fit-content;
   font-size: 26rpx;
@@ -67,19 +93,25 @@
   padding: 3rpx 10rpx;
   box-sizing: border-box;
 }
+
 .address-type-operation {
   align-items: flex-end;
   justify-content: space-between;
   border-top: 1px solid #ebebeb;
   margin-top: 20rpx;
+  padding: 10rpx 0;
+  box-sizing: border-box;
 }
+
 .address-operation {
   align-items: flex-end;
 }
+
 .edit, .delete {
   font-size: 26rpx;
   color: #999;
 }
+
 .icon-edit, .icon-delete {
   color: #999;
   line-height: 1;

@@ -150,6 +150,8 @@ swiper {
   flex-direction: row;
   padding: 0 10rpx;
   box-sizing: border-box;
+  margin: 20rpx 0;
+  border-bottom: 1px solid #f4f4f3;
 }
 
 .marketing-goods-image {
@@ -186,6 +188,14 @@ swiper {
   color: #999;
 }
 
+.marketing-standard {
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f4f4f3;
+}
+.marketing-standard:last-child {
+  border-bottom: none;
+}
 .marketing-different-price {
   display: flex;
   flex-direction: row;

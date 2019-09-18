@@ -271,8 +271,8 @@ Page({
           wx.showToast({
             title: res.data.message,
           });
-          wx.redirectTo({
-            url: '/pages/address/list/list',
+          wx.navigateBack({
+            delta: 1
           })
         })
         .catch((error) => {
