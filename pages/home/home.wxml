@@ -1,8 +1,8 @@
 <view class="container">
   <view class="home-nav">
-    <view class="logo-image">
+    <navigator url="/pages/shopList/shopList" class="logo-image" hover-class="none">
       <image class="caibashi-logo" src="/images/home/home_title.png"></image>
-    </view>
+    </navigator>
     <navigator url="/pages/userCenter/customerService/customerService" class='help-service' hover-class="none">
       <icon class="iconfont icon-help"></icon>
       <text class='text-help'>客服</text>
@@ -13,7 +13,8 @@
     </navigator>
   </view>
   <view class="advertising">
-    <image class="advertising-image" src='{{customImg}}' data-path="{{customPath}}" bindtap="bindJumpPath"></image>
+      <image class="advertising-image" wx:if='{{customImg}}' src='{{customImg}}' data-path="{{customPath}}" bindtap="bindJumpPath"></image>
+    <image class="advertising-image" wx:else src='https://img.caibashi.com/95fdeffaa683851ac6237f411b8f8fa7.png' bindtap="bindJumpPath"></image>
   </view>
   <view class="sort-nave">
     <block wx:for="{{sortList}}" wx:key="index" wx:for-item="sort">
@@ -36,8 +37,7 @@
       </block>
       <block wx:for="{{inviteImages}}" wx:key="index">
         <swiper-item>
-          <!-- <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}" bindtap="bindViewTap"></image> -->
-          <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}" mode='widthFix'></image>
+          <image class="invite-image" src='{{item.img}}' data-url="{{item.url}}" bindtap="bindViewTap" mode='widthFix'></image>
         </swiper-item>
       </block>
     </swiper>

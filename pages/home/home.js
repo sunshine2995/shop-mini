@@ -77,19 +77,29 @@ Page({
   },
 
   bindJumpPath: function(event) {
-    const path = `/pages${event.currentTarget.dataset.path}${event.currentTarget.dataset.path}`;
-    wx.navigateTo({
-      url: path,
-    })
+    let path;
+    if (event.currentTarget.dataset.path) {
+      path = event.currentTarget.dataset.path;
+      console.log(event, path)
+      if (path === '/pages/home/home' || path === '/pages/cart/cart' || path === '/pages/sort/sort' || path === '/pages/user/user') {
+        wx.switchTab({
+          url: path,
+        })
+      } else {
+        wx.navigateTo({
+          url: path,
+        })
+      }
+    }
   },
 
   onShow: function() {
     var inviteImages = [{
       img: "https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png",
-      url: '/pages/activity/newUser/newUser',
+      url: '/pages/activity/share/share',
     }, {
       img: "https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png",
-        url: '/pages/activity/newUser/newUser',
+      url: '/pages/activity/invite/invite',
     }]
 
     var images = [{
@@ -97,7 +107,7 @@ Page({
       url: '/pages/activity/newUser/newUser',
     }, {
       img: "https://img.caibashi.com/0f276789b03f793bdf076d3d49e474e3.png",
-      url: '/pages/activity/newUser/newUser',
+      url: '/pages/activity/rechargeGift/rechargeGift',
     }]
 
     this.setData({
@@ -218,8 +228,7 @@ Page({
                 })
               });
           },
-          fail(res) {
-          }
+          fail(res) {}
         })
       } else {
         this.addCart();
@@ -277,8 +286,21 @@ Page({
     UserService.getCustom()
       .then((res) => {
         wx.hideLoading();
+        const imgData = res.data.data;
+        const imgList = [];
         var customImg = res.data.data.phone_index_image;
         var customPath = res.data.data.index_redirect_url;
+        imgData.forEach((item) => {
+          if (item.module_name === '首页') {
+            imgList.push({ img_url: item.img_url, mini_turn_url: item.mini_turn_url });
+          }
+        });
+        if (imgList.length) {
+          customPath = imgList[0].mini_turn_url;
+          customImg = imgList[0].img_url;
+        }
+        console.log(customPath, customPath)
+
         this.setData({
           customImg: customImg,
           customPath: customPath,
