@@ -42,10 +42,39 @@
       </block>
     </swiper>
   </view>
-  <navigator url='/pages/goodsDiscount/goodsDiscount' hover-class="none" class='discount'>
+  <navigator url='/pages/goodsDiscount/goodsDiscount' hover-class="none" class='discount' wx:if='{{shopInfo.is_discount_display}}'>
     <image class="discount-image" src='https://img.caibashi.com/1111ab48a0fe1d35ef702cf3159e6ca7.png'></image>
   </navigator>
 
+  <view class="sort-expand-container" wx:if='{{NewUserGoods.length > 0}}'>
+    <image class="low-image" src='https://img.caibashi.com/130440aa614621daa11ec3b8fa582713.png' mode="widthFix"></image>
+    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+      <view class="sort-expand-content">
+        <block wx:for="{{NewUserGoods}}" wx:key="index" wx:for-item="goodSpu">
+          <view class="sort-expand-detail" data-good-id='{{goodSpu.id}}' bindtap='goDetail'>
+            <image class="sort-expand-goods-image" src="{{goodSpu.thumbnail_url}}" wx:if='{{goodSpu.thumbnail_url}}'></image>
+            <image class="sort-expand-goods-image" src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg" wx:else></image>
+            <text class="special-goods-name">{{goodSpu.name}}</text>
+            <text class="special-goods-standard">{{goodSpu.sku.name}}</text>
+            <view class="special-goods-limit">
+              <text>限购一份</text>
+            </view>
+            <view class="special-goods-price">
+              <price-component price="{{goodSpu.sku.sell_price}}" unit="{{goodSpu.sku.goods_sku_sell_unit_name}}" text-color='text-color ' custom-template='custom-template '></price-component>
+              <view class='add-cart-num'>
+                <icon class="iconfont icon-sort-add" data-good-sku-id='{{goodSpu.sku.id}}' catchtap='getGoodsAttr'></icon>
+                <block wx:for="{{idNewUserSelected}}" wx:key="index" wx:for-item="select">
+                  <text class='cart-num' wx:if='{{goodSpu.sku.id === select.id}}'>{{select.num}}</text>
+                </block>
+              </view>
+              <!-- <icon class="iconfont icon-sort-add"></icon> -->
+            </view>
+            <view class="before-low-price">￥{{ goodSpu.sku.market_price }}</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
   <block wx:for="{{marketingTypeList}}" wx:key="index" wx:for-item="marketingType">
     <view class="marketing-container">
       <image class="marketing-image" src='{{marketingType.img_url}}' mode="widthFix" wx:if='{{marketingType.img_url}}'></image>

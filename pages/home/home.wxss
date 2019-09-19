@@ -283,6 +283,59 @@ swiper {
   box-sizing: border-box;
 }
 
+.low-image {
+  width: 100%;
+}
+
+.special-goods-name {
+  text-align: left;
+  padding: 20rpx 0 20rpx 10rpx;
+  box-sizing: border-box;
+}
+
+.special-goods-standard {
+  text-align: left;
+  font-size: 28rpx;
+  color: #999;
+  padding-left: 10rpx;
+  box-sizing: border-box;
+}
+
+.special-goods-limit {
+  margin: 20rpx 10rpx;
+}
+
+.special-goods-limit text {
+  width: fit-content;
+  text-align: left;
+  font-size: 28rpx;
+  color: #f9374a;
+  line-height: 1;
+  padding: 5rpx 10rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #f9374a;
+  border-radius: 10rpx;
+}
+
+.before-low-price {
+  text-align: left;
+  color: #999;
+  font-size: 28rpx;
+  text-decoration: line-through;
+  padding-left: 10rpx;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+}
+
+.special-goods-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon-sort-add {
+  color: #11a24a;
+}
+
 .sort-expand-container {
   width: 100%;
   padding: 30rpx 20rpx;

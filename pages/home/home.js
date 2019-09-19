@@ -9,13 +9,23 @@ Page({
     UserInfo: [],
     idSelected: [],
     goodSkuId: [],
-
+    NewUserGoods: [], // 新人特价商品
+    idNewUserSelected: [], // 购物车的新人特价商品id
+    NewUserGoodId: [], // 新人特价商品id数组
     // 属性相关
     skuId: 0,
     carts: [], // 购物车信息
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
+    shopInfo: {}, // 店铺信息
+    showShopName: true, // 是否展示店铺名称
+  },
+
+  closeTip() {
+    this.setData({
+      showShopName: false,
+    })
   },
 
   getUser() {
@@ -37,6 +47,30 @@ Page({
     UserService.getShopInfo(app.globalData.userData.current_subbranch_id)
       .then((res) => {
         app.globalData.shopInfo = res.data.data;
+        this.setData({
+          shopInfo: res.data.data,
+        })
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      });
+  },
+
+  getNewUserGoods() {
+    GoodsService.getNewUserGoods()
+      .then((res) => {
+        this.data.NewUserGoods = res.data.data;
+        this.data.NewUserGoodId = [];
+        this.data.NewUserGoods.forEach((item) => {
+          this.data.NewUserGoodId.push(item.sku.id);
+        });
+        this.setData({
+          NewUserGoods: res.data.data,
+        })
       })
       .catch((error) => {
         wx.showToast({
@@ -119,6 +153,7 @@ Page({
     this.getCustom();
     this.getMarketingAlltype();
     this.getCategoryOneAllGoods();
+    this.getNewUserGoods();
   },
 
   getOneCategory() {
@@ -175,6 +210,7 @@ Page({
     CartService.getAllCarts().then((res) => {
       this.data.carts = res.data.data.valid_carts;
       this.data.idSelected = [];
+      this.data.idNewUserSelected = [];
       this.data.carts.forEach((cart) => {
         this.data.goodSkuId.forEach((goodId) => {
           if (+cart.goods_sku_id === +goodId) {
@@ -184,9 +220,18 @@ Page({
             });
           }
         });
+        this.data.NewUserGoodId.forEach((goodId) => {
+          if (+cart.goods_sku_id === +goodId) {
+            this.data.idNewUserSelected.push({
+              id: +cart.goods_sku_id,
+              num: +cart.goods_sku_num,
+            });
+          }
+        });
       });
       this.setData({
         idSelected: this.data.idSelected,
+        idNewUserSelected: this.data.idNewUserSelected,
       });
       this.getCartCount();
     });
@@ -217,6 +262,11 @@ Page({
                 _this.data.idSelected.forEach((item) => {
                   if (+item.id === +_this.data.skuId) {
                     item.num = res.data.data.goods_sku_num;
+                  }
+                });
+                _this.data.idNewUserSelected.forEach((item) => {
+                  if (+item.id === +_this.data.skuId) {
+                    item.num = res.data.goods_sku_num;
                   }
                 });
                 _this.getCartNumber();
@@ -292,7 +342,10 @@ Page({
         var customPath = res.data.data.index_redirect_url;
         imgData.forEach((item) => {
           if (item.module_name === '首页') {
-            imgList.push({ img_url: item.img_url, mini_turn_url: item.mini_turn_url });
+            imgList.push({
+              img_url: item.img_url,
+              mini_turn_url: item.mini_turn_url
+            });
           }
         });
         if (imgList.length) {
