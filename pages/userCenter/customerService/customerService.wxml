@@ -2,8 +2,7 @@
 <view class='customer-service-container'>
   <view class='wx-content'>
     <text class='wx-name'>微信客服</text>
-    <image class='wx-qr' wx:if='{{customImgs[0].img_url}}' src='{{customImgs[0].img_url}}'></image>
-    <image class='wx-qr' wx:else src='https://img.caibashi.com/744b793f33b33ddf13c0530a29cc9219.png'></image>
+    <image class='wx-qr' src='https://img.caibashi.com/744b793f33b33ddf13c0530a29cc9219.png'></image>
     <text class='tip'>扫一扫</text>
   </view>
   <view class='service-content'>
