@@ -10,7 +10,7 @@ const BaseUrl = "https://sso.caibasi.com";
 
 // 获取首页广告图
 export function getCustom() {
-  return wxRequest.wxPromise("GET", `${BaseUrl}/custom`, );
+  return wxRequest.wxPromise("GET", `${BaseUrl}/custom/all`, );
 }
 
 // 获取用户信息
