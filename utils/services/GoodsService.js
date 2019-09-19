@@ -58,4 +58,9 @@ export function getAllGoods(OneId) {
   return wxRequest.wxPromise("GET", `${BaseUrl}/goods/category_one/new/goods?category_one_id=${OneId}`);
 }
 
+// 获取新手特价商品
+export function getNewUserGoods() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/activity/new_user/goods`);
+}
+
 
