@@ -275,6 +275,7 @@ Page({
                 wx.showToast({
                   title: error.data.message,
                   icon: 'none',
+                  duration: 2000,
                 })
               });
           },

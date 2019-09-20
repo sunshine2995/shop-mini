@@ -619,7 +619,6 @@ Page({
       })
     }
     this.data.orderList = [];
-    console.log(e, 'swichNav--')
     this.data.page = 1;
     this.data.status = this.data.statusList[index].status;
     this.setData({

@@ -14,6 +14,12 @@ Page({
     })
   },
 
+  goToSort() {
+    wx.switchTab({
+      url: '/pages/sort/sort',
+    })
+  },
+
   onShow: function() {
     wx.showLoading({
       title: '',

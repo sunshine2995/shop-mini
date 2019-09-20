@@ -26,7 +26,7 @@
             <view class="generate-time">
               <text class="time">有效期: {{ filter.formatData(coupon.send_time) }}至{{ filter.formatData(coupon.generate_time) }}</text>
             </view>
-            <view class="now-user">
+            <view class="now-user" bindtap="goToSort">
               <text>全场通用</text>
               <text class="go-to-user">立即使用</text>
             </view>

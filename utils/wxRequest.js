@@ -9,9 +9,9 @@ function wxPromise(method, url, data) {
         'Authorization': wx.getStorageSync('token'),
       },
       success: function(res) {
-        setTimeout(function() {
-          wx.hideLoading();
-        }, 100);
+        // setTimeout(function() {
+          // wx.hideLoading();
+        // }, 100);
         if (res.data.code == 200 || res.data.infocode == 10000) {
           resolve(res);
         } else {
@@ -19,9 +19,9 @@ function wxPromise(method, url, data) {
         }
       },
       fail: function(res) {
-        setTimeout(function() {
-          wx.hideLoading();
-        }, 100);
+        // setTimeout(function() {
+          // wx.hideLoading();
+        // }, 100);
         reject(res);
       }
     });

@@ -14,7 +14,7 @@
 		"checkSiteMap": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.7",
+	"libVersion": "2.8.3",
 	"appid": "wxdc611584d3371f48",
 	"projectname": "JS-caibashi",
 	"debugOptions": {
