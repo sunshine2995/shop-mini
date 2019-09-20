@@ -1,7 +1,5 @@
 {
-  "usingComponents": {
-    "orderList": "/components/orderList/orderList"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "订单列表",
   "onReachBottomDistance": 200
 }
