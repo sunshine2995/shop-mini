@@ -74,3 +74,21 @@ export function getDefaultAddress() {
 export function getAddress(addressId) {
   return wxRequest.wxPromise('GET', `${BaseUrl}/user/get_address?addressId=${addressId}`);
 }
+
+// 根据经纬度店铺列表
+export function getShopListByLocation(longitude, latitude) {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch?longitude=${longitude}&latitude=${latitude}`);
+}
+
+// 直接获取店铺列表
+export function getShopList() {
+  return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch`);
+}
+
+// 更换店铺
+export function changeShop(subbranchId) {
+  return wxRequest.wxPromise("POST", `${BaseUrl}/subbranch`, {
+    current_subbranch_id: subbranchId,
+  });
+}
+

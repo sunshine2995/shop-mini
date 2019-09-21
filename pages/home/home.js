@@ -21,6 +21,14 @@ Page({
     shopInfo: {}, // 店铺信息
     showShopName: true, // 是否展示店铺名称
   },
+  
+  jumpSort() {
+    wx.switchTab({
+      url: '/pages/sort/sort',
+    })
+  },
+
+
 
   closeTip() {
     this.setData({

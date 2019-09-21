@@ -1,0 +1,21 @@
+<!--pages/shopList/shopList.wxml-->
+<wxs module="filter" src="../../filter.wxs"></wxs>
+
+<view class="ShopListContainer">
+  <view class="shop-list" wx:for='{{shopList}}' wx:key="{{shop.id}}" wx:for-item="shop">
+    <view data-shop-id="{{shop.id}}" bindtap="changeShop">
+      <view class="shop-image">
+        <view class="mask" wx:if='{{shop.showMask}}'></view>
+        <image class="shop-img" wx:if='{{shop.shop_image}}' src="{{shop.shop_image}}" mode="widthFix"></image>
+        <image class="shop-img" wx:else src="https://img.caibashi.com/223a8968e7654aa721bb28b8cec56bf7.png" mode="widthFix"></image>
+      </view>
+      <view class="shop-name-distance">
+        <text class="shop-name"> {{shop.name}}  | 菜巴士</text>
+        <text class="shop-distance" wx:if='{{shop.distance < 1}}'> {{filter.numToFixed(shop.distance * 1000, 0)}} m</text>
+        <text class="shop-distance" wx:else> {{filter.numToFixed(shop.distance, 2)}} km</text>
+      </view>
+      <view class="shop-time">营业时间：{{ shop.shop_business_time }}</view>
+      <view class="shop-address">{{ shop.address }}</view>
+    </view>
+  </view>
+</view>

@@ -1,5 +1,8 @@
-<view class="container">
+<view class="HomeContainer">
   <view class="home-nav">
+    <!-- <navigator url="/pages/shopList/shopList" hover-class="none" class="change-shop">
+      <icon class="iconfont icon-dingwei"></icon>
+    </navigator> -->
     <navigator url="/pages/shopList/shopList" class="logo-image" hover-class="none">
       <image class="caibashi-logo" src="/images/home/home_title.png"></image>
     </navigator>
@@ -11,9 +14,16 @@
       <icon class="iconfont icon-search" />
       <text class="search-text">找你要的菜{{cartNUM}}</text>
     </navigator>
+    <!-- <navigator url="/pages/shopList/shopList" hover-class="none" class="display-shop-name" wx:if='{{showShopName}}'>
+      <text class="sign"></text>
+      <view class="shop-name">
+        <text>{{shopInfo.name}}</text>
+        <text class="close" catchtap="closeTip">×</text>
+      </view>
+    </navigator> -->
   </view>
   <view class="advertising">
-      <image class="advertising-image" wx:if='{{customImg}}' src='{{customImg}}' data-path="{{customPath}}" bindtap="bindJumpPath"></image>
+    <image class="advertising-image" wx:if='{{customImg}}' src='{{customImg}}' data-path="{{customPath}}" bindtap="bindJumpPath"></image>
     <image class="advertising-image" wx:else src='https://img.caibashi.com/95fdeffaa683851ac6237f411b8f8fa7.png' bindtap="bindJumpPath"></image>
   </view>
   <view class="sort-nave">
@@ -67,7 +77,6 @@
                   <text class='cart-num' wx:if='{{goodSpu.sku.id === select.id}}'>{{select.num}}</text>
                 </block>
               </view>
-              <!-- <icon class="iconfont icon-sort-add"></icon> -->
             </view>
             <view class="before-low-price">￥{{ goodSpu.sku.market_price }}</view>
           </view>
@@ -150,7 +159,7 @@
               </view>
             </view>
           </block>
-          <view class="sort-expand-detail">
+          <view class="sort-expand-detail" bindtap="jumpSort">
             <image class="sort-expand-goods-image" src="/images/home/home_more.png"></image>
           </view>
         </view>

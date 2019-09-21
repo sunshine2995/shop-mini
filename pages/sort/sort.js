@@ -31,7 +31,8 @@ Page({
     carts: [], // 购物车信息
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
-    goodsAttr: '', // 商品属性
+    goodsAttr: '', // 商品属性    
+    shopId: 0, // 店铺Id
   },
 
   goDetail(e) {
@@ -116,6 +117,10 @@ Page({
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
             CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
               .then((res) => {
+                wx.showToast({
+                  title: res.data.message,
+                  icon: 'none',
+                })
                 _this.data.idSelected.forEach((item) => {
                   if (+item.id === +_this.data.skuId) {
                     item.num = res.data.data.goods_sku_num;
@@ -146,6 +151,10 @@ Page({
     });
     CartService.addCart(this.data.skuId, this.data.goodsAttr)
       .then((res) => {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+        })
         this.data.idSelected.forEach((item) => {
           if (+item.id === +this.data.skuId) {
             item.num = res.data.data.goods_sku_num;
@@ -170,10 +179,12 @@ Page({
     });
     GoodsService.getAllGoods(oneId)
       .then((res) => {
+        this.data.shopId = app.globalData.shopInfo.id;
         this.data.twoList = res.data.data;
         this.setData({
           twoList: res.data.data,
         });
+        wx.hideLoading();
         this.data.goodSkuId = [];
         this.data.twoList.forEach((item) => {
           item.goods_spu_list.forEach((spu) => {
@@ -208,7 +219,7 @@ Page({
         }
         this.checkCor();
         const oneId = this.data.oneList[this.data.currentTab].id;
-        if (!this.data.twoList.length || +app.globalData.sortOneId !== 0) {
+        if (!this.data.twoList.length || +app.globalData.sortOneId !== 0 || +this.data.shopId !== +app.globalData.shopInfo.id) {
           wx.showLoading({
             title: '加载中',
           });

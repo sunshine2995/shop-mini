@@ -1,0 +1,59 @@
+/* pages/shopList/shopList.wxss */
+
+.ShopListContainer {
+  background-color: #e6e6e6;
+}
+
+.shop-list {
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+.shop-image {
+  position: relative;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+
+.shop-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shop-name-distance, .shop-time, .shop-address {
+  padding: 5rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.shop-name-distance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20rpx;
+}
+
+
+.shop-distance {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.shop-time {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.shop-address {
+  font-size: 28rpx;
+  color: #666;
+}

@@ -23,9 +23,7 @@
   </view>
   <view class='goods-advertise-desc'>
     <text class='goods-advertise'>{{goodsInfo.advertising}}</text>
-    <text class='goods-desc'>
-    {{goodsInfo.brief}}
-    </text>
+    <text class='goods-desc'>{{goodsInfo.brief}}</text>
   </view>
   <view class='choose-standard'>
     <view class="{{index==active?'goods-price':'goods-price-hide'}}" wx:for="{{goodsInfo.goods_sku_list}}" wx:key="index" wx:for-item="goodSku">

@@ -54,6 +54,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1;
+  padding-bottom: 15rpx;
+  box-sizing: border-box;
 }
 
 .goods-desc {
@@ -81,6 +83,7 @@
   box-sizing: border-box;
   margin: 0 10rpx;
 }
+
 .icon-jiangjia {
   font-size: 40rpx;
   color: #fe3059;
