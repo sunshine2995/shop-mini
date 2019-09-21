@@ -1,12 +1,12 @@
-<view class="price-template custom-template" wx:if="{{unit === 'g' || unit === '元'}}">
-  <text class="goods-sign text-color">{{priceDesc}}</text>
-  <text class="special-before-point text-color">{{first}}</text>
-  <text class="special-after-point text-color" wx:if="{{second}}">.{{second}}</text>
-  <text class="goods-unit text-color">{{unit}}</text>
+<view class="price-template custom-template" wx:if="{{ unit === 'g' || unit === '元' }}">
+  <text class="goods-sign text-color">{{ priceDesc }}</text>
+  <text class="special-before-point text-color">{{ first }}</text>
+  <text class="special-after-point text-color" wx:if="{{ second }}">.{{ second }}</text>
+  <text class="goods-unit text-color">{{ unit }}</text>
 </view>
 <view class="price-template custom-template" wx:else>
-  <text class="goods-sign text-color">{{priceDesc}}￥</text>
-  <text class="before-point text-color">{{first}}</text>
-  <text class="after-point text-color" wx:if="{{second}}">.{{second}}</text>
-  <text class="goods-unit text-color">/{{unit}}</text>
+  <text class="goods-sign text-color">{{ priceDesc }}￥</text>
+  <text class="before-point text-color">{{ first }}</text>
+  <text class="after-point text-color" wx:if="{{ second }}">.{{ second }}</text>
+  <text class="goods-unit text-color">/{{ unit }}</text>
 </view>

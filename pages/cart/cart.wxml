@@ -1,39 +1,62 @@
 <!--pages/cart/cart.wxml-->
 <wxs module="filter" src="../../filter.wxs"></wxs>
 
-<view class="CartContainer {{!phoneNum?'tip':''}}">
-  <Curtain isShowCurtain="{{isShowCurtain}}" />
-  <view class='mobile-container' wx:if='{{isShowCurtain}}'>
-    <bind bind:bindPhone='bindPhone' bind:hideCurtain='hideCurtain'></bind>
+<view class="CartContainer {{ !phoneNum ? 'tip' : '' }}">
+  <Curtain isShowCurtain="{{ isShowCurtain }}"></Curtain>
+
+  <view class="mobile-container" wx:if="{{ isShowCurtain }}">
+    <bind bind:bindPhone="bindPhone" bind:hideCurtain="hideCurtain"></bind>
   </view>
-  <view class="tip-mobile" wx:if='{{!phoneNum}}' bindtap="showCurtain">
+
+  <view class="tip-mobile" wx:if="{{ !phoneNum }}" bindtap="showCurtain">
     <icon class="iconfont icon-warn"></icon>
     <text>未绑定手机号码的提示</text>
   </view>
-  <view class='cart-empty' wx:if="{{!validCarts.length&& !invalidCarts.length}}">
-    <view class='activity-image'>
-      <image class='activity-img' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
+
+  <view class="cart-empty" wx:if="{{ !validCarts.length && !invalidCarts.length }}">
+    <view class="activity-image">
+      <image
+        class="activity-img"
+        src="https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png"
+        mode="widthFix"
+      ></image>
     </view>
-    <view class='empty-image' bindtap='goCollectGood'>
-      <image class='empty-img' src='https://img.caibashi.com/b9a60e09c089c595a96f4639866cde26.png' mode='widthFix'></image>
-      <button type='primary' class='go-shopping'>去挑好物</button>
+    <view class="empty-image" bindtap="goCollectGood">
+      <image
+        class="empty-img"
+        src="https://img.caibashi.com/b9a60e09c089c595a96f4639866cde26.png"
+        mode="widthFix"
+      ></image>
+      <button type="primary" class="go-shopping">去挑好物</button>
     </view>
-    <view class='guess-like-list'>
-      <view class='guess-title'>你可能喜欢</view>
-      <view class='guess-container'>
-        <block wx:for="{{guessList}}" wx:key="index" wx:for-item="guess">
-          <view class='guess-content'>
-            <view class='guess-image' data-good-id='{{guess.id}}' bindtap='goToDetail'>
-              <image class='guess-img' src='{{guess.thumbnail_url}}' wx:if='{{guess.thumbnail_url}}'></image>
-              <image class='guess-img' src='https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png' wx:else></image>
+    <view class="guess-like-list">
+      <view class="guess-title">你可能喜欢</view>
+      <view class="guess-container">
+        <block wx:for="{{ guessList }}" wx:key="index" wx:for-item="guess">
+          <view class="guess-content">
+            <view class="guess-image" data-good-id="{{ guess.id }}" bindtap="goToDetail">
+              <image class="guess-img" src="{{ guess.thumbnail_url }}" wx:if="{{ guess.thumbnail_url }}"></image>
+              <image
+                class="guess-img"
+                src="https://img.caibashi.com/0c57e1f7fcac0922efd88955a97774eb.png"
+                wx:else
+              ></image>
             </view>
-            <view class='guess-goods-name'>{{guess.name}}</view>
-            <view class='guess-goods-price'>
-              <price-component price="{{guess.goods_sku_info.sell_price}}" unit="{{guess.goods_sku_info.goods_sku_sell_unit_name}}" text-color='text-color'></price-component>
-              <view class='add-cart-num'>
-                <icon class="iconfont icon-sort-add" data-good-sku-id='{{guess.goods_sku_info.id}}' catchtap='getGoodsAttr'></icon>
-                <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
-                  <text class='cart-num' wx:if='{{guess.goods_sku_info.id === select.id}}'>{{select.num}}</text>
+            <view class="guess-goods-name">{{ guess.name }}</view>
+            <view class="guess-goods-price">
+              <price-component
+                price="{{ guess.goods_sku_info.sell_price }}"
+                unit="{{ guess.goods_sku_info.goods_sku_sell_unit_name }}"
+                text-color="text-color"
+              ></price-component>
+              <view class="add-cart-num">
+                <icon
+                  class="iconfont icon-sort-add"
+                  data-good-sku-id="{{ guess.goods_sku_info.id }}"
+                  catchtap="getGoodsAttr"
+                ></icon>
+                <block wx:for="{{ idSelected }}" wx:key="index" wx:for-item="select">
+                  <text class="cart-num" wx:if="{{ guess.goods_sku_info.id === select.id }}">{{ select.num }}</text>
                 </block>
               </view>
             </view>
@@ -41,166 +64,246 @@
         </block>
       </view>
     </view>
-    <view class='activity-new-user'>
-      <image class='activity-new-user-img' src='https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png' mode='widthFix'></image>
+    <view class="activity-new-user">
+      <image
+        class="activity-new-user-img"
+        src="https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png"
+        mode="widthFix"
+      ></image>
     </view>
   </view>
+
   <block wx:else>
-    <view class='cart-container'>
-      <view class='delete'>
-        <text class='header_text' wx:if='{{shipping !== 0}}'>菜巴士 | 满{{shipping}}免配送费</text>
-        <text class='header_text' wx:else>菜巴士 | 免配送费</text>
-        <icon class='iconfont icon-delete' bindtap='deleteGoods'></icon>
+    <view class="cart-container">
+      <view class="delete">
+        <text class="header_text" wx:if="{{ shipping !== 0 }}">菜巴士 | 满{{ shipping }}免配送费</text>
+        <text class="header_text" wx:else>菜巴士 | 免配送费</text>
+        <icon class="iconfont icon-delete" bindtap="deleteGoods"></icon>
       </view>
-      <view class='activity-image'>
-        <image class='activity-img' wx:if='{{!userInfo.is_new_user}}' src='https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png' mode='widthFix'></image>
-        <image class='activity-img' wx:else src='https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png' mode='widthFix'></image>
+
+      <view class="activity-image">
+        <image
+          class="activity-img"
+          wx:if="{{ !userInfo.is_new_user }}"
+          src="https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png"
+          mode="widthFix"
+        ></image>
+        <image
+          class="activity-img"
+          wx:else
+          src="https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png"
+          mode="widthFix"
+        ></image>
       </view>
-      <view class='main'>
-        <view class="gift-goods-content" wx:if="{{showGiftButton}}">
+
+      <view class="main">
+        <view class="gift-goods-content" wx:if="{{ showGiftButton }}">
           <view bindtap="goToChooseGift" class="gift-goods">
             <text>{{ giftTip }}</text>
             <icon class="iconfont icon-right"></icon>
           </view>
-          <view class="gift-content" wx:if='{{chooseGiftId}}'>
+          <view class="gift-content" wx:if="{{ chooseGiftId }}">
             <view class="goods-image">
-              <image class='shop-img' src='{{giftData.image_url}}' mode='widthFix' wx:if='{{giftData.image_url}}'>
+              <image class="shop-img" src="{{ giftData.image_url }}" mode="widthFix" wx:if="{{ giftData.image_url }}">
               </image>
-              <image class='shop-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+              <image
+                class="shop-img"
+                src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+                mode="widthFix"
+                wx:else
+              >
               </image>
             </view>
-            <view class='shop-detail'>
-              <text class='shop-name'>{{giftData.name}}</text>
-              <view class='shop-detail-bottom'>
-                <view class='shop-price'>
-                  <price-component price="0" unit="{{giftData.sell_unit_name}}" text-color="text-color"></price-component>
+            <view class="shop-detail">
+              <text class="shop-name">{{ giftData.name }}</text>
+              <view class="shop-detail-bottom">
+                <view class="shop-price">
+                  <price-component
+                    price="0"
+                    unit="{{ giftData.sell_unit_name }}"
+                    text-color="text-color"
+                  ></price-component>
                 </view>
-                <view class='num-change'>
-                  <text class='gift-num'>{{ giftData.per_number }}{{ giftData.unit_name }}</text>
+                <view class="num-change">
+                  <text class="gift-num">{{ giftData.per_number }}{{ giftData.unit_name }}</text>
                 </view>
               </view>
             </view>
           </view>
         </view>
-        <view bindtap="goHome" class="gift-tips" wx:if="{{showGiftTip}}">
+
+        <view bindtap="goHome" class="gift-tips" wx:if="{{ showGiftTip }}">
           <text>{{ giftTip }}</text>
           <icon class="iconfont icon-right"></icon>
         </view>
-        <view class="cart-goods" wx:for='{{validCarts}}' wx:key='this'>
-          <view class='discount-rule' wx:if='{{item.marketing_name_time}}'>
-            <text class='discount_title'>限时折扣</text>
-            <discountTitle time="{{item.marketing_name_time}}" discount-rebate='discount-rebate' discount-time='discount-time' />
+
+        <view class="cart-goods" wx:for="{{ validCarts }}" wx:key="this">
+          <view class="discount-rule" wx:if="{{ item.marketing_name_time }}">
+            <text class="discount_title">限时折扣</text>
+            <discountTitle
+              time="{{ item.marketing_name_time }}"
+              discount-rebate="discount-rebate"
+              discount-time="discount-time"
+            ></discountTitle>
           </view>
-          <view class='shop'>
-            <view class='shop_check_box' data-index='{{index}}' catchtap='checkTap'>
-              <icon class='iconfont icon-selected' wx-if='{{item.check}}'></icon>
-              <icon class='iconfont icon-Unselected' wx-if='{{!item.check}}'></icon>
+          <view class="shop">
+            <view class="shop_check_box" data-index="{{ index }}" catchtap="checkTap">
+              <icon class="iconfont icon-selected" wx-if="{{ item.check }}"></icon>
+              <icon class="iconfont icon-Unselected" wx-if="{{ !item.check }}"></icon>
             </view>
-            <view class="discount-goods-image" wx:if='{{item.marketing_name_time}}'>
-              <image class='discount-goods-img' src='{{item.thumbnail_url}}' mode='widthFix' wx:if='{{item.thumbnail_url}}'></image>
-              <image class='discount-goods-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else></image>
-              <text class='discount-goods-text' wx:if='{{item.marketing_simple_name}}'>{{item.marketing_simple_name}}</text>
+            <view class="discount-goods-image" wx:if="{{ item.marketing_name_time }}">
+              <image
+                class="discount-goods-img"
+                src="{{ item.thumbnail_url }}"
+                mode="widthFix"
+                wx:if="{{ item.thumbnail_url }}"
+              ></image>
+              <image
+                class="discount-goods-img"
+                src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+                mode="widthFix"
+                wx:else
+              ></image>
+              <text class="discount-goods-text" wx:if="{{ item.marketing_simple_name }}">{{
+                item.marketing_simple_name
+              }}</text>
             </view>
             <view wx:else class="goods-image">
-              <image class='shop-img' src='{{item.thumbnail_url}}' mode='widthFix' wx:if='{{item.thumbnail_url}}'>
+              <image class="shop-img" src="{{ item.thumbnail_url }}" mode="widthFix" wx:if="{{ item.thumbnail_url }}">
               </image>
-              <image class='shop-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+              <image
+                class="shop-img"
+                src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+                mode="widthFix"
+                wx:else
+              >
               </image>
             </view>
-            <view class='shop-detail' data-good-id='{{item.goods_spu_id}}' bindtap='goToDetail'>
-              <text class='shop-name'>{{item.goods_spu_name}}</text>
-              <text class='shop-type' wx:if='{{item.sku_name}}'>{{item.sku_name}}</text>
-              <text class='shop-type' wx:else>默认规格</text>
-              <text class='shop-pass-price' wx:if="{{item.marketing_price}}">{{item.price}}/{{item.spu_unit_name}}</text>
-              <view class='discount-limit-number' wx:if="{{item.marketing_price}}">限购3件</view>
-              <view class='shop-detail-bottom'>
-                <view class='shop-price' wx:if="{{item.marketing_price}}">
-                  <price-component price="{{item.marketing_price}}" unit="{{item.spu_unit_name}}" text-color="text-color"></price-component>
+            <view class="shop-detail" data-good-id="{{ item.goods_spu_id }}" bindtap="goToDetail">
+              <text class="shop-name">{{ item.goods_spu_name }}</text>
+              <text class="shop-type" wx:if="{{ item.sku_name }}">{{ item.sku_name }}</text>
+              <text class="shop-type" wx:else>默认规格</text>
+              <text class="shop-pass-price" wx:if="{{ item.marketing_price }}"
+                >{{ item.price }}/{{ item.spu_unit_name }}</text
+              >
+              <view class="discount-limit-number" wx:if="{{ item.marketing_price }}">限购3件</view>
+              <view class="shop-detail-bottom">
+                <view class="shop-price" wx:if="{{ item.marketing_price }}">
+                  <price-component
+                    price="{{ item.marketing_price }}"
+                    unit="{{ item.spu_unit_name }}"
+                    text-color="text-color"
+                  ></price-component>
                 </view>
-                <view class='shop-price' wx:else>
-                  <price-component price="{{item.price}}" unit="{{item.spu_unit_name}}" text-color="text-color"></price-component>
+                <view class="shop-price" wx:else>
+                  <price-component
+                    price="{{ item.price }}"
+                    unit="{{ item.spu_unit_name }}"
+                    text-color="text-color"
+                  ></price-component>
                 </view>
-                <view class='num-change'>
-                  <icon class='iconfont icon-jianhao' data-index='{{index}}' catchtap='decrementQuantity'></icon>
-                  <text class='shop_num'>{{item.goods_sku_num}}</text>
-                  <icon class='iconfont icon-sort-add' data-index='{{index}}' catchtap='incrementQuantity'></icon>
+                <view class="num-change">
+                  <icon class="iconfont icon-jianhao" data-index="{{ index }}" catchtap="decrementQuantity"></icon>
+                  <text class="shop_num">{{ item.goods_sku_num }}</text>
+                  <icon class="iconfont icon-sort-add" data-index="{{ index }}" catchtap="incrementQuantity"></icon>
                 </view>
               </view>
             </view>
           </view>
-          <view class="goods-attr-icon" wx:if='{{item.goods_attr}}' data-good-sku-id='{{item.goods_sku_id}}' catchtap='getGoodsAttr'>
-            <text class="goods-attr">注：{{item.goods_attr}}</text>
+          <view
+            class="goods-attr-icon"
+            wx:if="{{ item.goods_attr }}"
+            data-good-sku-id="{{ item.goods_sku_id }}"
+            catchtap="getGoodsAttr"
+          >
+            <text class="goods-attr">注：{{ item.goods_attr }}</text>
             <icon class="iconfont icon-down"></icon>
           </view>
-          <view class="sale-out-tip" wx:if='{{item.stock < item.goods_sku_num}}'>
+          <view class="sale-out-tip" wx:if="{{ item.stock < item.goods_sku_num }}">
             <icon class="iconfont icon-jingtanhao"></icon>
             <text>当前库存仅剩 {{ item.stock }} 件,请减少购买数量</text>
           </view>
         </view>
       </view>
-      <view class='invalid-carts' wx:if='{{invalidCarts.length}}'>
-        <view class='clear-invalid'>
-          <text class='invaild-title'>已失效商品</text>
-          <text bindtap='deleteInvalidGoods'>清空失效商品</text>
-          <icon bindtap='deleteInvalidGoods' class='iconfont icon-delete'></icon>
+
+      <view class="invalid-carts" wx:if="{{ invalidCarts.length }}">
+        <view class="clear-invalid">
+          <text class="invaild-title">已失效商品</text>
+          <text bindtap="deleteInvalidGoods">清空失效商品</text>
+          <icon bindtap="deleteInvalidGoods" class="iconfont icon-delete"></icon>
         </view>
-        <view class='invalid-goods' wx:for='{{invalidCarts}}' wx:key='this' wx:for-item="invalid">
-          <view class='mask'></view>
-          <view class='shop_check_box' data-index='{{index}}'>
-            <icon class='iconfont icon-Unselected'></icon>
+        <view class="invalid-goods" wx:for="{{ invalidCarts }}" wx:key="this" wx:for-item="invalid">
+          <view class="mask"></view>
+          <view class="shop_check_box" data-index="{{ index }}">
+            <icon class="iconfont icon-Unselected"></icon>
           </view>
-          <view class='shop-image'>
-            <image class='shop-img' src='{{invalid.thumbnail_url}}' mode='widthFix' wx:if='{{invalid.thumbnail_url}}'>
+          <view class="shop-image">
+            <image
+              class="shop-img"
+              src="{{ invalid.thumbnail_url }}"
+              mode="widthFix"
+              wx:if="{{ invalid.thumbnail_url }}"
+            >
             </image>
-            <image class='shop-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+            <image
+              class="shop-img"
+              src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+              mode="widthFix"
+              wx:else
+            >
             </image>
-            <view class='undercarriage'>已下架</view>
-            <view class="goods-attr-gray" wx:if='{{invalid.goods_attr}}'>
-              <text class="goods-attr">注：{{invalid.goods_attr}}</text>
+            <view class="undercarriage">已下架</view>
+            <view class="goods-attr-gray" wx:if="{{ invalid.goods_attr }}">
+              <text class="goods-attr">注：{{ invalid.goods_attr }}</text>
             </view>
           </view>
-          <view class='shop_detail' data-good-id='{{invalid.goods_spu_id}}' bindtap='goToDetail'>
-            <text class='shop-name'>{{invalid.goods_spu_name}}</text>
-            <text class='shop-type'>{{invalid.sku_name}}</text>
-            <view class='shop-detail-bottom'>
-              <view class='shop-price'>
-                <price-component price="{{invalid.price}}" unit="{{invalid.spu_unit_name}}" text-color="text-gray"></price-component>
+          <view class="shop_detail" data-good-id="{{ invalid.goods_spu_id }}" bindtap="goToDetail">
+            <text class="shop-name">{{ invalid.goods_spu_name }}</text>
+            <text class="shop-type">{{ invalid.sku_name }}</text>
+            <view class="shop-detail-bottom">
+              <view class="shop-price">
+                <price-component
+                  price="{{ invalid.price }}"
+                  unit="{{ invalid.spu_unit_name }}"
+                  text-color="text-gray"
+                ></price-component>
               </view>
-              <view class='num-change'>
-                <text class='shop-num'>{{invalid.goods_sku_num}}</text>
+              <view class="num-change">
+                <text class="shop-num">{{ invalid.goods_sku_num }}</text>
               </view>
             </view>
           </view>
         </view>
-      </view>
-    </view>
-    <view class='price-container'>
-      <view class='total-original'>
-        <text>商品原价</text>
-        <text>￥{{filter.numToFixed(total)}}</text>
-      </view>
-      <view class='discount-total'>
-        <text>商品优惠</text>
-        <text>-￥{{filter.numToFixed(discountMoney)}}</text>
-      </view>
-      <view class='weight-total'>
-        <text>小计</text>
-        <text class='weight-price'>￥{{filter.numToFixed(finallyMoney)}}</text>
       </view>
     </view>
 
-    <view class='bottom-cart'>
-      <view class='check_box'>
-        <icon class='iconfont icon-selected' wx-if='{{allsel}}' catchtap='allcheckTap'></icon>
-        <icon class='iconfont icon-Unselected' wx-if='{{!allsel}}' catchtap='allcheckTap'></icon>
-        <text class='check_text' catchtap='allcheckTap'>全选</text>
+    <view class="price-container">
+      <view class="total-original">
+        <text>商品原价</text>
+        <text>￥{{ filter.numToFixed(total) }}</text>
       </view>
-      <view class='cart-icon '>
-        <text class='footer_total_price'>合计：￥{{filter.numToFixed(finallyMoney)}}</text>
-        <text class='footer_total_text'>其他优惠金额见结算页面</text>
+      <view class="discount-total">
+        <text>商品优惠</text>
+        <text>-￥{{ filter.numToFixed(discountMoney) }}</text>
       </view>
-      <view class='cart-text cart-text-green' bindtap="goSubmit">
-        <text class='footer_total'>下单</text>
+      <view class="weight-total">
+        <text>小计</text>
+        <text class="weight-price">￥{{ filter.numToFixed(finallyMoney) }}</text>
+      </view>
+    </view>
+
+    <view class="bottom-cart">
+      <view class="check_box">
+        <icon class="iconfont icon-selected" wx-if="{{ allsel }}" catchtap="allcheckTap"></icon>
+        <icon class="iconfont icon-Unselected" wx-if="{{ !allsel }}" catchtap="allcheckTap"></icon>
+        <text class="check_text" catchtap="allcheckTap">全选</text>
+      </view>
+      <view class="cart-icon ">
+        <text class="footer_total_price">合计：￥{{ filter.numToFixed(finallyMoney) }}</text>
+        <text class="footer_total_text">其他优惠金额见结算页面</text>
+      </view>
+      <view class="cart-text cart-text-green" bindtap="goSubmit">
+        <text class="footer_total">下单</text>
       </view>
     </view>
   </block>

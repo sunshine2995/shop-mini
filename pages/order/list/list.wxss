@@ -85,7 +85,8 @@
   color: #fe3059;
 }
 
-.already-evaluate, .already-refund {
+.already-evaluate,
+.already-refund {
   font-size: 30rpx;
   color: #999;
 }
@@ -283,7 +284,10 @@
   box-sizing: border-box;
 }
 
-.delete-order, .pay-order, .again-order, .evaluate-order  {
+.delete-order,
+.pay-order,
+.again-order,
+.evaluate-order {
   font-size: 26rpx;
   border-radius: 40rpx;
   padding: 5rpx 15rpx;
@@ -295,7 +299,8 @@
   border: 1px solid #bbb;
 }
 
-.pay-order, .evaluate-order {
+.pay-order,
+.evaluate-order {
   background-color: #fe3059;
   color: #fff;
   border: 1px solid #fe3059;
@@ -305,9 +310,9 @@
   width: 136rpx;
 }
 .again-order {
-  background-color: #11A24A;
+  background-color: #11a24a;
   color: #fff;
-  border: 1px solid #11A24A;
+  border: 1px solid #11a24a;
 }
 
 .Curtain {
@@ -335,7 +340,8 @@
   background-color: #fff;
 }
 
-.choose-title, .pay-type {
+.choose-title,
+.pay-type {
   display: flex;
   align-items: center;
 }
@@ -361,14 +367,16 @@
   height: 30rpx;
 }
 
-.wx-pay, .balance-pay {
+.wx-pay,
+.balance-pay {
   font-size: 40rpx;
   color: #666;
   padding-left: 30rpx;
   box-sizing: border-box;
 }
 
-.wx-pay-image, .cancel-pay-image {
+.wx-pay-image,
+.cancel-pay-image {
   width: 50rpx;
   height: 50rpx;
 }

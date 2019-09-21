@@ -36,7 +36,7 @@
   box-sizing: border-box;
 }
 
-.goods-standard-price{
+.goods-standard-price {
   display: flex;
   align-items: center;
   justify-content: space-between;

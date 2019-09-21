@@ -19,7 +19,7 @@
   display: inline-block;
   font-size: 28rpx;
   color: #666;
-  padding: 0 0 10rpx; 
+  padding: 0 0 10rpx;
   box-sizing: border-box;
 }
 .caption text {

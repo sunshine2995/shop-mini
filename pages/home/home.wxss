@@ -263,7 +263,9 @@ swiper {
   margin: 5rpx 0;
 }
 
-.market-price-text, .market-price-number, .market-price-standard,
+.market-price-text,
+.market-price-number,
+.market-price-standard,
 .market-price-remark {
   font-size: 26rpx;
   color: #999;

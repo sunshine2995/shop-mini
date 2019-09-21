@@ -8,7 +8,12 @@
       <view class="address-label">收货人</view>
     </view>
     <view class="address_input">
-      <input class="address-input" name="consignee" placeholder="请输入收货人真实姓名" placeholder-class='placeholder' />
+      <input
+        class="address-input"
+        name="consignee"
+        placeholder="请输入收货人真实姓名"
+        placeholder-class="placeholder"
+      />
     </view>
   </view>
 
@@ -18,10 +23,10 @@
       <view class="address-label">性别</view>
     </view>
     <view class="address_input">
-      <radio-group name="radio-group" wx:for="{{options}}" wx:key="index" bindchange="radioChange">
+      <radio-group name="radio-group" wx:for="{{ options }}" wx:key="index" bindchange="radioChange">
         <label>
-          <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.label}}</label>
-        <!-- <label><radio value="radio2" />女士</label> -->
+          <radio value="{{ item.value }}" checked="{{ item.checked }}">{{ item.label }}</radio>
+        </label>
       </radio-group>
     </view>
   </view>
@@ -32,7 +37,13 @@
       <view class="address-label">手机号</view>
     </view>
     <view class="address_input">
-      <input class="address-input" type='number' name="mobile" placeholder="方便配送员联系您的电话" placeholder-class='placeholder' />
+      <input
+        class="address-input"
+        type="number"
+        name="mobile"
+        placeholder="方便配送员联系您的电话"
+        placeholder-class="placeholder"
+      />
     </view>
   </view>
 
@@ -42,10 +53,17 @@
       <view class="address-label">选择城市</view>
     </view>
     <view class="address_input">
-      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-        <view class="picker" wx:if='{{region[0] && region[1] &&region[2]}}'>{{filter.showAddress(region[0],region[1],region[2])}}</view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{ region }}" custom-item="{{ customItem }}">
+        <view class="picker" wx:if="{{ region[0] && region[1] && region[2] }}">{{
+          filter.showAddress(region[0], region[1], region[2])
+        }}</view>
         <view class="picker" wx:else>点击选择城市</view>
-        <input class="address-input" name="provinceName" hidden="true" value="{{region[0]}}，{{region[1]}}，{{region[2]}}" />
+        <input
+          class="address-input"
+          name="provinceName"
+          hidden="true"
+          value="{{ region[0] }}，{{ region[1] }}，{{ region[2] }}"
+        />
       </picker>
     </view>
   </view>
@@ -56,30 +74,57 @@
       <view class="address-label">详细地址</view>
     </view>
     <view class="address_input">
-      <textarea class="address-input" bindinput="bindTextAreaChange" name="street" value="{{street}}" placeholder="填写街道楼层门牌号" placeholder-class='placeholder' />
+      <textarea
+        class="address-input"
+        bindinput="bindTextAreaChange"
+        name="street"
+        value="{{ street }}"
+        placeholder="填写街道楼层门牌号"
+        placeholder-class="placeholder"
+      >
+      </textarea>
     </view>
   </view>
 
   <view class="map_container address-container">
-    <map id="map" scale="16" longitude="{{longitude}}" latitude="{{latitude}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location="{{true}}" style="width: 100%; height: 300px;">
-      <cover-view class='address-manage-icon'>
-        <cover-image class="img" src="../../../images/home/location.png" />
+    <map
+      id="map"
+      scale="16"
+      longitude="{{ longitude }}"
+      latitude="{{ latitude }}"
+      bindcontroltap="controltap"
+      markers="{{ markers }}"
+      bindmarkertap="markertap"
+      bindregionchange="regionchange"
+      show-location="{{ true }}"
+      style="width: 100%; height: 300px;"
+    >
+      <cover-view class="address-manage-icon">
+        <cover-image class="img" src="../../../images/home/location.png"></cover-image>
       </cover-view>
     </map>
   </view>
 
-  <view class='address-property'>
-    <view class='address-type' wx:for="{{typeOptions}}" wx:key="index" data-index="{{index}}" data-value='{{type.value}}' wx:for-item="type" bindtap="toggle">
-      <view class="{{index==active?'address-type-active ':'type'}}">
-        {{type.text}}
+  <view class="address-property">
+    <view
+      class="address-type"
+      wx:for="{{ typeOptions }}"
+      wx:key="index"
+      data-index="{{ index }}"
+      data-value="{{ type.value }}"
+      wx:for-item="type"
+      bindtap="toggle"
+    >
+      <view class="{{ index == active ? 'address-type-active ' : 'type' }}">
+        {{ type.text }}
       </view>
-      <input class="address-input" name="label" hidden="true" value="{{index}}" />
+      <input class="address-input" name="label" hidden="true" value="{{ index }}" />
     </view>
   </view>
-  <view class='address-container'>
-    <checkbox-group bindchange="checkboxChange" name='checkbox'>
+  <view class="address-container">
+    <checkbox-group bindchange="checkboxChange" name="checkbox">
       <label class="checkbox">
-        <checkbox value='默认' checked='{{defaultCheck}}' />默认
+        <checkbox value="默认" checked="{{ defaultCheck }}">默认</checkbox>
       </label>
     </checkbox-group>
   </view>

@@ -14,7 +14,7 @@
 }
 
 .stars {
-  background: url("https://img.caibashi.com/92ddfb95d6600875a12ae1cfa42bf494.png");
+  background: url('https://img.caibashi.com/92ddfb95d6600875a12ae1cfa42bf494.png');
   width: 50rpx;
   height: 50rpx;
   background-size: 50rpx 50rpx;
@@ -23,7 +23,7 @@
 }
 
 .on {
-  background: url("https://img.caibashi.com/c836349e27362050f2bc84c9aca5ef7e.png");
+  background: url('https://img.caibashi.com/c836349e27362050f2bc84c9aca5ef7e.png');
   width: 50rpx;
   height: 50rpx;
   background-size: 50rpx 50rpx;
@@ -69,7 +69,8 @@
   margin: 50rpx 30rpx 0;
   box-sizing: border-box;
 }
-.feedback-image, .feedback-contact {
+.feedback-image,
+.feedback-contact {
   border-top: 1rpx solid #ebebeb;
 }
 .upload-image {
@@ -82,7 +83,8 @@
   box-sizing: border-box;
   border-bottom: 1rpx solid #ebebeb;
 }
-.add-image, .show-image {
+.add-image,
+.show-image {
   width: 160rpx;
   height: 160rpx;
   margin: 0 10rpx;
@@ -98,7 +100,7 @@
   color: #fe3059;
   font-size: 55rpx;
   line-height: 1;
-  transform:rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .good-content {
@@ -131,12 +133,14 @@
   padding-right: 40rpx;
   box-sizing: border-box;
 }
-.icon-haoping1, .icon-chaping {
+.icon-haoping1,
+.icon-chaping {
   font-size: 60rpx;
   color: #999;
   padding-right: 20rpx;
   box-sizing: border-box;
 }
-.good, .bad {
+.good,
+.bad {
   color: #fdbe05;
 }

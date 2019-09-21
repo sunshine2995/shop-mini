@@ -1,18 +1,18 @@
 <!--pages/userCenter/about/memberRecharge/manage.wxml-->
-<view class='MemberRechargeContainer'>
-  <view class='problem-content' bindtap='goMember'>
-    <text class='problem-title'>会员说明</text>
-    <icon class='iconfont icon-right'></icon>
+<view class="MemberRechargeContainer">
+  <view class="problem-content" bindtap="goMember">
+    <text class="problem-title">会员说明</text>
+    <icon class="iconfont icon-right"></icon>
   </view>
-  <view class='problem-content' bindtap='goCoupon'>
-    <text class='problem-title'>优惠券说明</text>
-    <icon class='iconfont icon-right'></icon>
+  <view class="problem-content" bindtap="goCoupon">
+    <text class="problem-title">优惠券说明</text>
+    <icon class="iconfont icon-right"></icon>
   </view>
-  <view class='problem-content' bindtap='goRecharge'>
-    <text class='problem-title'>充值与余额</text>
-    <icon class='iconfont icon-right'></icon>
+  <view class="problem-content" bindtap="goRecharge">
+    <text class="problem-title">充值与余额</text>
+    <icon class="iconfont icon-right"></icon>
   </view>
   <view>
-    <bottomContact phoneNumber="{{phoneNumber}}" />
+    <bottomContact phoneNumber="{{ phoneNumber }}"></bottomContact>
   </view>
 </view>

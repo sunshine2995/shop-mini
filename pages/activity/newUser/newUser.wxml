@@ -1,11 +1,15 @@
 <!--pages/activity/newUser/newUser.wxml-->
 <view class="NewUserContainer">
   <view class="new-user-content">
-    <image class="new-user-image" src="https://img.caibashi.com/d7dd68bba51ae8e48263000280ad61fb.png" mode="widthFix"></image>
-    <text class="rule" wx:if='{{shipping !== 0}}'>新人首单满{{shipping}}元送鸡蛋一盒(6个)</text>
+    <image
+      class="new-user-image"
+      src="https://img.caibashi.com/d7dd68bba51ae8e48263000280ad61fb.png"
+      mode="widthFix"
+    ></image>
+    <text class="rule" wx:if="{{ shipping !== 0 }}">新人首单满{{ shipping }}元送鸡蛋一盒(6个)</text>
     <text class="rule" wx:else>新人首单满28元送鸡蛋一盒(6个)</text>
     <view class="receive">
-      <text bindtap="getNewUserEgg" wx:if="{{isNewUser}}">领取</text>
+      <text bindtap="getNewUserEgg" wx:if="{{ isNewUser }}">领取</text>
       <text bindtap="goToHome">去逛逛</text>
     </view>
   </view>

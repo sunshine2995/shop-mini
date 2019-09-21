@@ -149,7 +149,9 @@ input {
   margin: 5rpx 0;
 }
 
-.goods-price-text, .goods-price-text-line, .goods-price-standard,
+.goods-price-text,
+.goods-price-text-line,
+.goods-price-standard,
 .goods-price-remark {
   font-size: 26rpx;
   color: #999;
@@ -214,7 +216,7 @@ input {
 
 .icon-sort-add {
   font-size: 60rpx;
-  color: #11A24A;
+  color: #11a24a;
 }
 
 .cart-num {

@@ -28,7 +28,7 @@
 }
 .discount-time {
   font-size: 32rpx;
-} 
+}
 
 .discount-goods-container {
   background-color: #fff;
@@ -133,7 +133,9 @@
   margin: 5rpx 0;
 }
 
-.discount-price-text, .discount-price-number, .discount-price-standard,
+.discount-price-text,
+.discount-price-number,
+.discount-price-standard,
 .discount-price-remark {
   font-size: 26rpx;
   color: #999;

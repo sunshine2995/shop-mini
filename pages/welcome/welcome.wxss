@@ -1,4 +1,5 @@
-.go-to-shopping, .go-to-recharge {
+.go-to-shopping,
+.go-to-recharge {
   display: block;
   width: 100%;
 }

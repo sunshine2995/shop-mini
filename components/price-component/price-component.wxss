@@ -5,7 +5,11 @@
   line-height: 1;
 }
 
-.goods-sign, .special-before-point, .special-after-point, .after-point, .goods-unit {
+.goods-sign,
+.special-before-point,
+.special-after-point,
+.after-point,
+.goods-unit {
   font-size: 26rpx;
 }
 
@@ -13,6 +17,7 @@
   font-size: 38rpx;
   line-height: 1;
 }
-.special-before-point, .special-after-point {
+.special-before-point,
+.special-after-point {
   font-weight: bold;
 }

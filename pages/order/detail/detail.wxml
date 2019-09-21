@@ -3,39 +3,39 @@
 
 <view class="OrderDetail">
   <view class="detail-container">
-    <view class="order-status" wx:if="{{order.status === 3 && order.delivery_type === 1}}">
+    <view class="order-status" wx:if="{{ order.status === 3 && order.delivery_type === 1 }}">
       <text>待配送</text>
       <icon class="iconfont icon-pay-success"></icon>
     </view>
-    <view class="order-status" wx:if="{{order.status === 3 && order.delivery_type === 0}}">
+    <view class="order-status" wx:if="{{ order.status === 3 && order.delivery_type === 0 }}">
       <text>到店自取</text>
       <icon class="iconfont icon-pay-success"></icon>
     </view>
-    <view class="order-status" wx:if="{{order.status === 7}}">
+    <view class="order-status" wx:if="{{ order.status === 7 }}">
       <text>待评价</text>
       <icon class="iconfont icon-order-complate"></icon>
     </view>
-    <view class="order-status" wx:if="{{order.status === 8}}">
+    <view class="order-status" wx:if="{{ order.status === 8 }}">
       <text>已评价</text>
       <icon class="iconfont icon-order-complate"></icon>
     </view>
-    <view class="order-status" wx:if="{{order.status === 6}}">
+    <view class="order-status" wx:if="{{ order.status === 6 }}">
       <text>待收货</text>
       <icon class="iconfont icon-to-be-received"></icon>
     </view>
-    <view class="order-status" wx:if="{{order.status === 1 || order.status === 2}}">
+    <view class="order-status" wx:if="{{ order.status === 1 || order.status === 2 }}">
       <text>等待支付</text>
       <icon class="iconfont icon-pending-payment"></icon>
     </view>
-    <view class="order-status" wx:if="{{order.status === 11}}">
+    <view class="order-status" wx:if="{{ order.status === 11 }}">
       <text>待分拣</text>
       <icon class="iconfont icon-daishouhuo"></icon>
     </view>
-    <view class="order-status" wx:if="{{order.status === 12}}">
+    <view class="order-status" wx:if="{{ order.status === 12 }}">
       <text>分拣中</text>
       <icon class="iconfont icon-kucun"></icon>
     </view>
-    <view class="order-refund" wx:if="{{order.status === 9}}">
+    <view class="order-refund" wx:if="{{ order.status === 9 }}">
       <text>退款成功</text>
       <text>退款原因：{{ order.refund_reason }}</text>
     </view>
@@ -45,37 +45,47 @@
         <text class="cai-go-home">菜巴士:送菜到家</text>
       </view>
       <view class="goods-container">
-        <view class="goods-content" wx:for='{{orderItems}}' wx:key='this'>
-          <view class="mask" wx:if='{{item.is_refund}}'>
+        <view class="goods-content" wx:for="{{ orderItems }}" wx:key="this">
+          <view class="mask" wx:if="{{ item.is_refund }}">
             <icon class="iconfont icon-yituikuan"></icon>
           </view>
           <view class="goods-image">
-            <image class="goods-img" wx:if='{{item.goods_spu_thumbnail_url}}' src="{{item.goods_spu_thumbnail_url}}" mode="widthFix"></image>
-            <image class="goods-img" wx:else src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg" mode="widthFix"></image>
-            <view class="mask-gift" wx:if="{{item.is_gift === 1}}">
+            <image
+              class="goods-img"
+              wx:if="{{ item.goods_spu_thumbnail_url }}"
+              src="{{ item.goods_spu_thumbnail_url }}"
+              mode="widthFix"
+            ></image>
+            <image
+              class="goods-img"
+              wx:else
+              src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+              mode="widthFix"
+            ></image>
+            <view class="mask-gift" wx:if="{{ item.is_gift === 1 }}">
               <i class="iconfont icon-gift"></i>
             </view>
-            <view class="goods-attr" wx:if="{{item.goods_attr}}">
+            <view class="goods-attr" wx:if="{{ item.goods_attr }}">
               {{ item.goods_attr }}
             </view>
           </view>
           <view class="goods-detail">
             <view class="goods-name">
-              <text class="goods-spu">{{item.goods_spu_name}}</text>
+              <text class="goods-spu">{{ item.goods_spu_name }}</text>
               <view class="num-icon">
-                <text class="goods-num">（X{{item.goods_sku_num}}）</text>
-                <icon class="iconfont icon-yichengzhong-" wx:if='{{!item.is_standard && item.goods_amount}}'></icon>
-                <icon class="iconfont icon-yifenjian1" wx:elif="{{item.goods_amount}}"></icon>
+                <text class="goods-num">（X{{ item.goods_sku_num }}）</text>
+                <icon class="iconfont icon-yichengzhong-" wx:if="{{ !item.is_standard && item.goods_amount }}"></icon>
+                <icon class="iconfont icon-yifenjian1" wx:elif="{{ item.goods_amount }}"></icon>
               </view>
             </view>
-            <view class="goods-price" wx:if="{{!item.is_standard}}">
+            <view class="goods-price" wx:if="{{ !item.is_standard }}">
               <view class="goods-standard">
                 <view class="standard-row">
                   <text>规格</text>
-                  <text wx:if="{{item.goods_sku_name}}"> 约{{ item.goods_sku_name }}</text>
+                  <text wx:if="{{ item.goods_sku_name }}"> 约{{ item.goods_sku_name }}</text>
                   <text wx:else> 暂无</text>
                 </view>
-                <view class="standard-row" wx:if='{{Number(item.discount_price) > 0}}'>
+                <view class="standard-row" wx:if="{{ Number(item.discount_price) > 0 }}">
                   <text>折后价</text>
                   <text>{{ Number(item.discount_price) }}元/{{ item.unit_name }}</text>
                 </view>
@@ -83,20 +93,24 @@
                   <text>售价</text>
                   <text>{{ item.goods_price }}元/{{ item.unit_name }}</text>
                 </view>
-                <view class="standard-row refund" wx:if='{{item.goods_sku_refund_num}}'>
+                <view class="standard-row refund" wx:if="{{ item.goods_sku_refund_num }}">
                   <text>共{{ item.goods_sku_num }}件</text>
                 </view>
               </view>
-              <view class="goods-money" wx:if="{{item.goods_amount}}">
+              <view class="goods-money" wx:if="{{ item.goods_amount }}">
                 <view class="money-row">
                   <text>实称</text>
-                  <price-component price="{{item.after_weighing_sku_weight}}" unit="g" text-color="text-black"></price-component>
+                  <price-component
+                    price="{{ item.after_weighing_sku_weight }}"
+                    unit="g"
+                    text-color="text-black"
+                  ></price-component>
                 </view>
                 <view class="money-row">
                   <text>实付</text>
-                  <price-component price="{{item.goods_amount}}" unit="元" text-color="text-black"></price-component>
+                  <price-component price="{{ item.goods_amount }}" unit="元" text-color="text-black"></price-component>
                 </view>
-                <view class="money-row refund" wx:if='{{item.goods_sku_refund_num}}'>
+                <view class="money-row refund" wx:if="{{ item.goods_sku_refund_num }}">
                   <text>已退款{{ item.goods_sku_refund_num }}件</text>
                 </view>
               </view>
@@ -107,9 +121,13 @@
                 </view>
                 <view class="money-row">
                   <text>预付</text>
-                  <price-component price="{{item.before_weighing_goods_amount}}" unit="元" text-color="text-black"></price-component>
+                  <price-component
+                    price="{{ item.before_weighing_goods_amount }}"
+                    unit="元"
+                    text-color="text-black"
+                  ></price-component>
                 </view>
-                <view class="money-row refund" wx:if='{{item.goods_sku_refund_num}}'>
+                <view class="money-row refund" wx:if="{{ item.goods_sku_refund_num }}">
                   <text>已退款{{ item.goods_sku_refund_num }}件</text>
                 </view>
               </view>
@@ -118,10 +136,10 @@
               <view class="goods-standard">
                 <view class="standard-row">
                   <text>规格</text>
-                  <text wx:if="{{item.goods_sku_name}}"> {{ item.goods_sku_name }}</text>
+                  <text wx:if="{{ item.goods_sku_name }}"> {{ item.goods_sku_name }}</text>
                   <text wx:else> 暂无</text>
                 </view>
-                <view class="standard-row" wx:if='{{Number(item.discount_price) > 0}}'>
+                <view class="standard-row" wx:if="{{ Number(item.discount_price) > 0 }}">
                   <text>折后价</text>
                   <text>{{ Number(item.discount_price) }}元/{{ item.unit_name }}</text>
                 </view>
@@ -129,7 +147,7 @@
                   <text>售价</text>
                   <text>{{ item.goods_price }}元/{{ item.unit_name }}</text>
                 </view>
-                <view class="standard-row refund" wx:if='{{item.goods_sku_refund_num}}'>
+                <view class="standard-row refund" wx:if="{{ item.goods_sku_refund_num }}">
                   <text>共{{ item.goods_sku_num }}件</text>
                 </view>
               </view>
@@ -138,20 +156,24 @@
                   <text>无需称重</text>
                   <text></text>
                 </view>
-                <view class="money-row" wx:if="{{item.goods_amount}}">
+                <view class="money-row" wx:if="{{ item.goods_amount }}">
                   <text>实付</text>
-                  <price-component price="{{item.goods_amount}}" unit="元" text-color="text-black"></price-component>
+                  <price-component price="{{ item.goods_amount }}" unit="元" text-color="text-black"></price-component>
                 </view>
                 <view class="money-row" wx:else>
                   <text>预付</text>
-                  <price-component price="{{item.before_weighing_goods_amount}}" unit="元" text-color="text-black"></price-component>
+                  <price-component
+                    price="{{ item.before_weighing_goods_amount }}"
+                    unit="元"
+                    text-color="text-black"
+                  ></price-component>
                 </view>
-                <view class="money-row refund" wx:if='{{item.goods_sku_refund_num}}'>
+                <view class="money-row refund" wx:if="{{ item.goods_sku_refund_num }}">
                   <text>已退款{{ item.goods_sku_refund_num }}件</text>
                 </view>
               </view>
             </view>
-            <view class='refund-reason' wx:if='{{item.is_refund === 1}}'>
+            <view class="refund-reason" wx:if="{{ item.is_refund === 1 }}">
               <text class="refund-title">退款原因:</text>
               <text>{{ item.refund_reason }}</text>
             </view>
@@ -163,15 +185,15 @@
           <text>商品共计</text>
           <text>{{ totalNumber }}件</text>
         </view>
-        <view class="discount-price" wx:if="{{order.discount_amount > 0}}">
+        <view class="discount-price" wx:if="{{ order.discount_amount > 0 }}">
           <text>折扣优惠</text>
           <text>-{{ order.discount_amount }}元</text>
         </view>
-        <view class="discount-price" wx:if="{{order.coupon_id}}">
+        <view class="discount-price" wx:if="{{ order.coupon_id }}">
           <text>红包</text>
           <text>-{{ order.coupon_amount }}元</text>
         </view>
-        <view class="goods-count" wx:if="{{order.delivery_type === 1}}">
+        <view class="goods-count" wx:if="{{ order.delivery_type === 1 }}">
           <text>运费</text>
           <text>{{ order.shipping_cost }}元</text>
         </view>
@@ -179,19 +201,23 @@
           <text>商品已付</text>
           <text>{{ order.finally_amount_before_weighing }}元</text>
         </view>
-        <view class="goods-count" wx:if="{{order.finally_amount}}">
+        <view class="goods-count" wx:if="{{ order.finally_amount }}">
           <text>称重差价</text>
-          <text class="red-price" wx:if="{{differencePrice < 0}}">称重退款 {{ filter.numToFixed(differencePrice)}}元</text>
-          <text class="red-price" wx:if="{{differencePrice > 0}}">称重补扣款 {{filter.numToFixed(differencePrice)}}元</text>
+          <text class="red-price" wx:if="{{ differencePrice < 0 }}"
+            >称重退款 {{ filter.numToFixed(differencePrice) }}元</text
+          >
+          <text class="red-price" wx:if="{{ differencePrice > 0 }}"
+            >称重补扣款 {{ filter.numToFixed(differencePrice) }}元</text
+          >
         </view>
-        <view class="finally_pay" wx:if='{{order.finally_amount}}'>
+        <view class="finally_pay" wx:if="{{ order.finally_amount }}">
           <view class="tip">
             <text>本次实付</text>
             <text>商品已按实称结算</text>
           </view>
-          <text class="weight">{{order.finally_amount}}元</text>
+          <text class="weight">{{ order.finally_amount }}元</text>
         </view>
-        <view class="discount-price" wx:if="{{finallyRefundMoney > 0}}">
+        <view class="discount-price" wx:if="{{ finallyRefundMoney > 0 }}">
           <text>商品退款</text>
           <text>-{{ filter.numToFixed(finallyRefundMoney) }}元</text>
         </view>
@@ -200,52 +226,52 @@
     <view class="user-name-address">
       <view class="user-name-info">
         <text>{{ order.buyer_name }} {{ order.buyer_phone }}</text>
-        <text wx:if="{{order.delivery_type === 1}}">地址 : {{ order.buyer_address }}</text>
+        <text wx:if="{{ order.delivery_type === 1 }}">地址 : {{ order.buyer_address }}</text>
       </view>
     </view>
     <view class="driver-time">
       <view class="content">
         <view class="driver-type">
           <text>配送方式</text>
-          <text class='right-info' wx:if="{{order.delivery_type === 1}}">菜巴士配送</text>
-          <text class='right-info' wx:else>到店自取</text>
+          <text class="right-info" wx:if="{{ order.delivery_type === 1 }}">菜巴士配送</text>
+          <text class="right-info" wx:else>到店自取</text>
         </view>
-        <view class="driver-type" wx:if="{{order.driver_name}}">
+        <view class="driver-type" wx:if="{{ order.driver_name }}">
           <text>配送人员</text>
-          <text class='right-info'>{{order.driver_name}}</text>
+          <text class="right-info">{{ order.driver_name }}</text>
         </view>
-        <view class="driver-type" wx:if="{{order.driver_phone}}" bindtap="freeTell">
+        <view class="driver-type" wx:if="{{ order.driver_phone }}" bindtap="freeTell">
           <text>联系配送</text>
-          <text class='right-info'>{{order.driver_phone}} （拨打电话）</text>
+          <text class="right-info">{{ order.driver_phone }} （拨打电话）</text>
         </view>
-        <view class="driver-type" wx:if="{{order.delivery_type === 1}}">
+        <view class="driver-type" wx:if="{{ order.delivery_type === 1 }}">
           <text>送达时间</text>
-          <text class='right-info'>{{order.delivery_end}}</text>
+          <text class="right-info">{{ order.delivery_end }}</text>
         </view>
       </view>
       <view class="content">
         <view class="driver-type">
           <text>支付方式</text>
-          <text class='right-info'>待支付</text>
+          <text class="right-info">待支付</text>
         </view>
         <view class="driver-type">
           <text>支付时间</text>
-          <text class='right-info'>{{order.update_time}}</text>
+          <text class="right-info">{{ order.update_time }}</text>
         </view>
       </view>
       <view class="content">
         <view class="driver-type">
-          <text>订单编号  </text>
-          <text class='right-info' selectable='{{true}}'>{{ order.order_no }}</text>
+          <text>订单编号 </text>
+          <text class="right-info" selectable="{{ true }}">{{ order.order_no }}</text>
         </view>
         <view class="driver-type">
           <text>下单时间</text>
-          <text class='right-info'>{{order.create_time}}</text>
+          <text class="right-info">{{ order.create_time }}</text>
         </view>
         <view class="driver-type">
           <text>订单备注</text>
-          <text class='right-info' wx:if='{{order.buyer_message}}'>{{ order.buyer_message }}</text>
-          <text class='right-info' wx:else>无备注</text>
+          <text class="right-info" wx:if="{{ order.buyer_message }}">{{ order.buyer_message }}</text>
+          <text class="right-info" wx:else>无备注</text>
         </view>
       </view>
     </view>

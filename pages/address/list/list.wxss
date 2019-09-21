@@ -35,10 +35,13 @@
   border-top: 1px solid #ebebeb;
 }
 
-.address-name-phone, .address-type-operation, .address-operation {
+.address-name-phone,
+.address-type-operation,
+.address-operation {
   display: flex;
 }
-.name, .phone {
+.name,
+.phone {
   font-size: 30rpx;
   padding-right: 20rpx;
   box-sizing: border-box;
@@ -46,8 +49,8 @@
 .default {
   font-size: 26rpx;
   line-height: 1;
-  color: #11A24A;
-  border: 1px solid #11A24A;
+  color: #11a24a;
+  border: 1px solid #11a24a;
   border-radius: 30rpx;
   padding: 5rpx 10rpx;
   box-sizing: border-box;
@@ -76,11 +79,13 @@
 .address-operation {
   align-items: flex-end;
 }
-.edit, .delete {
+.edit,
+.delete {
   font-size: 26rpx;
   color: #999;
 }
-.icon-edit, .icon-delete {
+.icon-edit,
+.icon-delete {
   color: #999;
   line-height: 1;
   padding: 0 5rpx 0 15rpx;

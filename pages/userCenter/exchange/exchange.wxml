@@ -1,20 +1,20 @@
 <!--pages/userCenter/exchange/exchange.wxml-->
-<view class="exchange-container {{!phoneNum?'tip':''}}">
-  <Curtain isShowCurtain="{{isShowCurtain}}" />
-  <view class='mobile-container' wx:if='{{isShowCurtain}}'>
-    <bind bind:bindPhone='bindPhone' bind:hideCurtain='hideCurtain'></bind>
+<view class="exchange-container {{ !phoneNum ? 'tip' : '' }}">
+  <Curtain isShowCurtain="{{ isShowCurtain }}"></Curtain>
+  <view class="mobile-container" wx:if="{{ isShowCurtain }}">
+    <bind bind:bindPhone="bindPhone" bind:hideCurtain="hideCurtain"></bind>
   </view>
-  <view class="tip-mobile" wx:if='{{!phoneNum}}' bindtap="showCurtain">
+  <view class="tip-mobile" wx:if="{{ !phoneNum }}" bindtap="showCurtain">
     <icon class="iconfont icon-warn"></icon>
     <text>为了您的账户安全需要绑定手机号才能兑换</text>
   </view>
-  <view class='input-exchange-number'>
-    <text class='exchange-title'>输入兑换码</text>
-    <view class='input-number'>
-      <input bindinput="bindKeyInput" placeholder="请输入正确的15位兑换码" placeholder-class='placeholder' />
+  <view class="input-exchange-number">
+    <text class="exchange-title">输入兑换码</text>
+    <view class="input-number">
+      <input bindinput="bindKeyInput" placeholder="请输入正确的15位兑换码" placeholder-class="placeholder" />
     </view>
   </view>
-  <view class='submit-exchange' bindtap='codeSubmit'>
-    <button loading="{{loading}}" type='primary'> 立即兑换 </button>
+  <view class="submit-exchange" bindtap="codeSubmit">
+    <button loading="{{ loading }}" type="primary">立即兑换</button>
   </view>
 </view>

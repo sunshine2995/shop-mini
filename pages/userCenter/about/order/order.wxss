@@ -10,7 +10,7 @@
   line-height: 1;
   padding-left: 20rpx;
   margin-right: 20rpx;
-  border-left: 6rpx solid #11A34A;
+  border-left: 6rpx solid #11a34a;
 }
 .content {
   text-align: left;

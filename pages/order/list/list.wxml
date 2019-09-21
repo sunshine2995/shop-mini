@@ -1,84 +1,116 @@
 <!--pages/order/list/list.wxml-->
 <view class="OrderListContainer">
-  <cover-view class="Curtain" wx:if='{{isShowCurtain}}'>
-    <cover-view class='choose-pay-type'>
-      <cover-view class='choose-title'>
+  <cover-view class="Curtain" wx:if="{{ isShowCurtain }}">
+    <cover-view class="choose-pay-type">
+      <cover-view class="choose-title">
         <cover-view class="pay-title">选择支付方式</cover-view>
-        <cover-image class='cancel-pay' bindtap="cancelPay" src="https://img.caibashi.com/0ed4036c520f66f18314d99d6b3a4ad5.png"></cover-image>
+        <cover-image
+          class="cancel-pay"
+          bindtap="cancelPay"
+          src="https://img.caibashi.com/0ed4036c520f66f18314d99d6b3a4ad5.png"
+        ></cover-image>
       </cover-view>
-      <cover-view class="pay-type" data-pay-type='{{1}}' bindtap="WxPay">
-        <cover-image class='wx-pay-image' src="https://img.caibashi.com/53395cb81974e687f3b72a4055ebfe96.png"></cover-image>
+      <cover-view class="pay-type" data-pay-type="{{ 1 }}" bindtap="WxPay">
+        <cover-image
+          class="wx-pay-image"
+          src="https://img.caibashi.com/53395cb81974e687f3b72a4055ebfe96.png"
+        ></cover-image>
         <cover-view class="wx-pay">微信支付</cover-view>
       </cover-view>
-      <cover-view class="pay-type" bindtap="orderFailure" wx:if='{{!failureOrder.order.finally_amount_before_weighing}}'>
-        <cover-image class='cancel-pay-image' src="https://img.caibashi.com/1c2801d3f0c818c1a748e38d2a2e7472.png"></cover-image>
-        <cover-view class="balance-not-enough">余额支付（剩余{{balance}}元）</cover-view>
+      <cover-view
+        class="pay-type"
+        bindtap="orderFailure"
+        wx:if="{{ !failureOrder.order.finally_amount_before_weighing }}"
+      >
+        <cover-image
+          class="cancel-pay-image"
+          src="https://img.caibashi.com/1c2801d3f0c818c1a748e38d2a2e7472.png"
+        ></cover-image>
+        <cover-view class="balance-not-enough">余额支付（剩余{{ balance }}元）</cover-view>
       </cover-view>
-      <cover-view class="pay-type" data-pay-type='{{2}}' bindtap="payByBalance" wx:elif='{{isEnough}}'>
-        <cover-image class='cancel-pay-image' src="https://img.caibashi.com/5ed5d2ac36be24e218628a02504576c5.png"></cover-image>
-        <cover-view class="balance-pay">余额支付（剩余{{balance}}元）</cover-view>
+      <cover-view class="pay-type" data-pay-type="{{ 2 }}" bindtap="payByBalance" wx:elif="{{ isEnough }}">
+        <cover-image
+          class="cancel-pay-image"
+          src="https://img.caibashi.com/5ed5d2ac36be24e218628a02504576c5.png"
+        ></cover-image>
+        <cover-view class="balance-pay">余额支付（剩余{{ balance }}元）</cover-view>
       </cover-view>
       <cover-view class="pay-type" bindtap="payNotEnough" wx:else>
-        <cover-image class='cancel-pay-image' src="https://img.caibashi.com/1c2801d3f0c818c1a748e38d2a2e7472.png"></cover-image>
-        <cover-view class="balance-not-enough">余额不足（仅余{{balance}}元）</cover-view>
+        <cover-image
+          class="cancel-pay-image"
+          src="https://img.caibashi.com/1c2801d3f0c818c1a748e38d2a2e7472.png"
+        ></cover-image>
+        <cover-view class="balance-not-enough">余额不足（仅余{{ balance }}元）</cover-view>
       </cover-view>
     </cover-view>
   </cover-view>
-  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-    <block wx:for='{{statusList}}' wx:key="index">
-      <view class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">
-        {{item.status}}
-        <text class="order-num" wx:if='{{item.num > 0}}'>{{item.num}}</text>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{ scrollLeft }}">
+    <block wx:for="{{ statusList }}" wx:key="index">
+      <view class="tab-item {{ currentTab == index ? 'active' : '' }}" data-current="{{ index }}" bindtap="swichNav">
+        {{ item.status }}
+        <text class="order-num" wx:if="{{ item.num > 0 }}">{{ item.num }}</text>
       </view>
     </block>
   </scroll-view>
   <!-- <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx"> -->
   <!-- <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"> -->
   <!-- <swiper-item wx:for="{{statusList}}" wx:key="index"> -->
-  <scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="lower" lower-threshold='10' enable-back-to-top="true">
-    <block wx:if='{{orderList.length}}'>
-      <view class="item-ans" wx:for="{{orderList}}" wx:key="index">
+  <scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="lower" lower-threshold="10" enable-back-to-top="true">
+    <block wx:if="{{ orderList.length }}">
+      <view class="item-ans" wx:for="{{ orderList }}" wx:key="index">
         <view class="time-status">
-          <text class="create-time">{{item.order.create_time}}</text>
-          <text class="order-status" wx:if="{{item.order.status === 3 && item.order.delivery_type === 0}}">到店自取</text>
-          <text class="order-status" wx:if="{{item.order.status === 3 && item.order.delivery_type === 1}}">待配送</text>
-          <text class="order-status" wx:if="{{item.order.status === 1}}">待付款</text>
-          <text class="order-status" wx:if="{{item.order.status === 6}}">待收货</text>
-          <text class="order-status" wx:if="{{item.order.status === 7}}">待评价</text>
-          <text class="order-status" wx:if="{{item.order.status === 11}}">待分拣</text>
-          <text class="order-status" wx:if="{{item.order.status === 12}}">分拣中</text>
-          <text class="already-evaluate" wx:if="{{item.order.status === 8}}">已评价</text>
-          <text class="already-refund" wx:if="{{item.order.status === 9}}">已退款</text>
+          <text class="create-time">{{ item.order.create_time }}</text>
+          <text class="order-status" wx:if="{{ item.order.status === 3 && item.order.delivery_type === 0 }}"
+            >到店自取</text
+          >
+          <text class="order-status" wx:if="{{ item.order.status === 3 && item.order.delivery_type === 1 }}"
+            >待配送</text
+          >
+          <text class="order-status" wx:if="{{ item.order.status === 1 }}">待付款</text>
+          <text class="order-status" wx:if="{{ item.order.status === 6 }}">待收货</text>
+          <text class="order-status" wx:if="{{ item.order.status === 7 }}">待评价</text>
+          <text class="order-status" wx:if="{{ item.order.status === 11 }}">待分拣</text>
+          <text class="order-status" wx:if="{{ item.order.status === 12 }}">分拣中</text>
+          <text class="already-evaluate" wx:if="{{ item.order.status === 8 }}">已评价</text>
+          <text class="already-refund" wx:if="{{ item.order.status === 9 }}">已退款</text>
         </view>
         <!-- <orderList orderGoods="{{item.items}}"></orderList> -->
-        <view class="image-group" data-order-no="{{item.order.order_no}}" bindtap="orderDetail">
+        <view class="image-group" data-order-no="{{ item.order.order_no }}" bindtap="orderDetail">
           <scroll-view class="scroll-view_H" scroll-x style="width: 80%">
-            <view class='goods-image-list'>
-              <view wx:for='{{item.items}}' wx:key='this' wx:for-item="image" class="goods-image">
-                <image class="goods-img" wx:if='{{image.goods_spu_thumbnail_url}}' src='{{image.goods_spu_thumbnail_url}}'></image>
-                <image class="goods-img" wx:else src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"></image>
-                <view class="mask-gift" wx:if="{{image.is_gift === 1}}">
+            <view class="goods-image-list">
+              <view wx:for="{{ item.items }}" wx:key="this" wx:for-item="image" class="goods-image">
+                <image
+                  class="goods-img"
+                  wx:if="{{ image.goods_spu_thumbnail_url }}"
+                  src="{{ image.goods_spu_thumbnail_url }}"
+                ></image>
+                <image
+                  class="goods-img"
+                  wx:else
+                  src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+                ></image>
+                <view class="mask-gift" wx:if="{{ image.is_gift === 1 }}">
                   <i class="iconfont icon-gift"></i>
                 </view>
               </view>
             </view>
           </scroll-view>
           <view class="total-number">
-            <text>共{{item.order.items_total_num}}件</text>
+            <text>共{{ item.order.items_total_num }}件</text>
             <icon class="iconfont icon-right"></icon>
           </view>
         </view>
         <view class="payment">
           <view class="money-type">
-            <view class="pay-money false-price" wx:if="{{item.order.finally_amount_before_weighing}}">
-              <text class="type" wx:if="{{item.order.status === 1}}">应付总额：</text>
+            <view class="pay-money false-price" wx:if="{{ item.order.finally_amount_before_weighing }}">
+              <text class="type" wx:if="{{ item.order.status === 1 }}">应付总额：</text>
               <text class="type" wx:else>预付总额：</text>
               <view class="pay-number">
                 <text>￥</text>
                 <text>{{ item.order.finally_amount_before_weighing }}</text>
               </view>
             </view>
-            <view class="pay-money actual-price" wx:if="{{item.order.finally_amount}}">
+            <view class="pay-money actual-price" wx:if="{{ item.order.finally_amount }}">
               <icon class="iconfont icon-yichengzhong-"></icon>
               <text class="type">实付总额：</text>
               <view class="pay-number">
@@ -88,30 +120,45 @@
             </view>
           </view>
 
-          <view class="pay-money refund-money" wx:if="{{item.order.refund_money}}">
+          <view class="pay-money refund-money" wx:if="{{ item.order.refund_money }}">
             <text class="type">商品退款</text>
             <view class="pay-number">
               <text>-￥</text>
               <text>{{ item.order.refund_money }}</text>
             </view>
           </view>
-          <view class="buy-more" wx:if="{{item.order.status === 1}}" data-order-no="{{item.order.order_no}}" bindtap="getDeliveryTime">
-            <text class="delete-order" data-order-no="{{item.order.order_no}}" catchtap="deleteOrder">删除订单</text>
-            <block wx:if='{{showTimePicker}}'>
-              <picker class="right-now" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+          <view
+            class="buy-more"
+            wx:if="{{ item.order.status === 1 }}"
+            data-order-no="{{ item.order.order_no }}"
+            bindtap="getDeliveryTime"
+          >
+            <text class="delete-order" data-order-no="{{ item.order.order_no }}" catchtap="deleteOrder">删除订单</text>
+            <block wx:if="{{ showTimePicker }}">
+              <picker
+                class="right-now"
+                mode="multiSelector"
+                bindchange="bindMultiPickerChange"
+                bindcolumnchange="bindMultiPickerColumnChange"
+                value="{{ multiIndex }}"
+                range="{{ multiArray }}"
+                range-key="name"
+              >
                 <text class="pay-order">立即付款</text>
               </picker>
             </block>
             <block wx:else>
-              <text  class="pay-order" data-order-no="{{item.order.order_no}}" catchtap="timePicker">立即付款</text>
+              <text class="pay-order" data-order-no="{{ item.order.order_no }}" catchtap="timePicker">立即付款</text>
             </block>
           </view>
-          <view class="buy-more" wx:elif="{{item.order.status === 7}}">
-            <text class="again-order" data-order-no="{{item.order.order_no}}" bindtap="OnceMoreOrder">再来一单</text>
-            <text class="evaluate-order" data-order-no="{{item.order.order_no}}" bindtap="goToEvaluate"> 去评价 </text>
+          <view class="buy-more" wx:elif="{{ item.order.status === 7 }}">
+            <text class="again-order" data-order-no="{{ item.order.order_no }}" bindtap="OnceMoreOrder">再来一单</text>
+            <text class="evaluate-order" data-order-no="{{ item.order.order_no }}" bindtap="goToEvaluate">
+              去评价
+            </text>
           </view>
           <view class="buy-more" wx:else>
-            <text class="again-order" data-order-no="{{item.order.order_no}}" bindtap="OnceMoreOrder">再来一单</text>
+            <text class="again-order" data-order-no="{{ item.order.order_no }}" bindtap="OnceMoreOrder">再来一单</text>
           </view>
         </view>
       </view>

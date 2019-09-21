@@ -57,11 +57,14 @@
   z-index: 20;
 }
 
-.address-name-phone, .address-type-operation, .address-operation {
+.address-name-phone,
+.address-type-operation,
+.address-operation {
   display: flex;
 }
 
-.name, .phone {
+.name,
+.phone {
   font-size: 30rpx;
   padding-right: 20rpx;
   box-sizing: border-box;
@@ -107,12 +110,14 @@
   align-items: flex-end;
 }
 
-.edit, .delete {
+.edit,
+.delete {
   font-size: 26rpx;
   color: #999;
 }
 
-.icon-edit, .icon-delete {
+.icon-edit,
+.icon-delete {
   color: #999;
   line-height: 1;
   padding: 0 5rpx 0 15rpx;

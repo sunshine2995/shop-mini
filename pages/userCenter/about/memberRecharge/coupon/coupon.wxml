@@ -1,38 +1,38 @@
 <!--pages/userCenter/about/memberRecharge/coupon/coupon.wxml-->
-<view class='aboutCouponContainer'>
-  <view class='about-content'>
-    <view class='about-title'>
-      <text class='title'>优惠券包括哪些？</text>
+<view class="aboutCouponContainer">
+  <view class="about-content">
+    <view class="about-title">
+      <text class="title">优惠券包括哪些？</text>
     </view>
-    <view class='content'>
-      <text class='text'>优惠券包括，设有消费限额，下单时满足使用条件即可抵扣商品金额或运费。</text>
-    </view>
-  </view>
-  <view class='about-content'>
-    <view class='about-title'>
-      <text class='title'>使用规则</text>
-    </view>
-    <view class='content'>
-      <text class='text'>1、一张订单只能使用一种类型得优惠券；</text>
-      <text class='text'>2、使用了全场通用优惠券的订单不支持修改和合并订单。</text>
+    <view class="content">
+      <text class="text">优惠券包括，设有消费限额，下单时满足使用条件即可抵扣商品金额或运费。</text>
     </view>
   </view>
-  <view class='about-content'>
-    <view class='about-title'>
-      <text class='title'>如何获得？</text>
+  <view class="about-content">
+    <view class="about-title">
+      <text class="title">使用规则</text>
     </view>
-    <view class='content'>
-      <text class='text'>1、优惠券可通过促销活动线上领取</text>
-      <text class='text'>2、领取成功的优惠券可在【个人中心—红包—优惠券】查看。</text>
+    <view class="content">
+      <text class="text">1、一张订单只能使用一种类型得优惠券；</text>
+      <text class="text">2、使用了全场通用优惠券的订单不支持修改和合并订单。</text>
     </view>
   </view>
-  <view class='about-content'>
-    <view class='about-title'>
-      <text class='title'>退回规则？</text>
+  <view class="about-content">
+    <view class="about-title">
+      <text class="title">如何获得？</text>
     </view>
-    <view class='content'>
-      <text class='text'>1、取消订单：取消订单成功，优惠券会自动退回个人账户；</text>
-      <text class='text'>2、拒收或退货：不退回原优惠券，优惠金额按照商品价格比例分摊至每件商品。</text>
+    <view class="content">
+      <text class="text">1、优惠券可通过促销活动线上领取</text>
+      <text class="text">2、领取成功的优惠券可在【个人中心—红包—优惠券】查看。</text>
+    </view>
+  </view>
+  <view class="about-content">
+    <view class="about-title">
+      <text class="title">退回规则？</text>
+    </view>
+    <view class="content">
+      <text class="text">1、取消订单：取消订单成功，优惠券会自动退回个人账户；</text>
+      <text class="text">2、拒收或退货：不退回原优惠券，优惠金额按照商品价格比例分摊至每件商品。</text>
     </view>
   </view>
 </view>

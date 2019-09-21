@@ -3,21 +3,26 @@
   <view class="sort-head">
     <view class="search">
       <!-- <navigator url="/pages/userCenter/customerService/customerService" class='help-service' hover-class="none"> -->
-      <navigator url="/pages/sortTest/sort" class='help-service' hover-class="none">
+      <navigator url="/pages/sortTest/sort" class="help-service" hover-class="none">
         <!-- <navigator url="/pages/left/left" class='help-service' hover-class="none"> -->
         <icon class="iconfont icon-help"></icon>
-        <text class='text-help'>客服</text>
+        <text class="text-help">客服</text>
       </navigator>
-      <navigator url="/pages/goodsSearch/goodsSearch" class='search-border' hover-class="none">
-        <text class="search-text">找你要的菜{{cartNUM}}</text>
-        <icon class="iconfont icon-search" />
+      <navigator url="/pages/goodsSearch/goodsSearch" class="search-border" hover-class="none">
+        <text class="search-text">找你要的菜{{ cartNUM }}</text>
+        <icon class="iconfont icon-search"></icon>
       </navigator>
     </view>
     <view class="one-container">
-      <scroll-view scroll-x="true" class="category-one" scroll-left="{{scrollLeft}}" scroll-with-animation="true">
-        <block wx:for='{{oneList}}' wx:key="index">
-          <view class="ont-title {{currentTab==index?'active':''}}" data-current="{{index}}" data-one-id="{{item.id}}" bindtap="swichNav">
-            {{item.name}}
+      <scroll-view scroll-x="true" class="category-one" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
+        <block wx:for="{{ oneList }}" wx:key="index">
+          <view
+            class="ont-title {{ currentTab == index ? 'active' : '' }}"
+            data-current="{{ index }}"
+            data-one-id="{{ item.id }}"
+            bindtap="swichNav"
+          >
+            {{ item.name }}
           </view>
         </block>
       </scroll-view>
@@ -25,73 +30,115 @@
   </view>
 
   <!-- 左侧导航 -->
-  <view class='tui-fixed-left'>
-    <scroll-view class='tui-city-scroll' scroll-x="true" scroll-y="true" style='height:80%;' scroll-with-animation="true" scroll-top="{{leftMenuTop}}">
-      <text class="menu-item {{index === currentActiveIndex ? 'menu-active' : ''}}" wx:for="{{twoList}}" wx:key="unique" data-index="{{index}}" id='{{index}}' catchtap='changeMenu'>{{item.category_two_name}}</text>
+  <view class="tui-fixed-left">
+    <scroll-view
+      class="tui-city-scroll"
+      scroll-x="true"
+      scroll-y="true"
+      style="height:80%;"
+      scroll-with-animation="true"
+      scroll-top="{{ leftMenuTop }}"
+    >
+      <text
+        class="menu-item {{ index === currentActiveIndex ? 'menu-active' : '' }}"
+        wx:for="{{ twoList }}"
+        wx:key="unique"
+        data-index="{{ index }}"
+        id="{{ index }}"
+        catchtap="changeMenu"
+        >{{ item.category_two_name }}</text
+      >
     </scroll-view>
   </view>
   <!-- 右侧滚动商品 -->
-  <view class='content'>
-    <scroll-view class='tui-city-scroll-y' scroll-y="true" style='height:92%;' scroll-with-animation="true" scroll-top="{{rightProTop}}" bindscroll="scroll">
-      <view class='pro-item' wx:for="{{twoList}}" wx:key="index">
-        <view class='tui-list-head' id='NAV{{index}}'>{{item.category_two_name}}</view>
-        <view class='tui-list-li'>
-          <!-- <view class='goods-box' wx:for-item='items' wx:for="{{item.goods_spu_list}}" wx:key="{{item.id}}">
-            <view></view>
-            <image class='goodsImg' src='{{items.thumbnail_url}}'></image>
-            <view class='goodsName'>{{items.name}}</view>
-          </view> -->
-
-          <block wx:for="{{item.goods_spu_list}}" wx:key="index" wx:for-item="goodSpu">
-            <view class="marketing-goods-content" data-good-id='{{goodSpu.id}}' bindtap='goDetail'>
+  <view class="content">
+    <scroll-view
+      class="tui-city-scroll-y"
+      scroll-y="true"
+      style="height:92%;"
+      scroll-with-animation="true"
+      scroll-top="{{ rightProTop }}"
+      bindscroll="scroll"
+    >
+      <view class="pro-item" wx:for="{{ twoList }}" wx:key="index">
+        <view class="tui-list-head" id="NAV{{ index }}">{{ item.category_two_name }}</view>
+        <view class="tui-list-li">
+          <block wx:for="{{ item.goods_spu_list }}" wx:key="index" wx:for-item="goodSpu">
+            <view class="marketing-goods-content" data-good-id="{{ goodSpu.id }}" bindtap="goDetail">
               <view class="marketing-goods-image">
-                <image class="marketing-goods-img" src='{{goodSpu.thumbnail_url}}' wx:if='{{goodSpu.thumbnail_url}}'></image>
-                <image class="marketing-goods-img" src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' wx:else></image>
+                <image
+                  class="marketing-goods-img"
+                  src="{{ goodSpu.thumbnail_url }}"
+                  wx:if="{{ goodSpu.thumbnail_url }}"
+                ></image>
+                <image
+                  class="marketing-goods-img"
+                  src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+                  wx:else
+                ></image>
               </view>
               <view class="marketing-goods-detail">
-                <text class='marketing-goods-name'>{{goodSpu.name}}</text>
-                <icon class='iconfont icon-shichengjiesuan-1' wx:if='{{!goodSpu.is_standard}}'></icon>
-                <text class='marketing-goods-advertising' wx:if='{{goodSpu.advertising}}'>{{goodSpu.advertising}}</text>
-                <block wx:for="{{goodSpu.goods_sku_list}}" wx:key="index" wx:for-item="goodSku">
-                  <view class='marketing-different-price'>
-                    <view class='goods-different-price' wx:if='{{goodSpu.is_standard}}'>
-                      <text class='market-price-text'>市场价</text>
-                      <text class='market-price-number'>￥{{goodSku.market_price}}/{{goodSku.goods_sku_unit.name}}</text>
+                <text class="marketing-goods-name">{{ goodSpu.name }}</text>
+                <icon class="iconfont icon-shichengjiesuan-1" wx:if="{{ !goodSpu.is_standard }}"></icon>
+                <text class="marketing-goods-advertising" wx:if="{{ goodSpu.advertising }}">{{
+                  goodSpu.advertising
+                }}</text>
+                <block wx:for="{{ goodSpu.goods_sku_list }}" wx:key="index" wx:for-item="goodSku">
+                  <view class="marketing-different-price">
+                    <view class="goods-different-price" wx:if="{{ goodSpu.is_standard }}">
+                      <text class="market-price-text">市场价</text>
+                      <text class="market-price-number"
+                        >￥{{ goodSku.market_price }}/{{ goodSku.goods_sku_unit.name }}</text
+                      >
                     </view>
-                    <view class='goods-different-price' wx:else>
-                      <text class='market-price-text'>单价</text>
-                      <text class='market-price-number'>￥{{goodSku.unit_price}}/{{goodSku.goods_sku_unit.name}}</text>
+                    <view class="goods-different-price" wx:else>
+                      <text class="market-price-text">单价</text>
+                      <text class="market-price-number"
+                        >￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text
+                      >
                     </view>
-                    <view class='goods-remarks'>
-                      <text class='market-price-standard'>{{goodSku.name}}</text>
-                      <text class='market-price-remark'>{{goodSku.remark}}</text>
+                    <view class="goods-remarks">
+                      <text class="market-price-standard">{{ goodSku.name }}</text>
+                      <text class="market-price-remark">{{ goodSku.remark }}</text>
                     </view>
                   </view>
                   <view class="normal-diacount-price">
-                    <view class='marketing-goods-price'>
-                      <view class='marketing-sell-price' wx:if='{{goodSpu.is_standard}}'>
-                        <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color='text-color'></price-component>
-                        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+                    <view class="marketing-goods-price">
+                      <view class="marketing-sell-price" wx:if="{{ goodSpu.is_standard }}">
+                        <price-component
+                          price="{{ goodSku.sell_price }}"
+                          unit="{{ goodSku.goods_sku_unit.name }}"
+                          text-color="text-color"
+                        ></price-component>
+                        <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
                       </view>
-                      <view class='marketing-sell-price' wx:else>
-                        <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color='text-color '></price-component>
-                        <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+                      <view class="marketing-sell-price" wx:else>
+                        <price-component
+                          price="{{ goodSku.sell_price }}"
+                          unit="{{ goodSku.goods_sku_sell_unit.name }}"
+                          text-color="text-color "
+                        ></price-component>
+                        <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
                       </view>
-                      <view class='add-cart-num' wx:if='{{!goodSku.stock && !goodSku.marketing}}'>
+                      <view class="add-cart-num" wx:if="{{ !goodSku.stock && !goodSku.marketing }}">
                         <icon class="iconfont icon-yiqiangwan"></icon>
                       </view>
-                      <view class='add-cart-num' wx:if='{{goodSku.stock && !goodSku.marketing}}'>
-                        <icon class="iconfont icon-sort-add" data-good-sku-id='{{goodSku.id}}' catchtap='getGoodsAttr'></icon>
-                        <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
-                          <text class='cart-num' wx:if='{{goodSku.id === select.id}}'>{{select.num}}</text>
+                      <view class="add-cart-num" wx:if="{{ goodSku.stock && !goodSku.marketing }}">
+                        <icon
+                          class="iconfont icon-sort-add"
+                          data-good-sku-id="{{ goodSku.id }}"
+                          catchtap="getGoodsAttr"
+                        ></icon>
+                        <block wx:for="{{ idSelected }}" wx:key="index" wx:for-item="select">
+                          <text class="cart-num" wx:if="{{ goodSku.id === select.id }}">{{ select.num }}</text>
                         </block>
                       </view>
                     </view>
-                    <view class="not-show-icon" wx:if='{{goodSku.marketing}}'>
-                      <view class="discount-rule" wx:if='{{goodSku.stock !==0}}'>
+                    <view class="not-show-icon" wx:if="{{ goodSku.marketing }}">
+                      <view class="discount-rule" wx:if="{{ goodSku.stock !== 0 }}">
                         <text class="discount-cart">{{ goodSku.marketing.marketing_simple_name }} | 马上抢</text>
-                        <block wx:for="{{idSelected}}" wx:key="index" wx:for-item="select">
-                          <text class='cart-num' wx:if='{{goodSku.id === select.id}}'>{{select.num}}</text>
+                        <block wx:for="{{ idSelected }}" wx:key="index" wx:for-item="select">
+                          <text class="cart-num" wx:if="{{ goodSku.id === select.id }}">{{ select.num }}</text>
                         </block>
                       </view>
                       <view class="discount-rule sale-out" wx:else>

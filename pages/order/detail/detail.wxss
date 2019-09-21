@@ -40,7 +40,10 @@
   opacity: 0.6;
 }
 
-.icon-pay-success, .icon-order-complate, .icon-to-be-received, .icon-daishouhuo,
+.icon-pay-success,
+.icon-order-complate,
+.icon-to-be-received,
+.icon-daishouhuo,
 .icon-kucun {
   font-size: 50rpx;
 }
@@ -93,7 +96,8 @@
   box-sizing: border-box;
 }
 
-.user-name-address, .driver-time {
+.user-name-address,
+.driver-time {
   background-color: #fff;
   padding: 15rpx 20rpx 0;
   box-sizing: border-box;
@@ -102,7 +106,8 @@
   margin-top: 15rpx;
 }
 
-.user-name-address text, .driver-type text {
+.user-name-address text,
+.driver-type text {
   padding-top: 5rpx;
   padding-bottom: 5rpx;
   box-sizing: border-box;
@@ -244,7 +249,8 @@
   font-size: 30rpx;
 }
 
-.standard-row, .money-row {
+.standard-row,
+.money-row {
   width: 100%;
   display: flex;
   font-size: 26rpx;
@@ -256,7 +262,8 @@
   box-sizing: border-box;
 }
 
-.standard-row text:nth-child(2), .money-row text:nth-child(2) {
+.standard-row text:nth-child(2),
+.money-row text:nth-child(2) {
   padding-left: 10rpx;
   box-sizing: border-box;
 }

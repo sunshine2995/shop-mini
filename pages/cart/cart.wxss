@@ -80,7 +80,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   color: #333;
 }
 
-.gift-tips, .gift-goods {
+.gift-tips,
+.gift-goods {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -185,7 +186,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   justify-content: space-between;
 }
 
-.activity-image, .empty-image {
+.activity-image,
+.empty-image {
   padding: 20rpx;
   box-sizing: border-box;
   margin: auto;
@@ -350,7 +352,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .shop_num {
-  /* line-height: 52rpx; *//* height: 52rpx; */
+  /* line-height: 52rpx; */ /* height: 52rpx; */
   width: 60rpx;
   text-align: center;
   font-size: 32rpx;
@@ -531,7 +533,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   margin-top: 10rpx;
 }
 
-.add_icon, .minus_icon {
+.add_icon,
+.minus_icon {
   width: 38rpx;
   height: 38rpx;
 }
@@ -541,7 +544,9 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   box-sizing: border-box;
 }
 
-.total-original, .discount-total, .weight-total {
+.total-original,
+.discount-total,
+.weight-total {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -590,7 +595,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   color: #999;
 }
 
-.icon-Unselected, .icon-selected {
+.icon-Unselected,
+.icon-selected {
   font-size: 40rpx;
   line-height: 1;
   margin: 0 15rpx;

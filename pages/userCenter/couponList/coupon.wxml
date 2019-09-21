@@ -2,13 +2,13 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 
 <view class="CouponContainer">
-  <view class='coupon-empty' wx:if='{{!couponList.length && !expiredCouponList.length}}' bindtap='goCollectGood'>
+  <view class="coupon-empty" wx:if="{{ !couponList.length && !expiredCouponList.length }}" bindtap="goCollectGood">
     <text>无可用红包</text>
-    <button type='primary' class='go-recharge'> 充值送红包 </button>
+    <button type="primary" class="go-recharge">充值送红包</button>
   </view>
   <view class="coupon-list" wx:else>
-    <text class="coupon-title" wx:if='{{couponList.length}}'>可用红包</text>
-    <view class="coupon-container" wx:for='{{couponList}}' wx:key="index" wx:for-item="coupon">
+    <text class="coupon-title" wx:if="{{ couponList.length }}">可用红包</text>
+    <view class="coupon-container" wx:for="{{ couponList }}" wx:key="index" wx:for-item="coupon">
       <view class="coupon-content">
         <view class="coupon-message">
           <view class="money">
@@ -21,10 +21,14 @@
           <view class="name">
             <view class="coupon">
               <text class="coupon_title">{{ coupon.name }}</text>
-              <text class="only-left" wx:if="{{coupon.coupons_type.valid_time < 10}}">还剩{{ coupon.coupons_type.valid_time }}天过期</text>
+              <text class="only-left" wx:if="{{ coupon.coupons_type.valid_time < 10 }}"
+                >还剩{{ coupon.coupons_type.valid_time }}天过期</text
+              >
             </view>
             <view class="generate-time">
-              <text class="time">有效期: {{ filter.formatData(coupon.send_time) }}至{{ filter.formatData(coupon.generate_time) }}</text>
+              <text class="time"
+                >有效期: {{ filter.formatData(coupon.send_time) }}至{{ filter.formatData(coupon.generate_time) }}</text
+              >
             </view>
             <view class="now-user" bindtap="goToSort">
               <text>全场通用</text>
@@ -34,8 +38,8 @@
         </view>
       </view>
     </view>
-    <text class="coupon-title" wx:if='{{expiredCouponList.length}}'>过期红包</text>
-    <view class="coupon-container" wx:for='{{expiredCouponList}}' wx:key="index" wx:for-item="coupon">
+    <text class="coupon-title" wx:if="{{ expiredCouponList.length }}">过期红包</text>
+    <view class="coupon-container" wx:for="{{ expiredCouponList }}" wx:key="index" wx:for-item="coupon">
       <view class="coupon-content">
         <view class="coupon-message">
           <view class="money">
@@ -50,7 +54,9 @@
               <text class="coupon_title">{{ coupon.name }}</text>
             </view>
             <view class="generate-time">
-              <text class="time">有效期: {{ filter.formatTime(coupon.send_time) }}至{{ filter.formatTime(coupon.generate_time) }}</text>
+              <text class="time"
+                >有效期: {{ filter.formatTime(coupon.send_time) }}至{{ filter.formatTime(coupon.generate_time) }}</text
+              >
             </view>
             <view class="now-user">
               <text>全场通用</text>

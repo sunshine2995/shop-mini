@@ -1,6 +1,7 @@
 /* pages/userCenter/historyBill/historyBill.wxss */
 
-.bill-content, .bill-type-orderNo {
+.bill-content,
+.bill-type-orderNo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,7 +12,8 @@
   box-sizing: border-box;
   border-bottom: 2rpx solid #ebebeb;
 }
-.bill-type, .bill-money {
+.bill-type,
+.bill-money {
   font-size: 30rpx;
 }
 .bill-order-number {
@@ -19,7 +21,8 @@
   box-sizing: border-box;
 }
 
-.bill-order-number, .bill-time {
+.bill-order-number,
+.bill-time {
   font-size: 24rpx;
   color: #999;
 }

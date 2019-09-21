@@ -1,4 +1,6 @@
 <!--components/searchHighlightTextView/searchHighlightTextView.wxml-->
-<view class='search-name-list'>
-  <text wx:for="{{searchArray}}" wx:key="*this" class="{{item == keyName ? 'highlight' : 'normal' }}">{{item}}</text>
+<view class="search-name-list">
+  <text wx:for="{{ searchArray }}" wx:key="*this" class="{{ item == keyName ? 'highlight' : 'normal' }}">{{
+    item
+  }}</text>
 </view>

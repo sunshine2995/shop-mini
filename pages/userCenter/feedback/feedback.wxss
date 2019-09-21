@@ -7,7 +7,8 @@
   color: #666;
   margin: 20rpx;
 }
-.input-message, .input-contact {
+.input-message,
+.input-contact {
   border: 2rpx solid #f4f4f3;
   border-radius: 10rpx;
   margin: 20rpx;
@@ -26,7 +27,8 @@
 .feedback-image {
   margin: 60rpx 0 20rpx;
 }
-.feedback-image, .feedback-contact {
+.feedback-image,
+.feedback-contact {
   border-top: 2rpx solid #ebebeb;
 }
 .upload-image {
@@ -37,7 +39,8 @@
   flex-wrap: wrap;
   margin: 60rpx 10rpx;
 }
-.add-image, .show-image {
+.add-image,
+.show-image {
   width: 160rpx;
   height: 160rpx;
   margin: 0 10rpx;
@@ -53,7 +56,7 @@
   color: #fe3059;
   font-size: 55rpx;
   line-height: 1;
-  transform:rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .submit-feedback {
@@ -61,6 +64,6 @@
 }
 
 .button-hover {
-  color:rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   background-color: #11a24a;
 }

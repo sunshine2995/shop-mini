@@ -1,18 +1,18 @@
 <!--pages/userCenter/problem/problem.wxml-->
-<view class='problem-container'>
-  <navigator class='problem-content' url="/pages/userCenter/about/order/order">
-    <text class='problem-title'>关于订单</text>
-    <icon class='iconfont icon-right'></icon>
+<view class="problem-container">
+  <navigator class="problem-content" url="/pages/userCenter/about/order/order">
+    <text class="problem-title">关于订单</text>
+    <icon class="iconfont icon-right"></icon>
   </navigator>
-  <navigator class='problem-content' url="/pages/userCenter/about/delivery/delivery">
-    <text class='problem-title'>关于配送</text>
-    <icon class='iconfont icon-right'></icon>
+  <navigator class="problem-content" url="/pages/userCenter/about/delivery/delivery">
+    <text class="problem-title">关于配送</text>
+    <icon class="iconfont icon-right"></icon>
   </navigator>
-  <navigator class='problem-content' url="/pages/userCenter/about/memberRecharge/manage">
-    <text class='problem-title'>会员和充值</text>
-    <icon class='iconfont icon-right'></icon>
+  <navigator class="problem-content" url="/pages/userCenter/about/memberRecharge/manage">
+    <text class="problem-title">会员和充值</text>
+    <icon class="iconfont icon-right"></icon>
   </navigator>
   <view>
-    <bottomContact phoneNumber="{{phoneNumber}}" />
+    <bottomContact phoneNumber="{{ phoneNumber }}"></bottomContact>
   </view>
 </view>

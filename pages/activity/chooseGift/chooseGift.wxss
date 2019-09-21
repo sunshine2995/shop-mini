@@ -20,7 +20,6 @@
   box-sizing: border-box;
 }
 
-
 .invaild-title {
   flex: 1;
 }

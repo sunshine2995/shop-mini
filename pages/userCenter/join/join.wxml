@@ -1,6 +1,6 @@
 <!--pages/userCenter/join/join.wxml-->
-<view class='joinContainer'>
-  <view class='join-term'>
+<view class="joinContainer">
+  <view class="join-term">
     <text>如果你是</text>
     <text>有品质稳定的生鲜产品</text>
     <text>或有特色的生鲜产品</text>
@@ -9,10 +9,10 @@
     <text>并和我们一样注重品质和健康</text>
     <text>请联系我们</text>
   </view>
-  <view class='join-content'>
-    <image class='join-image' src='https://img.caibashi.com/f2d25224d35d30a8d297dad5e5f54568.png'></image>
+  <view class="join-content">
+    <image class="join-image" src="https://img.caibashi.com/f2d25224d35d30a8d297dad5e5f54568.png"></image>
   </view>
   <view>
-    <bottomContact phoneNumber="{{phoneNumber}}" />
+    <bottomContact phoneNumber="{{ phoneNumber }}"></bottomContact>
   </view>
 </view>

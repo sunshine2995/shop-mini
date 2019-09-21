@@ -1,73 +1,90 @@
 <view class="evaluateContainer">
   <view class="comment-description">
-    <text class='comment-title'>下单体验</text>
-    <!-- <view class="star-pos">
-      <view class="stars  {{flag>=1? 'on': ''}}" bindtap="changeColor1"></view>
-      <view class="stars  {{flag>=2? 'on': ''}}" bindtap="changeColor2"></view>
-      <view class="stars  {{flag>=3? 'on': ''}}" bindtap="changeColor3"></view>
-      <view class="stars  {{flag>=4? 'on': ''}}" bindtap="changeColor4"></view>
-      <view class="stars  {{flag>=5? 'on': ''}}" bindtap="changeColor5"></view>
-    </view> -->
-    <view class="star-pos" wx:for='{{[1,2,3,4,5]}}' wx:key="index">
-      <view class="stars  {{userStar>=item? 'on': ''}}" data-index='{{item}}' bindtap="changeUserStar"></view>
+    <text class="comment-title">下单体验</text>
+    <view class="star-pos" wx:for="{{ [1, 2, 3, 4, 5] }}" wx:key="index">
+      <view class="stars  {{ userStar >= item ? 'on' : '' }}" data-index="{{ item }}" bindtap="changeUserStar"></view>
     </view>
   </view>
   <view class="comment-description">
-    <text class='comment-title'>配送服务</text>
-    <view class="star-pos" wx:for='{{[1,2,3,4,5]}}' wx:key="index">
-      <view class="stars  {{driverStar>=index + 1? 'on': ''}}" data-index='{{index + 1}}' bindtap="changeDriverStar"></view>
+    <text class="comment-title">配送服务</text>
+    <view class="star-pos" wx:for="{{ [1, 2, 3, 4, 5] }}" wx:key="index">
+      <view
+        class="stars  {{ driverStar >= index + 1 ? 'on' : '' }}"
+        data-index="{{ index + 1 }}"
+        bindtap="changeDriverStar"
+      ></view>
     </view>
   </view>
   <view class="comment-description">
-    <text class='comment-title'>商品质量</text>
-    <view class="star-pos" wx:for='{{[1,2,3,4,5]}}' wx:key="index">
-      <view class="stars  {{goodStar>=index + 1? 'on': ''}}" data-index='{{index + 1}}' bindtap="changeGoodStar"></view>
+    <text class="comment-title">商品质量</text>
+    <view class="star-pos" wx:for="{{ [1, 2, 3, 4, 5] }}" wx:key="index">
+      <view
+        class="stars  {{ goodStar >= index + 1 ? 'on' : '' }}"
+        data-index="{{ index + 1 }}"
+        bindtap="changeGoodStar"
+      ></view>
     </view>
   </view>
   <view class="weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">
-        <textarea class="weui-textarea" bindinput="bindTextAreaChange" placeholder="本次服务满足你的期待吗？说说它的优点和美中不足的地方吧..." value="{{info}}" maxlength="{{noteMaxLen}}" focus />
-        <view class="weui-textarea-counter">{{noteNowLen}}/{{noteMaxLen}}</view>
+        <textarea
+          class="weui-textarea"
+          bindinput="bindTextAreaChange"
+          placeholder="本次服务满足你的期待吗？说说它的优点和美中不足的地方吧..."
+          value="{{ info }}"
+          maxlength="{{ noteMaxLen }}"
+          focus
+        ></textarea>
+        <view class="weui-textarea-counter">{{ noteNowLen }}/{{ noteMaxLen }}</view>
       </view>
     </view>
   </view>
-  <view class='feedback-image'>
-    <text class='title'>上传截图(选填0~4张)</text>
+  <view class="feedback-image">
+    <text class="title">上传截图(选填0~4张)</text>
   </view>
   <view class="upload-image">
-    <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
-      <view class='add-delete'>
-        <image class='show-image' src="{{item }}" bindtap="listenerButtonPreviewImage" data-index="{{index}}" />
-        <icon class='iconfont icon-add' data-index='{{index}}' bindtap='deleteImage'></icon>
+    <block wx:for="{{ tempFilePaths }}" wx:key="{{ index }}">
+      <view class="add-delete">
+        <image
+          class="show-image"
+          src="{{ item }}"
+          bindtap="listenerButtonPreviewImage"
+          data-index="{{ index }}"
+        ></image>
+        <icon class="iconfont icon-add" data-index="{{ index }}" bindtap="deleteImage"></icon>
       </view>
     </block>
-    <block wx:if="{{tempFilePaths.length <= 3}}">
-      <image class='add-image' src='https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png' bindtap="upload"></image>
+    <block wx:if="{{ tempFilePaths.length <= 3 }}">
+      <image
+        class="add-image"
+        src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png"
+        bindtap="upload"
+      ></image>
     </block>
   </view>
   <view class="good-evaluate">
-    <view class="good-content" wx:for="{{orderList}}" wx:key='index'>
+    <view class="good-content" wx:for="{{ orderList }}" wx:key="index">
       <view class="good-image">
-        <image mode="widthFix" class="good-img" src="{{item.goods_spu_thumbnail_url}}"></image>
+        <image mode="widthFix" class="good-img" src="{{ item.goods_spu_thumbnail_url }}"></image>
       </view>
-      <view class="good-name">{{item.goods_spu_name}}</view>
+      <view class="good-name">{{ item.goods_spu_name }}</view>
       <view class="good-value">
-        <view data-good-id="{{item.id}}" bindtap="changeGood">
-          <icon class="iconfont icon-haoping1 good" wx:if='{{item.evalute === 1}}'></icon>
+        <view data-good-id="{{ item.id }}" bindtap="changeGood">
+          <icon class="iconfont icon-haoping1 good" wx:if="{{ item.evalute === 1 }}"></icon>
           <icon class="iconfont icon-haoping1" wx:else></icon>
         </view>
-        <view data-good-id="{{item.id}}" bindtap="changeBad">
-          <icon class="iconfont icon-chaping bad" wx:if='{{item.evalute === 0}}'></icon>
+        <view data-good-id="{{ item.id }}" bindtap="changeBad">
+          <icon class="iconfont icon-chaping bad" wx:if="{{ item.evalute === 0 }}"></icon>
           <icon class="iconfont icon-chaping" wx:else></icon>
         </view>
       </view>
     </view>
-    <view class="good-content" wx:for="{{refundList}}" wx:key='index'>
+    <view class="good-content" wx:for="{{ refundList }}" wx:key="index">
       <view class="good-image">
-        <image mode="widthFix" class="good-img" src="{{item.goods_spu_thumbnail_url}}"></image>
+        <image mode="widthFix" class="good-img" src="{{ item.goods_spu_thumbnail_url }}"></image>
       </view>
-      <view class="good-name">{{item.goods_spu_name}}</view>
+      <view class="good-name">{{ item.goods_spu_name }}</view>
       <view class="good-value">
         <text class="already-refund">已退款</text>
       </view>

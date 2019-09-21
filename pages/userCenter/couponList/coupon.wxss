@@ -52,7 +52,8 @@
   color: #fff;
 }
 
-.amount, .expired-amount {
+.amount,
+.expired-amount {
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -81,7 +82,8 @@
   font-size: 30rpx;
 }
 
-.amount-odds, .expired-amount-odds {
+.amount-odds,
+.expired-amount-odds {
   text-align: center;
   font-size: 32rpx;
   padding: 16rpx 20rpx;
@@ -139,7 +141,8 @@
   box-sizing: border-box;
 }
 
-.go-to-user, .expired-coupon {
+.go-to-user,
+.expired-coupon {
   display: block;
   border-radius: 35rpx;
   color: #fff;

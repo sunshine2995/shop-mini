@@ -1,25 +1,25 @@
 <!--pages/userCenter/about/order/order.wxml-->
-<view class='aboutOrderContainer'>
-  <view class='about-content'>
-    <view class='about-title'>
-      <text class='title'>如何取消订单？</text>
+<view class="aboutOrderContainer">
+  <view class="about-content">
+    <view class="about-title">
+      <text class="title">如何取消订单？</text>
     </view>
-    <view class='content'>
-      <text class='text'>可以再未付款之前，取消整个订单；</text>
-      <text class='text'>已付款出库订单，不支持取消订单；</text>
-      <text class='text'>具体操作如下：</text>
-      <text class='text'>商城首页，点击“订单”—“我的订单”页面点击“取消订单”按钮。</text>
+    <view class="content">
+      <text class="text">可以再未付款之前，取消整个订单；</text>
+      <text class="text">已付款出库订单，不支持取消订单；</text>
+      <text class="text">具体操作如下：</text>
+      <text class="text">商城首页，点击“订单”—“我的订单”页面点击“取消订单”按钮。</text>
     </view>
   </view>
-  <view class='about-content'>
-    <view class='about-title'>
-      <text class='title'>如何更改订单地址？</text>
+  <view class="about-content">
+    <view class="about-title">
+      <text class="title">如何更改订单地址？</text>
     </view>
-    <view class='content'>
-      <text class='text'>Q：如下单后想临时修改收货地址？</text>
-      <text class='text'>A：可以在“我的”—“收货地址”—修改详细地址。</text>
-      <text class='text'>Q：如下单后想临时修改收货地址？</text>
-      <text class='text'>A：可以在线联系客服，或者致电客服，为你备注新的收货地址。</text>
+    <view class="content">
+      <text class="text">Q：如下单后想临时修改收货地址？</text>
+      <text class="text">A：可以在“我的”—“收货地址”—修改详细地址。</text>
+      <text class="text">Q：如下单后想临时修改收货地址？</text>
+      <text class="text">A：可以在线联系客服，或者致电客服，为你备注新的收货地址。</text>
     </view>
   </view>
 </view>

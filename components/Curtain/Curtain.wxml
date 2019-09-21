@@ -1,2 +1,2 @@
 <!--components/Curtain/Curtain.wxml-->
-<view class='Curtain' wx:if="{{isShowCurtain}}"></view>
+<view class="Curtain" wx:if="{{ isShowCurtain }}"></view>

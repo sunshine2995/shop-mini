@@ -1,15 +1,15 @@
 <!--pages/userCenter/customerService/customerService.wxml-->
-<view class='customer-service-container'>
-  <view class='wx-content'>
-    <text class='wx-name'>微信客服</text>
-    <image class='wx-qr' wx:if='{{customImgs[0].img_url}}' src='{{customImgs[0].img_url}}'></image>
-    <image class='wx-qr' wx:else src='https://img.caibashi.com/744b793f33b33ddf13c0530a29cc9219.png'></image>
-    <text class='tip'>扫一扫</text>
+<view class="customer-service-container">
+  <view class="wx-content">
+    <text class="wx-name">微信客服</text>
+    <image class="wx-qr" wx:if="{{ customImgs[0].img_url }}" src="{{ customImgs[0].img_url }}"></image>
+    <image class="wx-qr" wx:else src="https://img.caibashi.com/744b793f33b33ddf13c0530a29cc9219.png"></image>
+    <text class="tip">扫一扫</text>
   </view>
-  <view class='service-content'>
-    <text class='service-title'>很高兴为您服务</text>
-    <text class='service-time' wx:if='{{shopBusinessTime}}'>服务时间:{{shopBusinessTime}}</text>
-    <text class='service-time' wx:else>服务时间:暂未设置</text>
+  <view class="service-content">
+    <text class="service-title">很高兴为您服务</text>
+    <text class="service-time" wx:if="{{ shopBusinessTime }}">服务时间:{{ shopBusinessTime }}</text>
+    <text class="service-time" wx:else>服务时间:暂未设置</text>
   </view>
-  <view class='phone-service' bindtap="freeTell">电话客服</view>
+  <view class="phone-service" bindtap="freeTell">电话客服</view>
 </view>

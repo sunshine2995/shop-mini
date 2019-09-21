@@ -8,7 +8,8 @@
   bottom: 0;
   right: 0;
 }
-.phone-service, .online-service {
+.phone-service,
+.online-service {
   flex: 1;
   font-size: 36rpx;
   color: #fff;
@@ -20,5 +21,5 @@
   background-color: #4a4c5b;
 }
 .online-service {
-  background-color: #11A24A;
+  background-color: #11a24a;
 }

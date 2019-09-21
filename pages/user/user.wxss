@@ -65,7 +65,10 @@ swiper {
   border-bottom: 2rpx solid #ebebeb;
 }
 
-.balance, .red-envelopes, .common-menu, .integral {
+.balance,
+.red-envelopes,
+.common-menu,
+.integral {
   flex: 1;
   flex-shrink: 1;
   font-size: 30rpx;
@@ -84,11 +87,17 @@ swiper {
   border-right: unset;
 }
 
-.order-moudle, .recharge-moudle, .activity-moudle, .service-moudle {
+.order-moudle,
+.recharge-moudle,
+.activity-moudle,
+.service-moudle {
   border-bottom: 2rpx solid #ebebeb;
 }
 
-.all-order, .go-to-recharge, .activity-title, .service-title {
+.all-order,
+.go-to-recharge,
+.activity-title,
+.service-title {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -111,7 +120,9 @@ icon-right {
   box-sizing: border-box;
 }
 
-.order-status, .activity-content, .service-content {
+.order-status,
+.activity-content,
+.service-content {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -120,14 +131,16 @@ icon-right {
   box-sizing: border-box;
 }
 
-.activity-type, .service-type {
+.activity-type,
+.service-type {
   text-align: center;
   width: 33%;
   color: #999;
   margin-bottom: 20rpx;
 }
 
-.activity-type-text, .service-type-text {
+.activity-type-text,
+.service-type-text {
   padding: 15rpx 0;
   box-sizing: border-box;
 }
@@ -160,11 +173,14 @@ icon-right {
   box-sizing: border-box;
 }
 
-.activity-type-text, .service-type-text {
+.activity-type-text,
+.service-type-text {
   font-size: 30rpx;
 }
 
-.icon-huodong, .icon-fenxiang1, .icon-jinlingyingcaiwangtubiao04 {
+.icon-huodong,
+.icon-fenxiang1,
+.icon-jinlingyingcaiwangtubiao04 {
   font-size: 40rpx;
 }
 
@@ -172,7 +188,11 @@ icon-right {
   font-size: 45rpx;
 } */
 
-.icon-pending-payment, .icon-to-be-delivered, .icon-store, .icon-to-be-received, .icon-chengzhong {
+.icon-pending-payment,
+.icon-to-be-delivered,
+.icon-store,
+.icon-to-be-received,
+.icon-chengzhong {
   font-size: 60rpx;
   color: #999;
 }
@@ -191,11 +211,19 @@ icon-right {
   margin: 0 10rpx 26rpx;
 }
 
-.icon-message, .icon-qiyedinggou, .icon-help, .icon-cooperation, .icon-problem,
-.icon-address-manage, .icon-recharge, .icon-exchange, .icon-exchange {
+.icon-message,
+.icon-qiyedinggou,
+.icon-help,
+.icon-cooperation,
+.icon-problem,
+.icon-address-manage,
+.icon-recharge,
+.icon-exchange,
+.icon-exchange {
   font-size: 45rpx;
 }
 
-.icon-recharge, .icon-address-manage {
+.icon-recharge,
+.icon-address-manage {
   font-size: 50rpx;
 }

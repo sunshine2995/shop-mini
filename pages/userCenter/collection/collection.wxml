@@ -1,21 +1,30 @@
 <!--pages/userCenter/collection/collection.wxml-->
-<view class='CollectionContainer'>
-  <view class='collection-empty' wx:if='{{collectList.length === 0}}' bindtap='goCollectGood'>
+<view class="CollectionContainer">
+  <view class="collection-empty" wx:if="{{ collectList.length === 0 }}" bindtap="goCollectGood">
     <text>还没有心仪的商品哦</text>
-    <button type='primary' class='go-shopping'> 去逛逛 </button>
+    <button type="primary" class="go-shopping">去逛逛</button>
   </view>
   <block wx:else>
-    <view class='collection-content' wx:for='{{collectList}}' wx:key="index" wx:for-item="collect" data-good-id='{{collect.id}}' bindtap='goToDetail'>
-      <view class='collection-goods-image'>
-        <image class='goods-image' src='{{collect.thumbnail_url}}' mode='widthFix'></image>
+    <view
+      class="collection-content"
+      wx:for="{{ collectList }}"
+      wx:key="index"
+      wx:for-item="collect"
+      data-good-id="{{ collect.id }}"
+      bindtap="goToDetail"
+    >
+      <view class="collection-goods-image">
+        <image class="goods-image" src="{{ collect.thumbnail_url }}" mode="widthFix"></image>
       </view>
-      <view class='collection-goods-info'>
-        <text class='goods-name'>{{collect.name}}</text>
-        <block wx:for='{{collect.goods_sku_list}}' wx:key="index" wx:for-item="standard">
-          <view class='goods-standard-price'>
-            <text class='goods-standard'>{{standard.name}}</text>
-            <text class='goods-price' wx:if='{{collect.is_standard}}'>{{standard.sell_price}}元/{{standard.goods_sku_unit.name}}</text>
-            <text class='goods-price' wx:else>{{standard.sell_price}}元/{{standard.goods_sku_sell_unit.name}}</text>
+      <view class="collection-goods-info">
+        <text class="goods-name">{{ collect.name }}</text>
+        <block wx:for="{{ collect.goods_sku_list }}" wx:key="index" wx:for-item="standard">
+          <view class="goods-standard-price">
+            <text class="goods-standard">{{ standard.name }}</text>
+            <text class="goods-price" wx:if="{{ collect.is_standard }}"
+              >{{ standard.sell_price }}元/{{ standard.goods_sku_unit.name }}</text
+            >
+            <text class="goods-price" wx:else>{{ standard.sell_price }}元/{{ standard.goods_sku_sell_unit.name }}</text>
           </view>
         </block>
       </view>

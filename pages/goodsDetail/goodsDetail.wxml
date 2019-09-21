@@ -1,136 +1,189 @@
-<view class='GoodsContainer'>
+<view class="GoodsContainer">
   <view class="goods-swiper-image">
-    <block wx:if='{{goodsInfo.goods_spu_details_image.length > 0}}'>
-      <swiper class='image-swiper' vertical="{{false}}" autoplay="true" indicator-dots="true" style='height:{{swiperHeight}}rpx' bindchange="change" indicator-active-color="#11A24A">
-        <block wx:for="{{goodsInfo.goods_spu_details_image}}" wx:key="index">
+    <block wx:if="{{ goodsInfo.goods_spu_details_image.length > 0 }}">
+      <swiper
+        class="image-swiper"
+        vertical="{{ false }}"
+        autoplay="true"
+        indicator-dots="true"
+        style="height:{{ swiperHeight }}rpx"
+        bindchange="change"
+        indicator-active-color="#11A24A"
+      >
+        <block wx:for="{{ goodsInfo.goods_spu_details_image }}" wx:key="index">
           <swiper-item>
-            <image class="goods-detail-image" src='{{item.details_img_url}}' mode='widthFix'></image>
+            <image class="goods-detail-image" src="{{ item.details_img_url }}" mode="widthFix"></image>
           </swiper-item>
         </block>
       </swiper>
     </block>
     <block wx:else>
-      <swiper class='default-swiper' vertical="{{false}}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
+      <swiper
+        class="default-swiper"
+        vertical="{{ false }}"
+        autoplay="true"
+        indicator-dots="true"
+        indicator-active-color="#11A24A"
+      >
         <swiper-item>
-          <image class="goods-default-image" src='https://img.caibashi.com/ec423e0cd60a92f973ed3f535324d341.png' mode='widthFix'></image>
+          <image
+            class="goods-default-image"
+            src="https://img.caibashi.com/ec423e0cd60a92f973ed3f535324d341.png"
+            mode="widthFix"
+          ></image>
         </swiper-item>
       </swiper>
     </block>
   </view>
-  <view class='goods-name-status'>
-    <text class='goods-name'>{{goodsInfo.name}}</text>
-    <icon bindtap='changeStatus' class="{{collectionStatus === true?'iconfont icon-shoucang icon-shoucang-active':'iconfont icon-shoucang'}}"></icon>
+  <view class="goods-name-status">
+    <text class="goods-name">{{ goodsInfo.name }}</text>
+    <icon
+      bindtap="changeStatus"
+      class="{{ collectionStatus === true ? 'iconfont icon-shoucang icon-shoucang-active' : 'iconfont icon-shoucang' }}"
+    ></icon>
   </view>
-  <view class='goods-advertise-desc'>
-    <text class='goods-advertise'>{{goodsInfo.advertising}}</text>
-    <text class='goods-desc'>{{goodsInfo.brief}}</text>
+  <view class="goods-advertise-desc">
+    <text class="goods-advertise">{{ goodsInfo.advertising }}</text>
+    <text class="goods-desc">{{ goodsInfo.brief }}</text>
   </view>
-  <view class='choose-standard'>
-    <view class="{{index==active?'goods-price':'goods-price-hide'}}" wx:for="{{goodsInfo.goods_sku_list}}" wx:key="index" wx:for-item="goodSku">
-      <block wx:if='{{goodsInfo.is_standard}}'>
-        <view class='goods-sell-price' wx:if='{{goodSku.marketing}}'>
-          <price-component price="{{goodSku.marketing.marketing_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color="text-color-red"></price-component>
-          <text class='discount-rebate'>{{goodSku.marketing.marketing_simple_name}}</text>
-          <text class='invalid-price-line'>￥{{goodSku.sell_price}}/{{goodSku.goods_sku_unit.name}}</text>
-          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+  <view class="choose-standard">
+    <view
+      class="{{ index == active ? 'goods-price' : 'goods-price-hide' }}"
+      wx:for="{{ goodsInfo.goods_sku_list }}"
+      wx:key="index"
+      wx:for-item="goodSku"
+    >
+      <block wx:if="{{ goodsInfo.is_standard }}">
+        <view class="goods-sell-price" wx:if="{{ goodSku.marketing }}">
+          <price-component
+            price="{{ goodSku.marketing.marketing_price }}"
+            unit="{{ goodSku.goods_sku_unit.name }}"
+            text-color="text-color-red"
+          ></price-component>
+          <text class="discount-rebate">{{ goodSku.marketing.marketing_simple_name }}</text>
+          <text class="invalid-price-line">￥{{ goodSku.sell_price }}/{{ goodSku.goods_sku_unit.name }}</text>
+          <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
         </view>
-        <view class='goods-sell-price' wx:else>
-          <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_unit.name}}" text-color="text-color-red"></price-component>
-          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+        <view class="goods-sell-price" wx:else>
+          <price-component
+            price="{{ goodSku.sell_price }}"
+            unit="{{ goodSku.goods_sku_unit.name }}"
+            text-color="text-color-red"
+          ></price-component>
+          <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
         </view>
       </block>
       <block wx:else>
-        <view class='goods-sell-price' wx:if='{{goodSku.marketing}}'>
-          <price-component price="{{goodSku.marketing.marketing_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color="text-color-red"></price-component>
-          <text class='discount-rebate'>{{goodSku.marketing.marketing_simple_name}}</text>
-          <text class='invalid-price-line'>￥{{goodSku.sell_price}}/{{goodSku.goods_sku_sell_unit.name}}</text>
-          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+        <view class="goods-sell-price" wx:if="{{ goodSku.marketing }}">
+          <price-component
+            price="{{ goodSku.marketing.marketing_price }}"
+            unit="{{ goodSku.goods_sku_sell_unit.name }}"
+            text-color="text-color-red"
+          ></price-component>
+          <text class="discount-rebate">{{ goodSku.marketing.marketing_simple_name }}</text>
+          <text class="invalid-price-line">￥{{ goodSku.sell_price }}/{{ goodSku.goods_sku_sell_unit.name }}</text>
+          <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
         </view>
-        <view class='goods-sell-price' wx:else>
-          <price-component price="{{goodSku.sell_price}}" unit="{{goodSku.goods_sku_sell_unit.name}}" text-color="text-color-red"></price-component>
-          <icon class='iconfont icon-jiangjia' wx:if='{{goodSku.price_sign}}'></icon>
+        <view class="goods-sell-price" wx:else>
+          <price-component
+            price="{{ goodSku.sell_price }}"
+            unit="{{ goodSku.goods_sku_sell_unit.name }}"
+            text-color="text-color-red"
+          ></price-component>
+          <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
         </view>
       </block>
-      <block wx:if='{{goodsInfo.is_standard}}'>
-        <text class='invalid-price-line'>市场价 ￥{{goodSku.market_price}}/{{goodSku.goods_sku_unit.name}}</text>
+      <block wx:if="{{ goodsInfo.is_standard }}">
+        <text class="invalid-price-line">市场价 ￥{{ goodSku.market_price }}/{{ goodSku.goods_sku_unit.name }}</text>
       </block>
       <block wx:else>
-        <text class='invalid-price'>单价 ￥{{goodSku.unit_price}}/{{goodSku.goods_sku_unit.name}}</text>
+        <text class="invalid-price">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text>
       </block>
     </view>
-    <view class='goods-text-standard-stock '>
-      <view class='choose-text '>选份量</view>
-      <view class='goods-standard-stock-content '>
-        <view class='goods-standard-stock ' wx:for="{{goodsInfo.goods_sku_list}}" wx:key="index" data-index="{{index}}" data-sku-id='{{goodSku.id}}' data-stock="{{goodSku.stock}}" wx:for-item="goodSku" bindtap="toggle">
-          <view class="{{index==active?'goods-standard-active ':'goods-standard '}}" wx:if='{{goodSku.name}}'>
-            {{goodSku.name}}
+    <view class="goods-text-standard-stock ">
+      <view class="choose-text ">选份量</view>
+      <view class="goods-standard-stock-content ">
+        <view
+          class="goods-standard-stock "
+          wx:for="{{ goodsInfo.goods_sku_list }}"
+          wx:key="index"
+          data-index="{{ index }}"
+          data-sku-id="{{ goodSku.id }}"
+          data-stock="{{ goodSku.stock }}"
+          wx:for-item="goodSku"
+          bindtap="toggle"
+        >
+          <view class="{{ index == active ? 'goods-standard-active ' : 'goods-standard ' }}" wx:if="{{ goodSku.name }}">
+            {{ goodSku.name }}
           </view>
-          <view class="{{index==active?'goods-standard-active ':'goods-standard '}}" wx:else>
+          <view class="{{ index == active ? 'goods-standard-active ' : 'goods-standard ' }}" wx:else>
             默认
           </view>
-          <view class='goods-stock '>
-            库存{{goodSku.stock}}份
-          </view>
+          <view class="goods-stock "> 库存{{ goodSku.stock }}份 </view>
         </view>
       </view>
     </view>
   </view>
-  <view class='explain-desc-name '>
-    <text class='explain-name '>菜巴士</text>
-    <view class='explain-desc-sign '>
-      <text class='explain-desc' wx:if='{{shipping !== 0}}'>满{{shipping}}元免配送费</text>
-      <text class='explain-desc' wx:else>免配送费</text>
-      <text class='explain-sign'>·</text>
-      <text class='explain-desc' wx:if='{{subbranchArea}}'>{{subbranchArea}}</text>
-      <text class='explain-sign' wx:if='{{subbranchArea}}'>·</text>
-      <text class='explain-desc'>最快约半小时送达</text>
+  <view class="explain-desc-name ">
+    <text class="explain-name ">菜巴士</text>
+    <view class="explain-desc-sign ">
+      <text class="explain-desc" wx:if="{{ shipping !== 0 }}">满{{ shipping }}元免配送费</text>
+      <text class="explain-desc" wx:else>免配送费</text>
+      <text class="explain-sign">·</text>
+      <text class="explain-desc" wx:if="{{ subbranchArea }}">{{ subbranchArea }}</text>
+      <text class="explain-sign" wx:if="{{ subbranchArea }}">·</text>
+      <text class="explain-desc">最快约半小时送达</text>
     </view>
   </view>
-  <view class='explain-desc-name' bindtap='goToDescripte '>
-    <text class='explain-name'>服 务</text>
-    <view class='explain-desc-sign'>
-      <view class='no-icon'>
-        <text class='explain-desc'>支持8小时内退换货</text>
-        <text class='explain-sign'>·</text>
-        <text class='explain-desc'>定时配送</text>
+  <view class="explain-desc-name" bindtap="goToDescripte ">
+    <text class="explain-name">服 务</text>
+    <view class="explain-desc-sign">
+      <view class="no-icon">
+        <text class="explain-desc">支持8小时内退换货</text>
+        <text class="explain-sign">·</text>
+        <text class="explain-desc">定时配送</text>
       </view>
-      <view class='explain-icon '>
-        <icon class='iconfont icon-right '></icon>
+      <view class="explain-icon ">
+        <icon class="iconfont icon-right "></icon>
       </view>
     </view>
   </view>
-  <view class='explain-desc-name '>
-    <text class='explain-name '>公平称</text>
-    <view class='explain-desc-sign '>
-      <text class='explain-desc '>实称结算</text>
-      <text class='explain-sign '>·</text>
-      <text class='explain-desc '>多退少补</text>
+  <view class="explain-desc-name ">
+    <text class="explain-name ">公平称</text>
+    <view class="explain-desc-sign ">
+      <text class="explain-desc ">实称结算</text>
+      <text class="explain-sign ">·</text>
+      <text class="explain-desc ">多退少补</text>
     </view>
   </view>
-  <navigator url='/pages/goodsDiscount/goodsDiscount' class='explain-desc-name' wx:if='{{goodsInfo.goods_sku_list[0].marketing}}'>
-    <view class='discount-explain'>
-      <text class='discount-explain-name'>促销</text>
+  <navigator
+    url="/pages/goodsDiscount/goodsDiscount"
+    class="explain-desc-name"
+    wx:if="{{ goodsInfo.goods_sku_list[0].marketing }}"
+  >
+    <view class="discount-explain">
+      <text class="discount-explain-name">促销</text>
     </view>
-    <view class='explain-desc-sign '>
-      <text class='discount-explain-desc '>{{goodsInfo.goods_sku_list[0].marketing.marketing_name_rebate}}</text>
-      <text class='discount-explain-desc '>{{goodsInfo.goods_sku_list[0].marketing.marketing_name_time}}</text>
+    <view class="explain-desc-sign ">
+      <text class="discount-explain-desc ">{{ goodsInfo.goods_sku_list[0].marketing.marketing_name_rebate }}</text>
+      <text class="discount-explain-desc ">{{ goodsInfo.goods_sku_list[0].marketing.marketing_name_time }}</text>
     </view>
-    <view class='discount-explain-icon '>
-      <icon class='iconfont icon-right '></icon>
+    <view class="discount-explain-icon ">
+      <icon class="iconfont icon-right "></icon>
     </view>
   </navigator>
-  <view class='bottom-promotion '>
-    <image class='promotion-image ' src='https://img.caibashi.com/ec423e0cd60a92f973ed3f535324d341.png '></image>
+  <view class="bottom-promotion ">
+    <image class="promotion-image " src="https://img.caibashi.com/ec423e0cd60a92f973ed3f535324d341.png "></image>
   </view>
-  <view class='bottom-cart '>
-    <view class='cart-icon ' bindtap='goToCart'>
-      <icon class='iconfont icon-shopping-cart '></icon>
-      <text class='cart-num'>{{cartNum}}</text>
+  <view class="bottom-cart ">
+    <view class="cart-icon " bindtap="goToCart">
+      <icon class="iconfont icon-shopping-cart "></icon>
+      <text class="cart-num">{{ cartNum }}</text>
     </view>
-    <view class='cart-text cart-text-green' bindtap='getGoodsAttr' wx:if='{{stock}}'>
+    <view class="cart-text cart-text-green" bindtap="getGoodsAttr" wx:if="{{ stock }}">
       <text>加入购物车</text>
     </view>
-    <view class='cart-text cart-text-gray' wx:else>
+    <view class="cart-text cart-text-gray" wx:else>
       <text>加入购物车</text>
     </view>
   </view>

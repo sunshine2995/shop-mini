@@ -1,21 +1,27 @@
 <!--pages/userCenter/myGift/myGift.wxml-->
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 <view class="MyGift">
-  <view class='invalid-gift' wx:if='{{myGiftList.length}}'>
-    <view class='invalid-goods' wx:for='{{myGiftList}}' wx:key='this' wx:for-item="gift">
-      <view class='gift-image'>
-        <image class='gift-img' src='{{gift.image_url}}' mode='widthFix' wx:if='{{gift.image_url}}'>
-        </image>
-        <image class='gift-img' src='https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg' mode='widthFix' wx:else>
+  <view class="invalid-gift" wx:if="{{ myGiftList.length }}">
+    <view class="invalid-goods" wx:for="{{ myGiftList }}" wx:key="this" wx:for-item="gift">
+      <view class="gift-image">
+        <image class="gift-img" src="{{ gift.image_url }}" mode="widthFix" wx:if="{{ gift.image_url }}"> </image>
+        <image
+          class="gift-img"
+          src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.jpg"
+          mode="widthFix"
+          wx:else
+        >
         </image>
         <text class="activity_name">{{ gift.activity_name }}</text>
       </view>
-      <view class='gift_detail'>
-        <text class='gift-name'>{{gift.name}}</text>
-        <text class='gift-type'>{{ gift.per_number }}{{ gift.unit_name }}/{{gift.sell_unit_name}}</text>
-        <text class='gift-type'>共{{ gift.total_number }}{{ gift.unit_name }}，剩余{{ gift.gifts_remain_amount }}{{ gift.unit_name }}</text>
-        <text class='gift-type'>{{ filter.formatData(gift.expiration_time) }}前有效</text>
-        <text class='gift-desc'>{{gift.rule_desc}}</text>
+      <view class="gift_detail">
+        <text class="gift-name">{{ gift.name }}</text>
+        <text class="gift-type">{{ gift.per_number }}{{ gift.unit_name }}/{{ gift.sell_unit_name }}</text>
+        <text class="gift-type"
+          >共{{ gift.total_number }}{{ gift.unit_name }}，剩余{{ gift.gifts_remain_amount }}{{ gift.unit_name }}</text
+        >
+        <text class="gift-type">{{ filter.formatData(gift.expiration_time) }}前有效</text>
+        <text class="gift-desc">{{ gift.rule_desc }}</text>
       </view>
     </view>
   </view>

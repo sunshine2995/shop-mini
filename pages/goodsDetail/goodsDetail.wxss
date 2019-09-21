@@ -12,7 +12,8 @@
   height: 260rpx;
 }
 
-.goods-detail-image, .goods-default-image {
+.goods-detail-image,
+.goods-default-image {
   width: 100%;
   height: auto；;
 }
@@ -125,7 +126,8 @@
   color: #fe3059;
 }
 
-.invalid-price, .invalid-price-line {
+.invalid-price,
+.invalid-price-line {
   font-size: 24rpx;
   color: #666;
 }
@@ -160,7 +162,8 @@
   margin-bottom: 15rpx;
 }
 
-.goods-standard, .goods-standard-active {
+.goods-standard,
+.goods-standard-active {
   font-size: 30rpx;
   border: 1px solid #fe3059;
   border-radius: 10rpx;

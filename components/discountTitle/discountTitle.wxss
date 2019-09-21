@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
 }
-.discount-rebate, .discount-time {
+.discount-rebate,
+.discount-time {
   display: inline-block;
 }

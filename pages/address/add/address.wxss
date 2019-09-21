@@ -1,6 +1,8 @@
 /* pages/address/add/address.wxss */
 
-.address-container, .address-content, .address_input {
+.address-container,
+.address-content,
+.address_input {
   display: flex;
   /* align-items: center; */
 }
@@ -93,7 +95,8 @@ textarea {
   margin: 15rpx;
 }
 
-.type, .address-type-active {
+.type,
+.address-type-active {
   font-size: 30rpx;
   border-radius: 10rpx;
   padding: 5rpx 15rpx;

@@ -1,12 +1,27 @@
-<view class='welcomeContainer'>
-  <block wx:if='{{activityImgs.length}}'>
-    <view wx:for='{{activityImgs}}' wx:key='index'>
-      <image class='go-to-shopping' bindtap="goPath" data-path="{{item.mini_turn_url}}" src='{{item.img_url}}' mode="widthFix"></image>
+<view class="welcomeContainer">
+  <block wx:if="{{ activityImgs.length }}">
+    <view wx:for="{{ activityImgs }}" wx:key="index">
+      <image
+        class="go-to-shopping"
+        bindtap="goPath"
+        data-path="{{ item.mini_turn_url }}"
+        src="{{ item.img_url }}"
+        mode="widthFix"
+      ></image>
     </view>
   </block>
   <block wx:else>
-    <image class='go-to-shopping' bindtap="goSort" src='https://img.caibashi.com/5d7f71f14e8d5d8a683d4969920ebf87.png' mode="widthFix"></image>
-    <image class='go-to-recharge' bindtap="rechargePage" src='https://img.caibashi.com/8b23466a26c52c09b7060e090db97add.png' mode="widthFix"></image>
-
+    <image
+      class="go-to-shopping"
+      bindtap="goSort"
+      src="https://img.caibashi.com/5d7f71f14e8d5d8a683d4969920ebf87.png"
+      mode="widthFix"
+    ></image>
+    <image
+      class="go-to-recharge"
+      bindtap="rechargePage"
+      src="https://img.caibashi.com/8b23466a26c52c09b7060e090db97add.png"
+      mode="widthFix"
+    ></image>
   </block>
 </view>
