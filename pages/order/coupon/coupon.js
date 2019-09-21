@@ -1,5 +1,5 @@
 // pages/order/coupon/coupon.js
-let UserService = require('../../../utils/services/UseService.js');
+let UserService = require('../../../utils/services/UserService.js');
 
 Page({
   data: {

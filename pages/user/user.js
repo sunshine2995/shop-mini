@@ -1,8 +1,9 @@
-var UserService = require('../../utils/services/UseService.js');
+var UserService = require('../../utils/services/UserService.js');
 var OrderService = require('../../utils/services/OrderService.js');
 var OrderService = require('../../utils/services/OrderService.js');
 
 var app = getApp();
+
 Page({
   data: {
     rechargeImg: [], //充值图片

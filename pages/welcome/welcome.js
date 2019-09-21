@@ -1,4 +1,4 @@
-var UserService = require('../../utils/services/UseService.js');
+var UserService = require('../../utils/services/UserService.js');
 
 Page({
   data: {

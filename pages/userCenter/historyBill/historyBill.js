@@ -1,5 +1,6 @@
-const UserService = require('../../../utils/services/UseService.js');
+const UserService = require('../../../utils/services/UserService.js');
 const moment = require('../../../utils/moment.js');
+
 Page({
   data: {
     page: 1,

@@ -1,11 +1,5 @@
 const wxRequest = require('../wxRequest.js');
 
-// function getCustom(busName, stopType) {
-//   return wxRequest.wxPromise("POST", getBusInfoUrl, {
-//     "busName": busName,
-//     "stopType": stopType
-//   });
-// }
 const BaseUrl = 'https://sso.caibasi.com';
 
 // 获取首页广告图

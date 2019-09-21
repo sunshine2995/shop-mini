@@ -1,5 +1,5 @@
-// pages/userCenter/problem/problem.js
-const UserService = require('../../../utils/services/UseService.js');
+const UserService = require('../../../utils/services/UserService.js');
+
 var app = getApp();
 
 Page({

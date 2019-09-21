@@ -1,7 +1,7 @@
 // pages/activity/newUser/newUser.js
 const app = getApp();
 var GiftService = require('../../../utils/services/GiftService.js');
-var UserService = require('../../../utils/services/UseService.js');
+var UserService = require('../../../utils/services/UserService.js');
 
 Page({
   data: {

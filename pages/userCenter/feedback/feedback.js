@@ -1,5 +1,5 @@
 // pages/userCenter/feedback/feedback.js
-const UserService = require('../../../utils/services/UseService.js');
+const UserService = require('../../../utils/services/UserService.js');
 
 Page({
   data: {

@@ -1,7 +1,8 @@
 'use strict';
-var UserService = require('../../utils/services/UseService.js');
+var UserService = require('../../utils/services/UserService.js');
 var GoodsService = require('../../utils/services/GoodsService.js');
 var CartService = require('../../utils/services/CartService.js');
+
 const app = getApp();
 
 Page({
@@ -21,14 +22,12 @@ Page({
     shopInfo: {}, // 店铺信息
     showShopName: true, // 是否展示店铺名称
   },
-  
+
   jumpSort() {
     wx.switchTab({
       url: '/pages/sort/sort',
-    })
+    });
   },
-
-
 
   closeTip() {
     this.setData({
