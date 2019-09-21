@@ -1,4 +1,5 @@
-const wxRequest = require('../wxRequest.js');
+const wxRequest = require('../utils/wxRequest.js');
+
 const BaseUrl = 'https://sso.caibasi.com';
 
 // 用户领取鸡蛋

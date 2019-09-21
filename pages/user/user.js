@@ -1,6 +1,5 @@
-var UserService = require('../../utils/services/UserService.js');
-var OrderService = require('../../utils/services/OrderService.js');
-var OrderService = require('../../utils/services/OrderService.js');
+const UserService = require('../../services/UserService.js');
+const OrderService = require('../../services/OrderService.js');
 
 var app = getApp();
 

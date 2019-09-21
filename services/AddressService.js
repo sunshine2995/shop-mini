@@ -1,4 +1,4 @@
-const wxRequest = require('../wxRequest.js');
+const wxRequest = require('../utils/wxRequest.js');
 
 const BaseUrl = 'https://sso.caibasi.com';
 const key = 'abface6fd8aa4366a86bc27e2704fd86'; // web服务
@@ -77,18 +77,17 @@ export function getAddress(addressId) {
 
 // 根据经纬度店铺列表
 export function getShopListByLocation(longitude, latitude) {
-  return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch?longitude=${longitude}&latitude=${latitude}`);
+  return wxRequest.wxPromise('GET', `${BaseUrl}/subbranch?longitude=${longitude}&latitude=${latitude}`);
 }
 
 // 直接获取店铺列表
 export function getShopList() {
-  return wxRequest.wxPromise("GET", `${BaseUrl}/subbranch`);
+  return wxRequest.wxPromise('GET', `${BaseUrl}/subbranch`);
 }
 
 // 更换店铺
 export function changeShop(subbranchId) {
-  return wxRequest.wxPromise("POST", `${BaseUrl}/subbranch`, {
+  return wxRequest.wxPromise('POST', `${BaseUrl}/subbranch`, {
     current_subbranch_id: subbranchId,
   });
 }
-

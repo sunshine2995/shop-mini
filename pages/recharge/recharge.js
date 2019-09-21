@@ -1,7 +1,8 @@
+const OrderService = require('../../services/OrderService.js');
+const GiftService = require('../../services/GiftService.js');
+const UserService = require('../../services/UserService.js');
+
 var app = getApp();
-var OrderService = require('../../utils/services/OrderService.js');
-var GiftService = require('../../utils/services/GiftService.js');
-var UserService = require('../../utils/services/UserService.js');
 
 Page({
   data: {

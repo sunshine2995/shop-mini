@@ -1,5 +1,4 @@
-// pages/userCenter/myGift/myGift.js
-var GiftService = require('../../../utils/services/GiftService.js');
+const GiftService = require('../../../services/GiftService.js');
 const app = getApp();
 
 Page({

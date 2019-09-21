@@ -1,5 +1,4 @@
-// pages/order/detail/detail.js
-var OrderService = require('../../../utils/services/OrderService.js');
+const OrderService = require('../../../services/OrderService.js');
 const moment = require('../../../utils/moment.js');
 
 Page({

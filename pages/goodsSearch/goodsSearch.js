@@ -1,7 +1,5 @@
-// pages/goodsSearch/goodsSearch.js
-var GoodsService = require('../../utils/services/GoodsService.js');
-var CartService = require('../../utils/services/CartService.js');
-// const throttle = require('../../utils/throttle.js');
+const GoodsService = require('../../services/GoodsService.js');
+const CartService = require('../../services/CartService.js');
 const throttle = require('../../utils/util.js');
 
 Page({

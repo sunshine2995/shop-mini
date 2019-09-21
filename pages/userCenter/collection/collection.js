@@ -1,4 +1,4 @@
-let GoodsService = require('../../../utils/services/GoodsService.js');
+const GoodsService = require('../../../services/GoodsService.js');
 
 Page({
   data: {},

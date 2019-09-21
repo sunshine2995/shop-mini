@@ -5,12 +5,12 @@ function wxPromise(method, url, data) {
       method: method,
       data: data,
       header: {
-        "Content-Type": "application/json",
-        'Authorization': wx.getStorageSync('token'),
+        'Content-Type': 'application/json',
+        Authorization: wx.getStorageSync('token'),
       },
       success: function(res) {
         // setTimeout(function() {
-          // wx.hideLoading();
+        // wx.hideLoading();
         // }, 100);
         if (res.data.code == 200 || res.data.infocode == 10000) {
           resolve(res);
@@ -20,14 +20,14 @@ function wxPromise(method, url, data) {
       },
       fail: function(res) {
         // setTimeout(function() {
-          // wx.hideLoading();
+        // wx.hideLoading();
         // }, 100);
         reject(res);
-      }
+      },
     });
   });
 }
 
 module.exports = {
-  wxPromise: wxPromise
-}
+  wxPromise: wxPromise,
+};

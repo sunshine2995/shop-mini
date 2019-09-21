@@ -1,6 +1,6 @@
-var GoodsService = require('../../utils/services/GoodsService.js');
-var CartService = require('../../utils/services/CartService.js');
-var UserService = require('../../utils/services/UserService.js');
+const GoodsService = require('../../services/GoodsService.js');
+const CartService = require('../../services/CartService.js');
+const UserService = require('../../services/UserService.js');
 
 Page({
   data: {

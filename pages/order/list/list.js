@@ -1,5 +1,4 @@
-// pages/order/list/list.jsvar app = getApp();
-var OrderService = require('../../../utils/services/OrderService.js');
+const OrderService = require('../../../services/OrderService.js');
 const moment = require('../../../utils/moment.js');
 var app = getApp();
 

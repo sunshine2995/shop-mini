@@ -1,6 +1,4 @@
-// pages/address/list/list.js
-var AddressService = require('../../../utils/services/AddressService.js');
-var app = getApp();
+const AddressService = require('../../../services/AddressService.js');
 
 Page({
   /**

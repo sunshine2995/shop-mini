@@ -1,5 +1,5 @@
 // pages/userCenter/exchange/exchange.js
-const UserService = require('../../../utils/services/UserService.js');
+const UserService = require('../../../services/UserService.js');
 
 Page({
   /**

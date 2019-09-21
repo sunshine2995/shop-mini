@@ -1,7 +1,7 @@
-// pages/cart/cart.js
-var CartService = require('../../utils/services/CartService.js');
-var GiftService = require('../../utils/services/GiftService.js');
-var UserService = require('../../utils/services/UserService.js');
+const CartService = require('../../services/CartService.js');
+const GiftService = require('../../services/GiftService.js');
+const UserService = require('../../services/UserService.js');
+
 const app = getApp();
 
 Page({

@@ -1,4 +1,4 @@
-var OrderService = require('../../../utils/services/OrderService.js');
+const OrderService = require('../../../services/OrderService.js');
 
 Page({
   data: {

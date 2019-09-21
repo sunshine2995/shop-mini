@@ -1,8 +1,7 @@
-// pages/order/submit/submit.js
 const moment = require('../../../utils/moment.js');
-var CartService = require('../../../utils/services/CartService.js');
-var AddressService = require('../../../utils/services/AddressService.js');
-var OrderService = require('../../../utils/services/OrderService.js');
+const CartService = require('../../../services/CartService.js');
+const AddressService = require('../../../services/AddressService.js');
+const OrderService = require('../../../services/OrderService.js');
 var app = getApp();
 
 Page({

@@ -1,7 +1,7 @@
-// pages/sort/sort.js
+const GoodsService = require('../../services/GoodsService.js');
+const CartService = require('../../services/CartService.js');
+
 var app = getApp();
-var GoodsService = require('../../utils/services/GoodsService.js');
-var CartService = require('../../utils/services/CartService.js');
 
 //声明全局变量
 let proListToTop = [],
@@ -31,7 +31,7 @@ Page({
     carts: [], // 购物车信息
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
-    goodsAttr: '', // 商品属性    
+    goodsAttr: '', // 商品属性
     shopId: 0, // 店铺Id
   },
 
@@ -120,7 +120,7 @@ Page({
                 wx.showToast({
                   title: res.data.message,
                   icon: 'none',
-                })
+                });
                 _this.data.idSelected.forEach((item) => {
                   if (+item.id === +_this.data.skuId) {
                     item.num = res.data.data.goods_sku_num;
@@ -154,7 +154,7 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-        })
+        });
         this.data.idSelected.forEach((item) => {
           if (+item.id === +this.data.skuId) {
             item.num = res.data.data.goods_sku_num;
@@ -219,7 +219,11 @@ Page({
         }
         this.checkCor();
         const oneId = this.data.oneList[this.data.currentTab].id;
-        if (!this.data.twoList.length || +app.globalData.sortOneId !== 0 || +this.data.shopId !== +app.globalData.shopInfo.id) {
+        if (
+          !this.data.twoList.length ||
+          +app.globalData.sortOneId !== 0 ||
+          +this.data.shopId !== +app.globalData.shopInfo.id
+        ) {
           wx.showLoading({
             title: '加载中',
           });

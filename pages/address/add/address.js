@@ -1,9 +1,8 @@
-// pages/address/add/address.js
-var amapFile = require('../../../libs/amap-wx.js');
+const amapFile = require('../../../libs/amap-wx.js');
 var myAmapFun;
-var key = require('../../../libs/config.js');
+const key = require('../../../libs/config.js');
 const throttle = require('../../../utils/util.js');
-var AddressService = require('../../../utils/services/AddressService.js');
+const AddressService = require('../../../services/AddressService.js');
 
 Page({
   data: {

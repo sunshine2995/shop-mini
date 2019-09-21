@@ -1,5 +1,5 @@
 // pages/userCenter/couponList/coupon.js
-let UserService = require('../../../utils/services/UserService.js');
+const UserService = require('../../../services/UserService.js');
 
 Page({
   data: {
