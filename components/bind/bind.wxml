@@ -22,13 +22,7 @@
     <button class="get-code-btn disabled" wx:if="{{ alreadySend }}">{{ second + 's' }}</button>
   </view>
   <view class="input-number">
-    <input
-      bindinput="codeInput"
-      placeholder="请输入6位数字验证码"
-      placeholder-class="placeholder"
-      focus="{{ true }}"
-      type="number"
-    />
+    <input bindinput="codeInput" placeholder="请输入6位数字验证码" placeholder-class="placeholder" type="number" />
   </view>
   <button type="primary" class="ok" bindtap="onTapChild">立即验证</button>
   <view class="with-click">

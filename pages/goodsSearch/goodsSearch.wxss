@@ -139,6 +139,8 @@ input {
 
 .goods-different-price {
   width: 60%;
+  padding: 0 8rpx;
+  box-sizing: border-box;
   border-right: 1rpx solid #e6e6e6;
 }
 

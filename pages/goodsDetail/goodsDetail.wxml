@@ -12,7 +12,7 @@
       >
         <block wx:for="{{ goodsInfo.goods_spu_details_image }}" wx:key="index">
           <swiper-item>
-            <image class="goods-detail-image" src="{{ item.details_img_url }}" mode="widthFix"></image>
+            <image class="goods-detail-image" src="{{ item.details_img_url }}" mode="widthFix"> </image>
           </swiper-item>
         </block>
       </swiper>
@@ -93,10 +93,10 @@
           <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
         </view>
       </block>
-      <block wx:if="{{ goodsInfo.is_standard }}">
+      <!-- <block wx:if="{{ goodsInfo.is_standard }}">
         <text class="invalid-price-line">市场价 ￥{{ goodSku.market_price }}/{{ goodSku.goods_sku_unit.name }}</text>
-      </block>
-      <block wx:else>
+      </block> -->
+      <block wx:if="{{ !goodsInfo.is_standard }}">
         <text class="invalid-price">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text>
       </block>
     </view>

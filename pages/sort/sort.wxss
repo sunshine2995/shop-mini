@@ -264,11 +264,13 @@ background: #c00; */
 
 .goods-different-price {
   width: 190rpx;
+  padding: 0 8rpx;
+  box-sizing: border-box;
+  border-right: 1rpx solid #e6e6e6;
 }
 
 .goods-remarks {
   flex: 1;
-  border-left: 1rpx solid #e6e6e6;
   padding: 0 8rpx;
   box-sizing: border-box;
   margin: 5rpx 0;
