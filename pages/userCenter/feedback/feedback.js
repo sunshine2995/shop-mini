@@ -6,28 +6,27 @@ Page({
     tempFilePaths: [],
     imgList: [],
     noteMaxLen: 300, // 最多放多少字
-    info: "",
+    info: '',
     noteNowLen: 0, //备注当前字数
     feedback: {
-      contact: "",
-      content: "",
-      img_url1: "",
-      img_url2: "",
-      img_url3: "",
-      img_url4: "",
-    }
+      contact: '',
+      content: '',
+      img_url1: '',
+      img_url2: '',
+      img_url3: '',
+      img_url4: '',
+    },
   },
   // 监听字数
   bindTextAreaChange(e) {
     var value = e.detail.value;
     this.data.feedback.content = e.detail.value;
     var len = parseInt(value.length);
-    if (len > this.data.noteMaxLen)
-      return;
+    if (len > this.data.noteMaxLen) return;
     this.setData({
       info: value,
-      noteNowLen: len
-    })
+      noteNowLen: len,
+    });
   },
 
   bindKeyInput(e) {
@@ -43,13 +42,13 @@ Page({
   addFeedback() {
     this.data.feedback = Object.assign({}, this.data.feedback, {
       content: this.data.feedback.content,
-      contact: this.data.feedback.contact
+      contact: this.data.feedback.contact,
     });
     if (!this.data.feedback.content) {
       wx.showToast({
         title: '未填写反馈建议',
         icon: 'none',
-        duration: 2000
+        duration: 2000,
       });
     } else {
       UserService.addFeedback(this.data.feedback)
@@ -57,17 +56,17 @@ Page({
           wx.showToast({
             title: res.data.message,
             icon: 'none',
-            duration: 2000
+            duration: 2000,
           });
           wx.switchTab({
             url: '/pages/user/user',
-          })
+          });
         })
         .catch((error) => {
           wx.showToast({
             title: error.data.message,
             icon: 'none',
-            duration: 2000
+            duration: 2000,
           });
         });
     }
@@ -79,19 +78,19 @@ Page({
       count: 4, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: res => {
+      success: (res) => {
         wx.showToast({
           title: '正在上传...',
           icon: 'loading',
           mask: true,
-          duration: 1000
-        })
+          duration: 1000,
+        });
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
 
         that.data.tempFilePaths = res.tempFilePaths.concat(that.data.tempFilePaths);
         that.setData({
-          tempFilePaths: that.data.tempFilePaths
-        })
+          tempFilePaths: that.data.tempFilePaths,
+        });
         /**
          * 上传完成后把文件上传到服务器
          */
@@ -103,7 +102,7 @@ Page({
             filePath: that.data.tempFilePaths[i],
             name: 'file',
             header: {
-              "Content-Type": "multipart/form-data"
+              'Content-Type': 'multipart/form-data',
             },
             success: function(res) {
               if (res.statusCode === 406) {
@@ -111,15 +110,15 @@ Page({
                   title: JSON.parse(res.data).message,
                   icon: 'loading',
                   mask: true,
-                  duration: 2000
-                })
+                  duration: 2000,
+                });
               } else if (res.statusCode === 200) {
                 wx.showToast({
                   title: '上传成功',
                   icon: 'loading',
                   mask: true,
-                  duration: 2000
-                })
+                  duration: 2000,
+                });
                 count++;
                 that.data.imgList.push(JSON.parse(res.data).url);
                 const list = {
@@ -136,10 +135,10 @@ Page({
 
                 that.data.feedback = Object.assign({}, list, {
                   content: that.data.feedback.content,
-                  contact: that.data.feedback.contact
+                  contact: that.data.feedback.contact,
                 });
 
-                //如果是最后一张,则隐藏等待中  
+                //如果是最后一张,则隐藏等待中
                 if (count == that.data.tempFilePaths.length) {
                   wx.hideToast();
                 }
@@ -150,14 +149,13 @@ Page({
                 title: '上传失败',
                 icon: 'loading',
                 mask: true,
-                duration: 3000
-              })
-            }
+                duration: 3000,
+              });
+            },
           });
-
         }
-      }
-    })
+      },
+    });
   },
   /**
    * 预览图片方法
@@ -173,8 +171,8 @@ Page({
       },
       fail: function() {
         //console.log('fail')
-      }
-    })
+      },
+    });
   },
 
   deleteImage(e) {
@@ -187,4 +185,4 @@ Page({
       tempFilePaths: imgList,
     });
   },
-})
+});

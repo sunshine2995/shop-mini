@@ -3,24 +3,21 @@ var AddressService = require('../../../utils/services/AddressService.js');
 var app = getApp();
 
 Page({
-
   /**
    * 页面的初始数据
    */
-  data: {
-
-  },
+  data: {},
 
   addAddress() {
     wx.navigateTo({
       url: '/pages/address/add/address',
-    })
+    });
   },
 
   getAddressList() {
     wx.showLoading({
       title: '',
-    })
+    });
     AddressService.getAddressList()
       .then((res) => {
         wx.hideLoading();
@@ -31,7 +28,7 @@ Page({
           validList: validList,
           invalidList: invalidList,
           totalList: totalList,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
@@ -40,8 +37,8 @@ Page({
         });
         setTimeout(function() {
           wx.hideToast();
-        }, 2000)
-      })
+        }, 2000);
+      });
   },
 
   chooseAddress(e) {
@@ -49,7 +46,7 @@ Page({
     app.globalData.chooseAddress = id;
     wx.navigateTo({
       url: `/pages/order/submit/submit`,
-    })
+    });
   },
 
   overTip() {
@@ -66,35 +63,25 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
-  }
-})
+  onShareAppMessage: function() {},
+});

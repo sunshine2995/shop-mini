@@ -1,6 +1,6 @@
 var UserService = require('../../utils/services/UseService.js');
-var OrderService = require('../../utils/services/OrderService.js')
-var OrderService = require('../../utils/services/OrderService.js')
+var OrderService = require('../../utils/services/OrderService.js');
+var OrderService = require('../../utils/services/OrderService.js');
 
 var app = getApp();
 Page({
@@ -36,28 +36,27 @@ Page({
     this.getStatusNum();
     wx.showLoading({
       title: '',
-    })
+    });
   },
-
 
   getStatusNum() {
     wx.showLoading({
       title: '加载中',
-    })
+    });
     OrderService.getStatusNum()
       .then((res) => {
         wx.hideLoading();
         this.data.statusNumList = res.data.data;
-          this.setData({
-            statusNumList: this.data.statusNumList,
-          });
+        this.setData({
+          statusNumList: this.data.statusNumList,
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -65,14 +64,14 @@ Page({
     const status = e.currentTarget.dataset.status;
     wx.navigateTo({
       url: `/pages/order/list/list?status=${status}`,
-    })
+    });
   },
 
   toRecharge(e) {
     const rechargeId = e.currentTarget.dataset.rechargeId;
     wx.navigateTo({
       url: `/pages/recharge/recharge?rechargeId=${rechargeId}`,
-    })
+    });
   },
 
   getRechargeList() {
@@ -80,18 +79,18 @@ Page({
       .then((res) => {
         this.data.rechargeImg = [];
         res.data.data.forEach((item) => {
-          this.data.rechargeImg.push({ img: item.img_url, name: item.name, id: item.id, money: item.recharge_amount })
-        })
+          this.data.rechargeImg.push({ img: item.img_url, name: item.name, id: item.id, money: item.recharge_amount });
+        });
         this.setData({
           rechargeImg: this.data.rechargeImg,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -105,8 +104,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -123,9 +122,9 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
 
   getShopInfo() {
@@ -137,8 +136,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
-})
+});

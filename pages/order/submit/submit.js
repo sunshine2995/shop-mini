@@ -1,15 +1,15 @@
 // pages/order/submit/submit.js
 const moment = require('../../../utils/moment.js');
-var CartService = require('../../../utils/services/CartService.js')
-var AddressService = require('../../../utils/services/AddressService.js')
-var OrderService = require('../../../utils/services/OrderService.js')
+var CartService = require('../../../utils/services/CartService.js');
+var AddressService = require('../../../utils/services/AddressService.js');
+var OrderService = require('../../../utils/services/OrderService.js');
 var app = getApp();
 
 Page({
   data: {
     showWait: true,
     showTodo: false,
-    info: "", // 备注
+    info: '', // 备注
     shopInfo: [],
     multiArray: [],
     multiIndex: [0, 0],
@@ -41,12 +41,12 @@ Page({
     if (this.data.orderNo) {
       wx.navigateTo({
         url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-      })
+      });
     } else {
       this.data.isShowCurtain = false;
       this.setData({
         isShowCurtain: this.data.isShowCurtain,
-      })
+      });
     }
   },
 
@@ -54,26 +54,29 @@ Page({
     this.data.mobile = e.detail.value;
     this.setData({
       mobile: this.data.mobile,
-    })
+    });
   },
 
   bindMultiPickerChange: function(e) {
     if (this.data.multiArray[0][0].name === '店铺已打烊') {
       wx.showToast({
         title: '店铺已打烊',
-        icon: 'none'
-      })
+        icon: 'none',
+      });
     } else {
-      console.log('picker发送选择改变，携带值为', e, e.detail.value)
+      console.log('picker发送选择改变，携带值为', e, e.detail.value);
       this.data.multiIndex = e.detail.value;
       const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
       this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
-      this.data.arriveDate = this.data.multiArray[0][this.data.multiIndex[0]].name + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].name;
+      this.data.arriveDate =
+        this.data.multiArray[0][this.data.multiIndex[0]].name +
+        ' ' +
+        this.data.multiArray[1][this.data.multiIndex[1]].name;
       app.globalData.deliveryEnd = this.data.deliveryEnd;
       this.setData({
         multiIndex: this.data.multiIndex,
-        arriveDate: this.data.arriveDate
-      })
+        arriveDate: this.data.arriveDate,
+      });
     }
   },
 
@@ -81,27 +84,28 @@ Page({
     console.log('修改的列为', e.detail.column, e, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
+      multiIndex: this.data.multiIndex,
     };
     data.multiIndex[e.detail.column] = e.detail.value;
-    if (e.detail.column == 0) { //第1列
+    if (e.detail.column == 0) {
+      //第1列
       if (e.detail.value == 0) {
         if (this.data.todayTimes.length) {
           this.setData({
-            multiArray: [this.data.multiArray[0], this.data.todayTimes]
-          })
+            multiArray: [this.data.multiArray[0], this.data.todayTimes],
+          });
         } else {
           this.setData({
-            multiArray: [this.data.multiArray[0], this.data.durationTimes]
-          })
+            multiArray: [this.data.multiArray[0], this.data.durationTimes],
+          });
         }
-      };
+      }
       if (e.detail.value == 1 || e.detail.value == 2) {
         this.setData({
-          multiArray: [this.data.multiArray[0], this.data.durationTimes]
-        })
-      };
-    };
+          multiArray: [this.data.multiArray[0], this.data.durationTimes],
+        });
+      }
+    }
     // this.setData(data);
   },
 
@@ -109,12 +113,11 @@ Page({
   bindTextAreaChange(e) {
     var value = e.detail.value;
     var len = parseInt(value.length);
-    if (len > this.data.noteMaxLen)
-      return;
+    if (len > this.data.noteMaxLen) return;
     this.setData({
       info: value,
-      noteNowLen: len
-    })
+      noteNowLen: len,
+    });
   },
 
   getMapPosition() {
@@ -123,47 +126,49 @@ Page({
     wx.openLocation({
       latitude,
       longitude,
-      scale: 18
-    })
+      scale: 18,
+    });
   },
 
   todoShow() {
     if (!this.data.showWait) {
       this.data.showWait = true;
       this.data.showTodo = false;
-    };
+    }
     this.setData({
       showWait: this.data.showWait,
       showTodo: this.data.showTodo,
-    })
+    });
   },
 
   fixedShow() {
     if (!this.data.showTodo) {
       this.data.showTodo = true;
       this.data.showWait = false;
-    };
+    }
     this.setData({
       showWait: this.data.showWait,
       showTodo: this.data.showTodo,
-    })
+    });
   },
 
   chooseCoupon() {
     wx.navigateTo({
       url: `/pages/order/coupon/coupon?money=${this.data.orderMessage.now_amount}`,
-    })
+    });
   },
 
   checkout() {
-    this.data.skuIds = wx.getStorageSync('selectedIds')
+    this.data.skuIds = wx.getStorageSync('selectedIds');
     CartService.checkout(this.data.skuIds, app.globalData.chooseGiftId)
       .then((res) => {
         this.data.giftInfo = res.data.data.gift;
         this.data.orderMessage = res.data.data;
         this.data.finallyMoney = Number((this.data.orderMessage.total_now_amount - this.data.redMoney).toFixed(2));
         this.data.finallyMoneyNoShipping = Number((this.data.orderMessage.now_amount - this.data.redMoney).toFixed(2));
-        this.data.reduceMoney = Number((+this.data.orderMessage.goods_amount - +this.data.orderMessage.now_amount).toFixed(2));
+        this.data.reduceMoney = Number(
+          (+this.data.orderMessage.goods_amount - +this.data.orderMessage.now_amount).toFixed(2),
+        );
         this.getDeliveryTime();
         this.setData({
           giftData: res.data.data.gift,
@@ -171,12 +176,12 @@ Page({
           finallyMoney: this.data.finallyMoney,
           finallyMoneyNoShipping: this.data.finallyMoneyNoShipping,
           reduceMoney: this.data.reduceMoney,
-        })
+        });
       })
       .catch((error) => {
         wx.switchTab({
           url: '/pages/cart/cart',
-        })
+        });
       });
   },
 
@@ -191,8 +196,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -207,8 +212,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -228,57 +233,56 @@ Page({
       wx.showToast({
         title: '请选择地址',
         icon: 'none',
-      })
+      });
     } else if (!this.data.arriveDate && this.data.showWait) {
       wx.showToast({
         title: '请选择送达时间',
         icon: 'none',
-      })
+      });
     } else if (!this.data.arriveDate && !this.data.showWait) {
       wx.showToast({
         title: '请选择自取时间',
         icon: 'none',
-      })
+      });
     } else if (!this.data.defaultAddress.satisfy_display && this.data.showWait) {
       wx.showToast({
         title: '请选择地址',
         icon: 'none',
-      })
+      });
     } else {
       this.data.isShowCurtain = true;
       this.setData({
         isShowCurtain: this.data.isShowCurtain,
       });
     }
-
   },
 
   payNotEnough() {
     wx.showToast({
       title: '余额不足',
       icon: 'none',
-    })
+    });
   },
 
   balancePay() {
     OrderService.balancePay(this.data.orderNo)
       .then((res) => {
-        console.log(res.data.data, 'balancePay')
+        console.log(res.data.data, 'balancePay');
         wx.showToast({
           title: res.data.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
         wx.navigateTo({
           url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -287,34 +291,32 @@ Page({
       .then((res) => {
         const data = res.data.data;
         wx.requestPayment({
-          'timeStamp': data.timestamp,
-          'nonceStr': data.nonceStr,
-          'package': data.package,
-          'signType': data.signType,
-          'paySign': data.paySign,
-          'success': function(res) {
+          timeStamp: data.timestamp,
+          nonceStr: data.nonceStr,
+          package: data.package,
+          signType: data.signType,
+          paySign: data.paySign,
+          success: function(res) {
             wx.navigateTo({
               url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-            })
+            });
           },
-          'fail': function(res) {
-
-          },
-          'complete': function(res) {}
-        })
+          fail: function(res) {},
+          complete: function(res) {},
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
   pay(e) {
     const payType = +e.currentTarget.dataset.payType;
-    console.log(payType)
+    console.log(payType);
     if (this.data.orderNo) {
       if (payType === 1) {
         this.WxPay();
@@ -326,15 +328,14 @@ Page({
           confirmColor: '#11A24A',
           success(res) {
             if (res.confirm) {
-              console.log('用户点击确定')
+              console.log('用户点击确定');
               _this.balancePay();
             } else if (res.cancel) {
-              console.log('用户点击取消')
+              console.log('用户点击取消');
             }
-          }
-        })
+          },
+        });
       }
-
     } else {
       let nowMoment = '';
       if (this.data.showWait) {
@@ -352,14 +353,14 @@ Page({
         wx.showToast({
           title: '重新选择时间',
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
         this.data.isShowCurtain = false;
         this.setData({
           arriveDate: '',
           deliveryEnd: '',
           isShowCurtain: this.data.isShowCurtain,
-        })
+        });
       } else {
         this.data.deliveryEnd = this.data.deliveryEnd.replace(/\//g, '-');
         if (this.data.showWait) {
@@ -396,7 +397,7 @@ Page({
           buyerMessage: this.data.info,
           buyerPhone: this.data.mobile,
           reduceMoney: this.data.reduceMoney,
-        }
+        };
         OrderService.submitOrder(model)
           .then((res) => {
             this.data.orderNo = res.data.data.orderNo;
@@ -410,13 +411,13 @@ Page({
                 confirmColor: '#11A24A',
                 success(res) {
                   if (res.confirm) {
-                    console.log('用户点击确定')
+                    console.log('用户点击确定');
                     _this.balancePay();
                   } else if (res.cancel) {
-                    console.log('用户点击取消')
+                    console.log('用户点击取消');
                   }
-                }
-              })
+                },
+              });
             }
             this.getCartCount();
             wx.setStorageSync('selectedIds', []);
@@ -428,8 +429,8 @@ Page({
             wx.showToast({
               title: error.data.message,
               icon: 'none',
-              duration: 2000
-            })
+              duration: 2000,
+            });
           });
       }
     }
@@ -437,10 +438,9 @@ Page({
 
   // 获取购物车数量
   getCartCount() {
-    CartService.getCartCount()
-      .then((res) => {
-        wx.setStorageSync('cartNum', res.data.data);
-      });
+    CartService.getCartCount().then((res) => {
+      wx.setStorageSync('cartNum', res.data.data);
+    });
   },
 
   getDeliveryTime() {
@@ -513,47 +513,71 @@ Page({
 
     if (+this.data.reduceMoney > 0) {
       if (reduceMoneyTimes.length) {
-        this.data.multiArray[0] = [{
-          name: '今天',
-          value: moment().format('YYYY/MM/DD')
-        }, ]
+        this.data.multiArray[0] = [
+          {
+            name: '今天',
+            value: moment().format('YYYY/MM/DD'),
+          },
+        ];
         this.data.multiArray[1] = reduceMoneyTimes;
       } else {
-        this.data.multiArray[0] = [{
-          name: '店铺已打烊',
-          value: moment().format('YYYY/MM/DD')
-        }, ]
-        this.data.multiArray[1] = [{
-          name: '明天早点来',
-          value: moment().format('YYYY/MM/DD')
-        }, ];
+        this.data.multiArray[0] = [
+          {
+            name: '店铺已打烊',
+            value: moment().format('YYYY/MM/DD'),
+          },
+        ];
+        this.data.multiArray[1] = [
+          {
+            name: '明天早点来',
+            value: moment().format('YYYY/MM/DD'),
+          },
+        ];
       }
     } else {
       if (this.data.todayTimes.length) {
-        this.data.multiArray[0] = [{
+        this.data.multiArray[0] = [
+          {
             name: '今天',
-            value: moment().format('YYYY/MM/DD')
+            value: moment().format('YYYY/MM/DD'),
           },
           {
-            name: moment().add(1, 'days').format('YYYY/MM/DD'),
-            value: moment().add(1, 'days').format('YYYY/MM/DD'),
+            name: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
           },
           {
-            name: moment().add(2, 'days').format('YYYY/MM/DD'),
-            value: moment().add(2, 'days').format('YYYY/MM/DD'),
+            name: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
           },
-        ]
+        ];
         this.data.multiArray[1] = this.data.todayTimes;
       } else {
-        this.data.multiArray[0] = [{
-            name: moment().add(1, 'days').format('YYYY/MM/DD'),
-            value: moment().add(1, 'days').format('YYYY/MM/DD'),
+        this.data.multiArray[0] = [
+          {
+            name: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
           },
           {
-            name: moment().add(2, 'days').format('YYYY/MM/DD'),
-            value: moment().add(2, 'days').format('YYYY/MM/DD'),
+            name: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
           },
-        ]
+        ];
         this.data.multiArray[1] = this.data.durationTimes;
       }
     }
@@ -563,7 +587,6 @@ Page({
       shopInfo: this.data.shopInfo,
       redMoney: this.data.redMoney,
     });
-
   },
 
   onLoad(options) {
@@ -574,8 +597,8 @@ Page({
   },
 
   onShow() {
-    var pages = getCurrentPages() //获取加载的页面
-    var currentPage = pages[pages.length - 1] //获取当前页面的对象
+    var pages = getCurrentPages(); //获取加载的页面
+    var currentPage = pages[pages.length - 1]; //获取当前页面的对象
     this.data.balance = app.globalData.userData.balance;
     moment.suppressDeprecationWarnings = true;
     this.data.mobile = app.globalData.userData.phone;
@@ -591,7 +614,7 @@ Page({
         this.data.arriveDate = moment(app.globalData.deliveryEnd).format('YYYY/MM/DD HH:mm');
       }
       this.data.deliveryEnd = app.globalData.deliveryEnd;
-    };
+    }
     this.setData({
       arriveDate: this.data.arriveDate,
       mobile: this.data.mobile,
@@ -603,4 +626,4 @@ Page({
       this.getDefaultAddress();
     }
   },
-})
+});

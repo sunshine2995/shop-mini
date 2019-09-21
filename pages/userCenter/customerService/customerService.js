@@ -3,7 +3,6 @@ const UserService = require('../../../utils/services/UseService.js');
 var app = getApp();
 
 Page({
-
   data: {
     phoneNumber: '',
     shopBusinessTime: '',
@@ -14,20 +13,20 @@ Page({
     if (this.data.phoneNumber) {
       wx.makePhoneCall({
         phoneNumber: this.data.phoneNumber,
-      })
+      });
     } else {
       wx.showToast({
         title: '店长没有设置电话',
         icon: 'none',
-        duration: 2000
+        duration: 2000,
       });
     }
-  }, 
+  },
 
   getCustom() {
     wx.showLoading({
       title: '加载中',
-    })
+    });
     UserService.getCustom()
       .then((res) => {
         wx.hideLoading();
@@ -45,9 +44,9 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
 
   onShow() {
@@ -59,4 +58,4 @@ Page({
       shopBusinessTime: this.data.shopBusinessTime,
     });
   },
-})
+});

@@ -1,32 +1,25 @@
 //(Component构造器)
 Component({
-
   externalClasses: ['discount-time', 'discount-rebate'],
   options: {
-    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+    multipleSlots: true, // 在组件定义时的选项中启用多slot支持
   },
-  
-  properties: {
 
+  properties: {
     rebate: {
       type: String,
-      value: "",
+      value: '',
     },
 
     time: {
       type: String,
-      value: "",
+      value: '',
     },
-
   },
 
-  data: {
-  },
-  
-  methods: {
-  },
+  data: {},
 
-  ready: function () {
-    
-  },
+  methods: {},
+
+  ready: function() {},
 });

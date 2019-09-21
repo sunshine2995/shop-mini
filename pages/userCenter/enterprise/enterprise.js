@@ -7,14 +7,12 @@ Page({
     phoneNumber: '',
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {},
 
-  },
-
-  onShow: function () {
+  onShow: function() {
     this.data.phoneNumber = app.globalData.shopInfo.shop_contact_phone;
     this.setData({
       phoneNumber: this.data.phoneNumber,
     });
-  }
-})
+  },
+});

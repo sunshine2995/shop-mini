@@ -9,12 +9,12 @@ Component({
      */
     datas: {
       type: Object,
-      observer: "_propertyDataChange"
+      observer: '_propertyDataChange',
     },
 
     keywords: {
       type: String,
-      value: "",
+      value: '',
     },
   },
 
@@ -23,24 +23,23 @@ Component({
    */
   data: {
     searchArray: [],
-    keyName: ''
+    keyName: '',
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
     _propertyDataChange(newVal) {
-      let searchArray = this.getHilightStrArray(newVal.goods_spu_name, this.properties.keywords)
+      let searchArray = this.getHilightStrArray(newVal.goods_spu_name, this.properties.keywords);
       this.setData({
         keyName: this.properties.keywords,
-        searchArray: searchArray
-      })
+        searchArray: searchArray,
+      });
     },
 
-    getHilightStrArray: function (str, key) {
+    getHilightStrArray: function(str, key) {
       return str.replace(new RegExp(`${key}`, 'g'), `%%${key}%%`).split('%%');
-    }
+    },
   },
-})
+});

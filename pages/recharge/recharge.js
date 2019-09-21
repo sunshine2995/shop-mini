@@ -1,11 +1,11 @@
 var app = getApp();
-var OrderService = require('../../utils/services/OrderService.js')
-var GiftService = require('../../utils/services/GiftService.js')
-var UserService = require('../../utils/services/UseService.js')
+var OrderService = require('../../utils/services/OrderService.js');
+var GiftService = require('../../utils/services/GiftService.js');
+var UserService = require('../../utils/services/UseService.js');
 
 Page({
   data: {
-    winHeight: "", //窗口高度
+    winHeight: '', //窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
     rechargeImg: [], //充值图片
@@ -18,7 +18,6 @@ Page({
     isShowCurtain: false, // 遮罩层
     isShowMobile: false, // 是否展示绑定手机号的遮罩
     phoneNum: '', // 用户手机号
-
   },
 
   getTipMobile() {
@@ -48,14 +47,14 @@ Page({
       .then((res) => {
         this.setData({
           phoneNum: res.data.data.phone,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -86,14 +85,14 @@ Page({
         });
         this.setData({
           giftList: this.data.giftList,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -107,8 +106,8 @@ Page({
       wx.showToast({
         title: '未勾选支付方式',
         icon: 'none',
-        duration: 2000
-      })
+        duration: 2000,
+      });
     } else {
       OrderService.submitRechargeOrder(1, this.data.totalAmount, this.data.rechargeTypeId, this.data.giftId)
         .then((res) => {
@@ -119,10 +118,9 @@ Page({
           wx.showToast({
             title: error.data.message,
             icon: 'none',
-            duration: 2000
-          })
+            duration: 2000,
+          });
         });
-
     }
   },
 
@@ -131,34 +129,33 @@ Page({
       .then((res) => {
         const data = res.data.data;
         wx.requestPayment({
-          'timeStamp': data.timestamp,
-          'nonceStr': data.nonceStr,
-          'package': data.package,
-          'signType': data.signType,
-          'paySign': data.paySign,
-          'success': function(res) {
+          timeStamp: data.timestamp,
+          nonceStr: data.nonceStr,
+          package: data.package,
+          signType: data.signType,
+          paySign: data.paySign,
+          success: function(res) {
             wx.switchTab({
               url: '/pages/user/user',
-            })
+            });
           },
-          'fail': function(res) {},
-          'complete': function(res) {}
-        })
+          fail: function(res) {},
+          complete: function(res) {},
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
-
 
   getRechargeList() {
     OrderService.getRechargeList()
       .then((res) => {
-        console.log(this.data.rechargeTypeId, 'rechargeTypeId')
+        console.log(this.data.rechargeTypeId, 'rechargeTypeId');
         res.data.data.forEach((item, index) => {
           if (+item.id === +this.data.rechargeTypeId) {
             this.data.currentTab = index;
@@ -168,20 +165,20 @@ Page({
             img: item.img_url,
             name: item.name,
             id: item.id,
-            money: item.recharge_amount
-          })
-        })
+            money: item.recharge_amount,
+          });
+        });
         this.setData({
           rechargeImg: this.data.rechargeImg,
           currentTab: this.data.currentTab,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
   // 滚动切换标签样式
@@ -189,9 +186,9 @@ Page({
     const index = e.detail.current;
     this.data.totalAmount = this.data.rechargeImg[index].money;
     this.data.rechargeTypeId = this.data.rechargeImg[index].id;
-    this.getRechargeGift()
+    this.getRechargeGift();
     this.setData({
-      currentTab: index
+      currentTab: index,
     });
     this.checkCor();
   },
@@ -203,23 +200,22 @@ Page({
       return false;
     } else {
       this.setData({
-        currentTab: cur
-      })
+        currentTab: cur,
+      });
     }
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function() {
     if (this.data.currentTab > 4) {
       this.setData({
-        scrollLeft: 300
-      })
+        scrollLeft: 300,
+      });
     } else {
       this.setData({
-        scrollLeft: 0
-      })
+        scrollLeft: 0,
+      });
     }
   },
-
 
   hideCurtain() {
     this.data.isShowCurtain = false;
@@ -243,12 +239,12 @@ Page({
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
         var calc = clientHeight * rpxR - 180;
-        console.log(calc)
+        console.log(calc);
         that.setData({
-          winHeight: calc
+          winHeight: calc,
         });
-      }
+      },
     });
   },
-  footerTap: app.footerTap
-})
+  footerTap: app.footerTap,
+});

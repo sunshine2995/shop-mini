@@ -1,14 +1,15 @@
 // pages/order/list/list.jsvar app = getApp();
-var OrderService = require('../../../utils/services/OrderService.js')
+var OrderService = require('../../../utils/services/OrderService.js');
 const moment = require('../../../utils/moment.js');
 var app = getApp();
 
 Page({
   data: {
-    winHeight: "", // 窗口高度
+    winHeight: '', // 窗口高度
     currentTab: 0, // 预设当前项的值
     scrollLeft: 0, // tab标题的滚动条位置
-    statusList: [{
+    statusList: [
+      {
         status: '全部',
         num: 0,
       },
@@ -47,7 +48,6 @@ Page({
     orderNum: [], // 订单列表
     status: '全部', // 订单状态
 
-
     shopInfo: [],
     multiArray: [],
     multiIndex: [0, 0],
@@ -67,7 +67,7 @@ Page({
     if (this.data.ifEvaluate) {
       wx.navigateTo({
         url: '/pages/user/user',
-      })
+      });
     }
   },
 
@@ -75,50 +75,51 @@ Page({
     this.data.isShowCurtain = false;
     this.setData({
       isShowCurtain: this.data.isShowCurtain,
-    })
+    });
   },
 
   getStatusNum() {
     wx.showLoading({
       title: '加载中',
-    })
+    });
     OrderService.getStatusNum()
       .then((res) => {
         wx.hideLoading();
         const statusNumList = res.data.data;
-        this.data.statusList = [{
-              status: '全部',
-              num: 0,
-            },
-            {
-              status: '待付款',
-              num: statusNumList.wait_pay,
-            },
-            {
-              status: '待分拣',
-              num: statusNumList.wait_sorted,
-            },
-            {
-              status: '分拣中',
-              num: statusNumList.sorting,
-            },
-            {
-              status: '待配送',
-              num: statusNumList.wait_delivery,
-            },
-            {
-              status: '待收货',
-              num: statusNumList.wait_confirm,
-            },
-            {
-              status: '待评价',
-              num: statusNumList.wait_evaluate,
-            },
-            {
-              status: '退款/售后',
-              num: 0,
-            },
-          ],
+        (this.data.statusList = [
+          {
+            status: '全部',
+            num: 0,
+          },
+          {
+            status: '待付款',
+            num: statusNumList.wait_pay,
+          },
+          {
+            status: '待分拣',
+            num: statusNumList.wait_sorted,
+          },
+          {
+            status: '分拣中',
+            num: statusNumList.sorting,
+          },
+          {
+            status: '待配送',
+            num: statusNumList.wait_delivery,
+          },
+          {
+            status: '待收货',
+            num: statusNumList.wait_confirm,
+          },
+          {
+            status: '待评价',
+            num: statusNumList.wait_evaluate,
+          },
+          {
+            status: '退款/售后',
+            num: 0,
+          },
+        ]),
           this.setData({
             statusList: this.data.statusList,
           });
@@ -127,8 +128,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -136,49 +137,48 @@ Page({
     const orderNo = e.currentTarget.dataset.orderNo;
     wx.showLoading({
       title: '加载中',
-    })
+    });
     OrderService.deleteOrder(orderNo)
       .then((res) => {
         wx.hideLoading();
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
         this.getStatusNum();
         const index = this.data.orderList.findIndex((item) => {
           return +item.order.order_no === +orderNo;
         });
         this.data.orderList.splice(index, 1);
-          this.setData({
-            orderList: this.data.orderList,
-          });
+        this.setData({
+          orderList: this.data.orderList,
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
-
 
   bindMultiPickerChange(e) {
     if (this.data.multiArray[0][0].name === '店铺已打烊') {
       wx.showToast({
         title: '店铺已打烊',
-        icon: 'none'
-      })
+        icon: 'none',
+      });
     } else {
-      console.log('picker发送选择改变，携带值为', e, e.detail.value)
+      console.log('picker发送选择改变，携带值为', e, e.detail.value);
       this.data.multiIndex = e.detail.value;
       const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
       this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
       this.getDeliveryEnd();
       this.setData({
         multiIndex: this.data.multiIndex,
-      })
+      });
     }
   },
 
@@ -186,42 +186,43 @@ Page({
     console.log('修改的列为', e.detail.column, e, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
+      multiIndex: this.data.multiIndex,
     };
     data.multiIndex[e.detail.column] = e.detail.value;
-    if (e.detail.column == 0) { //第1列
+    if (e.detail.column == 0) {
+      //第1列
       if (e.detail.value == 0) {
         if (this.data.todayTimes.length) {
           this.setData({
-            multiArray: [this.data.multiArray[0], this.data.todayTimes]
-          })
+            multiArray: [this.data.multiArray[0], this.data.todayTimes],
+          });
         } else {
           this.setData({
-            multiArray: [this.data.multiArray[0], this.data.durationTimes]
-          })
+            multiArray: [this.data.multiArray[0], this.data.durationTimes],
+          });
         }
-      };
+      }
       if (e.detail.value == 1 || e.detail.value == 2) {
         this.setData({
-          multiArray: [this.data.multiArray[0], this.data.durationTimes]
-        })
-        console.log(this.data.multiArray[0],this.data.multiArray[1],'this.data.multiArray')
-      };
-    };
+          multiArray: [this.data.multiArray[0], this.data.durationTimes],
+        });
+        console.log(this.data.multiArray[0], this.data.multiArray[1], 'this.data.multiArray');
+      }
+    }
   },
 
   getDeliveryEnd() {
     wx.showLoading({
       title: '加载中',
-    })
+    });
     OrderService.getDeliveryEnd(this.data.orderNo, this.data.deliveryEnd)
       .then((res) => {
         wx.hideLoading();
         wx.showToast({
           title: res.data.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
         this.data.isShowCurtain = true;
         this.setData({
           isShowCurtain: this.data.isShowCurtain,
@@ -231,8 +232,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -240,14 +241,14 @@ Page({
     wx.showToast({
       title: '余额不足',
       icon: 'none',
-    })
+    });
   },
 
   orderFailure() {
     wx.showToast({
       title: '订单已失效',
       icon: 'none',
-    })
+    });
   },
 
   payByBalance() {
@@ -258,13 +259,13 @@ Page({
       confirmColor: '#11A24A',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          console.log('用户点击确定');
           _this.balancePay();
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          console.log('用户点击取消');
         }
-      }
-    })
+      },
+    });
   },
 
   balancePay() {
@@ -273,22 +274,22 @@ Page({
         wx.showToast({
           title: res.data.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
         this.setData({
           isShowCurtain: false,
           // showTimePicker: false,
         });
         wx.navigateTo({
           url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -298,33 +299,30 @@ Page({
         const data = res.data.data;
         const _this = this;
         wx.requestPayment({
-          'timeStamp': data.timestamp,
-          'nonceStr': data.nonceStr,
-          'package': data.package,
-          'signType': data.signType,
-          'paySign': data.paySign,
-          'success': function (res) {
+          timeStamp: data.timestamp,
+          nonceStr: data.nonceStr,
+          package: data.package,
+          signType: data.signType,
+          paySign: data.paySign,
+          success: function(res) {
             _this.setData({
               isShowCurtain: false,
               // showTimePicker: false,
             });
             wx.navigateTo({
               url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}`,
-            })
-            
+            });
           },
-          'fail': function (res) {
-
-          },
-          'complete': function (res) { }
-        })
+          fail: function(res) {},
+          complete: function(res) {},
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -341,12 +339,12 @@ Page({
         if (res.confirm) {
           _this.setData({
             showTimePicker: true,
-          })
+          });
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          console.log('用户点击取消');
         }
-      }
-    })
+      },
+    });
   },
 
   getDeliveryTime(e) {
@@ -370,22 +368,22 @@ Page({
         this.data.failureOrder = item;
         this.data.isEnough = +app.globalData.userData.balance >= +finallyMoney;
       }
-    })
+    });
     this.setData({
       isEnough: this.data.isEnough,
       failureOrder: this.data.failureOrder,
     });
-    console.log(deliveryType, 'deliveryType',)
+    console.log(deliveryType, 'deliveryType');
     if (+deliveryType === 1) {
       chooseTime = deliveryTime;
       todayTime = moment()
         .add(35, 'minutes')
         .format('YYYY/MM/DD HH:mm:ss');
-      console.log(chooseTime, 'deliveryTime')
+      console.log(chooseTime, 'deliveryTime');
     } else {
       chooseTime = shopTime;
       todayTime = moment().format('YYYY/MM/DD HH:mm:ss');
-      console.log(chooseTime, 'shopTime')
+      console.log(chooseTime, 'shopTime');
     }
 
     const [start, end] = chooseTime.split(' - ');
@@ -418,7 +416,7 @@ Page({
     const todayLen = parseInt(String(todayDiff / distance), 10);
     const reduceMoneyLen = parseInt(String(reduceMoneyDiff / distance), 10);
 
-    console.log(this.data.todayTimes, 'this.data.todayTimes', todayLen, 'todayLen')
+    console.log(this.data.todayTimes, 'this.data.todayTimes', todayLen, 'todayLen');
     for (let i = 0; i <= len; i++) {
       const aa = (moment.duration(moment(startTime).valueOf()).as('minutes') + i * distance) * 60 * 1000;
       this.data.durationTimes.push({
@@ -442,52 +440,75 @@ Page({
         name: moment(aa).format('HH:mm'),
       });
     }
-    console.log(discountAmount, 'discountAmount0')
+    console.log(discountAmount, 'discountAmount0');
 
     if (+discountAmount > 0) {
       if (reduceMoneyTimes.length) {
-        this.data.multiArray[0] = [{
-          name: '今天',
-          value: moment().format('YYYY/MM/DD')
-        },]
+        this.data.multiArray[0] = [
+          {
+            name: '今天',
+            value: moment().format('YYYY/MM/DD'),
+          },
+        ];
         this.data.multiArray[1] = reduceMoneyTimes;
       } else {
-        this.data.multiArray[0] = [{
-          name: '店铺已打烊',
-          value: moment().format('YYYY/MM/DD')
-        },]
-        this.data.multiArray[1] = [{
-          name: '明天早点来',
-          value: moment().format('YYYY/MM/DD')
-        },];
+        this.data.multiArray[0] = [
+          {
+            name: '店铺已打烊',
+            value: moment().format('YYYY/MM/DD'),
+          },
+        ];
+        this.data.multiArray[1] = [
+          {
+            name: '明天早点来',
+            value: moment().format('YYYY/MM/DD'),
+          },
+        ];
       }
     } else {
       if (this.data.todayTimes.length) {
-        this.data.multiArray[0] = [{
-          name: '今天',
-          value: moment().format('YYYY/MM/DD')
-        },
-        {
-          name: moment().add(1, 'days').format('YYYY/MM/DD'),
-          value: moment().add(1, 'days').format('YYYY/MM/DD'),
-        },
-        {
-          name: moment().add(2, 'days').format('YYYY/MM/DD'),
-          value: moment().add(2, 'days').format('YYYY/MM/DD'),
-        },
-        ]
+        this.data.multiArray[0] = [
+          {
+            name: '今天',
+            value: moment().format('YYYY/MM/DD'),
+          },
+          {
+            name: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
+          },
+          {
+            name: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
+          },
+        ];
         this.data.multiArray[1] = this.data.todayTimes;
       } else {
         this.data.multiArray[0] = [
-        {
-          name: moment().add(1, 'days').format('YYYY/MM/DD'),
-          value: moment().add(1, 'days').format('YYYY/MM/DD'),
-        },
-        {
-          name: moment().add(2, 'days').format('YYYY/MM/DD'),
-          value: moment().add(2, 'days').format('YYYY/MM/DD'),
-        },
-        ]
+          {
+            name: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(1, 'days')
+              .format('YYYY/MM/DD'),
+          },
+          {
+            name: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
+            value: moment()
+              .add(2, 'days')
+              .format('YYYY/MM/DD'),
+          },
+        ];
         this.data.multiArray[1] = this.data.durationTimes;
       }
     }
@@ -495,32 +516,31 @@ Page({
       multiArray: this.data.multiArray,
       shopInfo: this.data.shopInfo,
     });
-
   },
 
   OnceMoreOrder(e) {
     const orderNo = e.currentTarget.dataset.orderNo;
     wx.showLoading({
       title: '加载中',
-    })
+    });
     OrderService.OnceMoreOrder(orderNo)
       .then((res) => {
         wx.hideLoading();
         wx.showToast({
           title: res.data.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
         wx.switchTab({
           url: '/pages/cart/cart',
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -528,21 +548,20 @@ Page({
     const orderNo = e.currentTarget.dataset.orderNo;
     wx.navigateTo({
       url: `/pages/order/evaluate/evaluate?orderNo=${orderNo}`,
-    })
+    });
   },
 
   orderDetail(e) {
     const orderNo = e.currentTarget.dataset.orderNo;
     wx.navigateTo({
       url: `/pages/order/detail/detail?orderNo=${orderNo}`,
-    })
-
+    });
   },
 
   getAllOrderDetails() {
     wx.showLoading({
       title: '加载中',
-    })
+    });
     this.data.orderNum = [];
     OrderService.getAllOrderDetails(this.data.page)
       .then((res) => {
@@ -550,7 +569,7 @@ Page({
         this.data.orderList = [...this.data.orderList, ...res.data.data.data];
         this.data.orderList.forEach((item) => {
           item.order.create_time = moment(item.order.create_time).format('YYYY/MM/DD HH:mm');
-        })
+        });
         this.setData({
           orderList: this.data.orderList,
         });
@@ -561,8 +580,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -570,7 +589,7 @@ Page({
   getStatusDetails(status) {
     wx.showLoading({
       title: '加载中',
-    })
+    });
     this.data.orderNum = [];
     OrderService.getStatusDetails(status, this.data.page)
       .then((res) => {
@@ -579,7 +598,7 @@ Page({
         this.data.orderList = [...this.data.orderList, ...res.data.data.data];
         this.data.orderList.forEach((item) => {
           item.order.create_time = moment(item.order.create_time).format('YYYY/MM/DD HH:mm');
-        })
+        });
         this.setData({
           orderList: this.data.orderList,
         });
@@ -588,15 +607,15 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
   // 滚动切换标签样式
   switchTab(e) {
     this.data.orderList = [];
-    console.log(e, 'switchTab--')
+    console.log(e, 'switchTab--');
     this.data.page = 1;
     const index = e.detail.current;
     this.data.status = this.data.statusList[index].status;
@@ -615,8 +634,8 @@ Page({
       return false;
     } else {
       this.setData({
-        currentTab: index
-      })
+        currentTab: index,
+      });
     }
     this.data.orderList = [];
     this.data.page = 1;
@@ -651,15 +670,15 @@ Page({
   },
 
   //判断当前滚动超过一屏时，设置tab标题滚动条。
-  checkCor: function () {
+  checkCor: function() {
     if (this.data.currentTab > 3) {
       this.setData({
-        scrollLeft: 300
-      })
+        scrollLeft: 300,
+      });
     } else {
       this.setData({
-        scrollLeft: 0
-      })
+        scrollLeft: 0,
+      });
     }
   },
 
@@ -680,7 +699,7 @@ Page({
     });
     wx.showLoading({
       title: '加载中',
-    })
+    });
     this.getStatusNum();
     // this.getAllOrderDetails();
   },
@@ -708,13 +727,12 @@ Page({
     // });
   },
 
-
   lower(e) {
     if (this.data.orderNum.length === 10) {
       this.data.page = this.data.page + 1;
       this.checkStatus();
     }
-    console.log('lower----')
+    console.log('lower----');
   },
 
   // onShareAppMessage: function (res) {
@@ -727,4 +745,4 @@ Page({
   //     path: '/pages/user/user'
   //   }
   // }
-})
+});

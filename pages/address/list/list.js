@@ -3,25 +3,21 @@ var AddressService = require('../../../utils/services/AddressService.js');
 var app = getApp();
 
 Page({
-
   /**
    * 页面的初始数据
    */
-  data: {
-
-  },
+  data: {},
 
   onUnload() {
     wx.navigateTo({
       url: '/pages/user/user',
-    })
+    });
   },
-
 
   getAddressList() {
     wx.showLoading({
       title: '',
-    })
+    });
     AddressService.getAddressList()
       .then((res) => {
         wx.hideLoading();
@@ -32,7 +28,7 @@ Page({
           validList: validList,
           invalidList: invalidList,
           totalList: totalList,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
@@ -41,20 +37,19 @@ Page({
         });
         setTimeout(function() {
           wx.hideToast();
-        }, 2000)
-      })
+        }, 2000);
+      });
   },
-  
 
   editAddress(e) {
     const id = e.currentTarget.dataset.addressId;
     wx.navigateTo({
       url: `/pages/address/edit/address?addressId=${id}`,
-    })
+    });
   },
 
   deleteAddress(e) {
-    console.log(e)
+    console.log(e);
     const addressId = e.currentTarget.dataset.addressId;
     AddressService.removeAddress(addressId)
       .then((res) => {
@@ -66,7 +61,7 @@ Page({
             setTimeout(function() {
               wx.hideToast();
             }, 2000);
-          }
+          },
         });
         this.data.validList.forEach((item, index) => {
           if (+item.id === addressId) {
@@ -83,14 +78,14 @@ Page({
           validList: this.data.validList,
           invalidList: this.data.invalidList,
           totalList: totalList,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
         });
-      })
+      });
   },
 
   onLoad: function(options) {
@@ -104,35 +99,25 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
-  }
-})
+  onShareAppMessage: function() {},
+});

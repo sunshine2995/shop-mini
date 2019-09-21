@@ -5,13 +5,12 @@ var CartService = require('../../utils/services/CartService.js');
 const throttle = require('../../utils/util.js');
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     showClear: false, // 清除图标展示与否
-    inputVal: "",
+    inputVal: '',
     showHistory: true, // 历史列表展示与否
     showSpuName: false, // 搜索商品名称展示与否
     HistoryList: [],
@@ -28,14 +27,13 @@ Page({
     cartIds: [], // 购物车商品id
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
-
   },
 
   goToDetail(e) {
     const id = e.currentTarget.dataset.goodId;
     wx.navigateTo({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    })
+    });
   },
 
   bindKeyInput(e) {
@@ -56,7 +54,7 @@ Page({
 
   bindconfirm(e) {
     this.data.inputVal = e.detail.value;
-    this.fuzzySearchGoodsSpu()
+    this.fuzzySearchGoodsSpu();
   },
 
   getHistoryList() {
@@ -88,9 +86,9 @@ Page({
 
   // 商品名列表
   fuzzySearchGoodsIdName: throttle.throttle(function(e) {
-    console.log(this)
-    console.log(e)
-    console.log((new Date()).getSeconds())
+    console.log(this);
+    console.log(e);
+    console.log(new Date().getSeconds());
     GoodsService.fuzzySearchGoodsIdName(this.data.inputVal)
       .then((res) => {
         var goodsList = res.data.data;
@@ -100,217 +98,202 @@ Page({
           showSpuName: this.data.showSpuName,
         });
       })
-      .catch((res) => {})
+      .catch((res) => {});
   }, 500),
 
-// 商品详情
-fuzzySearchGoodsSpu() {
-  GoodsService.fuzzySearchGoodsSpu(this.data.inputVal)
-    .then((res) => {
-      this.getHistoryList();
-      var goodsDetailList = res.data.data;
-      this.setData({
-        goodsDetailList: goodsDetailList,
-        showSpuName: false,
-      });
-    })
-    .catch((res) => {})
-},
+  // 商品详情
+  fuzzySearchGoodsSpu() {
+    GoodsService.fuzzySearchGoodsSpu(this.data.inputVal)
+      .then((res) => {
+        this.getHistoryList();
+        var goodsDetailList = res.data.data;
+        this.setData({
+          goodsDetailList: goodsDetailList,
+          showSpuName: false,
+        });
+      })
+      .catch((res) => {});
+  },
 
-chooseSearchResultAction(e) {},
+  chooseSearchResultAction(e) {},
 
-exchangeVal(e) {
-  this.data.inputVal = e.currentTarget.dataset.newVal;
-  this.setData({
-    inputVal: this.data.inputVal,
-    showHistory: false,
-  });
-  this.fuzzySearchGoodsIdName();
-},
+  exchangeVal(e) {
+    this.data.inputVal = e.currentTarget.dataset.newVal;
+    this.setData({
+      inputVal: this.data.inputVal,
+      showHistory: false,
+    });
+    this.fuzzySearchGoodsIdName();
+  },
 
+  clearInput() {
+    this.setData({
+      inputVal: '',
+      showHistory: true,
+    });
+  },
 
-clearInput() {
-  this.setData({
-    inputVal: "",
-    showHistory: true,
-  });
-},
+  getHotSearch() {
+    GoodsService.getHotSearch()
+      .then((res) => {
+        this.data.HotList = res.data.data;
+        this.setData({
+          HistoryList: this.data.HistoryList,
+          HotList: this.data.HotList,
+        });
+      })
+      .catch(() => {});
+  },
 
-getHotSearch() {
-  GoodsService.getHotSearch()
-    .then((res) => {
-      this.data.HotList = res.data.data;
-      this.setData({
-        HistoryList: this.data.HistoryList,
-        HotList: this.data.HotList,
-      });
-    })
-    .catch(() => {});
-},
+  getRecommended() {
+    GoodsService.getRecommended()
+      .then((res) => {
+        this.data.goodSkuId = [];
+        this.data.recommendedList = res.data.data;
+        this.data.recommendedList.forEach((item) => {
+          this.data.goodSkuId.push(item.goods_sku_info.id);
+        });
+        this.setData({
+          recommendedList: this.data.recommendedList,
+        });
+        this.getCartNumber();
+      })
+      .catch(() => {});
+  },
 
-getRecommended() {
-  GoodsService.getRecommended()
-    .then((res) => {
-      this.data.goodSkuId = [];
-      this.data.recommendedList = res.data.data;
-      this.data.recommendedList.forEach((item) => {
-        this.data.goodSkuId.push(item.goods_sku_info.id);
-      });
-      this.setData({
-        recommendedList: this.data.recommendedList,
-      });
-      this.getCartNumber();
-    })
-    .catch(() => {});
-},
-
-getCartCount() {
-  CartService.getCartCount()
-    .then((res) => {
+  getCartCount() {
+    CartService.getCartCount().then((res) => {
       wx.setStorageSync('cartNum', res.data.data);
     });
-},
+  },
 
-getCartNumber() {
-  CartService.getAllCarts().then((res) => {
-    this.data.carts = res.data.data.valid_carts;
-    this.data.idSelected = [];
-    this.data.carts.forEach((cart) => {
-      this.data.goodSkuId.forEach((goodId) => {
-        if (+cart.goods_sku_id === +goodId) {
-          this.data.idSelected.push({
-            id: +cart.goods_sku_id,
-            num: +cart.goods_sku_num,
-          });
-        }
-      });
-    });
-    this.setData({
-      idSelected: this.data.idSelected,
-    });
-    this.getCartCount();
-  });
-},
-
-
-// 获取商品属性
-getGoodsAttr(e) {
-  this.data.skuId = e.currentTarget.dataset.goodSkuId;
-  this.data.goodsAttr = '';
-  this.data.goodsAttrs = [];
-  this.data.carts.forEach((cart) => {
-    this.data.cartIds.push(cart.goods_sku_id);
-  });
-  CartService.getGoodsAttr(this.data.skuId).then((res) => {
-    res.data.data.forEach((item, index) => {
-      this.data.goodsAttrs.push(item);
-    });
-    if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
-      var _this = this;
-      wx.showActionSheet({
-        itemList: _this.data.goodsAttrs,
-        success(res) {
-          console.log(res.tapIndex)
-          _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-          console.log(_this.data.goodsAttr)
-          CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
-            .then((res) => {
-              _this.data.idSelected.forEach((item) => {
-                if (+item.id === +_this.data.skuId) {
-                  item.num = res.data.data.goods_sku_num;
-                }
-              });
-              _this.getCartNumber();
-            })
-            .catch((error) => {
-              wx.showToast({
-                title: error.data.message,
-                icon: 'none',
-              })
+  getCartNumber() {
+    CartService.getAllCarts().then((res) => {
+      this.data.carts = res.data.data.valid_carts;
+      this.data.idSelected = [];
+      this.data.carts.forEach((cart) => {
+        this.data.goodSkuId.forEach((goodId) => {
+          if (+cart.goods_sku_id === +goodId) {
+            this.data.idSelected.push({
+              id: +cart.goods_sku_id,
+              num: +cart.goods_sku_num,
             });
-        },
-        fail(res) {
-          console.log(res.errMsg)
-        }
-      })
-    } else {
-      this.addCart();
-    }
-  });
-},
-
-addCart() {
-  this.data.carts.forEach((cart) => {
-    if (this.data.skuId === cart.goods_sku_id) {
-      this.data.goodsAttr = cart.goods_attr;
-    }
-    console.log(this.data.skuId, 'addCART', this.data.goodsAttr, 'gggggg');
-  });
-  CartService.addCart(this.data.skuId, this.data.goodsAttr)
-    .then((res) => {
-      this.data.idSelected.forEach((item) => {
-        if (+item.id === +this.data.skuId) {
-          item.num = res.data.data.goods_sku_num;
-        }
+          }
+        });
       });
-      this.getCartNumber();
-    })
-    .catch(() => {});
-},
+      this.setData({
+        idSelected: this.data.idSelected,
+      });
+      this.getCartCount();
+    });
+  },
 
-/**
- * 生命周期函数--监听页面加载
- */
-onLoad: function(options) {},
+  // 获取商品属性
+  getGoodsAttr(e) {
+    this.data.skuId = e.currentTarget.dataset.goodSkuId;
+    this.data.goodsAttr = '';
+    this.data.goodsAttrs = [];
+    this.data.carts.forEach((cart) => {
+      this.data.cartIds.push(cart.goods_sku_id);
+    });
+    CartService.getGoodsAttr(this.data.skuId).then((res) => {
+      res.data.data.forEach((item, index) => {
+        this.data.goodsAttrs.push(item);
+      });
+      if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
+        var _this = this;
+        wx.showActionSheet({
+          itemList: _this.data.goodsAttrs,
+          success(res) {
+            console.log(res.tapIndex);
+            _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
+            console.log(_this.data.goodsAttr);
+            CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
+              .then((res) => {
+                _this.data.idSelected.forEach((item) => {
+                  if (+item.id === +_this.data.skuId) {
+                    item.num = res.data.data.goods_sku_num;
+                  }
+                });
+                _this.getCartNumber();
+              })
+              .catch((error) => {
+                wx.showToast({
+                  title: error.data.message,
+                  icon: 'none',
+                });
+              });
+          },
+          fail(res) {
+            console.log(res.errMsg);
+          },
+        });
+      } else {
+        this.addCart();
+      }
+    });
+  },
 
-/**
- * 生命周期函数--监听页面初次渲染完成
- */
-onReady: function() {
+  addCart() {
+    this.data.carts.forEach((cart) => {
+      if (this.data.skuId === cart.goods_sku_id) {
+        this.data.goodsAttr = cart.goods_attr;
+      }
+      console.log(this.data.skuId, 'addCART', this.data.goodsAttr, 'gggggg');
+    });
+    CartService.addCart(this.data.skuId, this.data.goodsAttr)
+      .then((res) => {
+        this.data.idSelected.forEach((item) => {
+          if (+item.id === +this.data.skuId) {
+            item.num = res.data.data.goods_sku_num;
+          }
+        });
+        this.getCartNumber();
+      })
+      .catch(() => {});
+  },
 
-},
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {},
 
-/**
- * 生命周期函数--监听页面显示
- */
-onShow: function() {
-  this.data.HistoryList = wx.getStorageSync('historyList') || [];
-  this.getHotSearch();
-  this.getRecommended();
-},
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {},
 
-/**
- * 生命周期函数--监听页面隐藏
- */
-onHide: function() {
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    this.data.HistoryList = wx.getStorageSync('historyList') || [];
+    this.getHotSearch();
+    this.getRecommended();
+  },
 
-},
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {},
 
-/**
- * 生命周期函数--监听页面卸载
- */
-onUnload: function() {
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {},
 
-},
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {},
 
-/**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-onPullDownRefresh: function() {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {},
 
-},
-
-/**
- * 页面上拉触底事件的处理函数
- */
-onReachBottom: function() {
-
-},
-
-/**
- * 用户点击右上角分享
- */
-onShareAppMessage: function() {
-
-}
-})
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {},
+});

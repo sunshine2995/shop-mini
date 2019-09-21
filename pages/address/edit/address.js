@@ -11,20 +11,24 @@ Page({
     longitude: '', //经度
     key: key.Key,
     markers: [],
-    options: [{
-      value: 1,
-      label: '先生',
-      checked: false,
-    }, {
-      value: 2,
-      label: '女士',
-      checked: true,
-    }],
+    options: [
+      {
+        value: 1,
+        label: '先生',
+        checked: false,
+      },
+      {
+        value: 2,
+        label: '女士',
+        checked: true,
+      },
+    ],
 
     region: ['单击选择地址', '', ''],
     // customItem: '全部',
 
-    typeOptions: [{
+    typeOptions: [
+      {
         value: 1,
         text: '家',
       },
@@ -62,7 +66,7 @@ Page({
 
   // 监听textarea
   bindTextAreaChange: throttle.throttle(function(e) {
-    console.log('bindTextAreaChange')
+    console.log('bindTextAreaChange');
     var _this = this;
     _this.data.address.street = e[0].detail.value;
     _this.getLocationByAddress();
@@ -70,12 +74,17 @@ Page({
 
   // 监听更改城市
   bindRegionChange(e) {
-    console.log('bindRegionChange')
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('bindRegionChange');
+    console.log('picker发送选择改变，携带值为', e.detail.value);
     this.data.address.province = e.detail.value[0];
     this.data.address.city = e.detail.value[1];
     this.data.address.area = e.detail.value[2];
-    console.log('picker发送选择改变，携带值为', this.data.address.province, this.data.address.city, this.data.address.area)
+    console.log(
+      'picker发送选择改变，携带值为',
+      this.data.address.province,
+      this.data.address.city,
+      this.data.address.area,
+    );
     this.getLocationByAddress();
     this.setData({
       region: e.detail.value,
@@ -83,12 +92,11 @@ Page({
     });
   },
 
-
   // 拖动地图
   regionchange(e) {
     let self = this;
-    console.log(e,self.data.latitude, self.data.longitude,  'ffffffffffff')
-    self.mapCtx = wx.createMapContext("map");
+    console.log(e, self.data.latitude, self.data.longitude, 'ffffffffffff');
+    self.mapCtx = wx.createMapContext('map');
     if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')) {
       self.mapCtx.getCenterLocation({
         success: function(res) {
@@ -96,7 +104,7 @@ Page({
             self.data.latitude = res.latitude;
             self.data.longitude = res.longitude;
           }
-          console.log(self.data.latitude, self.data.longitude, 'jjjjjjjjjj')
+          console.log(self.data.latitude, self.data.longitude, 'jjjjjjjjjj');
           // self.data.markers = [{
           //   id: 0,
           //   longitude: res.longitude,
@@ -110,16 +118,16 @@ Page({
             // markers: self.data.markers,
             latitude: self.data.latitude,
             longitude: self.data.longitude,
-          })
+          });
           wx.showLoading({
             title: '',
-          })
+          });
           self.getAddressByLocation();
           if (!self.data.latitude || !self.data.longitude) {
             self.getLocationByAddress();
-            console.log('getLocationByAddressgetLocationByAddressgetLocationByAddress')
+            console.log('getLocationByAddressgetLocationByAddressgetLocationByAddress');
           }
-        }
+        },
       });
     }
   },
@@ -136,60 +144,62 @@ Page({
         this.data.address.area = _res.district;
         this.data.address.street = _res.township + _res.streetNumber.street;
         //成功回调
-        [this.data.longitude, this.data.latitude] = String(_res.streetNumber.location).split(',')
+        [this.data.longitude, this.data.latitude] = String(_res.streetNumber.location).split(',');
 
-        console.log(this.data.latitude, this.data.longitude, 'this.data.latitude')
-        this.data.markers = [{
-          id: 0,
-          longitude: this.data.longitude,
-          latitude: this.data.latitude,
-          title: _res.formatted_address,
-          iconPath: '../../../images/home/user.png',
-          width: 32,
-          height: 32
-        }]
-        this.setData({ //设置markers属性和地图位置poi，将结果在地图展示
+        console.log(this.data.latitude, this.data.longitude, 'this.data.latitude');
+        this.data.markers = [
+          {
+            id: 0,
+            longitude: this.data.longitude,
+            latitude: this.data.latitude,
+            title: _res.formatted_address,
+            iconPath: '../../../images/home/user.png',
+            width: 32,
+            height: 32,
+          },
+        ];
+        this.setData({
+          //设置markers属性和地图位置poi，将结果在地图展示
           // markers: this.data.markers,
           latitude: this.data.latitude,
           longitude: this.data.longitude,
           street: this.data.address.street,
           region: [this.data.address.province, this.data.address.city, this.data.address.area],
         });
-
       })
-      .catch((error) => {})
+      .catch((error) => {});
   },
 
   // 地址转经纬度
   getLocationByAddress() {
     wx.showLoading({
       title: '',
-    })
+    });
     const address = `${this.data.address.province}${this.data.address.city}${this.data.address.area}${this.data.address.street}`;
     AddressService.getLocationByAddress(address)
       .then((res) => {
         wx.hideLoading();
         const _res = res.data.geocodes[0];
         //成功回调
-        [this.data.longitude, this.data.latitude] = String(_res.location).split(',')
+        [this.data.longitude, this.data.latitude] = String(_res.location).split(',');
 
-        console.log(res, this.data.latitude, this.data.longitude, 'this.data.latitude')
+        console.log(res, this.data.latitude, this.data.longitude, 'this.data.latitude');
 
-        this.setData({ //设置markers属性和地图位置poi，将结果在地图展示
+        this.setData({
+          //设置markers属性和地图位置poi，将结果在地图展示
           latitude: this.data.latitude,
           longitude: this.data.longitude,
         });
-
       })
-      .catch((error) => {})
+      .catch((error) => {});
   },
 
   markertap(e) {
-    console.log(e.markerId, 'markertap')
+    console.log(e.markerId, 'markertap');
   },
 
   controltap(e) {
-    console.log(e.controlId, 'controltap')
+    console.log(e.controlId, 'controltap');
   },
 
   // 更改地址类型
@@ -199,18 +209,17 @@ Page({
     console.log(this.data.address.addressType);
     this.setData({
       active: active,
-    })
+    });
   },
 
-  // 是否为默认地址 
+  // 是否为默认地址
   checkboxChange(e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value, this.data.defaultCheck)
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value, this.data.defaultCheck);
     if (e.detail.value == '默认') {
       this.data.defaultCheck = true;
     } else {
       this.data.defaultCheck = false;
     }
-
   },
 
   // 更换性别
@@ -246,32 +255,32 @@ Page({
       isDefault: this.data.defaultCheck,
       longi: this.data.longitude,
       lati: this.data.latitude,
-    }
+    };
     if (this.data.address.name.replace(/\s/gi, '').length === 0) {
       wx.showToast({
         title: '请填写您的姓名',
         icon: 'none',
-      })
+      });
     } else if (!this.data.address.mobile) {
       wx.showToast({
         title: '请填写您的电话号码',
         icon: 'none',
-      })
+      });
     } else if (this.data.address.mobile.replace(/\s/gi, '').length !== 11) {
       wx.showToast({
         title: '请填写正确的电话号码',
         icon: 'none',
-      })
+      });
     } else if (!this.data.address.province || !this.data.address.province || !this.data.address.province) {
       wx.showToast({
         title: '选择城市信息',
         icon: 'none',
-      })
+      });
     } else if (!this.data.address.street.replace(/\s/gi, '')) {
       wx.showToast({
         title: '请填写具体地址',
         icon: 'none',
-      })
+      });
     } else {
       AddressService.updateAddress(address)
         .then((res) => {
@@ -279,15 +288,15 @@ Page({
             title: res.data.message,
           });
           wx.navigateBack({
-            delta: 1
-          })
+            delta: 1,
+          });
         })
         .catch((error) => {
           wx.showToast({
             title: error.data.message,
             icon: 'none',
-          })
-        })
+          });
+        });
     }
   },
 
@@ -322,7 +331,7 @@ Page({
         this.setData({
           name: this.data.address.name,
           mobile: this.data.address.mobile,
-          region: [this.data.address.province, this.data.address.city, this.data.address.area, ],
+          region: [this.data.address.province, this.data.address.city, this.data.address.area],
           street: this.data.address.street,
           defaultCheck: this.data.defaultCheck,
           options: this.data.options,
@@ -335,7 +344,7 @@ Page({
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
-        })
+        });
       });
   },
   /**
@@ -343,7 +352,7 @@ Page({
    */
   onLoad(options) {
     this.data.address.id = options.addressId;
-    this.getAddressInfo()
+    this.getAddressInfo();
     myAmapFun = new amapFile.AMapWX({
       key: this.data.key,
     });
@@ -394,35 +403,25 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
-  }
-})
+  onShareAppMessage: function() {},
+});

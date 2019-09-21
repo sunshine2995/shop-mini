@@ -1,21 +1,19 @@
 let GoodsService = require('../../../utils/services/GoodsService.js');
 
 Page({
-  data: {
-
-  },
+  data: {},
 
   goCollectGood() {
     wx.switchTab({
       url: '/pages/home/home',
-    })
+    });
   },
 
   goToDetail(e) {
     const id = e.currentTarget.dataset.goodId;
     wx.navigateTo({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    })
+    });
   },
 
   getCollectList() {
@@ -31,39 +29,27 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
 
-  onReady: function() {
+  onReady: function() {},
 
-  },
-
-  onShow: function () {
+  onShow: function() {
     wx.showLoading({
       title: '',
-    })
+    });
     this.getCollectList();
   },
 
-  onHide: function() {
+  onHide: function() {},
 
-  },
+  onUnload: function() {},
 
-  onUnload: function() {
+  onPullDownRefresh: function() {},
 
-  },
+  onReachBottom: function() {},
 
-  onPullDownRefresh: function() {
-
-  },
-
-  onReachBottom: function() {
-
-  },
-
-  onShareAppMessage: function() {
-
-  }
-})
+  onShareAppMessage: function() {},
+});

@@ -7,15 +7,13 @@ Component({
     phoneNumber: {
       type: String,
       value: '',
-    }
+    },
   },
 
   /**
    * 组件的初始数据
    */
-  data: {
-
-  },
+  data: {},
 
   /**
    * 组件的方法列表
@@ -25,19 +23,19 @@ Component({
       if (this.properties.phoneNumber) {
         wx.makePhoneCall({
           phoneNumber: this.properties.phoneNumber,
-        })
+        });
       } else {
         wx.showToast({
           title: '店长没有设置电话',
           icon: 'none',
-          duration: 2000
+          duration: 2000,
         });
       }
     },
     goOnline() {
       wx.navigateTo({
-        url: "/pages/userCenter/customerService/customerService",
-      })
-    }
-  }
-})
+        url: '/pages/userCenter/customerService/customerService',
+      });
+    },
+  },
+});

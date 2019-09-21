@@ -1,4 +1,4 @@
-var OrderService = require('../../../utils/services/OrderService.js')
+var OrderService = require('../../../utils/services/OrderService.js');
 
 Page({
   data: {
@@ -6,7 +6,7 @@ Page({
     driverStar: 5, // 配送服务
     goodStar: 5, // 商品质量
     noteMaxLen: 300, // 最多放多少字
-    info: "", // 评价内容
+    info: '', // 评价内容
     noteNowLen: 0, //备注当前字数
     orderNo: '', // 订单号
     orderList: [], // 订单商品信息
@@ -15,18 +15,17 @@ Page({
     tempFilePaths: [],
     imgList: [],
   },
-  
+
   // 监听字数
   bindTextAreaChange: function(e) {
-    var that = this
+    var that = this;
     var value = e.detail.value,
       len = parseInt(value.length);
-    if (len > that.data.noteMaxLen)
-      return;
+    if (len > that.data.noteMaxLen) return;
     that.setData({
       info: value,
-      noteNowLen: len
-    })
+      noteNowLen: len,
+    });
   },
 
   onLoad(option) {
@@ -69,14 +68,14 @@ Page({
         this.setData({
           orderList: this.data.orderList,
           refundList: this.data.refundList,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -89,7 +88,7 @@ Page({
     });
     this.setData({
       orderList: this.data.orderList,
-    })
+    });
   },
 
   changeBad(e) {
@@ -101,9 +100,8 @@ Page({
     });
     this.setData({
       orderList: this.data.orderList,
-    })
+    });
   },
-
 
   // 提交清空当前值
   bindSubmit() {
@@ -128,52 +126,52 @@ Page({
           icon: 'success',
           duration: 1500,
           mask: false,
-          success: function () {
+          success: function() {
             that.setData({
               info: '',
               noteNowLen: 0,
               userStar: 5,
               driverStar: 5,
               goodStar: 5,
-            })
-          }
+            });
+          },
         });
         wx.navigateTo({
-          url: "/pages/order/list/list?status=待评价&ifEvaluate=true",
+          url: '/pages/order/list/list?status=待评价&ifEvaluate=true',
         });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
   /**
    * 上传图片方法
    */
-  upload: function () {
+  upload: function() {
     let that = this;
     wx.chooseImage({
       count: 4, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: res => {
+      success: (res) => {
         wx.showToast({
           title: '正在上传...',
           icon: 'loading',
           mask: true,
-          duration: 1000
-        })
+          duration: 1000,
+        });
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
 
         that.data.tempFilePaths = that.data.tempFilePaths.concat(res.tempFilePaths);
         console.log(that.data.tempFilePaths, 'fffff');
         that.setData({
-          tempFilePaths: that.data.tempFilePaths
-        })
+          tempFilePaths: that.data.tempFilePaths,
+        });
         /**
          * 上传完成后把文件上传到服务器
          */
@@ -186,64 +184,63 @@ Page({
             filePath: that.data.tempFilePaths[i],
             name: 'file',
             header: {
-              "Content-Type": "multipart/form-data"
+              'Content-Type': 'multipart/form-data',
             },
-            success: function (res) {
+            success: function(res) {
               if (res.statusCode === 406) {
                 wx.showToast({
                   title: JSON.parse(res.data).message,
                   icon: 'loading',
                   mask: true,
-                  duration: 2000
-                })
+                  duration: 2000,
+                });
               } else if (res.statusCode === 200) {
                 wx.showToast({
                   title: '上传成功',
                   icon: 'loading',
                   mask: true,
-                  duration: 1000
-                })
+                  duration: 1000,
+                });
                 count++;
                 that.data.imgList.push(JSON.parse(res.data).url);
                 console.log(JSON.parse(res.data).url, 'JSON.parse(res.data).url');
-                
+
                 console.log(that.data.imgList, 'ggg');
-                //如果是最后一张,则隐藏等待中  
+                //如果是最后一张,则隐藏等待中
                 if (count == that.data.tempFilePaths.length) {
                   wx.hideToast();
                 }
               }
             },
-            fail: function (res) {
+            fail: function(res) {
               wx.showToast({
                 title: '上传失败',
                 icon: 'loading',
                 mask: true,
-                duration: 3000
-              })
-            }
+                duration: 3000,
+              });
+            },
           });
-
         }
-      }
-    })
+      },
+    });
   },
   /**
    * 预览图片方法
    */
-  listenerButtonPreviewImage: function (e) {
+  listenerButtonPreviewImage: function(e) {
     let index = e.target.dataset.index;
     let that = this;
     wx.previewImage({
       current: that.data.tempFilePaths[index],
       urls: that.data.tempFilePaths,
-      success: function (res) {
+      success: function(res) {
         //console.log(res);
       },
-      fail: function () {
+      fail: function() {
         //console.log('fail')
-      }
-    })
+      },
+    });
   },
 
   deleteImage(e) {
@@ -251,12 +248,11 @@ Page({
     var imgList = that.data.tempFilePaths;
     var index = e.currentTarget.dataset.index;
     imgList.splice(index, 1);
-    that.data.imgList.splice(index,1);
+    that.data.imgList.splice(index, 1);
     that.setData({
       tempFilePaths: imgList,
     });
-    console.log(index,that.data.tempFilePaths, 'that.data.tempFilePaths')
-    console.log(index,that.data.imgList,'that.data.imgList')
+    console.log(index, that.data.tempFilePaths, 'that.data.tempFilePaths');
+    console.log(index, that.data.imgList, 'that.data.imgList');
   },
-
-})
+});

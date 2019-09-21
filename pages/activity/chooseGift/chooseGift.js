@@ -1,6 +1,6 @@
 // pages/activity/chooseGift/chooseGift.js
-var GiftService = require('../../../utils/services/GiftService.js')
-const app = getApp()
+var GiftService = require('../../../utils/services/GiftService.js');
+const app = getApp();
 
 Page({
   data: {
@@ -11,14 +11,14 @@ Page({
   goToCart(e) {
     wx.switchTab({
       url: '/pages/cart/cart',
-    })
+    });
     app.globalData.chooseGiftId = e.currentTarget.dataset.giftId;
   },
 
   getCartGift(money) {
     wx.showLoading({
       title: '',
-    })
+    });
     GiftService.getCartGift(money)
       .then((res) => {
         wx.hideLoading();
@@ -27,20 +27,19 @@ Page({
         this.setData({
           satisfyList: this.data.satisfyList,
           dissatisfyList: this.data.dissatisfyList,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
-
 
   onLoad(option) {
     const money = +option.money;
     this.getCartGift(money);
   },
-})
+});

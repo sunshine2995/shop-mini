@@ -15,7 +15,6 @@ Page({
     goodsAttr: '', // 商品属性
     subbranchArea: '', // 配送地址
     shipping: 0, // 免配送费条件
-
   },
   getUser() {
     UserService.getUser()
@@ -27,8 +26,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -37,15 +36,15 @@ Page({
       .then((res) => {
         this.setData({
           subbranchArea: res.data.data.subbranch_area,
-        })
-        console.log(this.data.subbranchArea,'subbranchArea')
+        });
+        console.log(this.data.subbranchArea, 'subbranchArea');
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -54,14 +53,14 @@ Page({
       .then((res) => {
         this.setData({
           shipping: +res.data.data.start_price,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -72,23 +71,22 @@ Page({
     this.setData({
       active: active,
       stock: this.data.stock,
-    })
+    });
   },
 
   goToCart() {
     wx.switchTab({
       url: '/pages/cart/cart',
-    })
+    });
   },
 
   getCartCount() {
-    CartService.getCartCount()
-      .then((res) => {
-        wx.setStorageSync('cartNum', res.data.data);
-        this.setData({
-          cartNum: res.data.data,
-        })
+    CartService.getCartCount().then((res) => {
+      wx.setStorageSync('cartNum', res.data.data);
+      this.setData({
+        cartNum: res.data.data,
       });
+    });
   },
 
   getAllCarts() {
@@ -112,7 +110,7 @@ Page({
         wx.showActionSheet({
           itemList: _this.data.goodsAttrs,
           success(res) {
-            console.log(res.tapIndex)
+            console.log(res.tapIndex);
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
             CartService.addCart(_this.data.selectSkuId, _this.data.goodsAttr)
               .then((res) => {
@@ -123,13 +121,13 @@ Page({
                 wx.showToast({
                   title: error.data.message,
                   icon: 'none',
-                })
+                });
               });
           },
           fail(res) {
-            console.log(res.errMsg)
-          }
-        })
+            console.log(res.errMsg);
+          },
+        });
       } else {
         this.addCart();
       }
@@ -147,7 +145,7 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
+          duration: 2000,
         });
         this.getCartCount();
       })
@@ -155,15 +153,15 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
   goToDescripte() {
     wx.navigateTo({
       url: '/pages/goodsDescription/goodsDescription',
-    })
+    });
   },
 
   getDetail() {
@@ -187,9 +185,9 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
 
   changeStatus() {
@@ -203,9 +201,9 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
 
   getCollectStatus() {
@@ -221,15 +219,15 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
 
   onLoad(option) {
     wx.showLoading({
       title: '加载中',
-    })
+    });
     this.data.spuId = option.goodId;
     this.getCollectStatus();
     this.getUser();
@@ -247,16 +245,17 @@ Page({
   imgH(e) {
     var that = this;
     var winWid = wx.getSystemInfoSync().windowWidth * 2;
-    wx.getImageInfo({ //获取图片长宽等信息
+    wx.getImageInfo({
+      //获取图片长宽等信息
       src: e,
       success: function(res) {
         var imgw = res.width;
         var imgh = res.height;
-        var swiperH = winWid * imgh / imgw;
+        var swiperH = (winWid * imgh) / imgw;
         that.setData({
           swiperHeight: swiperH, //设置高度
-        })
-      }
-    })
-  }
-})
+        });
+      },
+    });
+  },
+});

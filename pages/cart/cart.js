@@ -2,19 +2,19 @@
 var CartService = require('../../utils/services/CartService.js');
 var GiftService = require('../../utils/services/GiftService.js');
 var UserService = require('../../utils/services/UseService.js');
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {
-    validCarts: [], //有效购物车数据      
-    invalidCarts: [], //失效购物车数据      
-    total: 0, //总金额    
-    discountMoney: 0, //折扣优惠金额  
+    validCarts: [], //有效购物车数据
+    invalidCarts: [], //失效购物车数据
+    total: 0, //总金额
+    discountMoney: 0, //折扣优惠金额
     finallyMoney: 0, //总金额-折扣优惠金额
-    allsel: false, //全选      
-    selarr: [], //选择的商品   
-    hintText: '', //提示的内容      
-    hintShow: false, //是否显示提示  
+    allsel: false, //全选
+    selarr: [], //选择的商品
+    hintText: '', //提示的内容
+    hintShow: false, //是否显示提示
     guessList: [], //猜你喜欢列表
     idSelected: [], // 已被选在购物车的商品id列表
     goodSkuId: [], // 推荐商品的skuId列表
@@ -63,13 +63,13 @@ Page({
     const id = e.currentTarget.dataset.goodId;
     wx.navigateTo({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    })
+    });
   },
 
   goHome() {
     wx.switchTab({
       url: '/pages/home/home',
-    })
+    });
   },
 
   goSubmit() {
@@ -77,28 +77,28 @@ Page({
       wx.showToast({
         title: '未选择商品呢',
         icon: 'none',
-      })
+      });
     } else if (!this.data.phoneNum) {
       this.setData({
         isShowCurtain: true,
-      })
+      });
     } else {
       wx.navigateTo({
         url: '/pages/order/submit/submit',
-      })
+      });
     }
   },
 
   goCollectGood() {
     wx.switchTab({
       url: '/pages/home/home',
-    })
+    });
   },
 
   goToChooseGift() {
     wx.navigateTo({
       url: `/pages/activity/chooseGift/chooseGift?money=${this.data.finallyMoney}`,
-    })
+    });
   },
 
   getshippingCharge() {
@@ -106,17 +106,16 @@ Page({
       .then((res) => {
         this.setData({
           shipping: +res.data.data.start_price,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
-
 
   getUser() {
     UserService.getUser()
@@ -124,18 +123,18 @@ Page({
         this.setData({
           userInfo: res.data.data,
           phoneNum: res.data.data.phone,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
-  //点击全选  
+  //点击全选
   allcheckTap() {
     let shopcar = this.data.validCarts,
       allsel = !this.data.allsel, //点击全选后allsel变化
@@ -144,7 +143,8 @@ Page({
       finallyMoney = 0;
     for (let i = 0, len = shopcar.length; i < len; i++) {
       shopcar[i].check = allsel; //所有商品的选中状态和allsel值一样
-      if (allsel) { //如果为选中状态则计算商品的价格
+      if (allsel) {
+        //如果为选中状态则计算商品的价格
         total += shopcar[i].price * shopcar[i].goods_sku_num;
         if (shopcar[i].reduce_money) {
           discountMoney += shopcar[i].reduce_money * shopcar[i].goods_sku_num;
@@ -160,14 +160,14 @@ Page({
     } else {
       this.data.selarr = [];
     }
-    // this.data.selarr = allsel ? shopcar : []; //如果选中状态为true那么所有商品为选中状态，将物品加入选中变量，否则为空    
+    // this.data.selarr = allsel ? shopcar : []; //如果选中状态为true那么所有商品为选中状态，将物品加入选中变量，否则为空
     this.setData({
       allsel: allsel,
       validCarts: shopcar,
       total: total,
       discountMoney: discountMoney,
       finallyMoney: finallyMoney,
-      selarr: this.data.selarr
+      selarr: this.data.selarr,
     });
     this.data.selectedIds = [];
     this.data.selarr.forEach((item) => {
@@ -176,16 +176,17 @@ Page({
     wx.setStorageSync('selectedIds', this.data.selectedIds);
   },
 
-  //判断是否为全选  
+  //判断是否为全选
   judgmentAll() {
     let shopcar = this.data.validCarts,
       shoplen = shopcar.length,
-      lenIndex = 0; //选中的物品的个数    
-    for (let i = 0; i < shoplen; i++) { //计算购物车选中的商品的个数    
+      lenIndex = 0; //选中的物品的个数
+    for (let i = 0; i < shoplen; i++) {
+      //计算购物车选中的商品的个数
       shopcar[i].check && lenIndex++;
     }
     this.setData({
-      allsel: lenIndex == shoplen //如果购物车选中的个数和购物车里货物的总数相同，则为全选，反之为未全选    
+      allsel: lenIndex == shoplen, //如果购物车选中的个数和购物车里货物的总数相同，则为全选，反之为未全选
     });
     this.data.selectedIds = [];
     this.data.selarr.forEach((item) => {
@@ -194,7 +195,7 @@ Page({
     wx.setStorageSync('selectedIds', this.data.selectedIds);
   },
 
-  //点击单个选择按钮  
+  //点击单个选择按钮
   checkTap(e) {
     const Index = e.currentTarget.dataset.index;
     let shopcar = this.data.validCarts,
@@ -234,18 +235,18 @@ Page({
       total: total,
       discountMoney: discountMoney,
       finallyMoney: finallyMoney,
-      selarr: selarr
+      selarr: selarr,
     });
-    this.judgmentAll(); //每次按钮点击后都判断是否满足全选的条件  
+    this.judgmentAll(); //每次按钮点击后都判断是否满足全选的条件
   },
 
   incrementQuantity(e) {
-    let Index = e.currentTarget.dataset.index; //点击的商品下标值        
+    let Index = e.currentTarget.dataset.index; //点击的商品下标值
     let shopcar = this.data.validCarts;
-    let total = this.data.total; //总计  
+    let total = this.data.total; //总计
     let discountMoney = this.data.discountMoney;
-    let finallyMoney = this.data.finallyMoney; //实际  
-    shopcar[Index].check && (total += +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价   
+    let finallyMoney = this.data.finallyMoney; //实际
+    shopcar[Index].check && (total += +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价
     shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney += +shopcar[Index].reduce_money);
     total = Number(total.toFixed(2));
     finallyMoney = total - discountMoney;
@@ -265,17 +266,17 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-        })
+        });
       });
   },
 
   decrementQuantity(e) {
-    console.log('decrementQuantity')
-    let Index = e.currentTarget.dataset.index, //点击的商品下标值        
+    console.log('decrementQuantity');
+    let Index = e.currentTarget.dataset.index, //点击的商品下标值
       shopcar = this.data.validCarts,
-      total = this.data.total, //总计  
+      total = this.data.total, //总计
       discountMoney = this.data.discountMoney,
-      finallyMoney = this.data.finallyMoney; //实际  
+      finallyMoney = this.data.finallyMoney; //实际
     this.getCartGift(finallyMoney);
     if (shopcar[Index].goods_sku_num === 1) {
       var _this = this;
@@ -285,8 +286,8 @@ Page({
         confirmColor: '#11A24A',
         success(res) {
           if (res.confirm) {
-            _this.deleteCart(shopcar[Index].goods_sku_id)
-            shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价  
+            _this.deleteCart(shopcar[Index].goods_sku_id);
+            shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价
             shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney -= +shopcar[Index].reduce_money);
             total = Number(total.toFixed(2));
             finallyMoney = total - discountMoney;
@@ -295,14 +296,15 @@ Page({
               discountMoney: discountMoney,
               finallyMoney: finallyMoney,
             });
-          } else if (res.cancel) {}
-        }
-      })
+          } else if (res.cancel) {
+          }
+        },
+      });
     } else {
       CartService.updateCart(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num - 1)
         .then((res) => {
           shopcar[Index].goods_sku_num = shopcar[Index].goods_sku_num - 1;
-          shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价  
+          shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价
           shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney -= +shopcar[Index].reduce_money);
           total = Number(total.toFixed(2));
           finallyMoney = total - discountMoney;
@@ -317,10 +319,9 @@ Page({
         .catch((error) => {
           wx.showToast({
             title: error.data.message,
-          })
+          });
         });
     }
-
   },
 
   // 删除购物车
@@ -331,7 +332,7 @@ Page({
           if (skuId === item) {
             this.data.selectedIds.splice(index, 1);
           }
-        })
+        });
         wx.setStorageSync('selectedIds', this.data.selectedIds);
         this.data.validCarts.forEach((item, index) => {
           if (skuId === item.goods_sku_id) {
@@ -341,14 +342,14 @@ Page({
             validCarts: this.data.validCarts,
             selectedIds: this.data.selectedIds,
           });
-        })
+        });
         this.getCartCount();
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
-        })
-      })
+        });
+      });
   },
 
   // 删除选中商品
@@ -357,7 +358,7 @@ Page({
       wx.showToast({
         title: '请选择要删除的商品',
         icon: 'none',
-      })
+      });
     } else {
       var _this = this;
       wx.showModal({
@@ -368,7 +369,7 @@ Page({
           if (res.confirm) {
             wx.showLoading({
               title: '',
-            })
+            });
             CartService.deleteCarts(_this.data.selectedIds.map(Number))
               .then((res) => {
                 wx.setStorageSync('selectedIds', []);
@@ -380,12 +381,13 @@ Page({
                 wx.showToast({
                   title: error.data.message,
                   icon: 'none',
-                })
+                });
               });
-          } else if (res.cancel) {}
-        }
-      })
-    };
+          } else if (res.cancel) {
+          }
+        },
+      });
+    }
   },
 
   // 清空失效商品
@@ -397,33 +399,32 @@ Page({
       confirmColor: '#11A24A',
       success(res) {
         if (res.confirm) {
-          console.log(_this.data.invalidSkuIds.map(Number))
+          console.log(_this.data.invalidSkuIds.map(Number));
           CartService.deleteCarts(_this.data.invalidSkuIds.map(Number))
             .then((res) => {
               wx.showToast({
                 title: res.data.message,
-              })
+              });
               _this.getAllCarts();
             })
             .catch((error) => {
               wx.showToast({
                 title: error.data.message,
                 icon: 'none',
-              })
+              });
             });
-        } else if (res.cancel) {}
-      }
-    })
+        } else if (res.cancel) {
+        }
+      },
+    });
   },
 
   // 获取购物车数量
   getCartCount() {
-    CartService.getCartCount()
-      .then((res) => {
-        wx.setStorageSync('cartNum', res.data.data);
-      });
+    CartService.getCartCount().then((res) => {
+      wx.setStorageSync('cartNum', res.data.data);
+    });
   },
-
 
   // 获取商品属性
   getGoodsAttr(e) {
@@ -442,9 +443,9 @@ Page({
         wx.showActionSheet({
           itemList: _this.data.goodsAttrs,
           success(res) {
-            console.log(res.tapIndex)
+            console.log(res.tapIndex);
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            console.log(_this.data.goodsAttr)
+            console.log(_this.data.goodsAttr);
             if (_this.data.carts.length === 0) {
               CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
                 .then((res) => {
@@ -459,7 +460,7 @@ Page({
                   wx.showToast({
                     title: error.data.message,
                     icon: 'none',
-                  })
+                  });
                 });
             } else {
               CartService.editGoodsAttr(_this.data.skuId, _this.data.goodsAttr)
@@ -467,7 +468,7 @@ Page({
                   wx.showToast({
                     title: res.data.message,
                     icon: 'none',
-                  })
+                  });
                   _this.data.carts.forEach((item) => {
                     if (_this.data.skuId === item.goods_sku_id) {
                       item.goods_attr = _this.data.goodsAttr;
@@ -481,14 +482,14 @@ Page({
                   wx.showToast({
                     title: error.data.message,
                     icon: 'none',
-                  })
+                  });
                 });
             }
           },
           fail(res) {
-            console.log(res.errMsg)
-          }
-        })
+            console.log(res.errMsg);
+          },
+        });
       } else {
         this.addCart();
       }
@@ -512,28 +513,26 @@ Page({
   getLikeList() {
     wx.showLoading({
       title: '',
-      icon: 'Loading'
-    })
+      icon: 'Loading',
+    });
     CartService.getLikeList()
       .then((res) => {
         wx.hideLoading();
-        this.data.guessList = res.data.data
+        this.data.guessList = res.data.data;
         this.setData({
           guessList: this.data.guessList,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: '',
           icon: 'none',
-        })
-      })
+        });
+      });
   },
 
   onLoad: function(options) {},
-  onReady: function() {
-
-  },
+  onReady: function() {},
 
   getAllCarts() {
     CartService.getAllCarts()
@@ -547,10 +546,15 @@ Page({
             validCarts: this.data.validCarts,
             invalidCarts: this.data.invalidCarts,
           });
-          console.log(this.data.validCarts, 'this.data.validCarts')
+          console.log(this.data.validCarts, 'this.data.validCarts');
           this.getLikeList();
         } else {
-          console.log(this.data.validCarts.length, 'res.data.data.valid_carts.length', this.data.invalidCarts.length, 'res.data.data.invalid_carts.length');
+          console.log(
+            this.data.validCarts.length,
+            'res.data.data.valid_carts.length',
+            this.data.invalidCarts.length,
+            'res.data.data.invalid_carts.length',
+          );
           this.data.validCarts = res.data.data.valid_carts;
           this.data.carts = res.data.data.valid_carts;
           this.data.invalidCarts = res.data.data.invalid_carts;
@@ -569,11 +573,12 @@ Page({
                 if (+item.goods_sku_id === +selectedId) {
                   item.check = true;
                 }
-              })
-            })
+              });
+            });
           }
           var selarr = this.data.selarr;
-          for (let i = 0, len = this.data.validCarts.length; i < len; i++) { //这里是对选中的商品的价格进行总结    
+          for (let i = 0, len = this.data.validCarts.length; i < len; i++) {
+            //这里是对选中的商品的价格进行总结
             if (this.data.validCarts[i].check) {
               total += this.data.validCarts[i].goods_sku_num * this.data.validCarts[i].price;
               if (this.data.validCarts[i].reduce_money) {
@@ -591,16 +596,14 @@ Page({
             total: total,
             discountMoney: discountMoney,
             finallyMoney: finallyMoney,
-            selarr: selarr
+            selarr: selarr,
           });
-          this.judgmentAll(); //判断是否全选  
+          this.judgmentAll(); //判断是否全选
         }
 
         this.getLikeList();
       })
-      .catch((error) => {
-
-      })
+      .catch((error) => {});
   },
 
   showCartGift() {
@@ -610,22 +613,21 @@ Page({
         this.setData({
           giftData: this.data.giftData,
           chooseGiftId: app.globalData.chooseGiftId,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
-
 
   getCartGift(money) {
     wx.showLoading({
       title: '',
-    })
+    });
     GiftService.getCartGift(money)
       .then((res) => {
         wx.hideLoading();
@@ -635,11 +637,11 @@ Page({
           this.setData({
             giftData: this.data.giftData,
             chooseGiftId: app.globalData.chooseGiftId,
-          })
+          });
         } else {
           this.data.showGiftTip = false;
         }
-        console.log(app.globalData.chooseGiftId, this.data.showGiftTip)
+        console.log(app.globalData.chooseGiftId, this.data.showGiftTip);
         // this.data.showGiftTip = res.data.data.flag === 0;
         this.data.showGiftButton = res.data.data.flag === 1;
         this.data.giftTip = res.data.data.reason;
@@ -653,8 +655,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -668,4 +670,4 @@ Page({
       this.showCartGift();
     }
   },
-})
+});

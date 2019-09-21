@@ -1,10 +1,8 @@
 // pages/order/detail/detail.js
-var OrderService = require('../../../utils/services/OrderService.js')
+var OrderService = require('../../../utils/services/OrderService.js');
 const moment = require('../../../utils/moment.js');
 
-
 Page({
-
   data: {
     order: {}, // order金额地址等相关信息
     giftInfo: {}, // 赠礼相关信息
@@ -23,10 +21,10 @@ Page({
 
   // 返回键返回到指定页面
   onUnload() {
-    if(this.data.ifSubmit) {
+    if (this.data.ifSubmit) {
       wx.navigateTo({
         url: '/pages/order/list/list',
-      })
+      });
     }
   },
 
@@ -38,7 +36,7 @@ Page({
   freeTell() {
     wx.makePhoneCall({
       phoneNumber: this.data.order.driver_phone,
-    })
+    });
   },
 
   getOrderDetail() {
@@ -67,15 +65,14 @@ Page({
           totalNumber: this.data.totalNumber,
           differencePrice: this.data.differencePrice,
           finallyRefundMoney: this.data.finallyRefundMoney,
-        })
+        });
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
-  }
-
-})
+  },
+});

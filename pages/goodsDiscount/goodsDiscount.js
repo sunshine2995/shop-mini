@@ -18,7 +18,7 @@ Page({
     const id = e.currentTarget.dataset.goodId;
     wx.navigateTo({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    })
+    });
   },
 
   onShow: function(options) {
@@ -28,7 +28,7 @@ Page({
   getDiscountList() {
     wx.showLoading({
       title: '',
-    })
+    });
     GoodsService.getDiscountList()
       .then((res) => {
         wx.hideLoading();
@@ -48,16 +48,15 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
 
   getCartCount() {
-    CartService.getCartCount()
-      .then((res) => {
-        wx.setStorageSync('cartNum', res.data.data);
-      });
+    CartService.getCartCount().then((res) => {
+      wx.setStorageSync('cartNum', res.data.data);
+    });
   },
 
   getCartNumber() {
@@ -81,7 +80,6 @@ Page({
     });
   },
 
-
   // 获取商品属性
   getGoodsAttr(e) {
     this.data.skuId = e.currentTarget.dataset.goodSkuId;
@@ -99,9 +97,9 @@ Page({
         wx.showActionSheet({
           itemList: _this.data.goodsAttrs,
           success(res) {
-            console.log(res.tapIndex)
+            console.log(res.tapIndex);
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            console.log(_this.data.goodsAttr)
+            console.log(_this.data.goodsAttr);
             CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
               .then((res) => {
                 _this.data.idSelected.forEach((item) => {
@@ -115,13 +113,13 @@ Page({
                 wx.showToast({
                   title: error.data.message,
                   icon: 'none',
-                })
+                });
               });
           },
           fail(res) {
-            console.log(res.errMsg)
-          }
-        })
+            console.log(res.errMsg);
+          },
+        });
       } else {
         this.addCart();
       }
@@ -148,8 +146,7 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-        })
+        });
       });
   },
-
-})
+});

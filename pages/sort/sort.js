@@ -7,11 +7,11 @@ var CartService = require('../../utils/services/CartService.js');
 let proListToTop = [],
   menuToTop = [],
   MENU = 0,
-  windowHeight, timeoutId;
+  windowHeight,
+  timeoutId;
 // MENU ==> 是否为点击左侧进行滚动的，如果是，则不需要再次设置左侧的激活状态
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -22,7 +22,6 @@ Page({
     currentTab: 1, // 预设当前项的值
     oneId: 0, // 一级分类Id
     scrollLeft: 0, // tab标题的滚动条位置
-
 
     idSelected: [],
     goodSkuId: [],
@@ -39,13 +38,13 @@ Page({
     const id = e.currentTarget.dataset.goodId;
     wx.navigateTo({
       url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    })
+    });
   },
 
   sortTest() {
     wx.navigateTo({
       url: '/pages/sortTest/sort',
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -67,15 +66,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-
-  },
+  onReady: function() {},
 
   getCartCount() {
-    CartService.getCartCount()
-      .then((res) => {
-        wx.setStorageSync('cartNum', res.data.data);
-      });
+    CartService.getCartCount().then((res) => {
+      wx.setStorageSync('cartNum', res.data.data);
+    });
   },
 
   getCartNumber() {
@@ -98,7 +94,6 @@ Page({
       this.getCartCount();
     });
   },
-
 
   // 获取商品属性
   getGoodsAttr(e) {
@@ -132,12 +127,11 @@ Page({
                 wx.showToast({
                   title: error.data.message,
                   icon: 'none',
-                })
+                });
               });
           },
-          fail(res) {
-          }
-        })
+          fail(res) {},
+        });
       } else {
         this.addCart();
       }
@@ -163,23 +157,23 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-        })
+        });
       });
   },
 
   getAllGoods(oneId) {
     this.setData({
       twoList: [],
-    })
+    });
     wx.showLoading({
       title: '加载中',
-    })
+    });
     GoodsService.getAllGoods(oneId)
       .then((res) => {
         this.data.twoList = res.data.data;
         this.setData({
           twoList: res.data.data,
-        })
+        });
         this.data.goodSkuId = [];
         this.data.twoList.forEach((item) => {
           item.goods_spu_list.forEach((spu) => {
@@ -190,16 +184,16 @@ Page({
         });
         this.getCartNumber();
         setTimeout(() => {
-          this.getAllRects()
-        }, 20)
+          this.getAllRects();
+        }, 20);
         // wx.hideLoading();
       })
       .catch((error) => {
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -213,11 +207,11 @@ Page({
           });
         }
         this.checkCor();
-        const oneId = this.data.oneList[this.data.currentTab].id
+        const oneId = this.data.oneList[this.data.currentTab].id;
         if (!this.data.twoList.length || +app.globalData.sortOneId !== 0) {
           wx.showLoading({
             title: '加载中',
-          })
+          });
           this.getAllGoods(oneId);
         }
         app.globalData.sortOneId = 0;
@@ -231,8 +225,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000
-        })
+          duration: 2000,
+        });
       });
   },
 
@@ -244,8 +238,8 @@ Page({
       return false;
     } else {
       this.setData({
-        currentTab: index
-      })
+        currentTab: index,
+      });
     }
     this.data.currentActiveIndex = 0;
     this.data.rightProTop = 0;
@@ -254,47 +248,53 @@ Page({
     this.setData({
       currentActiveIndex: this.data.currentActiveIndex,
       rightProTop: 0,
-    })
+    });
   },
 
-
   checkCor() {
-    console.log(this.data.currentTab,'this.data.currentTab')
+    console.log(this.data.currentTab, 'this.data.currentTab');
     if (this.data.currentTab === 4) {
       this.setData({
         scrollLeft: 260,
-      })
+      });
     } else if (this.data.currentTab >= 5) {
       this.setData({
         scrollLeft: 500,
-      })
+      });
     } else {
       this.setData({
-        scrollLeft: 0
-      })
+        scrollLeft: 0,
+      });
     }
   },
-
 
   changeMenu(e) {
     console.log(e.target.id, 'ffffff-----', proListToTop);
     // 改变左侧tab栏操作
-    if (Number(e.target.id) === this.data.currentActiveIndex) return
-    MENU = 1
+    if (Number(e.target.id) === this.data.currentActiveIndex) return;
+    MENU = 1;
     this.setData({
       currentActiveIndex: Number(e.target.id),
-      rightProTop: proListToTop[Number(e.target.id)]
-    })
-    this.setMenuAnimation(Number(e.target.id))
-    console.log(this.data.currentActiveIndex, 'currentActiveIndex', this.data.rightProTop, 'rightProTop', )
+      rightProTop: proListToTop[Number(e.target.id)],
+    });
+    this.setMenuAnimation(Number(e.target.id));
+    console.log(this.data.currentActiveIndex, 'currentActiveIndex', this.data.rightProTop, 'rightProTop');
   },
   scroll(e) {
     let index;
     console.log('ffffff-----', proListToTop);
     for (let i = 0; i < proListToTop.length; i++) {
       if (e.detail.scrollTop < proListToTop[i] && i !== 0 && e.detail.scrollTop > proListToTop[i - 1]) {
-        console.log(i, 'i', e.detail.scrollTop, 'e.detail.scrollTop', proListToTop[i], 'proListToTop[i]', proListToTop[i - 1])
-        return this.setDis(i)
+        console.log(
+          i,
+          'i',
+          e.detail.scrollTop,
+          'e.detail.scrollTop',
+          proListToTop[i],
+          'proListToTop[i]',
+          proListToTop[i - 1],
+        );
+        return this.setDis(i);
       } else {
         index = i;
       }
@@ -303,120 +303,118 @@ Page({
     if (!MENU && this.data.currentActiveIndex !== 0) {
       this.setData({
         currentActiveIndex: index,
-      })
+      });
     }
-    MENU = 0
+    MENU = 0;
   },
   setDis(i) {
     // 设置左侧menu栏的选中状态
     if (i !== this.data.currentActiveIndex + 1 && !MENU) {
       this.setData({
-        currentActiveIndex: i - 1
-      })
+        currentActiveIndex: i - 1,
+      });
     }
-    MENU = 0
-    this.setMenuAnimation(i)
+    MENU = 0;
+    this.setMenuAnimation(i);
   },
   setMenuAnimation(i) {
     // 设置动画，使menu滚动到指定位置。
-    let self = this
-    console.log(33)
+    let self = this;
+    console.log(33);
     if (menuToTop[i].animate) {
-      console.log(11111)
+      console.log(11111);
       // 节流操作
       if (timeoutId) {
-        clearTimeout(timeoutId)
+        clearTimeout(timeoutId);
       }
       timeoutId = setTimeout(() => {
-        console.log(12138)
+        console.log(12138);
         self.setData({
-          leftMenuTop: (menuToTop[i].top - windowHeight)
-        })
-      }, 50)
+          leftMenuTop: menuToTop[i].top - windowHeight,
+        });
+      }, 50);
     } else {
-      console.log(11)
-      if (this.data.leftMenuTop === 0) return
-      console.log(22)
+      console.log(11);
+      if (this.data.leftMenuTop === 0) return;
+      console.log(22);
       this.setData({
-        leftMenuTop: 0
-      })
+        leftMenuTop: 0,
+      });
     }
   },
   getActiveReacts() {
-    wx.createSelectorQuery().selectAll('.menu-active').boundingClientRect(function(rects) {
-      return rects[0].top
-    }).exec()
+    wx.createSelectorQuery()
+      .selectAll('.menu-active')
+      .boundingClientRect(function(rects) {
+        return rects[0].top;
+      })
+      .exec();
   },
   getAllRects() {
     // 获取商品数组的位置信息
     proListToTop = [];
-    wx.createSelectorQuery().selectAll('.pro-item').boundingClientRect(function(rects) {
-      rects.forEach(function(rect) {
-        // 这里减去44是根据你的滚动区域距离头部的高度，如果没有高度，可以将其删去
-        proListToTop.push(rect.top - 73)
+    wx.createSelectorQuery()
+      .selectAll('.pro-item')
+      .boundingClientRect(function(rects) {
+        rects.forEach(function(rect) {
+          // 这里减去44是根据你的滚动区域距离头部的高度，如果没有高度，可以将其删去
+          proListToTop.push(rect.top - 73);
+        });
       })
-    }).exec()
-
+      .exec();
 
     // 获取menu数组的位置信息
-    wx.createSelectorQuery().selectAll('.menu-item').boundingClientRect(function(rects) {
-      wx.getSystemInfo({
-        success: function(res) {
-          console.log(res);
-          windowHeight = res.windowHeight / 2
-          // console.log(windowHeight)
-          rects.forEach(function(rect) {
-            menuToTop.push({
-              top: rect.top,
-              animate: rect.top > windowHeight
-            })
-          })
-        }
+    wx.createSelectorQuery()
+      .selectAll('.menu-item')
+      .boundingClientRect(function(rects) {
+        wx.getSystemInfo({
+          success: function(res) {
+            console.log(res);
+            windowHeight = res.windowHeight / 2;
+            // console.log(windowHeight)
+            rects.forEach(function(rect) {
+              menuToTop.push({
+                top: rect.top,
+                animate: rect.top > windowHeight,
+              });
+            });
+          },
+        });
       })
-    }).exec()
+      .exec();
   },
   // 获取系统的高度信息
   getSystemInfo() {
-    let self = this
+    let self = this;
     wx.getSystemInfo({
       success: function(res) {
-        windowHeight = res.windowHeight / 2
-      }
-    })
+        windowHeight = res.windowHeight / 2;
+      },
+    });
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
-  }
-})
+  onShareAppMessage: function() {},
+});

@@ -2,7 +2,6 @@
 let UserService = require('../../../utils/services/UseService.js');
 
 Page({
-
   data: {
     couponList: [],
     expiredCouponList: [],
@@ -12,7 +11,7 @@ Page({
   goCollectGood() {
     wx.navigateTo({
       url: '/pages/recharge/recharge',
-    })
+    });
   },
 
   chooseCoupon(e) {
@@ -20,21 +19,19 @@ Page({
     const couponId = e.currentTarget.dataset.couponId;
     wx.navigateTo({
       url: `/pages/order/submit/submit?money=${money}&couponId=${couponId}`,
-    })
-
+    });
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 页面创建时执行
-    console.log(options, 'options')
+    console.log(options, 'options');
     this.data.money = options.money;
   },
 
-
-  onShow: function () {
+  onShow: function() {
     wx.showLoading({
       title: '',
-    })
+    });
     this.getCouponsList();
   },
 
@@ -51,9 +48,8 @@ Page({
         wx.showToast({
           title: res.data.message,
           icon: 'none',
-          duration: 2000
-        })
-      })
+          duration: 2000,
+        });
+      });
   },
-
-})
+});
