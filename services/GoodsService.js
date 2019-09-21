@@ -1,64 +1,63 @@
-const wxRequest = require('../utils/wxRequest.js');
-
+const http = require('./http');
 const BaseUrl = 'https://sso.caibasi.com';
 
 export function getMarketingAlltype() {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/marketing/alltype`);
+  return http.get(`${BaseUrl}/marketing/alltype`);
 }
 
 export function getCategoryOneAllGoods() {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/category_one/goods/1/5`);
+  return http.get(`${BaseUrl}/goods/category_one/goods/1/5`);
 }
 
 export function getDiscountList() {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/marketing/discounts`);
+  return http.get(`${BaseUrl}/marketing/discounts`);
 }
 
 export function getDetail(spuId) {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/details/${spuId}`);
+  return http.get(`${BaseUrl}/goods/details/${spuId}`);
 }
 
 export function getCollectStatus(spuId) {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/user/check/collections/?goods_spu_id=${spuId}`);
+  return http.get(`${BaseUrl}/user/check/collections/?goods_spu_id=${spuId}`);
 }
 
 export function getChangeStatus(spuId) {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/user/collect?goods_spu_id=${spuId}`);
+  return http.get(`${BaseUrl}/user/collect?goods_spu_id=${spuId}`);
 }
 
 export function getCollectList(spuId) {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/user/collections`);
+  return http.get(`${BaseUrl}/user/collections`);
 }
 
 export function fuzzySearchGoodsIdName(searchVal) {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/fuzzy_search?q=${searchVal}`);
+  return http.get(`${BaseUrl}/goods/fuzzy_search?q=${searchVal}`);
 }
 
 export function fuzzySearchGoodsSpu(searchVal) {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/fuzzy_search/goods_spu?q=${searchVal}`);
+  return http.get(`${BaseUrl}/goods/fuzzy_search/goods_spu?q=${searchVal}`);
 }
 
 // 热门搜索
 export function getHotSearch() {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/hot_search/10`);
+  return http.get(`${BaseUrl}/goods/hot_search/10`);
 }
 
 // 搜索处推荐
 export function getRecommended() {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/recommended`);
+  return http.get(`${BaseUrl}/goods/recommended`);
 }
 
 // 一级分类标题
 export function getOneCategory() {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/category_one`);
+  return http.get(`${BaseUrl}/goods/category_one`);
 }
 
 // 某一级分类下的二级分类
 export function getAllGoods(OneId) {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/goods/category_one/new/goods?category_one_id=${OneId}`);
+  return http.get(`${BaseUrl}/goods/category_one/new/goods?category_one_id=${OneId}`);
 }
 
 // 获取新手特价商品
 export function getNewUserGoods() {
-  return wxRequest.wxPromise('GET', `${BaseUrl}/activity/new_user/goods`);
+  return http.get(`${BaseUrl}/activity/new_user/goods`);
 }
