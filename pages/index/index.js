@@ -52,6 +52,36 @@ Page({
       });
     }
   },
+
+  // 登录
+  login() {
+    wx.login({
+      success: (res) => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          wx.request({
+            method: 'POST',
+            url: 'https://sso.caibasi.com/wxapp/login',
+            header: {
+              // 'content-type': 'application/x-www-form-urlencoded',
+            },
+            data: {
+              code: res.code,
+            },
+            success: (res) => {
+              const token = res.data.data.token;
+              // console.log(token, 'fff');
+              wx.setStorageSync('token', token);
+              wx.switchTab({
+                url: '../home/home',
+              });
+            },
+          });
+        }
+      },
+    });
+  },
+
   getUserInfo: function(e) {
     if (e.detail.userInfo) {
       console.log('授权通过');
@@ -60,11 +90,13 @@ Page({
         userInfo: e.detail.userInfo,
         hasUserInfo: true,
       });
-      wx.switchTab({
-        url: '../home/home',
-      });
+      this.login();
     } else {
       console.log('拒绝授权');
+      wx.showToast({
+        title: '拒绝授权不能进入小程序',
+        icon: 'none',
+      })
     }
     // app.globalData.userInfo = e.detail.userInfo
     // this.setData({

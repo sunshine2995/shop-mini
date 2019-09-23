@@ -14,6 +14,10 @@ function wxPromise(method, url, data) {
         // }, 100);
         if (res.data.code == 200 || res.data.infocode == 10000) {
           resolve(res);
+        } else if (res.data.code == 401) {
+          wx.navigateTo({
+            url: '/pages/index/index',
+          })
         } else {
           reject(res);
         }

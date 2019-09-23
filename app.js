@@ -33,7 +33,6 @@ App({
         }
       },
     });
-    _this.login();
   },
   globalData: {
     userInfo: null,
@@ -43,31 +42,6 @@ App({
     chooseGiftId: 0,
     chooseAddress: 0,
     sortOneId: 0,
-  },
-  // 登录
-  login() {
-    wx.login({
-      success: (res) => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          wx.request({
-            method: 'POST',
-            url: 'https://sso.caibasi.com/wxapp/login',
-            header: {
-              // 'content-type': 'application/x-www-form-urlencoded',
-            },
-            data: {
-              code: res.code,
-            },
-            success: (res) => {
-              const token = res.data.data.token;
-              // console.log(token, 'fff');
-              wx.setStorageSync('token', token);
-            },
-          });
-        }
-      },
-    });
   },
   scanCart(that) {
     //购物车数量都缓存，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
