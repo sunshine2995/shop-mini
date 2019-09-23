@@ -85,8 +85,7 @@ Page({
           duration: 1000,
         });
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-
-        that.data.tempFilePaths = res.tempFilePaths.concat(that.data.tempFilePaths);
+        that.data.tempFilePaths = that.data.tempFilePaths.concat(res.tempFilePaths);
         that.setData({
           tempFilePaths: that.data.tempFilePaths,
         });
@@ -94,6 +93,7 @@ Page({
          * 上传完成后把文件上传到服务器
          */
         var count = 0;
+        this.data.imgList = [];
         for (var i = 0, h = that.data.tempFilePaths.length; i < h; i++) {
           //上传文件
           wx.uploadFile({
