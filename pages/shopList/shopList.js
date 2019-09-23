@@ -39,6 +39,29 @@ Page({
       });
   },
 
+  getShopList() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    AddressService.getShopList()
+      .then((res) => {
+        wx.hideLoading();
+        res.data.data.forEach((item) => {
+          item.showMask = app.globalData.shopInfo.id !== item.id;
+        });
+        this.setData({
+          shopList: res.data.data,
+        });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+
   changeShop(e) {
     const shopId = e.currentTarget.dataset.shopId;
     this.data.shopList.forEach((item) => {
@@ -67,13 +90,16 @@ Page({
    */
   onShow() {
     const that = this;
+    let latitude, longitude;
     wx.getLocation({
       type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
       success(res) {
-        const latitude = res.latitude;
-        const longitude = res.longitude;
-        console.log(latitude, longitude);
+        latitude = res.latitude;
+        longitude = res.longitude;
         that.getShopListByLocation(longitude, latitude);
+      },
+      fail(res) {
+        that.getShopList();
       },
     });
   },

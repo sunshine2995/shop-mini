@@ -2,6 +2,7 @@
 <wxs module="filter" src="../../filter.wxs"></wxs>
 
 <view class="ShopListContainer">
+  <view class="choose-tips">点击阴影图片可选择要进入的店铺</view>
   <view class="shop-list" wx:for="{{ shopList }}" wx:key="{{ shop.id }}" wx:for-item="shop">
     <view data-shop-id="{{ shop.id }}" bindtap="changeShop">
       <view class="shop-image">

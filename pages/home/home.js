@@ -40,7 +40,13 @@ Page({
     UserService.getUser()
       .then((res) => {
         app.globalData.userData = res.data.data;
-        this.getShopInfo();
+        if (app.globalData.userData.current_subbranch_id === 0) {
+          wx.navigateTo({
+            url: '/pages/shopList/shopList',
+          });
+        } else {
+          this.getShopInfo();
+        }
       })
       .catch((error) => {
         wx.showToast({
@@ -362,7 +368,6 @@ Page({
           customPath = imgList[0].mini_turn_url;
           customImg = imgList[0].img_url;
         }
-        console.log(customPath, customPath);
 
         this.setData({
           customImg: customImg,
