@@ -1,15 +1,23 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{ !hasUserInfo && canIUse }}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-      获取头像昵称
-    </button>
-    <block wx:else>
+<view class="IndexContainer">
+  <view wx:if='{{canIUse }}'>
+    <view class="usermotto">
+      <image class="userinfo-avatar" src="https://img.caibashi.com/559e8b745c2a5a6cb0d429f7759b89ec.png"></image>
+      <text class="user-motto">{{ motto }}</text>
+    </view>
+    <view class="apply-for-info">
+      <text class="apply-for">申请获取以下权限</text>
+      <text class="get-user-info">获得你的公开信息（昵称，头像等）</text>
+    </view>
+    <view class="userinfo">
+      <button class="authorize" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        授权登录
+      </button>
+      <!-- <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" mode="cover"></image>
       <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
-    </block>
+    </block> -->
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{ motto }}</text>
-  </view>
+  <view wx:else>请升级微信版本</view>
 </view>

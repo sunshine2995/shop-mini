@@ -37,8 +37,12 @@ Page({
   },
 
   getUser() {
+    wx.showLoading({
+      title: '',
+    });
     UserService.getUser()
       .then((res) => {
+        wx.hideLoading();
         app.globalData.userData = res.data.data;
         if (app.globalData.userData.current_subbranch_id === 0) {
           wx.navigateTo({
@@ -47,6 +51,11 @@ Page({
         } else {
           this.getShopInfo();
         }
+        this.getOneCategory();
+        this.getCustom();
+        this.getMarketingAlltype();
+        this.getCategoryOneAllGoods();
+        this.getNewUserGoods();
       })
       .catch((error) => {
         wx.showToast({
@@ -173,11 +182,6 @@ Page({
       inviteImages: inviteImages,
     });
     this.getUser();
-    this.getOneCategory();
-    this.getCustom();
-    this.getMarketingAlltype();
-    this.getCategoryOneAllGoods();
-    this.getNewUserGoods();
   },
 
   getOneCategory() {
