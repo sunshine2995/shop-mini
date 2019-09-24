@@ -62,6 +62,7 @@ Page({
    */
   onShow() {
     this.getOneCategory();
+    this.getCartNumber();
   },
 
   /**

@@ -264,9 +264,7 @@ swiper {
   margin: 5rpx 0;
 }
 
-.market-price-text,
-.market-price-number,
-.market-price-standard,
+.market-price-text, .market-price-number, .market-price-standard,
 .market-price-remark {
   font-size: 26rpx;
   color: #999;
@@ -338,6 +336,10 @@ swiper {
 }
 
 .special-goods-name {
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-align: left;
   padding: 20rpx 0 20rpx 10rpx;
   box-sizing: border-box;
@@ -407,7 +409,7 @@ swiper {
 }
 
 .sort-expand-detail {
-  width: 260rpx;
+  width: 300rpx;
   /* height: 362rpx; */
   text-align: center;
   margin: 0 10rpx;
