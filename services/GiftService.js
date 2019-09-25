@@ -33,7 +33,7 @@ export function getPrepaidGift() {
 
 // 获取分享的任务情况
 export function getShareTask() {
-  return http.get('GET', `${BaseUrl}/activity/share_recharge`);
+  return http.get(`${BaseUrl}/activity/share_recharge`);
 }
 
 // 创建分享任务

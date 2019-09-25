@@ -9,6 +9,7 @@ export function getCouponsList(money) {
 // submit
 export function submitOrder(model) {
   return http.post(`${BaseUrl}/order/submit`, {
+    pay_channel: 2,
     gift_id: model.giftId,
     address_id: model.addressId,
     payment_type: model.paymentType,
@@ -29,6 +30,7 @@ export function submitOrder(model) {
 // rechargeSubmit
 export function submitRechargeOrder(paymentType, totalAmount, rechargeTypeId, giftId) {
   return http.post(`${BaseUrl}/order/recharge/submit`, {
+    pay_channel: 2,
     recharge_gift_id: giftId,
     payment_type: paymentType,
     total_amount: totalAmount,
