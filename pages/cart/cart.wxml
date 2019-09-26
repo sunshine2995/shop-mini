@@ -102,7 +102,7 @@
             <text>{{ giftTip }}</text>
             <icon class="iconfont icon-right"></icon>
           </view>
-          <view class="gift-content" wx:if="{{ chooseGiftId }}">
+          <view class="gift-content" wx:if="{{ giftData.activity_id }}">
             <view class="goods-image">
               <image class="shop-img" src="{{ giftData.image_url }}" mode="widthFix" wx:if="{{ giftData.image_url }}">
               </image>

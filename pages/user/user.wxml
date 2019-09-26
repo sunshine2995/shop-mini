@@ -17,12 +17,14 @@
     <view class="activity-swiper">
       <swiper vertical="{{ false }}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
         <swiper-item>
-          <navigator url="/pages/activity/share/share" hover-class="none">
+          <!-- <navigator url="/pages/activity/share/share" hover-class="none"> -->
+          <navigator url="/pages/user/user" hover-class="none">
             <image class="invite-image" src="https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png"></image>
           </navigator>
         </swiper-item>
         <swiper-item>
-          <navigator url="/pages/activity/invite/invite" hover-class="none">
+          <!-- <navigator url="/pages/activity/invite/invite" hover-class="none"> -->
+          <navigator url="/pages/user/user" hover-class="none">
             <image class="invite-image" src="https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png"></image>
           </navigator>
         </swiper-item>
@@ -108,15 +110,18 @@
       <text>活动中心</text>
     </view>
     <view class="activity-content">
-      <navigator class="activity-type" url="/pages/activity/prepaidGift/prepaidGift" hover-class="none">
+      <!-- <navigator class="activity-type" url="/pages/activity/prepaidGift/prepaidGift" hover-class="none"> -->
+      <navigator class="activity-type" url="/pages/user/user" hover-class="none">
         <icon class="iconfont icon-huodong"></icon>
         <text class="activity-type-text">充值赠礼</text>
       </navigator>
-      <navigator url="/pages/activity/share/share" class="activity-type" hover-class="none">
+      <navigator class="activity-type" url="/pages/user/user" hover-class="none">
+        <!-- <navigator url="/pages/activity/share/share" class="activity-type" hover-class="none"> -->
         <icon class="iconfont icon-fenxiang1"></icon>
         <text class="activity-type-text">分享充值送</text>
       </navigator>
-      <navigator url="/pages/activity/invite/invite" class="activity-type" hover-class="none">
+      <navigator class="activity-type" url="/pages/user/user" hover-class="none">
+        <!-- <navigator url="/pages/activity/invite/invite" class="activity-type" hover-class="none"> -->
         <icon class="iconfont icon-jinlingyingcaiwangtubiao04"></icon>
         <text class="activity-type-text">邀请有礼</text>
       </navigator>

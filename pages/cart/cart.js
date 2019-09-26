@@ -35,6 +35,7 @@ Page({
     giftData: {}, // 已选择赠礼信息
     userInfo: {}, // 用户信息
     chooseGiftId: 0, // 已选择赠礼Id
+    activityId: 0, // 新人活动的id
     shipping: 0, // 免配送费条件
     isShowCurtain: false, // 遮罩层
     phoneNum: '', // 用户手机号
@@ -120,6 +121,7 @@ Page({
   getUser() {
     UserService.getUser()
       .then((res) => {
+        this.data.activityId = res.data.data.activity_id;
         this.setData({
           userInfo: res.data.data,
           phoneNum: res.data.data.phone,
@@ -223,7 +225,6 @@ Page({
       // for (let i = 0, len = selarr.length; i < len; i++) {
       //   if (shopcar[Index].id == selarr[i].id) {
       //     selarr.splice(i, 1);
-      //     console.log('splice1111111')
       //     break;
       //   }
       // }
@@ -271,7 +272,6 @@ Page({
   },
 
   decrementQuantity(e) {
-    console.log('decrementQuantity');
     let Index = e.currentTarget.dataset.index, //点击的商品下标值
       shopcar = this.data.validCarts,
       total = this.data.total, //总计
@@ -399,7 +399,6 @@ Page({
       confirmColor: '#11A24A',
       success(res) {
         if (res.confirm) {
-          console.log(_this.data.invalidSkuIds.map(Number));
           CartService.deleteCarts(_this.data.invalidSkuIds.map(Number))
             .then((res) => {
               wx.showToast({
@@ -443,9 +442,7 @@ Page({
         wx.showActionSheet({
           itemList: _this.data.goodsAttrs,
           success(res) {
-            console.log(res.tapIndex);
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            console.log(_this.data.goodsAttr);
             if (_this.data.carts.length === 0) {
               CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
                 .then((res) => {
@@ -546,15 +543,8 @@ Page({
             validCarts: this.data.validCarts,
             invalidCarts: this.data.invalidCarts,
           });
-          console.log(this.data.validCarts, 'this.data.validCarts');
           this.getLikeList();
         } else {
-          console.log(
-            this.data.validCarts.length,
-            'res.data.data.valid_carts.length',
-            this.data.invalidCarts.length,
-            'res.data.data.invalid_carts.length',
-          );
           this.data.validCarts = res.data.data.valid_carts;
           this.data.carts = res.data.data.valid_carts;
           this.data.invalidCarts = res.data.data.invalid_carts;
@@ -606,10 +596,11 @@ Page({
       .catch((error) => {});
   },
 
-  showCartGift() {
-    GiftService.showCartGift(app.globalData.chooseGiftId)
+  showCartGift(giftId) {
+    GiftService.showCartGift(giftId)
       .then((res) => {
         this.data.giftData = res.data.data;
+        app.globalData.chooseGiftId = +giftId;
         this.setData({
           giftData: this.data.giftData,
           chooseGiftId: app.globalData.chooseGiftId,
@@ -641,7 +632,20 @@ Page({
         } else {
           this.data.showGiftTip = false;
         }
-        console.log(app.globalData.chooseGiftId, this.data.showGiftTip);
+        if (res.data.data.satisfy_list.length) {
+          const giftIds = [];
+          res.data.data.satisfy_list.forEach((item) => {
+            giftIds.push(item.activity_id);
+          });
+          if (app.globalData.chooseGiftId !== 0 && !giftIds.includes(app.globalData.chooseGiftId)) {
+            app.globalData.chooseGiftId = 0;
+          }
+          res.data.data.satisfy_list.forEach((item) => {
+            if (+item.activity_id === +this.data.activityId && app.globalData.chooseGiftId === 0) {
+              this.showCartGift(item.activity_id);
+            }
+          });
+        }
         // this.data.showGiftTip = res.data.data.flag === 0;
         this.data.showGiftButton = res.data.data.flag === 1;
         this.data.giftTip = res.data.data.reason;
@@ -665,9 +669,9 @@ Page({
     this.getUser();
     this.getshippingCharge();
     this.getAllCarts();
-    this.data.chooseGiftId = app.globalData.chooseGiftId;
-    if (this.data.chooseGiftId !== 0) {
-      this.showCartGift();
+    // this.data.chooseGiftId = app.globalData.chooseGiftId;
+    if (app.globalData.chooseGiftId !== 0) {
+      this.showCartGift(app.globalData.chooseGiftId);
     }
   },
 });

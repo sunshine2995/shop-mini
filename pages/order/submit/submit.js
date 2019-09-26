@@ -266,7 +266,6 @@ Page({
   balancePay() {
     OrderService.balancePay(this.data.orderNo)
       .then((res) => {
-        console.log(res.data.data, 'balancePay');
         wx.showToast({
           title: res.data.data.message,
           icon: 'none',
@@ -315,7 +314,6 @@ Page({
 
   pay(e) {
     const payType = +e.currentTarget.dataset.payType;
-    console.log(payType);
     if (this.data.orderNo) {
       if (payType === 1) {
         this.WxPay();

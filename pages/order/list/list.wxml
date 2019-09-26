@@ -153,9 +153,7 @@
           </view>
           <view class="buy-more" wx:elif="{{ item.order.status === 7 }}">
             <text class="again-order" data-order-no="{{ item.order.order_no }}" bindtap="OnceMoreOrder">再来一单</text>
-            <text class="evaluate-order" data-order-no="{{ item.order.order_no }}" bindtap="goToEvaluate">
-              去评价
-            </text>
+            <text class="evaluate-order" data-order-no="{{ item.order.order_no }}" bindtap="goToEvaluate">去评价</text>
           </view>
           <view class="buy-more" wx:else>
             <text class="again-order" data-order-no="{{ item.order.order_no }}" bindtap="OnceMoreOrder">再来一单</text>

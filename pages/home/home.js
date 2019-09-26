@@ -158,11 +158,13 @@ Page({
     var inviteImages = [
       {
         img: 'https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png',
-        url: '/pages/activity/share/share',
+        // url: '/pages/activity/share/share',
+        url: '/pages/home/home',
       },
       {
         img: 'https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png',
-        url: '/pages/activity/invite/invite',
+        // url: '/pages/activity/invite/invite',
+        url: '/pages/home/home',
       },
     ];
 
@@ -173,7 +175,8 @@ Page({
       },
       {
         img: 'https://img.caibashi.com/0f276789b03f793bdf076d3d49e474e3.png',
-        url: '/pages/activity/rechargeGift/rechargeGift',
+        // url: '/pages/activity/rechargeGift/rechargeGift',
+        url: '/pages/home/home',
       },
     ];
 

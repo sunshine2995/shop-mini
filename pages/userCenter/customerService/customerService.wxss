@@ -13,8 +13,7 @@
   box-sizing: border-box;
 }
 .wx-qr {
-  width: 412.5rpx;
-  height: 412.5rpx;
+  width: 70%;
   margin: 36rpx auto;
 }
 .tip {

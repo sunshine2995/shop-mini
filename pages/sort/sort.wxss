@@ -97,9 +97,9 @@
   position: fixed;
   top: 145rpx;
   left: 0;
-  /* border-right: 1px solid #dfdfdf; *//* position: fixed; */
+  /* border-right: 1px solid #dfdfdf; */ /* position: fixed; */
   background-color: #f4f4f3;
-  /* top: 89rpx; *//* left: 0; */
+  /* top: 89rpx; */ /* left: 0; */
 }
 
 .tui-list-head {
@@ -167,7 +167,7 @@
 }
 
 .goods-box {
-  /* width: 170rpx; *//* height: 100rpx;
+  /* width: 170rpx; */ /* height: 100rpx;
 background: #c00; */
   width: 100%;
   overflow: hidden;
@@ -210,13 +210,13 @@ background: #c00; */
 }
 
 .marketing-goods-image {
-  width: 100rpx;
-  height: 100rpx;
+  width: 150rpx;
+  height: 150rpx;
 }
 
 .marketing-goods-img {
-  width: 100rpx;
-  height: 100rpx;
+  width: 150rpx;
+  height: 150rpx;
 }
 
 .marketing-goods-detail {
@@ -249,7 +249,7 @@ background: #c00; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 400rpx;
+  width: 350rpx;
   height: 46rpx;
 }
 
@@ -276,7 +276,9 @@ background: #c00; */
   margin: 5rpx 0;
 }
 
-.market-price-text, .market-price-number, .market-price-standard,
+.market-price-text,
+.market-price-number,
+.market-price-standard,
 .market-price-remark {
   font-size: 26rpx;
   color: #999;
