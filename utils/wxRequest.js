@@ -1,4 +1,14 @@
+const utilMd5 = require('./md5.js');
 function wxPromise(method, url, data) {
+  // const getTime = () => Math.floor(Date.now() / 1000);
+
+  // const generateSignature = (timestamp) => {
+  //   const password = `${timestamp}.Caibasi168`;
+  //   return utilMd5.hexMD5(password);
+  // };
+
+  // const timestamp = getTime();
+  // const signature = generateSignature(timestamp);
   return new Promise(function(resolve, reject) {
     wx.request({
       url: url,
@@ -7,6 +17,8 @@ function wxPromise(method, url, data) {
       header: {
         'Content-Type': 'application/json',
         Authorization: wx.getStorageSync('token'),
+        // Timestamp: timestamp,
+        // Signature: signature,
       },
       success: function(res) {
         // setTimeout(function() {
@@ -16,8 +28,8 @@ function wxPromise(method, url, data) {
           resolve(res);
         } else if (res.data.code == 401) {
           wx.navigateTo({
-            url: '/pages/index/index',
-          })
+            url: '/pages/login/login',
+          });
         } else {
           reject(res);
         }

@@ -1,5 +1,6 @@
 const http = require('./http');
-const BaseUrl = 'https://sso.caibasi.com';
+
+const BaseUrl = http.BaseUrl;
 
 // 可用红包
 export function getCouponsList(money) {

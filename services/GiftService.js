@@ -1,5 +1,6 @@
 const http = require('./http');
-const BaseUrl = 'https://sso.caibasi.com';
+
+const BaseUrl = http.BaseUrl;
 
 // 用户领取鸡蛋
 export function getNewUserEgg() {
@@ -53,7 +54,8 @@ export function getMyInvite() {
 
 // 获取二维码
 export function getShareQrcode() {
-  return http.get(`${BaseUrl}/activity/share_qrcode`);
+  // return http.get(`${BaseUrl}/activity/share_qrcode`);
+  return http.get(`${BaseUrl}/activity/share_mini_qrcode`);
 }
 
 // 获取二维码

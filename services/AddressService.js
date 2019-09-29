@@ -1,6 +1,6 @@
 const http = require('./http');
 
-const BaseUrl = 'https://sso.caibasi.com';
+const BaseUrl = http.BaseUrl;
 const key = 'abface6fd8aa4366a86bc27e2704fd86'; // web服务
 
 // 新增地址

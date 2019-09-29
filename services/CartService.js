@@ -1,6 +1,6 @@
 const http = require('./http');
 
-const BaseUrl = 'https://sso.caibasi.com';
+const BaseUrl = http.BaseUrl;
 
 // 获取当前购物车数量
 export function getCartCount() {

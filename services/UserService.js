@@ -1,6 +1,13 @@
 const http = require('./http');
 
-const BaseUrl = 'https://sso.caibasi.com';
+const BaseUrl = http.BaseUrl;
+
+// 登录
+export function login(code) {
+  return http.post(`${BaseUrl}/wxapp/login`, {
+    code,
+  });
+}
 
 // 获取首页广告图
 export function getCustom() {

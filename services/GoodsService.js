@@ -1,5 +1,6 @@
 const http = require('./http');
-const BaseUrl = 'https://sso.caibasi.com';
+
+const BaseUrl = http.BaseUrl;
 
 export function getMarketingAlltype() {
   return http.get(`${BaseUrl}/marketing/alltype`);
