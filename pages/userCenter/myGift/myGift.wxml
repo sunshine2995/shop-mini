@@ -25,5 +25,5 @@
       </view>
     </view>
   </view>
-  <view class="empty">暂无赠礼~</view>
+  <view class="empty" wx:else>暂无赠礼~</view>
 </view>
