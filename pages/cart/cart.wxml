@@ -64,13 +64,14 @@
         </block>
       </view>
     </view>
-    <view class="activity-new-user">
+    <navigator url="/pages/activity/newUser/newUser" hover-class="none" class="activity-new-user">
       <image
         class="activity-new-user-img"
-        src="https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png"
+        src="https://img.caibashi.com/f91bd50d41eb939177b07e5f5dfa0de1.jpg"
         mode="widthFix"
       ></image>
-    </view>
+      <text class="cart-new-text">新人首单 满{{ shipping }}元送鸡蛋一盒</text>
+    </navigator>
   </view>
 
   <block wx:else>
@@ -81,20 +82,21 @@
         <icon class="iconfont icon-delete" bindtap="deleteGoods"></icon>
       </view>
 
-      <view class="activity-image">
+      <view class="activity-image" wx:if="{{ !userInfo.is_new_user }}">
         <image
           class="activity-img"
-          wx:if="{{ !userInfo.is_new_user }}"
           src="https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png"
           mode="widthFix"
         ></image>
+      </view>
+      <navigator url="/pages/activity/newUser/newUser" hover-class="none" class="activity-image" wx:else>
         <image
           class="activity-img"
-          wx:else
-          src="https://img.caibashi.com/1219cd3c2ba8ae3a2a5960566d090d34.png"
+          src="https://img.caibashi.com/f91bd50d41eb939177b07e5f5dfa0de1.jpg"
           mode="widthFix"
         ></image>
-      </view>
+        <text class="cart-new-text">新人首单 满{{ shipping }}元送鸡蛋一盒</text>
+      </navigator>
 
       <view class="main">
         <view class="gift-goods-content" wx:if="{{ showGiftButton }}">

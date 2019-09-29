@@ -83,6 +83,10 @@ Page({
       this.setData({
         isShowCurtain: true,
       });
+    } else if (!app.globalData.userInfo) {
+      wx.navigateTo({
+        url: '/pages/index/index',
+      });
     } else {
       wx.navigateTo({
         url: '/pages/order/submit/submit',
@@ -277,7 +281,6 @@ Page({
       total = this.data.total, //总计
       discountMoney = this.data.discountMoney,
       finallyMoney = this.data.finallyMoney; //实际
-    this.getCartGift(finallyMoney);
     if (shopcar[Index].goods_sku_num === 1) {
       var _this = this;
       wx.showModal({
@@ -314,6 +317,7 @@ Page({
             discountMoney: discountMoney,
             finallyMoney: finallyMoney,
           });
+          this.getCartGift(finallyMoney);
           this.getCartCount();
         })
         .catch((error) => {
@@ -642,7 +646,7 @@ Page({
           }
           res.data.data.satisfy_list.forEach((item) => {
             if (+item.activity_id === +this.data.activityId && app.globalData.chooseGiftId === 0) {
-              this.showCartGift(item.activity_id);
+              this.showCartGift(item.id);
             }
           });
         }
@@ -669,7 +673,6 @@ Page({
     this.getUser();
     this.getshippingCharge();
     this.getAllCarts();
-    // this.data.chooseGiftId = app.globalData.chooseGiftId;
     if (app.globalData.chooseGiftId !== 0) {
       this.showCartGift(app.globalData.chooseGiftId);
     }

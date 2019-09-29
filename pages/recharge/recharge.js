@@ -109,6 +109,10 @@ Page({
         icon: 'none',
         duration: 2000,
       });
+    } else if (!app.globalData.userInfo) {
+      wx.navigateTo({
+        url: '/pages/index/index',
+      });
     } else {
       OrderService.submitRechargeOrder(1, this.data.totalAmount, this.data.rechargeTypeId, this.data.giftId)
         .then((res) => {

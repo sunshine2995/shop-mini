@@ -4,16 +4,25 @@
     <bind bind:bindPhone="bindPhone" bind:hideCurtain="hideCurtain"></bind>
   </view>
   <view class="user-content">
-    <view class="user-detail">
+    <view class="user-detail" wx:if="{{ authUserInfo.avatarUrl }}">
       <view class="user-avatarUrl">
-        <image class="user-img" src="{{ userInfo.headimgurl }}"></image>
+        <image class="user-img" wx:if="{{ authUserInfo.avatarUrl }}" src="{{ authUserInfo.avatarUrl }}"></image>
+        <image class="user-img" wx:else src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"></image>
       </view>
       <view class="user-info">
-        <text class="user-name">{{ userInfo.nickname }}</text>
+        <text class="user-name">{{ authUserInfo.nickName }}</text>
         <text class="user-phone" wx:if="{{ userInfo.phone }}">{{ userInfo.phone }}</text>
         <text class="user-phone" wx:else bindtap="showCurtain">去绑定手机号</text>
       </view>
     </view>
+    <navigator url="/pages/index/index" hover-class="none" class="user-detail" wx:else>
+      <view class="user-avatarUrl">
+        <image class="user-img" src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"></image>
+      </view>
+      <view class="user-info">
+        <text class="user-name">点击登录账户</text>
+      </view>
+    </navigator>
     <view class="activity-swiper">
       <swiper vertical="{{ false }}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
         <swiper-item>
@@ -89,7 +98,7 @@
       </view>
     </view>
   </view>
-  <view class="recharge-moudle">
+  <!-- <view class="recharge-moudle">
     <navigator url="/pages/recharge/recharge" hover-class="none" class="go-to-recharge">
       <text>充值有礼</text>
       <view class="order-icon">
@@ -104,29 +113,26 @@
         </view>
       </view>
     </scroll-view>
-  </view>
-  <view class="activity-moudle">
+  </view> -->
+  <!-- <view class="activity-moudle">
     <view class="activity-title">
       <text>活动中心</text>
     </view>
     <view class="activity-content">
-      <!-- <navigator class="activity-type" url="/pages/activity/prepaidGift/prepaidGift" hover-class="none"> -->
-      <navigator class="activity-type" url="/pages/user/user" hover-class="none">
+      <navigator class="activity-type" url="/pages/activity/prepaidGift/prepaidGift" hover-class="none">
         <icon class="iconfont icon-huodong"></icon>
         <text class="activity-type-text">充值赠礼</text>
       </navigator>
-      <navigator class="activity-type" url="/pages/user/user" hover-class="none">
-        <!-- <navigator url="/pages/activity/share/share" class="activity-type" hover-class="none"> -->
+      <navigator url="/pages/activity/share/share" class="activity-type" hover-class="none">
         <icon class="iconfont icon-fenxiang1"></icon>
         <text class="activity-type-text">分享充值送</text>
       </navigator>
-      <navigator class="activity-type" url="/pages/user/user" hover-class="none">
-        <!-- <navigator url="/pages/activity/invite/invite" class="activity-type" hover-class="none"> -->
+      <navigator url="/pages/activity/invite/invite" class="activity-type" hover-class="none">
         <icon class="iconfont icon-jinlingyingcaiwangtubiao04"></icon>
         <text class="activity-type-text">邀请有礼</text>
       </navigator>
     </view>
-  </view>
+  </view> -->
   <view class="service-moudle">
     <view class="service-title">
       <text>我的服务</text>

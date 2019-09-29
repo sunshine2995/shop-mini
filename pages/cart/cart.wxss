@@ -198,9 +198,27 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   text-align: center;
 }
 
+.activity-image {
+  position: relative;
+}
 .activity-img {
+  display: block;
   width: 100%;
   margin: auto;
+}
+
+.cart-new-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 15%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 43rpx;
 }
 
 .empty-img {
@@ -318,6 +336,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .activity-new-user-img {
+  position: relative;
   display: block;
   width: 100%;
 }

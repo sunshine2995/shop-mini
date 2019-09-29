@@ -8,6 +8,7 @@ Page({
     rechargeImg: [], //充值图片
     statusNumList: {}, // 不同状态订单数量
     isShowCurtain: false, // 遮罩层
+    authUserInfo: {}, // 授权信息
   },
 
   hideCurtain() {
@@ -30,6 +31,12 @@ Page({
   },
 
   onShow: function() {
+    if (app.globalData.userInfo) {
+      this.setData({
+        authUserInfo: app.globalData.userInfo,
+      });
+    }
+    console.log(this.data.authUserInfo, 'userInfo');
     this.getUserInfo();
     this.getUser();
     this.getRechargeList();
@@ -107,6 +114,12 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  goToAuthorize() {
+    wx.navigateTo({
+      url: '/pages/index/index',
+    });
   },
 
   getUserInfo() {
