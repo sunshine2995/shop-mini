@@ -233,13 +233,25 @@ background: #c00; */
   color: #666;
   height: 60rpx;
 }
+.goods-sales-icon {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  height: 52rpx;
+}
 
 .icon-shichengjiesuan-1 {
+  width: 55%;
   display: block;
   font-size: 50rpx;
   color: #11a24a;
   line-height: 1;
   height: 52rpx;
+}
+.goods-sales {
+  flex: 1;
+  font-size: 26rpx;
+  color: #999;
 }
 
 .marketing-goods-advertising {

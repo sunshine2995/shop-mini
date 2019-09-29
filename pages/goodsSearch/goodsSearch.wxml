@@ -119,7 +119,9 @@
                 ></price-component>
               </view> -->
               <view class="goods-different-price" wx:if="{{ !goods.is_standard }}">
-                <text class="goods-price-text">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text>
+                <text class="goods-price-text"
+                  >单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_sell_unit.name }}</text
+                >
                 <price-component
                   price="{{ goodSku.sell_price }}"
                   unit="{{ goodSku.goods_sku_sell_unit.name }}"

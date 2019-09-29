@@ -35,7 +35,8 @@
   color: #aaa;
 }
 
-.apply-for, .get-user-info {
+.apply-for,
+.get-user-info {
   font-size: 35rpx;
   padding: 10rpx 0;
   box-sizing: border-box;

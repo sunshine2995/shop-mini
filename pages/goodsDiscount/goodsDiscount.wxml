@@ -31,10 +31,12 @@
               <text class="discount-goods-advertising">{{ goods.advertising }}</text>
               <view class="discount-different-price">
                 <view class="goods-different-price">
-                  <text class="discount-price-number">￥{{ goods.sell_price }}元/{{ goods.goods_sku_unit.name }}</text>
+                  <text class="discount-price-number"
+                    >￥{{ goods.sell_price }}元/{{ goods.goods_sku_sell_unit.name }}</text
+                  >
                   <price-component
                     price="{{ goods.marketing.marketing_price }}"
-                    unit="{{ goods.goods_sku_unit.name }}"
+                    unit="{{ goods.goods_sku_sell_unit.name }}"
                     text-color="text-color"
                   ></price-component>
                 </view>

@@ -22,7 +22,7 @@
           <view class="goods-standard-price">
             <text class="goods-standard">{{ standard.name }}</text>
             <text class="goods-price" wx:if="{{ collect.is_standard }}"
-              >{{ standard.sell_price }}元/{{ standard.goods_sku_unit.name }}</text
+              >{{ standard.sell_price }}元/{{ standard.goods_sku_sell_unit.name }}</text
             >
             <text class="goods-price" wx:else>{{ standard.sell_price }}元/{{ standard.goods_sku_sell_unit.name }}</text>
           </view>

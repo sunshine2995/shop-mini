@@ -32,6 +32,13 @@
   font-size: 40rpx;
 }
 
+.goods-sales {
+  font-size: 30rpx;
+  color: #999;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
 .icon-shoucang {
   font-size: 40rpx;
   color: #999;

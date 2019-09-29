@@ -170,7 +170,7 @@ Page({
 
     var images = [
       {
-        img: 'https://img.caibashi.com/8c4ab7f7ee0fbb5a8b9413a9e1ddac27.png',
+        img: 'https://img.caibashi.com/70d8999cb5bfdcdcd6b30c7cfeb579cd.png',
         url: '/pages/activity/newUser/newUser',
       },
       {

@@ -8,6 +8,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    prevPage: '', // 上个页面的路径
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,6 +17,8 @@ Page({
     });
   },
   onLoad: function() {
+    let pages = getCurrentPages(); //获取当前页面信息栈
+    this.data.prevPage = pages[pages.length - 2].route; //获取上一个页面信息栈
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -41,7 +44,7 @@ Page({
           });
         },
       });
-    } 
+    }
   },
 
   // 登录
@@ -81,13 +84,28 @@ Page({
         userInfo: e.detail.userInfo,
         hasUserInfo: true,
       });
-      this.login();
+      // this.login();
     } else {
       console.log('拒绝授权');
       wx.showToast({
-        title: '拒绝授权不能进入小程序',
+        title: '残忍地拒绝了授权',
         icon: 'none',
-      })
+      });
+    }
+    const path = `/${this.data.prevPage}`;
+    if (
+      path === '/pages/home/home' ||
+      path === '/pages/cart/cart' ||
+      path === '/pages/sort/sort' ||
+      path === '/pages/user/user'
+    ) {
+      wx.switchTab({
+        url: path,
+      });
+    } else {
+      wx.navigateTo({
+        url: path,
+      });
     }
   },
 });

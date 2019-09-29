@@ -37,6 +37,7 @@
   </view>
   <view class="goods-name-status">
     <text class="goods-name">{{ goodsInfo.name }}</text>
+    <text class="goods-sales">已售{{ goodsInfo.sales }}</text>
     <icon
       bindtap="changeStatus"
       class="{{ collectionStatus === true ? 'iconfont icon-shoucang icon-shoucang-active' : 'iconfont icon-shoucang' }}"
@@ -57,17 +58,17 @@
         <view class="goods-sell-price" wx:if="{{ goodSku.marketing }}">
           <price-component
             price="{{ goodSku.marketing.marketing_price }}"
-            unit="{{ goodSku.goods_sku_unit.name }}"
+            unit="{{ goodSku.goods_sku_sell_unit.name }}"
             text-color="text-color-red"
           ></price-component>
           <text class="discount-rebate">{{ goodSku.marketing.marketing_simple_name }}</text>
-          <text class="invalid-price-line">￥{{ goodSku.sell_price }}/{{ goodSku.goods_sku_unit.name }}</text>
+          <text class="invalid-price-line">￥{{ goodSku.sell_price }}/{{ goodSku.goods_sku_sell_unit.name }}</text>
           <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
         </view>
         <view class="goods-sell-price" wx:else>
           <price-component
             price="{{ goodSku.sell_price }}"
-            unit="{{ goodSku.goods_sku_unit.name }}"
+            unit="{{ goodSku.goods_sku_sell_unit.name }}"
             text-color="text-color-red"
           ></price-component>
           <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
@@ -97,7 +98,7 @@
         <text class="invalid-price-line">市场价 ￥{{ goodSku.market_price }}/{{ goodSku.goods_sku_unit.name }}</text>
       </block> -->
       <block wx:if="{{ !goodsInfo.is_standard }}">
-        <text class="invalid-price">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text>
+        <text class="invalid-price">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_sell_unit.name }}</text>
       </block>
     </view>
     <view class="goods-text-standard-stock ">
@@ -135,7 +136,7 @@
       <text class="explain-desc">最快约半小时送达</text>
     </view>
   </view>
-  <view class="explain-desc-name" bindtap="goToDescripte ">
+  <view class="explain-desc-name" bindtap="goToDescripte">
     <text class="explain-name">服 务</text>
     <view class="explain-desc-sign">
       <view class="no-icon">
