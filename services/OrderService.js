@@ -1,15 +1,13 @@
-const http = require('./http');
-
-const BaseUrl = http.BaseUrl;
+import http from './http';
 
 // 可用红包
 export function getCouponsList(money) {
-  return http.get(`${BaseUrl}/order/coupons_list？order_money=${money}`);
+  return http.get(`/order/coupons_list？order_money=${money}`);
 }
 
 // submit
 export function submitOrder(model) {
-  return http.post(`${BaseUrl}/order/submit`, {
+  return http.post('/order/submit', {
     pay_channel: 2,
     gift_id: model.giftId,
     address_id: model.addressId,
@@ -30,7 +28,7 @@ export function submitOrder(model) {
 
 // rechargeSubmit
 export function submitRechargeOrder(paymentType, totalAmount, rechargeTypeId, giftId) {
-  return http.post(`${BaseUrl}/order/recharge/submit`, {
+  return http.post('/order/recharge/submit', {
     pay_channel: 2,
     recharge_gift_id: giftId,
     payment_type: paymentType,
@@ -41,55 +39,55 @@ export function submitRechargeOrder(paymentType, totalAmount, rechargeTypeId, gi
 
 // 充值类型
 export function getRechargeList() {
-  return http.get(`${BaseUrl}/user/recharge`);
+  return http.get('/user/recharge');
 }
 
 // 余额支付
 export function balancePay(orderNo) {
-  return http.post(`${BaseUrl}/order/balance-pay`, { order_no: orderNo });
+  return http.post('/order/balance-pay', { order_no: orderNo });
 }
 
 // 微信支付
 export function WxPay(orderNo) {
-  return http.post(`${BaseUrl}/order/mini_pay`, { orderNo: orderNo });
+  return http.post('/order/mini_pay', { orderNo: orderNo });
 }
 
 // 订单详情
 export function getOrderDetail(orderNo) {
-  return http.get(`${BaseUrl}/order/${orderNo}`);
+  return http.get(`/order/${orderNo}`);
 }
 
 // 不同状态下的订单数量
 export function getStatusNum() {
-  return http.get(`${BaseUrl}/order/get_amount`);
+  return http.get('/order/get_amount');
 }
 
 // 获取全部订单信息
 export function getAllOrderDetails(page) {
-  return http.get(`${BaseUrl}/order/all-orders?page=${page}&size=10`);
+  return http.get(`/order/all-orders?page=${page}&size=10`);
 }
 
 // 不同状态下的订单信息
 export function getStatusDetails(status, page) {
-  return http.get(`${BaseUrl}/order/all-orders?status=${status}&page=${page}&size=10`);
+  return http.get(`/order/all-orders?status=${status}&page=${page}&size=10`);
 }
 
 // 删除订单
 export function deleteOrder(orderNo) {
-  return http.post(`${BaseUrl}/order/delete/${orderNo}`);
+  return http.post(`/order/delete/${orderNo}`);
 }
 
 // 再来一单
 export function OnceMoreOrder(orderNo) {
-  return http.post(`${BaseUrl}/order/once_more`, { order_no: orderNo });
+  return http.post('/order/once_more', { order_no: orderNo });
 }
 
 // 评价订单
 export function rateOrder(orderNo, evaluateInfo) {
-  return http.post(`${BaseUrl}/order/rate/${orderNo}`, evaluateInfo);
+  return http.post(`/order/rate/${orderNo}`, evaluateInfo);
 }
 
 // 更改送达时间
 export function getDeliveryEnd(orderNo, deliveryEnd) {
-  return http.post(`${BaseUrl}/order/bind_new_time/${orderNo}`, { delivery_end: deliveryEnd });
+  return http.post(`/order/bind_new_time/${orderNo}`, { delivery_end: deliveryEnd });
 }

@@ -1,5 +1,5 @@
-const UserService = require('../../services/UserService.js');
-const OrderService = require('../../services/OrderService.js');
+import * as UserService from '../../services/UserService.js';
+import * as OrderService from '../../services/OrderService.js';
 
 var app = getApp();
 
