@@ -69,12 +69,12 @@ export function getDefaultAddress() {
 
 // 根据id获取地址
 export function getAddress(addressId) {
-  return http.get('/user/get_address?addressId=${addressId}');
+  return http.get(`/user/get_address?addressId=${addressId}`);
 }
 
 // 根据经纬度店铺列表
 export function getShopListByLocation(longitude, latitude) {
-  return http.get('/subbranch?longitude=${longitude}&latitude=${latitude}');
+  return http.get(`/subbranch?longitude=${longitude}&latitude=${latitude}`);
 }
 
 // 直接获取店铺列表
