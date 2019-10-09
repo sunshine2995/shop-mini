@@ -1,5 +1,8 @@
-const axios = require('../libs/axios.js');
+import * as axios from '../libs/axios';
+import config from '../config/config';
 
-const http = axios.create('https://sso.caibasi.com');
+console.log('http.js: config: ', config);
+
+const http = axios.create(config.baseURL);
 
 export default http;

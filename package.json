@@ -1,0 +1,17 @@
+{
+  "name": "mini.caibashi.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build:dev": "node build.js dev",
+    "build:prod": "node build.js prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.caibasi.com:tech/mini.caibashi.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
