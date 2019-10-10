@@ -1,4 +1,5 @@
-const AddressService = require('../../../services/AddressService.js');
+import * as AddressService from '../../../services/AddressService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   /**
@@ -7,9 +8,7 @@ Page({
   data: {},
 
   onUnload() {
-    wx.navigateTo({
-      url: '/pages/user/user',
-    });
+    RouterUtil.go('/pages/user/user');
   },
 
   getAddressList() {
@@ -41,9 +40,7 @@ Page({
 
   editAddress(e) {
     const id = e.currentTarget.dataset.addressId;
-    wx.navigateTo({
-      url: `/pages/address/edit/address?addressId=${id}`,
-    });
+    RouterUtil.go(`/pages/address/edit/address?addressId=${id}`);
   },
 
   deleteAddress(e) {

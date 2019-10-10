@@ -1,4 +1,5 @@
-const UserService = require('../../services/UserService.js');
+import * as UserService from '../../services/UserService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({
   data: {
@@ -8,21 +9,7 @@ Page({
     let path;
     if (event.currentTarget.dataset.path) {
       path = event.currentTarget.dataset.path;
-      console.log(event, path);
-      if (
-        path === '/pages/home/home' ||
-        path === '/pages/cart/cart' ||
-        path === '/pages/sort/sort' ||
-        path === '/pages/user/user'
-      ) {
-        wx.switchTab({
-          url: path,
-        });
-      } else {
-        wx.navigateTo({
-          url: path,
-        });
-      }
+      RouterUtil.go(path);
     }
   },
 

@@ -1,4 +1,5 @@
-const GiftService = require('../../../services/GiftService.js');
+import * as GiftService from '../../../services/GiftService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 const app = getApp();
 
@@ -9,9 +10,7 @@ Page({
   },
 
   goToCart(e) {
-    wx.switchTab({
-      url: '/pages/cart/cart',
-    });
+    RouterUtil.go('/pages/cart/cart');
     app.globalData.chooseGiftId = e.currentTarget.dataset.giftId;
   },
 

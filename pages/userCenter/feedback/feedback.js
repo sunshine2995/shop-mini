@@ -1,4 +1,5 @@
-const UserService = require('../../../services/UserService.js');
+import * as UserService from '../../../services/UserService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   data: {
@@ -57,9 +58,7 @@ Page({
             icon: 'none',
             duration: 2000,
           });
-          wx.switchTab({
-            url: '/pages/user/user',
-          });
+          RouterUtil.go('/pages/user/user');
         })
         .catch((error) => {
           wx.showToast({

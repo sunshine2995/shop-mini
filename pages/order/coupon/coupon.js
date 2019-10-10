@@ -1,4 +1,5 @@
-const UserService = require('../../../services/UserService.js');
+import * as UserService from '../../../services/UserService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   data: {
@@ -8,17 +9,13 @@ Page({
   },
 
   goCollectGood() {
-    wx.navigateTo({
-      url: '/pages/recharge/recharge',
-    });
+    RouterUtil.go('/pages/recharge/recharge');
   },
 
   chooseCoupon(e) {
     const money = e.currentTarget.dataset.money;
     const couponId = e.currentTarget.dataset.couponId;
-    wx.navigateTo({
-      url: `/pages/order/submit/submit?money=${money}&couponId=${couponId}`,
-    });
+    RouterUtil.go(`/pages/order/submit/submit?money=${money}&couponId=${couponId}`);
   },
 
   onLoad: function(options) {

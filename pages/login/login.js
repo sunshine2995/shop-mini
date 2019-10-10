@@ -1,4 +1,5 @@
 import * as UserService from '../../services/UserService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({
   login() {
@@ -10,9 +11,7 @@ Page({
             .then((res) => {
               const token = res.data.data.token;
               wx.setStorageSync('token', token);
-              wx.switchTab({
-                url: '../home/home',
-              });
+              RouterUtil.go('/pages/home/home');
             })
             .catch((error) => {
               wx.showToast({

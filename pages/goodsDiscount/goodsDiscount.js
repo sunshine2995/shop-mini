@@ -1,5 +1,6 @@
-const GoodsService = require('../../services/GoodsService.js');
-const CartService = require('../../services/CartService.js');
+import * as GoodsService from '../../services/GoodsService';
+import * as CartService from '../../services/CartService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({
   data: {
@@ -16,9 +17,7 @@ Page({
 
   goToDetail(e) {
     const id = e.currentTarget.dataset.goodId;
-    wx.navigateTo({
-      url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    });
+    RouterUtil.go(`/pages/goodsDetail/goodsDetail?goodId=${id}`);
   },
 
   onShow: function(options) {

@@ -1,5 +1,6 @@
 // pages/userCenter/couponList/coupon.js
-const UserService = require('../../../services/UserService.js');
+import * as UserService from '../../../services/UserService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   data: {
@@ -8,15 +9,11 @@ Page({
   },
 
   goCollectGood() {
-    wx.navigateTo({
-      url: '/pages/recharge/recharge',
-    });
+    RouterUtil.go('/pages/recharge/recharge');
   },
 
   goToSort() {
-    wx.switchTab({
-      url: '/pages/sort/sort',
-    });
+    RouterUtil.go('/pages/sort/sort');
   },
 
   onShow: function() {

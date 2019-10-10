@@ -1,5 +1,6 @@
-const GoodsService = require('../../services/GoodsService.js');
-const CartService = require('../../services/CartService.js');
+import * as GoodsService from '../../services/GoodsService';
+import * as CartService from '../../services/CartService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 var app = getApp();
 
@@ -37,15 +38,11 @@ Page({
 
   goDetail(e) {
     const id = e.currentTarget.dataset.goodId;
-    wx.navigateTo({
-      url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    });
+    RouterUtil.go(`/pages/goodsDetail/goodsDetail?goodId=${id}`);
   },
 
   sortTest() {
-    wx.navigateTo({
-      url: '/pages/sortTest/sort',
-    });
+    RouterUtil.go('/pages/sortTest/sort');
   },
   /**
    * 生命周期函数--监听页面加载

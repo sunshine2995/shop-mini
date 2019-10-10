@@ -1,6 +1,7 @@
-const OrderService = require('../../services/OrderService.js');
-const GiftService = require('../../services/GiftService.js');
-const UserService = require('../../services/UserService.js');
+import * as OrderService from '../../services/OrderService';
+import * as GiftService from '../../services/GiftService';
+import * as UserService from '../../services/UserService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 var app = getApp();
 
@@ -110,9 +111,7 @@ Page({
         duration: 2000,
       });
     } else if (!app.globalData.userInfo) {
-      wx.navigateTo({
-        url: '/pages/index/index',
-      });
+      RouterUtil.go('/pages/index/index');
     } else {
       OrderService.submitRechargeOrder(1, this.data.totalAmount, this.data.rechargeTypeId, this.data.giftId)
         .then((res) => {
@@ -140,9 +139,7 @@ Page({
           signType: data.signType,
           paySign: data.paySign,
           success: function(res) {
-            wx.switchTab({
-              url: '/pages/user/user',
-            });
+            RouterUtil.go('/pages/user/user');
           },
           fail: function(res) {},
           complete: function(res) {},

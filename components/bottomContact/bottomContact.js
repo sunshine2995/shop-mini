@@ -1,4 +1,5 @@
-// components/bottomContact/bottomContact.js
+import * as RouterUtil from '../../utils/RouterUtil';
+
 Component({
   /**
    * 组件的属性列表
@@ -33,9 +34,7 @@ Component({
       }
     },
     goOnline() {
-      wx.navigateTo({
-        url: '/pages/userCenter/customerService/customerService',
-      });
+      RouterUtil.go('/pages/userCenter/customerService/customerService');
     },
   },
 });

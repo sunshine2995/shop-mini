@@ -1,6 +1,7 @@
-const CartService = require('../../services/CartService.js');
-const GiftService = require('../../services/GiftService.js');
-const UserService = require('../../services/UserService.js');
+import * as CartService from '../../services/CartService';
+import * as GiftService from '../../services/GiftService';
+import * as UserService from '../../services/UserService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 const app = getApp();
 
@@ -62,15 +63,11 @@ Page({
 
   goToDetail(e) {
     const id = e.currentTarget.dataset.goodId;
-    wx.navigateTo({
-      url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    });
+    RouterUtil.go(`/pages/goodsDetail/goodsDetail?goodId=${id}`);
   },
 
   goHome() {
-    wx.switchTab({
-      url: '/pages/home/home',
-    });
+    RouterUtil.go('/pages/home/home');
   },
 
   goSubmit() {
@@ -84,26 +81,18 @@ Page({
         isShowCurtain: true,
       });
     } else if (!app.globalData.userInfo) {
-      wx.navigateTo({
-        url: '/pages/index/index',
-      });
+      RouterUtil.go('/pages/index/index');
     } else {
-      wx.navigateTo({
-        url: '/pages/order/submit/submit',
-      });
+      RouterUtil.go('/pages/order/submit/submit');
     }
   },
 
   goCollectGood() {
-    wx.switchTab({
-      url: '/pages/home/home',
-    });
+    RouterUtil.go('/pages/home/home');
   },
 
   goToChooseGift() {
-    wx.navigateTo({
-      url: `/pages/activity/chooseGift/chooseGift?money=${this.data.finallyMoney}`,
-    });
+    RouterUtil.go(`/pages/activity/chooseGift/chooseGift?money=${this.data.finallyMoney}`);
   },
 
   getshippingCharge() {

@@ -1,4 +1,5 @@
-const OrderService = require('../../../services/OrderService.js');
+import * as OrderService from '../../../services/OrderService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   data: {
@@ -136,9 +137,7 @@ Page({
             });
           },
         });
-        wx.navigateTo({
-          url: '/pages/order/list/list?status=待评价&ifEvaluate=true',
-        });
+        RouterUtil.go('/pages/order/list/list?status=待评价&ifEvaluate=true');
       })
       .catch((error) => {
         wx.showToast({

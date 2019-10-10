@@ -1,6 +1,7 @@
-const GoodsService = require('../../services/GoodsService.js');
-const CartService = require('../../services/CartService.js');
-const UserService = require('../../services/UserService.js');
+import * as GoodsService from '../../services/GoodsService';
+import * as CartService from '../../services/CartService';
+import * as UserService from '../../services/UserService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({
   data: {
@@ -75,9 +76,7 @@ Page({
   },
 
   goToCart() {
-    wx.switchTab({
-      url: '/pages/cart/cart',
-    });
+    RouterUtil.go('/pages/cart/cart');
   },
 
   getCartCount() {
@@ -159,9 +158,7 @@ Page({
   },
 
   goToDescripte() {
-    wx.navigateTo({
-      url: '/pages/goodsDescription/goodsDescription',
-    });
+    RouterUtil.go('/pages/goodsDescription/goodsDescription');
   },
 
   getDetail() {

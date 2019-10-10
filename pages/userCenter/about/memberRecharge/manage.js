@@ -1,23 +1,18 @@
-// pages/userCenter/about/memberRecharge/manage.js
+import * as RouterUtil from '../../../../utils/RouterUtil';
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {},
   goMember() {
-    wx.navigateTo({
-      url: '/pages/userCenter/about/memberRecharge/member/member',
-    });
+    RouterUtil.go('/pages/userCenter/about/memberRecharge/member/member');
   },
   goCoupon() {
-    wx.navigateTo({
-      url: '/pages/userCenter/about/memberRecharge/coupon/coupon',
-    });
+    RouterUtil.go('/pages/userCenter/about/memberRecharge/coupon/coupon');
   },
   goRecharge() {
-    wx.navigateTo({
-      url: '/pages/userCenter/about/memberRecharge/recharge/recharge',
-    });
+    RouterUtil.go('/pages/userCenter/about/memberRecharge/recharge/recharge');
   },
   /**
    * 生命周期函数--监听页面加载

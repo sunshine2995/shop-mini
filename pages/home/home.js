@@ -1,8 +1,9 @@
 'use strict';
 
-const UserService = require('../../services/UserService.js');
-const GoodsService = require('../../services/GoodsService.js');
-const CartService = require('../../services/CartService.js');
+import * as UserService from '../../services/UserService';
+import * as GoodsService from '../../services/GoodsService';
+import * as CartService from '../../services/CartService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 const app = getApp();
 
@@ -25,9 +26,7 @@ Page({
   },
 
   jumpSort() {
-    wx.switchTab({
-      url: '/pages/sort/sort',
-    });
+    RouterUtil.go('/pages/sort/sort');
   },
 
   closeTip() {
@@ -45,9 +44,7 @@ Page({
         wx.hideLoading();
         app.globalData.userData = res.data.data;
         if (app.globalData.userData.current_subbranch_id === 0) {
-          wx.navigateTo({
-            url: '/pages/shopList/shopList',
-          });
+          RouterUtil.go('/pages/shopList/shopList');
         } else {
           this.getShopInfo();
         }
@@ -106,51 +103,29 @@ Page({
 
   goDetail(e) {
     const id = e.currentTarget.dataset.goodId;
-    wx.navigateTo({
-      url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    });
+    RouterUtil.go(`/pages/goodsDetail/goodsDetail?goodId=${id}`);
   },
 
   goToSort(e) {
     app.globalData.sortOneId = e.currentTarget.dataset.oneId;
-    wx.switchTab({
-      url: '/pages/sort/sort',
-    });
+    RouterUtil.go('/pages/sort/sort');
   },
 
   toSort() {
-    wx.switchTab({
-      url: '/pages/sort/sort',
-    });
+    RouterUtil.go('/pages/sort/sort');
   },
 
   // 活动页跳转页面
   bindViewTap: function(event) {
     const url = event.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: url,
-    });
+    RouterUtil.go(url);
   },
 
   bindJumpPath: function(event) {
-    let path;
     if (event.currentTarget.dataset.path) {
-      path = event.currentTarget.dataset.path;
+      const path = event.currentTarget.dataset.path;
       console.log(event, path);
-      if (
-        path === '/pages/home/home' ||
-        path === '/pages/cart/cart' ||
-        path === '/pages/sort/sort' ||
-        path === '/pages/user/user'
-      ) {
-        wx.switchTab({
-          url: path,
-        });
-      } else {
-        wx.navigateTo({
-          url: path,
-        });
-      }
+      RouterUtil.go(path);
     }
   },
 

@@ -1,4 +1,5 @@
-const AddressService = require('../../../services/AddressService.js');
+import * as AddressService from '../../../services/AddressService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 var app = getApp();
 
@@ -9,9 +10,7 @@ Page({
   data: {},
 
   addAddress() {
-    wx.navigateTo({
-      url: '/pages/address/add/address',
-    });
+    RouterUtil.go('/pages/address/add/address');
   },
 
   getAddressList() {
@@ -44,9 +43,7 @@ Page({
   chooseAddress(e) {
     const id = e.currentTarget.dataset.addressId;
     app.globalData.chooseAddress = id;
-    wx.navigateTo({
-      url: `/pages/order/submit/submit`,
-    });
+    RouterUtil.go(`/pages/order/submit/submit`);
   },
 
   overTip() {

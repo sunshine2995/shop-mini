@@ -1,3 +1,5 @@
+import * as RouterUtil from '../utils/RouterUtil';
+
 export function wxPromise(method, url, data, header) {
   return new Promise(function(resolve, reject) {
     wx.request({
@@ -9,9 +11,7 @@ export function wxPromise(method, url, data, header) {
         if (res.data.code == 200 || res.data.infocode == 10000) {
           resolve(res);
         } else if (res.data.code == 401) {
-          wx.navigateTo({
-            url: '/pages/login/login',
-          });
+          RouterUtil.go('/pages/login/login');
         } else {
           reject(res);
         }

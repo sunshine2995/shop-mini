@@ -1,4 +1,5 @@
-const AddressService = require('../../services/AddressService.js');
+import * as AddressService from '../../services/AddressService.js';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 var app = getApp();
 
@@ -72,9 +73,7 @@ Page({
     });
     AddressService.changeShop(shopId)
       .then((res) => {
-        wx.switchTab({
-          url: '/pages/home/home',
-        });
+        RouterUtil.go('/pages/home/home');
       })
       .catch((error) => {
         wx.showToast({

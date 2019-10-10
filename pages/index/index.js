@@ -1,4 +1,6 @@
-//index.js
+import * as UserService from '../../services/UserService';
+import * as RouterUtil from '../../utils/RouterUtil';
+
 //获取应用实例
 const app = getApp();
 
@@ -12,9 +14,7 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.switchTab({
-      url: '../logs/logs',
-    });
+    RouterUtil.go('/pages/logs/logs');
   },
   onLoad: function() {
     let pages = getCurrentPages(); //获取当前页面信息栈
@@ -53,23 +53,11 @@ Page({
       success: (res) => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
-          wx.request({
-            method: 'POST',
-            url: 'https://sso.caibasi.com/wxapp/login',
-            header: {
-              // 'content-type': 'application/x-www-form-urlencoded',
-            },
-            data: {
-              code: res.code,
-            },
-            success: (res) => {
-              const token = res.data.data.token;
-              // console.log(token, 'fff');
-              wx.setStorageSync('token', token);
-              wx.switchTab({
-                url: '../home/home',
-              });
-            },
+          UserService.login(res.code).then((res) => {
+            const token = res.data.data.token;
+            wx.setStorageSync('token', token);
+            console.log('login success');
+            RouterUtil.go('/pages/home/home');
           });
         }
       },
@@ -84,7 +72,6 @@ Page({
         userInfo: e.detail.userInfo,
         hasUserInfo: true,
       });
-      // this.login();
     } else {
       console.log('拒绝授权');
       wx.showToast({
@@ -93,19 +80,6 @@ Page({
       });
     }
     const path = `/${this.data.prevPage}`;
-    if (
-      path === '/pages/home/home' ||
-      path === '/pages/cart/cart' ||
-      path === '/pages/sort/sort' ||
-      path === '/pages/user/user'
-    ) {
-      wx.switchTab({
-        url: path,
-      });
-    } else {
-      wx.navigateTo({
-        url: path,
-      });
-    }
+    RouterUtil.go(path);
   },
 });

@@ -1,5 +1,6 @@
-import * as UserService from '../../services/UserService.js';
-import * as OrderService from '../../services/OrderService.js';
+import * as UserService from '../../services/UserService';
+import * as OrderService from '../../services/OrderService';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 var app = getApp();
 
@@ -69,16 +70,12 @@ Page({
 
   orderList(e) {
     const status = e.currentTarget.dataset.status;
-    wx.navigateTo({
-      url: `/pages/order/list/list?status=${status}`,
-    });
+    RouterUtil.go(`/pages/order/list/list?status=${status}`);
   },
 
   toRecharge(e) {
     const rechargeId = e.currentTarget.dataset.rechargeId;
-    wx.navigateTo({
-      url: `/pages/recharge/recharge?rechargeId=${rechargeId}`,
-    });
+    RouterUtil.go(`/pages/recharge/recharge?rechargeId=${rechargeId}`);
   },
 
   getRechargeList() {
@@ -117,9 +114,7 @@ Page({
   },
 
   goToAuthorize() {
-    wx.navigateTo({
-      url: '/pages/index/index',
-    });
+    RouterUtil.go('/pages/index/index');
   },
 
   getUserInfo() {

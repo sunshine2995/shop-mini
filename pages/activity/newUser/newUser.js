@@ -1,5 +1,6 @@
-const GiftService = require('../../../services/GiftService.js');
-const UserService = require('../../../services/UserService.js');
+import * as GiftService from '../../../services/GiftService';
+import * as UserService from '../../../services/UserService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 const app = getApp();
 
@@ -10,9 +11,7 @@ Page({
   },
 
   goToHome() {
-    wx.switchTab({
-      url: '/pages/home/home',
-    });
+    RouterUtil.go('/pages/home/home');
   },
 
   getshippingCharge() {

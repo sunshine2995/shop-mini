@@ -1,5 +1,6 @@
-const OrderService = require('../../../services/OrderService.js');
-const moment = require('../../../utils/moment.js');
+import moment from '../../../utils/moment';
+import * as OrderService from '../../../services/OrderService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   data: {
@@ -21,9 +22,7 @@ Page({
   // 返回键返回到指定页面
   onUnload() {
     if (this.data.ifSubmit) {
-      wx.navigateTo({
-        url: '/pages/order/list/list',
-      });
+      RouterUtil.go('/pages/order/list/list');
     }
   },
 

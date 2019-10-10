@@ -1,5 +1,7 @@
-const OrderService = require('../../../services/OrderService.js');
-const moment = require('../../../utils/moment.js');
+import moment from '../../../utils/moment';
+import * as OrderService from '../../../services/OrderService';
+import * as RouterUtil from '../../../utils/RouterUtil';
+
 var app = getApp();
 
 Page({
@@ -64,9 +66,7 @@ Page({
 
   onUnload() {
     if (this.data.ifEvaluate) {
-      wx.navigateTo({
-        url: '/pages/user/user',
-      });
+      RouterUtil.go('/pages/user/user');
     }
   },
 
@@ -279,9 +279,7 @@ Page({
           isShowCurtain: false,
           // showTimePicker: false,
         });
-        wx.navigateTo({
-          url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-        });
+        RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
       })
       .catch((error) => {
         wx.showToast({
@@ -308,9 +306,7 @@ Page({
               isShowCurtain: false,
               // showTimePicker: false,
             });
-            wx.navigateTo({
-              url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}`,
-            });
+            RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}`);
           },
           fail: function(res) {},
           complete: function(res) {},
@@ -530,9 +526,7 @@ Page({
           icon: 'none',
           duration: 2000,
         });
-        wx.switchTab({
-          url: '/pages/cart/cart',
-        });
+        RouterUtil.go('/pages/cart/cart');
       })
       .catch((error) => {
         wx.showToast({
@@ -545,16 +539,12 @@ Page({
 
   goToEvaluate(e) {
     const orderNo = e.currentTarget.dataset.orderNo;
-    wx.navigateTo({
-      url: `/pages/order/evaluate/evaluate?orderNo=${orderNo}`,
-    });
+    RouterUtil.go(`/pages/order/evaluate/evaluate?orderNo=${orderNo}`);
   },
 
   orderDetail(e) {
     const orderNo = e.currentTarget.dataset.orderNo;
-    wx.navigateTo({
-      url: `/pages/order/detail/detail?orderNo=${orderNo}`,
-    });
+    RouterUtil.go(`/pages/order/detail/detail?orderNo=${orderNo}`);
   },
 
   getAllOrderDetails() {

@@ -1,19 +1,16 @@
-const GoodsService = require('../../../services/GoodsService.js');
+import * as GoodsService from '../../../services/GoodsService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   data: {},
 
   goCollectGood() {
-    wx.switchTab({
-      url: '/pages/home/home',
-    });
+    RouterUtil.go('/pages/home/home');
   },
 
   goToDetail(e) {
     const id = e.currentTarget.dataset.goodId;
-    wx.navigateTo({
-      url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    });
+    RouterUtil.go(`/pages/goodsDetail/goodsDetail?goodId=${id}`);
   },
 
   getCollectList() {

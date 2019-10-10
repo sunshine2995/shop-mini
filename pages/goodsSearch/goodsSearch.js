@@ -1,6 +1,7 @@
-const GoodsService = require('../../services/GoodsService.js');
-const CartService = require('../../services/CartService.js');
-const throttle = require('../../utils/util.js');
+import * as GoodsService from '../../services/GoodsService';
+import * as CartService from '../../services/CartService';
+import * as throttle from '../../utils/util';
+import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({
   /**
@@ -29,9 +30,7 @@ Page({
 
   goToDetail(e) {
     const id = e.currentTarget.dataset.goodId;
-    wx.navigateTo({
-      url: `/pages/goodsDetail/goodsDetail?goodId=${id}`,
-    });
+    RouterUtil.go(`/pages/goodsDetail/goodsDetail?goodId=${id}`);
   },
 
   bindKeyInput(e) {

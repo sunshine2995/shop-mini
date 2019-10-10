@@ -1,7 +1,9 @@
-const moment = require('../../../utils/moment.js');
-const CartService = require('../../../services/CartService.js');
-const AddressService = require('../../../services/AddressService.js');
-const OrderService = require('../../../services/OrderService.js');
+import moment from '../../../utils/moment';
+import * as CartService from '../../../services/CartService';
+import * as AddressService from '../../../services/AddressService';
+import * as OrderService from '../../../services/OrderService';
+import * as RouterUtil from '../../../utils/RouterUtil';
+
 var app = getApp();
 
 Page({
@@ -38,9 +40,7 @@ Page({
 
   cancelPay() {
     if (this.data.orderNo) {
-      wx.navigateTo({
-        url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-      });
+      RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
     } else {
       this.data.isShowCurtain = false;
       this.setData({
@@ -152,9 +152,7 @@ Page({
   },
 
   chooseCoupon() {
-    wx.navigateTo({
-      url: `/pages/order/coupon/coupon?money=${this.data.orderMessage.now_amount}`,
-    });
+    RouterUtil.go(`/pages/order/coupon/coupon?money=${this.data.orderMessage.now_amount}`);
   },
 
   checkout() {
@@ -178,9 +176,7 @@ Page({
         });
       })
       .catch((error) => {
-        wx.switchTab({
-          url: '/pages/cart/cart',
-        });
+        RouterUtil.go('/pages/cart/cart');
       });
   },
 
@@ -271,9 +267,7 @@ Page({
           icon: 'none',
           duration: 2000,
         });
-        wx.navigateTo({
-          url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-        });
+        RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
       })
       .catch((error) => {
         wx.showToast({
@@ -295,9 +289,7 @@ Page({
           signType: data.signType,
           paySign: data.paySign,
           success: function(res) {
-            wx.navigateTo({
-              url: `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`,
-            });
+            RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
           },
           fail: function(res) {},
           complete: function(res) {},
