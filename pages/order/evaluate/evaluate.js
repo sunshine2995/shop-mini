@@ -167,7 +167,6 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
 
         that.data.tempFilePaths = that.data.tempFilePaths.concat(res.tempFilePaths);
-        console.log(that.data.tempFilePaths, 'fffff');
         that.setData({
           tempFilePaths: that.data.tempFilePaths,
         });
@@ -202,9 +201,6 @@ Page({
                 });
                 count++;
                 that.data.imgList.push(JSON.parse(res.data).url);
-                console.log(JSON.parse(res.data).url, 'JSON.parse(res.data).url');
-
-                console.log(that.data.imgList, 'ggg');
                 //如果是最后一张,则隐藏等待中
                 if (count == that.data.tempFilePaths.length) {
                   wx.hideToast();
@@ -233,12 +229,8 @@ Page({
     wx.previewImage({
       current: that.data.tempFilePaths[index],
       urls: that.data.tempFilePaths,
-      success: function(res) {
-        //console.log(res);
-      },
-      fail: function() {
-        //console.log('fail')
-      },
+      success: function(res) {},
+      fail: function() {},
     });
   },
 
@@ -251,7 +243,5 @@ Page({
     that.setData({
       tempFilePaths: imgList,
     });
-    console.log(index, that.data.tempFilePaths, 'that.data.tempFilePaths');
-    console.log(index, that.data.imgList, 'that.data.imgList');
   },
 });

@@ -44,7 +44,6 @@ Page({
   },
 
   deleteAddress(e) {
-    console.log(e);
     const addressId = e.currentTarget.dataset.addressId;
     AddressService.removeAddress(addressId)
       .then((res) => {

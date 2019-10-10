@@ -45,16 +45,6 @@ Page({
     RouterUtil.go('/pages/sortTest/sort');
   },
   /**
-   * 生命周期函数--监听页面加载
-   */
-  // onLoad(option) {
-  //   if (option.oneId) {
-  //     this.data.oneId = option.oneId;
-  //   }
-  //   console.log(option,'oneId');
-  // },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
@@ -265,7 +255,6 @@ Page({
   },
 
   checkCor() {
-    console.log(this.data.currentTab, 'this.data.currentTab');
     if (this.data.currentTab === 4) {
       this.setData({
         scrollLeft: 260,
@@ -282,7 +271,6 @@ Page({
   },
 
   changeMenu(e) {
-    console.log(e.target.id, 'ffffff-----', proListToTop);
     // 改变左侧tab栏操作
     if (Number(e.target.id) === this.data.currentActiveIndex) return;
     MENU = 1;
@@ -291,22 +279,11 @@ Page({
       rightProTop: proListToTop[Number(e.target.id)],
     });
     this.setMenuAnimation(Number(e.target.id));
-    console.log(this.data.currentActiveIndex, 'currentActiveIndex', this.data.rightProTop, 'rightProTop');
   },
   scroll(e) {
     let index;
-    console.log('ffffff-----', proListToTop);
     for (let i = 0; i < proListToTop.length; i++) {
       if (e.detail.scrollTop < proListToTop[i] && i !== 0 && e.detail.scrollTop > proListToTop[i - 1]) {
-        console.log(
-          i,
-          'i',
-          e.detail.scrollTop,
-          'e.detail.scrollTop',
-          proListToTop[i],
-          'proListToTop[i]',
-          proListToTop[i - 1],
-        );
         return this.setDis(i);
       } else {
         index = i;
@@ -333,23 +310,18 @@ Page({
   setMenuAnimation(i) {
     // 设置动画，使menu滚动到指定位置。
     let self = this;
-    console.log(33);
     if (menuToTop[i].animate) {
-      console.log(11111);
       // 节流操作
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
       timeoutId = setTimeout(() => {
-        console.log(12138);
         self.setData({
           leftMenuTop: menuToTop[i].top - windowHeight,
         });
       }, 50);
     } else {
-      console.log(11);
       if (this.data.leftMenuTop === 0) return;
-      console.log(22);
       this.setData({
         leftMenuTop: 0,
       });
@@ -382,9 +354,7 @@ Page({
       .boundingClientRect(function(rects) {
         wx.getSystemInfo({
           success: function(res) {
-            console.log(res);
             windowHeight = res.windowHeight / 2;
-            // console.log(windowHeight)
             rects.forEach(function(rect) {
               menuToTop.push({
                 top: rect.top,

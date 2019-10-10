@@ -38,7 +38,6 @@ Page({
         this.setData({
           subbranchArea: res.data.data.subbranch_area,
         });
-        console.log(this.data.subbranchArea, 'subbranchArea');
       })
       .catch((error) => {
         wx.showToast({
@@ -109,7 +108,6 @@ Page({
         wx.showActionSheet({
           itemList: _this.data.goodsAttrs,
           success(res) {
-            console.log(res.tapIndex);
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
             CartService.addCart(_this.data.selectSkuId, _this.data.goodsAttr)
               .then((res) => {
@@ -123,9 +121,7 @@ Page({
                 });
               });
           },
-          fail(res) {
-            console.log(res.errMsg);
-          },
+          fail(res) {},
         });
       } else {
         this.addCart();

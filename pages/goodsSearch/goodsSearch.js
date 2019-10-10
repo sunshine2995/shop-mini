@@ -83,9 +83,6 @@ Page({
 
   // 商品名列表
   fuzzySearchGoodsIdName: throttle.throttle(function(e) {
-    console.log(this);
-    console.log(e);
-    console.log(new Date().getSeconds());
     GoodsService.fuzzySearchGoodsIdName(this.data.inputVal)
       .then((res) => {
         var goodsList = res.data.data;
@@ -202,9 +199,7 @@ Page({
         wx.showActionSheet({
           itemList: _this.data.goodsAttrs,
           success(res) {
-            console.log(res.tapIndex);
             _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            console.log(_this.data.goodsAttr);
             CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
               .then((res) => {
                 _this.data.idSelected.forEach((item) => {
@@ -221,9 +216,7 @@ Page({
                 });
               });
           },
-          fail(res) {
-            console.log(res.errMsg);
-          },
+          fail(res) {},
         });
       } else {
         this.addCart();
@@ -236,7 +229,6 @@ Page({
       if (this.data.skuId === cart.goods_sku_id) {
         this.data.goodsAttr = cart.goods_attr;
       }
-      console.log(this.data.skuId, 'addCART', this.data.goodsAttr, 'gggggg');
     });
     CartService.addCart(this.data.skuId, this.data.goodsAttr)
       .then((res) => {

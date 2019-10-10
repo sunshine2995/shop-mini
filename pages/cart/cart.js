@@ -476,9 +476,7 @@ Page({
                 });
             }
           },
-          fail(res) {
-            console.log(res.errMsg);
-          },
+          fail(res) {},
         });
       } else {
         this.addCart();

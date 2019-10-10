@@ -170,7 +170,6 @@ Page({
         icon: 'none',
       });
     } else {
-      console.log('picker发送选择改变，携带值为', e, e.detail.value);
       this.data.multiIndex = e.detail.value;
       const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
       this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
@@ -182,7 +181,6 @@ Page({
   },
 
   bindMultiPickerColumnChange(e) {
-    console.log('修改的列为', e.detail.column, e, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex,
@@ -205,7 +203,6 @@ Page({
         this.setData({
           multiArray: [this.data.multiArray[0], this.data.durationTimes],
         });
-        console.log(this.data.multiArray[0], this.data.multiArray[1], 'this.data.multiArray');
       }
     }
   },
@@ -258,10 +255,8 @@ Page({
       confirmColor: '#11A24A',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定');
           _this.balancePay();
         } else if (res.cancel) {
-          console.log('用户点击取消');
         }
       },
     });
@@ -336,7 +331,6 @@ Page({
             showTimePicker: true,
           });
         } else if (res.cancel) {
-          console.log('用户点击取消');
         }
       },
     });
@@ -368,17 +362,15 @@ Page({
       isEnough: this.data.isEnough,
       failureOrder: this.data.failureOrder,
     });
-    console.log(deliveryType, 'deliveryType');
+
     if (+deliveryType === 1) {
       chooseTime = deliveryTime;
       todayTime = moment()
         .add(35, 'minutes')
         .format('YYYY/MM/DD HH:mm:ss');
-      console.log(chooseTime, 'deliveryTime');
     } else {
       chooseTime = shopTime;
       todayTime = moment().format('YYYY/MM/DD HH:mm:ss');
-      console.log(chooseTime, 'shopTime');
     }
 
     const [start, end] = chooseTime.split(' - ');
@@ -411,7 +403,6 @@ Page({
     const todayLen = parseInt(String(todayDiff / distance), 10);
     const reduceMoneyLen = parseInt(String(reduceMoneyDiff / distance), 10);
 
-    console.log(this.data.todayTimes, 'this.data.todayTimes', todayLen, 'todayLen');
     for (let i = 0; i <= len; i++) {
       const aa = (moment.duration(moment(startTime).valueOf()).as('minutes') + i * distance) * 60 * 1000;
       this.data.durationTimes.push({
@@ -435,7 +426,6 @@ Page({
         name: moment(aa).format('HH:mm'),
       });
     }
-    console.log(discountAmount, 'discountAmount0');
 
     if (+discountAmount > 0) {
       if (reduceMoneyTimes.length) {
@@ -563,7 +553,6 @@ Page({
           orderList: this.data.orderList,
         });
         wx.hideLoading();
-        console.log(this.data.orderList, 'ffffff');
       })
       .catch((error) => {
         wx.showToast({
@@ -604,7 +593,6 @@ Page({
   // 滚动切换标签样式
   switchTab(e) {
     this.data.orderList = [];
-    console.log(e, 'switchTab--');
     this.data.page = 1;
     const index = e.detail.current;
     this.data.status = this.data.statusList[index].status;
@@ -700,20 +688,6 @@ Page({
     if (option.ifEvaluate) {
       this.data.ifEvaluate = option.ifEvaluate;
     }
-    // var that = this;
-    //  高度自适应
-    // wx.getSystemInfo({
-    //   success: function(res) {
-    //     var clientHeight = res.windowHeight,
-    //       clientWidth = res.windowWidth,
-    //       rpxR = 750 / clientWidth;
-    //     var calc = clientHeight * rpxR - 180;
-    //     console.log(calc)
-    //     that.setData({
-    //       winHeight: calc
-    //     });
-    //   }
-    // });
   },
 
   lower(e) {
@@ -721,17 +695,5 @@ Page({
       this.data.page = this.data.page + 1;
       this.checkStatus();
     }
-    console.log('lower----');
   },
-
-  // onShareAppMessage: function (res) {
-  //   if (res.from === 'button') {
-  //     // 来自页面内转发按钮
-  //     console.log(res.target)
-  //   }
-  //   return {
-  //     title: '自定义转发标题',
-  //     path: '/pages/user/user'
-  //   }
-  // }
 });

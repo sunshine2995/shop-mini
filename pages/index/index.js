@@ -56,7 +56,6 @@ Page({
           UserService.login(res.code).then((res) => {
             const token = res.data.data.token;
             wx.setStorageSync('token', token);
-            console.log('login success');
             RouterUtil.go('/pages/home/home');
           });
         }
@@ -66,14 +65,12 @@ Page({
 
   getUserInfo: function(e) {
     if (e.detail.userInfo) {
-      console.log('授权通过');
       app.globalData.userInfo = e.detail.userInfo;
       this.setData({
         userInfo: e.detail.userInfo,
         hasUserInfo: true,
       });
     } else {
-      console.log('拒绝授权');
       wx.showToast({
         title: '残忍地拒绝了授权',
         icon: 'none',

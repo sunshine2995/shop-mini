@@ -20,7 +20,6 @@ Page({
 
   onLoad: function(options) {
     // 页面创建时执行
-    console.log(options, 'options');
     this.data.money = options.money;
   },
 

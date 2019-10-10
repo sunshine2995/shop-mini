@@ -37,9 +37,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    console.log(moment().format('YYYY-MM-DD'));
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -72,7 +70,6 @@ Page({
    */
   onPullDownRefresh: function() {
     wx.showNavigationBarLoading();
-    console.log('pull down refresh');
     wx.hideNavigationBarLoading();
     wx.stopPullDownRefresh();
   },
@@ -85,7 +82,7 @@ Page({
       wx.showLoading({
         title: '玩命加载中',
       });
-      (this.data.isLoading = true), console.log('page+1');
+      this.data.isLoading = true;
       this.setData({
         isLoading: this.data.isLoading,
         page: this.data.page + 1,

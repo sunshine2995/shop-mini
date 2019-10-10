@@ -17,7 +17,6 @@ Page({
   goPath(event) {
     if (event.currentTarget.dataset.path) {
       const path = event.currentTarget.dataset.path;
-      console.log(event, path);
       RouterUtil.go(path);
     }
   },

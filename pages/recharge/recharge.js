@@ -61,9 +61,7 @@ Page({
   },
 
   // 更换赠礼
-  radioChange(e) {
-    console.log(e, '---e');
-  },
+  radioChange(e) {},
 
   checkboxChange(e) {
     this.data.paymentType = Number(e.detail.value);
@@ -157,7 +155,6 @@ Page({
   getRechargeList() {
     OrderService.getRechargeList()
       .then((res) => {
-        console.log(this.data.rechargeTypeId, 'rechargeTypeId');
         res.data.data.forEach((item, index) => {
           if (+item.id === +this.data.rechargeTypeId) {
             this.data.currentTab = index;
@@ -197,7 +194,6 @@ Page({
   // 点击标题切换当前页时改变样式
   swichNav: function(e) {
     var cur = e.target.dataset.current;
-    console.log(cur, '--cur');
     if (this.data.currentTaB == cur) {
       return false;
     } else {
@@ -241,7 +237,6 @@ Page({
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
         var calc = clientHeight * rpxR - 180;
-        console.log(calc);
         that.setData({
           winHeight: calc,
         });

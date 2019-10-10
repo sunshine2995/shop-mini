@@ -63,7 +63,6 @@ Page({
         icon: 'none',
       });
     } else {
-      console.log('picker发送选择改变，携带值为', e, e.detail.value);
       this.data.multiIndex = e.detail.value;
       const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
       this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
@@ -80,7 +79,6 @@ Page({
   },
 
   bindMultiPickerColumnChange: function(e) {
-    console.log('修改的列为', e.detail.column, e, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex,
@@ -317,10 +315,8 @@ Page({
           confirmColor: '#11A24A',
           success(res) {
             if (res.confirm) {
-              console.log('用户点击确定');
               _this.balancePay();
             } else if (res.cancel) {
-              console.log('用户点击取消');
             }
           },
         });
@@ -400,10 +396,8 @@ Page({
                 confirmColor: '#11A24A',
                 success(res) {
                   if (res.confirm) {
-                    console.log('用户点击确定');
                     _this.balancePay();
                   } else if (res.cancel) {
-                    console.log('用户点击取消');
                   }
                 },
               });

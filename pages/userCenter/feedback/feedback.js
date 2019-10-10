@@ -164,12 +164,8 @@ Page({
     wx.previewImage({
       current: that.data.tempFilePaths[index],
       urls: that.data.tempFilePaths,
-      success: function(res) {
-        //console.log(res);
-      },
-      fail: function() {
-        //console.log('fail')
-      },
+      success: function(res) {},
+      fail: function() {},
     });
   },
 
@@ -177,7 +173,6 @@ Page({
     var that = this;
     var imgList = that.data.tempFilePaths;
     var index = e.currentTarget.dataset.index;
-    console.log(e.currentTarget.dataset.index);
     imgList.splice(index, 1);
     that.setData({
       tempFilePaths: imgList,

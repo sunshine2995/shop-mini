@@ -55,13 +55,7 @@ Component({
   //组件的方法，包括事件响应函数和任意的自定义方法
   methods: {
     // 跳转活动详情
-    activityDetailTap: function(e) {
-      console.log(properties.price, properties, 'ffffff');
-      // var currentPosition = e.currentTarget.dataset.currentPosition
-      // this.triggerEvent('signEvent', {
-      //   'currentPosition': currentPosition
-      // })
-    },
+    activityDetailTap: function(e) {},
   },
 
   ready() {},

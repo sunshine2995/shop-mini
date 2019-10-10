@@ -37,7 +37,6 @@ Page({
         authUserInfo: app.globalData.userInfo,
       });
     }
-    console.log(this.data.authUserInfo, 'userInfo');
     this.getUserInfo();
     this.getUser();
     this.getRechargeList();
