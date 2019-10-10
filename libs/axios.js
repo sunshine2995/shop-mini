@@ -1,13 +1,24 @@
-const wxRequest = require('../utils/wxRequest.js');
+import * as wxRequest from '../utils/wxRequest';
 
 class Axios {
   constructor(baseURL) {
     this.baseURL = baseURL;
+    this.header = {
+      'Content-Type': 'application/json',
+    };
+    this.requestInterceptors = [];
+  }
+
+  addRequestInterceptor(interceptor) {
+    this.requestInterceptors.push(interceptor);
   }
 
   request(method, url, data) {
+    this.requestInterceptors.forEach((interceptor) => {
+      interceptor(this.header);
+    });
     const fullPath = buildFullPath(this.baseURL, url);
-    return wxRequest.wxPromise(method, fullPath, data);
+    return wxRequest.wxPromise(method, fullPath, data, this.header);
   }
 
   get(url, data) {

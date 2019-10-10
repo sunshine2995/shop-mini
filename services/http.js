@@ -5,4 +5,9 @@ console.log('http.js: config: ', config);
 
 const http = axios.create(config.baseURL);
 
+http.addRequestInterceptor((header) => {
+  const token = wx.getStorageSync('token');
+  header.Authorization = token;
+});
+
 export default http;
