@@ -29,7 +29,7 @@
       ></image>
       <button type="primary" class="go-shopping">去挑好物</button>
     </view>
-    <view class="guess-like-list">
+    <view class="guess-like-list" wx:if="{{ guessList.length }}">
       <view class="guess-title">你可能喜欢</view>
       <view class="guess-container">
         <block wx:for="{{ guessList }}" wx:key="index" wx:for-item="guess">
