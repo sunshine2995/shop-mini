@@ -11,3 +11,10 @@ export function go(path) {
     });
   }
 }
+
+export function back() {
+  const pages = getCurrentPages();
+  const page = pages[pages.length - 2];
+  const path = `/${page.route}`;
+  go(path);
+}
