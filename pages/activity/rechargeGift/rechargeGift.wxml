@@ -1,0 +1,21 @@
+<!--pages/activity/rechargeGift/rechargeGift.wxml-->
+<view class="rechargeGiftContainer">
+  <view class="recharge-gift-image">
+    <image
+      class="recharge-gift-img"
+      src="https://img.caibashi.com/b26c9f9389bb53c5f782ff7d54088ddb.png"
+      mode="widthFix"
+    ></image>
+    <navigator url="/pages/recharge/recharge" hover-class="none" class="recharge-button-image" animation="{{ ani }}">
+      <image
+        class="recharge-button-img"
+        src="https://img.caibashi.com/d22d6632ce089a659c1d311ab6cdd233.png"
+        mode="widthFix"
+      ></image>
+    </navigator>
+    <view class="rule-text">
+      <text>充值金额1000元，送顾客一年鲜鸡蛋</text>
+      <text>注:1年鲜鸡蛋共752个，消费满40元可送一份鸡蛋共8个，每笔订单只能送一份。</text>
+    </view>
+  </view>
+</view>

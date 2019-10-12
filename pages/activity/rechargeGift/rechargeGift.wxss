@@ -1,0 +1,42 @@
+/* pages/activity/rechargeGift/rechargeGift.wxss */
+
+.rechargeGiftContainer {
+  background-color: #6a38cc;
+}
+
+.recharge-gift-image {
+  position: relative;
+}
+
+.recharge-gift-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.recharge-button-image {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.rule-text {
+  width: 80%;
+  position: absolute;
+  top: 75%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.rule-text text {
+  text-align: left;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #6a38cc;
+  padding: 20rpx;
+  box-sizing: border-box;
+  line-height: 1.4;
+}

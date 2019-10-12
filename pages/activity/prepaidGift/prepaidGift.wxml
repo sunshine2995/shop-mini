@@ -1,0 +1,46 @@
+<!--pages/activity/prepaidGift/prepaidGift.wxml-->
+<view class="prepaidGiftContainer">
+  <view class="recharge-gift-image" wx:if="{{ !rechargeGiftList.length }}">
+    <image
+      class="recharge-gift-img"
+      src="https://img.caibashi.com/b26c9f9389bb53c5f782ff7d54088ddb.png"
+      mode="widthFix"
+    ></image>
+    <navigator url="/pages/recharge/recharge" hover-class="none" class="recharge-button-image" animation="{{ ani }}">
+      <image
+        class="recharge-button-img"
+        src="https://img.caibashi.com/d22d6632ce089a659c1d311ab6cdd233.png"
+        mode="widthFix"
+      ></image>
+    </navigator>
+    <view class="no-gift-tip">暂无充值奖励哦</view>
+    <view class="rule-text">
+      <text>充值金额1000元，送顾客一年鲜鸡蛋</text>
+      <text>注:1年鲜鸡蛋共752个，消费满40元可送一份鸡蛋共8个，每笔订单只能送一份。</text>
+    </view>
+  </view>
+  <view class="recharge-gift-conatiner" wx:else>
+    <view class="title">
+      充值赠礼:
+      <text>注: 所有赠礼信息请到"我的"->"我的赠礼"查看</text>
+    </view>
+    <view class="recharge-gift-content">
+      <view class="gift-info" wx:for="{{ rechargeGiftList }}" wx:key="index">
+        <view class="gift-image">
+          <image class="gift-img" src="{{ item.image_url }}" wx:if="{{ item.image_url }}"></image>
+          <image class="gift-img" src="https://img.caibashi.com/b60b2f8fab284b2706821908ee727d10.png" wx:else></image>
+        </view>
+        <view class="gift-name">{{ item.name }}</view>
+        <view class="gift-remainder"
+          >共{{ item.total_number }}{{ item.unit_name }},剩余{{ item.total_number - item.use_amount
+          }}{{ item.unit_name }}</view
+        >
+      </view>
+    </view>
+    <view class="title">充值赠礼活动介绍:</view>
+    <view class="rule">
+      <text>充值金额1000元，送顾客一年鲜鸡蛋</text>
+      <text>注:1年鲜鸡蛋共752个，消费满40元可送一份鸡蛋共8个，每笔订单只能送一份。</text>
+    </view>
+  </view>
+</view>
