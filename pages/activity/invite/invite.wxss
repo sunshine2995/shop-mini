@@ -1,0 +1,198 @@
+/* pages/activity/invite/invite.wxss */
+
+.inviteContainer {
+  min-height: 100vh;
+  background-color: #6a38cc;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgba(128, 128, 128, 1);
+  /*background-color: rgba(255, 255, 255, 0.4);*/
+  z-index: 20;
+}
+
+.share-tip {
+  padding: 150rpx 0 0;
+  box-sizing: border-box;
+}
+
+.qr-text {
+  text-align: center;
+  padding: 50rpx 0 100rpx;
+  box-sizing: border-box;
+  font-size: 36rpx;
+  color: #fff;
+}
+
+.qr-img {
+  display: block;
+  width: 400rpx;
+  height: 400rpx;
+  margin: auto;
+}
+
+.recharge-gift-image {
+  position: relative;
+}
+
+.recharge-gift-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.reward-money {
+  position: absolute;
+  top: 12%;
+  left: 9%;
+  font-size: 30rpx;
+  color: #6a38cc;
+  margin: auto;
+}
+
+.recharge-button-image {
+  position: absolute;
+  top: 68%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.recharge-button-img {
+  width: 78%;
+}
+
+.rule-text {
+  width: 80%;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rule-text text {
+  text-align: left;
+  font-weight: bold;
+  color: #11a24a;
+  padding: 20rpx 5rpx;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+
+.rule-text text:nth-child(1) {
+  font-size: 30rpx;
+}
+
+.rule-text text:nth-child(2) {
+  font-size: 80rpx;
+}
+
+.invite-user {
+  border: 1px solid #ccc;
+  border-radius: 20rpx;
+  margin: 30rpx;
+}
+.activity-rule {
+  text-align: justify;
+  font-size: 30rpx;
+  color: #fff;
+  border: 2rpx solid #ccc;
+  border-radius: 20rpx;
+  padding: 2rpx 0;
+  box-sizing: border-box;
+  margin: 30rpx;
+}
+.activity-rule text {
+  padding: 0.2rem 0.3rem;
+  box-sizing: border-box;
+  line-height: 1.3;
+}
+.activity-rule text:nth-child(2) {
+  color: #2dffee;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px dashed #ccc;
+}
+
+.title text {
+  font-size: 34rpx;
+  color: #fff;
+}
+
+.reward-detail {
+  display: flex;
+  align-items: flex-end;
+}
+
+.reward-detail text {
+  font-size: 30rpx;
+  color: #2dffee;
+}
+
+.icon-right {
+  font-size: 30rpx;
+  color: #2dffee;
+}
+
+.invite-empty {
+  text-align: center;
+  font-size: 36rpx;
+  color: #fff;
+  padding: 150rpx 0;
+  box-sizing: border-box;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.detail {
+  width: 25%;
+  padding: 40rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.user-image {
+  border: 1px solid #e3ba32;
+  border-radius: 50%;
+  flex-shrink: 0;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.user-name {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.qr-title {
+  text-align: center;
+  font-size: 40rpx;
+  color: #fff;
+}

@@ -1,0 +1,62 @@
+<!--pages/activity/invite/invite.wxml-->
+<view class="inviteContainer">
+  <view class="mask" wx:if="{{ showQrImage }}" bindtap="hideQrImage">
+    <view class="share-tip">
+      <view class="qr-image">
+        <image class="qr-img" src="{{ qrImage }}" mode="widthFix"></image>
+      </view>
+      <view class="qr-text">菜巴士•扫一扫•送菜到家</view>
+    </view>
+  </view>
+  <view class="recharge-gift-image" wx:if="{{ !rechargeGiftList.length }}">
+    <image
+      class="recharge-gift-img"
+      src="https://img.caibashi.com/fef96aa57a0948b4720f4d2cd7e10125.png"
+      mode="widthFix"
+    ></image>
+    <view class="reward-money">我的奖金</view>
+    <view class="rule-text">
+      <text>￥</text>
+      <text>{{ userInfo.withdrawal }}</text>
+    </view>
+    <navigator
+      url="/pages/activity/withdraw/withdraw"
+      hover-class="none"
+      class="recharge-button-image"
+      animation="{{ ani }}"
+    >
+      <image
+        class="recharge-button-img"
+        src="https://img.caibashi.com/c50625f179c50112223f12c73026cbd0.png"
+        mode="widthFix"
+      ></image>
+    </navigator>
+  </view>
+  <view class="qr-title" bindtap="getShareQrcode">生成分享二维码</view>
+  <view class="invite-user">
+    <view class="title">
+      <text>我邀请的好友</text>
+      <view class="reward-detail" wx:if="{{ inviteList.length }}">
+        <text>奖金详情</text>
+        <icon class="iconfont icon-right"></icon>
+      </view>
+    </view>
+
+    <view class="invite-empty" wx:if="{{ !inviteList.length }}">
+      暂未邀请任何人~
+    </view>
+    <view class="user-info" wx:else>
+      <view class="detail" wx:for="{{ inviteList }}" wx:key="index">
+        <image class="user-image" src="{{ item.headimgurl }}" wx:if="{{ item.headimgurl }}"></image>
+        <image class="user-image" src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png" wx:else></image>
+        <text class="user-name">{{ item.nickname }}</text>
+      </view>
+    </view>
+  </view>
+  <view class="activity-rule">
+    <text
+      >邀请有礼活动介绍:邀请人通过自己分享的链接注册进入菜巴士购物下单，被邀请人订单额度的5%将作为邀请人的收益，可以用来消费购买商品等。
+    </text>
+    <text>注:用户如果连续三个月未满足每个月邀请达5-10人则取消之前收益的资格。</text>
+  </view>
+</view>
