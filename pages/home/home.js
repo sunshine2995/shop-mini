@@ -124,7 +124,6 @@ Page({
   bindJumpPath: function(event) {
     if (event.currentTarget.dataset.path) {
       const path = event.currentTarget.dataset.path;
-
       RouterUtil.go(path);
     }
   },
@@ -150,8 +149,7 @@ Page({
       },
       {
         img: 'https://img.caibashi.com/0f276789b03f793bdf076d3d49e474e3.png',
-        // url: '/pages/activity/rechargeGift/rechargeGift',
-        url: '/pages/home/home',
+        url: '/pages/activity/rechargeGift/rechargeGift',
       },
     ];
 
