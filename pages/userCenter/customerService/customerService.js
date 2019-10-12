@@ -1,5 +1,5 @@
 // pages/userCenter/customerService/customerService.js
-const UserService = require('../../../services/UserService.js');
+import * as UserService from '../../../services/UserService';
 
 var app = getApp();
 

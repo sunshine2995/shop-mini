@@ -1,6 +1,4 @@
-const UserService = require('../../../services/UserService.js');
-
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {

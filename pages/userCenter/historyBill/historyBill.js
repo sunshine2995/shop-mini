@@ -1,5 +1,5 @@
-const UserService = require('../../../services/UserService.js');
-const moment = require('../../../utils/moment.js');
+import * as UserService from '../../../services/UserService';
+import moment from '../../../utils/moment';
 
 Page({
   data: {

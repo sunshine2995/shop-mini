@@ -1,6 +1,3 @@
-// pages/userCenter/enterprise/enterprise.js
-const UserService = require('../../../services/UserService.js');
-
 var app = getApp();
 Page({
   data: {

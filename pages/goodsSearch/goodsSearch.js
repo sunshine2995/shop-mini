@@ -1,6 +1,6 @@
 import * as GoodsService from '../../services/GoodsService';
 import * as CartService from '../../services/CartService';
-import * as throttle from '../../utils/util';
+import throttle from '../../utils/util';
 import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({

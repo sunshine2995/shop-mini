@@ -1,7 +1,7 @@
-const amapFile = require('../../../libs/amap-wx.js');
-const key = require('../../../libs/config.js');
-const throttle = require('../../../utils/util.js');
-const AddressService = require('../../../services/AddressService.js');
+import amapFile from '../../../libs/amap-wx';
+import key from '../../../libs/config';
+import throttle from '../../../utils/util';
+import * as AddressService from '../../../services/AddressService';
 
 Page({
   data: {

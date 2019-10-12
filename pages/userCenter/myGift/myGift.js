@@ -1,5 +1,4 @@
-const GiftService = require('../../../services/GiftService.js');
-const app = getApp();
+import * as GiftService from '../../../services/GiftService';
 
 Page({
   data: {

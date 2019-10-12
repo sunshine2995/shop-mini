@@ -1,5 +1,3 @@
-'use strict';
-
 import * as UserService from '../../services/UserService';
 import * as GoodsService from '../../services/GoodsService';
 import * as CartService from '../../services/CartService';
