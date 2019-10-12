@@ -7,6 +7,14 @@ export function login(code) {
   });
 }
 
+// 保存信息
+export function bindUserInfo(nickname, headImg) {
+  return http.post('/user/bind_info', {
+    nickname,
+    headImg,
+  });
+}
+
 // 获取首页广告图
 export function getCustom() {
   return http.get('/custom/all');

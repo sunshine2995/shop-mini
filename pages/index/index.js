@@ -11,21 +11,31 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
-  login() {
-    wx.login({
-      success: (res) => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          UserService.login(res.code).then((res) => {
-            const token = res.data.data.token;
-            wx.setStorageSync('token', token);
-            RouterUtil.go('/pages/home/home');
-          });
-        }
-      },
-    });
+  bindUserInfo(nickName, headImg) {
+    UserService.bindUserInfo(nickName, headImg)
+      .then(() => {})
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+        });
+      });
   },
   getUserInfo: function(e) {
+    if (e.detail.userInfo) {
+      const userInfo = e.detail.userInfo;
+      app.globalData.userInfo = userInfo;
+      this.setData({
+        userInfo: userInfo,
+        hasUserInfo: true,
+      });
+      this.bindUserInfo(userInfo.nickName, userInfo.avatarUrl);
+    } else {
+      wx.showToast({
+        title: '残忍地拒绝了授权',
+        icon: 'none',
+      });
+    }
     RouterUtil.back();
   },
 });
