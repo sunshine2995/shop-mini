@@ -1,0 +1,210 @@
+/* pages/activity/withdraw/withdraw.wxss */
+
+.withdrawContainer {
+  min-height: 100vh;
+  background-color: #6a38cc;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+
+.recharge-gift-image {
+  position: relative;
+}
+
+.recharge-gift-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.withdraw-image {
+  width: 89%;
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.activity-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10rpx;
+}
+
+.withdraw-img {
+  width: 100%;
+}
+
+.activity-title text {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  border: 1px solid #6a38cc;
+  border-radius: 30rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.gain-reward-money {
+  color: #666;
+}
+
+.explain-rule {
+  color: #6a38cc;
+}
+
+.activity-text {
+  display: block;
+  text-align: left;
+  font-size: 30rpx;
+  color: #666;
+  line-height: 1.3;
+  margin: 50rpx 20rpx;
+  border: 1px dashed #999;
+}
+
+.reward-money {
+  position: absolute;
+  top: 63%;
+  left: 9%;
+  font-size: 30rpx;
+  margin: auto;
+}
+
+.button-hover {
+  color: unset;
+  background-color: unset;
+}
+.share-user-button {
+  padding: unset;
+  color: unset;
+  background-color: unset;
+  line-height: 1;
+}
+
+button::after {
+  border: unset;
+}
+
+.recharge-button-image {
+  position: absolute;
+  top: 88%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.recharge-button-img {
+  width: 78%;
+}
+
+.rule-text {
+  width: 80%;
+  position: absolute;
+  top: 70%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rule-text text {
+  text-align: left;
+  font-weight: bold;
+  color: #11a24a;
+  padding: 20rpx 5rpx;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+
+.rule-text text:nth-child(1) {
+  font-size: 30rpx;
+}
+
+.rule-text text:nth-child(2) {
+  font-size: 80rpx;
+}
+
+.invite-withdraw {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  margin: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.activity-rule {
+  text-align: justify;
+  font-size: 30rpx;
+  color: #fff;
+  border: 2rpx solid #ccc;
+  border-radius: 20rpx;
+  padding: 2rpx 0;
+  box-sizing: border-box;
+  margin: 30rpx;
+}
+
+.activity-rule text {
+  padding: 0.2rem 0.3rem;
+  box-sizing: border-box;
+  line-height: 1.3;
+}
+.activity-rule text:nth-child(2) {
+  color: #2dffee;
+}
+
+.withdraw-type {
+  display: flex;
+  justify-content: space-between;
+}
+
+.withdraw-money {
+  flex: 1;
+  text-align: center;
+  margin: 20rpx;
+}
+
+.type,
+.withdraw-type-active {
+  line-height: 1;
+  font-size: 40rpx;
+  font-weight: bolder;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.type {
+  background-color: #e6e6e6;
+  color: #fe3059;
+}
+
+.withdraw-type-active {
+  background-color: #fe3059;
+  color: #fff;
+}
+
+.withdraw-submit,
+.withdraw-submit-gray {
+  width: 88%;
+  text-align: center;
+  font-size: 36rpx;
+  color: #fff;
+  padding: 26rpx;
+  box-sizing: border-box;
+  margin: 30rpx auto;
+  border-radius: 20rpx;
+}
+.withdraw-submit {
+  background-color: #11a24a;
+}
+
+.withdraw-submit-gray {
+  background-color: #999;
+}

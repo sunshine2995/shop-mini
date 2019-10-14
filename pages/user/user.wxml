@@ -114,7 +114,7 @@
       </view>
     </scroll-view>
   </view> -->
-  <!-- <view class="activity-moudle">
+  <view class="activity-moudle">
     <view class="activity-title">
       <text>活动中心</text>
     </view>
@@ -132,7 +132,7 @@
         <text class="activity-type-text">邀请有礼</text>
       </navigator>
     </view>
-  </view> -->
+  </view>
   <view class="service-moudle">
     <view class="service-title">
       <text>我的服务</text>

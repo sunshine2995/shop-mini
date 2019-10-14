@@ -36,6 +36,8 @@
     "pages/userCenter/couponList/coupon",
     "pages/activity/newUser/newUser",
     "pages/activity/chooseGift/chooseGift",
+    "pages/activity/share/share",
+    "pages/activity/withdraw/withdraw",
     "pages/activity/invite/invite",
     "pages/activity/prepaidGift/prepaidGift",
     "pages/activity/rechargeGift/rechargeGift",

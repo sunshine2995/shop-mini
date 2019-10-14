@@ -155,7 +155,7 @@ Page({
       images: images,
       inviteImages: inviteImages,
     });
-    this.getUser();
+    // this.getUser();
   },
 
   getOneCategory() {
@@ -332,8 +332,8 @@ Page({
         wx.hideLoading();
         const imgData = res.data.data;
         const imgList = [];
-        var customImg = res.data.data.phone_index_image;
-        var customPath = res.data.data.index_redirect_url;
+        let customImg;
+        let customPath;
         imgData.forEach((item) => {
           if (item.module_name === '首页') {
             imgList.push({
@@ -359,5 +359,24 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  onLoad: function(options) {
+    if (options.url) {
+      const url = decodeURIComponent(options.url);
+      console.log(url, 'url');
+      RouterUtil.go(url);
+    }
+    if (options.invite_id) {
+      wx.showToast({
+        title: `options.invite_id${options.invite_id}`,
+        icon: 'none',
+        duration: 20000,
+      });
+      this.getUser();
+      // const url = '/pages/cart/cart';
+      console.log(options.invite_id, 'options.invite_id');
+      RouterUtil.go(url);
+    }
   },
 });

@@ -1,0 +1,95 @@
+<!--pages/activity/share/share.wxml-->
+<view class="ShareContainer">
+  <view class="share-gift-image">
+    <image
+      class="share-gift-img"
+      src="https://img.caibashi.com/a53895d5ba3e2c4dd1f0a4d624286261.png"
+      mode="widthFix"
+    ></image>
+    <view class="share-button-image" wx:if="{{ shareList.length > 0 }}">
+      <button open-type="share" class="share-button">
+        <image class="share-button-img" src="https://img.caibashi.com/04adf00321f29efd8d98decba7a4f899.png"></image>
+      </button>
+    </view>
+    <view class="share-button-image" wx:else catchtap="getShareTip">
+      <image class="share-button-img" src="https://img.caibashi.com/04adf00321f29efd8d98decba7a4f899.png"></image>
+    </view>
+    <view class="recharge-button-image">
+      <image
+        class="share-button-img"
+        src="https://img.caibashi.com/dadc2896c9dc5d719372e0a18f9e305c.png"
+        mode="widthFix"
+      ></image>
+    </view>
+    <view class="describe">
+      <view class="describe-title">羊腿如何免费领:</view>
+      <view class="rule-text">
+        <text>1.推荐3人充值1000元，就赠送(新鲜本地山羊腿一条)。</text>
+        <text>2.活动无次数限制，可以多次完成领取大羊腿任务哦。</text>
+      </view>
+    </view>
+  </view>
+  <view class="task" wx:if="{{ !shareList.length }}" bindtap="createTask">
+    <view class="task-share task-create">
+      <text>点击创建任务</text>
+    </view>
+  </view>
+
+  <view class="task" wx:else>
+    <view class="task-title">任务中</view>
+    <view class="task-share">
+      <view
+        class="share_user_info"
+        wx:for="{{ shareList[0].be_shared_user_list }}"
+        wx:key="index"
+        wx:for-item="shareInfo"
+      >
+        <image
+          class="user-image"
+          src="shareInfo.be_shared_user.headimgurl"
+          wx:if="{{ shareInfo.be_shared_user.headimgurl }}"
+        ></image>
+        <image
+          class="user-image"
+          src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png"
+          wx:elif="{{ shareInfo.be_shared_user.nickname }}"
+        ></image>
+        <button open-type="share" class="share-user-button" wx:else>
+          <image class="user-image" src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"></image>
+        </button>
+        <!-- <image class="user-image" src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png" wx:else></image> -->
+        <text class="user-name" wx:if="{{ shareInfo.be_shared_user.nickname }}">{{
+          shareInfo.be_shared_user.nickname
+        }}</text>
+
+        <button open-type="share" class="share-user-button" wx:else>
+          <text class="user-name">去分享</text>
+        </button>
+        <!-- <text class="user-name" wx:else>去分享</text> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="task" wx:if="{{ finishShareList.length }}">
+    <view class="task-title">已完成任务</view>
+    <view class="finished-task" wx:for="{{ finishShareList }}" wx:key="index" wx:for-item="finish">
+      <view class="reward-status" wx:if="{{ finish.is_received }}">
+        <text>奖励已领取</text>
+      </view>
+      <view class="receive-reward" wx:else data-task-id="{{ finish.id }}" bindtap="receiveReward">
+        <text>领取奖励</text>
+      </view>
+      <view class="task-share">
+        <view class="share_user_info" wx:for="{{ finish.be_shared_user_list }}" wx:key="index" wx:for-item="shareInfo">
+          <image
+            class="user-image"
+            src="shareInfo.be_shared_user.headimgurl"
+            wx:if="{{ shareInfo.be_shared_user.headimgurl }}"
+          ></image>
+          <image class="user-image" src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png" wx:else></image>
+          <text class="user-name">{{ shareInfo.be_shared_user.nickname }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

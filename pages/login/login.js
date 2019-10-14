@@ -11,7 +11,10 @@ Page({
             .then((res) => {
               const token = res.data.data.token;
               wx.setStorageSync('token', token);
-              RouterUtil.go('/pages/home/home');
+              wx.navigateBack({
+                delta: 1,
+              });
+              // RouterUtil.go('/pages/home/home');
             })
             .catch((error) => {
               wx.showToast({

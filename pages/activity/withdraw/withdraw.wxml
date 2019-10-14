@@ -1,0 +1,77 @@
+<!--pages/activity/withdraw/withdraw.wxml-->
+
+<view class="withdrawContainer">
+  <view class="recharge-gift-image" wx:if="{{ !rechargeGiftList.length }}">
+    <image
+      class="recharge-gift-img"
+      src="https://img.caibashi.com/fd181e3894254a7f0204383493ec9bf1.jpg"
+      mode="widthFix"
+    ></image>
+    <image
+      class="recharge-gift-img"
+      src="https://img.caibashi.com/fef96aa57a0948b4720f4d2cd7e10125.png"
+      mode="widthFix"
+    ></image>
+    <view class="withdraw-image">
+      <view class="activity-title">
+        <text class="gain-reward-money" bindtap="showImg">奖励金如何拿</text>
+        <text class="explain-rule" bindtap="showText">活动规则</text>
+      </view>
+      <image
+        class="withdraw-img"
+        wx:if="{{ showImage }}"
+        src="https://img.caibashi.com/b12b1e7520c3e54f8c2e8c579fe43f09.jpg"
+        mode="widthFix"
+      ></image>
+      <text class="activity-text" wx:else
+        >活动规则：邀请的好友必须通过我分享的链接注册进入菜巴士下单成功，获得订单额度的5%的奖励金哦，一次分享，持续拿奖励金，奖励金可提现也可买菜。
+      </text>
+    </view>
+    <view class="reward-money">我的奖励金</view>
+    <view class="rule-text">
+      <text>￥</text>
+      <text>{{ userInfo.withdrawal }}</text>
+    </view>
+    <view class="recharge-button-image" animation="{{ ani }}">
+      <button open-type="share" class="share-user-button">
+        <image
+          class="recharge-button-img"
+          src="https://img.caibashi.com/713d380d45533eddf4bd86094c8843c6.png"
+          mode="widthFix"
+        ></image>
+      </button>
+      <!-- <image
+        class="recharge-button-img"
+        src="https://img.caibashi.com/713d380d45533eddf4bd86094c8843c6.png"
+        mode="widthFix"
+      ></image> -->
+    </view>
+  </view>
+  <view class="invite-withdraw">
+    <text class="withdraw-title">提现</text>
+    <view class="withdraw-type">
+      <view
+        class="withdraw-money"
+        wx:for="{{ typeOptions }}"
+        wx:key="index"
+        data-index="{{ index }}"
+        data-value="{{ type.value }}"
+        wx:for-item="type"
+        bindtap="toggle"
+      >
+        <view class="{{ index == active ? 'withdraw-type-active ' : 'type' }}">
+          {{ type.text }}
+        </view>
+      </view>
+    </view>
+    <view class="withdraw-submit" bindtap="getWithdraw" wx:if="{{ showButton }}">去提现</view>
+    <view class="withdraw-submit-gray" bindtap="showTip" wx:else>去提现</view>
+  </view>
+
+  <view class="activity-rule">
+    <text
+      >邀请有礼活动介绍:邀请人通过自己分享的链接注册进入菜巴士购物下单，被邀请人订单额度的5%将作为邀请人的收益，可以用来消费购买商品等。
+    </text>
+    <text>注:用户如果连续三个月未满足每个月邀请达5-10人则取消之前收益的资格。</text>
+  </view>
+</view>
