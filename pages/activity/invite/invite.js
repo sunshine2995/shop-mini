@@ -45,14 +45,16 @@ Page({
     UserService.getMyInvite()
       .then((res) => {
         wx.hideLoading();
-        this.data.inviteList = res.data.data;
-        this.setData({
-          inviteList: inviteList,
-        });
+        if (res.data.data.length) {
+          this.data.inviteList = res.data.data;
+          this.setData({
+            inviteList: this.data.inviteList,
+          });
+        }
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
@@ -111,6 +113,7 @@ Page({
 
   onShow() {
     this.getUser();
+    this.getMyInvite();
     this.startAnimation();
   },
 });

@@ -297,7 +297,7 @@ Page({
             longitude: self.data.longitude,
             latitude: self.data.latitude,
             title: res.address,
-            iconPath: '../../../images/home/user.png',
+            iconPath: '../../../images/home/location.png',
             width: 32,
             height: 32,
           },

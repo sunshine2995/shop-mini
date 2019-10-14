@@ -47,8 +47,8 @@
     </view>
     <view class="user-info" wx:else>
       <view class="detail" wx:for="{{ inviteList }}" wx:key="index">
-        <image class="user-image" src="{{ item.headimgurl }}" wx:if="{{ item.headimgurl }}"></image>
-        <image class="user-image" src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png" wx:else></image>
+        <image class="user-image" src="{{ item.headimgurl }}"></image>
+        <!-- <image class="user-image" src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png" wx:else></image> -->
         <text class="user-name">{{ item.nickname }}</text>
       </view>
     </view>

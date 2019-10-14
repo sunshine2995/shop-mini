@@ -104,10 +104,6 @@ Page({
             this.data.goodsAttr = this.data.goodsAttrs[res.tapIndex];
             CartService.addCart(this.data.skuId, this.data.goodsAttr)
               .then((res) => {
-                wx.showToast({
-                  title: res.data.message,
-                  icon: 'none',
-                });
                 this.data.idSelected.forEach((item) => {
                   if (+item.id === +this.data.skuId) {
                     item.num = res.data.data.goods_sku_num;
@@ -138,10 +134,6 @@ Page({
     });
     CartService.addCart(this.data.skuId, this.data.goodsAttr)
       .then((res) => {
-        wx.showToast({
-          title: res.data.message,
-          icon: 'none',
-        });
         this.data.idSelected.forEach((item) => {
           if (+item.id === +this.data.skuId) {
             item.num = res.data.data.goods_sku_num;

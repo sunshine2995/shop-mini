@@ -21,6 +21,7 @@ Page({
     goodsAttr: '', // 商品属性
     shopInfo: {}, // 店铺信息
     showShopName: true, // 是否展示店铺名称
+    inviteId: 0, // 邀请人的Id
   },
 
   jumpSort() {
@@ -40,6 +41,9 @@ Page({
     UserService.getUser()
       .then((res) => {
         wx.hideLoading();
+        if (this.data.inviteId !== 0 && this.data.inviteId !== res.data.data.id && res.data.data.invite_id === 0) {
+          this.inviteBind();
+        }
         app.globalData.userData = res.data.data;
         if (app.globalData.userData.current_subbranch_id === 0) {
           RouterUtil.go('/pages/shopList/shopList');
@@ -59,6 +63,12 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  inviteBind() {
+    UserService.inviteBind(this.data.inviteId)
+      .then(() => {})
+      .catch(() => {});
   },
 
   getShopInfo() {
@@ -155,7 +165,7 @@ Page({
       images: images,
       inviteImages: inviteImages,
     });
-    // this.getUser();
+    this.getUser();
   },
 
   getOneCategory() {
@@ -361,21 +371,8 @@ Page({
   },
 
   onLoad: function(options) {
-    if (options.url) {
-      const url = decodeURIComponent(options.url);
-      console.log(url, 'url');
-      RouterUtil.go(url);
-    }
     if (options.invite_id) {
-      wx.showToast({
-        title: `options.invite_id${options.invite_id}`,
-        icon: 'none',
-        duration: 20000,
-      });
-      this.getUser();
-      // const url = '/pages/cart/cart';
-      console.log(options.invite_id, 'options.invite_id');
-      RouterUtil.go(url);
+      this.data.inviteId = options.invite_id;
     }
   },
 });

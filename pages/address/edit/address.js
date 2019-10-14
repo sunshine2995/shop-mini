@@ -3,6 +3,8 @@ import key from '../../../libs/config';
 import throttle from '../../../utils/util';
 import * as AddressService from '../../../services/AddressService';
 
+let myAmapFun;
+
 Page({
   data: {
     latitude: '', //纬度

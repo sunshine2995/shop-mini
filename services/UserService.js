@@ -25,6 +25,18 @@ export function getUser() {
   return http.get('/user/me');
 }
 
+// 绑定邀请人
+export function inviteBind(invitedId) {
+  return http.post('/wechat/bind_invite', {
+    invited_id: invitedId,
+  });
+}
+
+// 获取我邀请的人
+export function getMyInvite() {
+  return http.get('/user/invited/me');
+}
+
 // 用户消费记录
 export function getHistoryBill(page) {
   return http.get(`/user/logs?page=${page}&size=11`);
