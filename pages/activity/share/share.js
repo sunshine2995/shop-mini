@@ -1,4 +1,3 @@
-// pages/activity/share/share.js
 import * as GiftService from '../../../services/GiftService';
 
 Page({
@@ -9,15 +8,13 @@ Page({
   },
 
   getShareTip() {
-    const _this = this;
     wx.showModal({
       title: '暂无进行中的任务',
       content: '创建任务？',
       confirmColor: '#11A24A',
-      success(res) {
+      success: (res) => {
         if (res.confirm) {
-          _this.createTask();
-        } else if (res.cancel) {
+          this.createTask();
         }
       },
     });

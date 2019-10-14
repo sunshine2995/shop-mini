@@ -271,19 +271,18 @@ Page({
       discountMoney = this.data.discountMoney,
       finallyMoney = this.data.finallyMoney; //实际
     if (shopcar[Index].goods_sku_num === 1) {
-      var _this = this;
       wx.showModal({
         title: '删除商品',
         content: '确定要删除该商品吗？',
         confirmColor: '#11A24A',
-        success(res) {
+        success: (res) => {
           if (res.confirm) {
-            _this.deleteCart(shopcar[Index].goods_sku_id);
+            this.deleteCart(shopcar[Index].goods_sku_id);
             shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价
             shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney -= +shopcar[Index].reduce_money);
             total = Number(total.toFixed(2));
             finallyMoney = total - discountMoney;
-            _this.setData({
+            this.setData({
               total: total,
               discountMoney: discountMoney,
               finallyMoney: finallyMoney,
@@ -353,22 +352,21 @@ Page({
         icon: 'none',
       });
     } else {
-      var _this = this;
       wx.showModal({
         title: '批量删除商品',
         content: '确定要删除选中商品吗？',
         confirmColor: '#11A24A',
-        success(res) {
+        success: (res) => {
           if (res.confirm) {
             wx.showLoading({
               title: '',
             });
-            CartService.deleteCarts(_this.data.selectedIds.map(Number))
+            CartService.deleteCarts(this.data.selectedIds.map(Number))
               .then((res) => {
                 wx.setStorageSync('selectedIds', []);
                 wx.hideLoading();
-                _this.getAllCarts();
-                _this.selectedIds = [];
+                this.getAllCarts();
+                this.selectedIds = [];
               })
               .catch((error) => {
                 wx.showToast({
@@ -385,19 +383,18 @@ Page({
 
   // 清空失效商品
   deleteInvalidGoods() {
-    var _this = this;
     wx.showModal({
       title: '清除失效商品',
       content: '确定要清除失效商品吗？',
       confirmColor: '#11A24A',
-      success(res) {
+      success: (res) => {
         if (res.confirm) {
-          CartService.deleteCarts(_this.data.invalidSkuIds.map(Number))
+          CartService.deleteCarts(this.data.invalidSkuIds.map(Number))
             .then((res) => {
               wx.showToast({
                 title: res.data.message,
               });
-              _this.getAllCarts();
+              this.getAllCarts();
             })
             .catch((error) => {
               wx.showToast({
@@ -431,20 +428,19 @@ Page({
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0) {
-        var _this = this;
         wx.showActionSheet({
-          itemList: _this.data.goodsAttrs,
-          success(res) {
-            _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            if (_this.data.carts.length === 0) {
-              CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
+          itemList: this.data.goodsAttrs,
+          success: (res) => {
+            this.data.goodsAttr = this.data.goodsAttrs[res.tapIndex];
+            if (this.data.carts.length === 0) {
+              CartService.addCart(this.data.skuId, this.data.goodsAttr)
                 .then((res) => {
-                  _this.data.idSelected.forEach((item) => {
-                    if (+item.id === +_this.data.skuId) {
+                  this.data.idSelected.forEach((item) => {
+                    if (+item.id === +this.data.skuId) {
                       item.num = res.data.data.goods_sku_num;
                     }
                   });
-                  _this.getAllCarts();
+                  this.getAllCarts();
                 })
                 .catch((error) => {
                   wx.showToast({
@@ -453,19 +449,19 @@ Page({
                   });
                 });
             } else {
-              CartService.editGoodsAttr(_this.data.skuId, _this.data.goodsAttr)
+              CartService.editGoodsAttr(this.data.skuId, this.data.goodsAttr)
                 .then((res) => {
                   wx.showToast({
                     title: res.data.message,
                     icon: 'none',
                   });
-                  _this.data.carts.forEach((item) => {
-                    if (_this.data.skuId === item.goods_sku_id) {
-                      item.goods_attr = _this.data.goodsAttr;
+                  this.data.carts.forEach((item) => {
+                    if (this.data.skuId === item.goods_sku_id) {
+                      item.goods_attr = this.data.goodsAttr;
                     }
                   });
-                  _this.setData({
-                    validCarts: _this.data.carts,
+                  this.setData({
+                    validCarts: this.data.carts,
                   });
                 })
                 .catch((error) => {

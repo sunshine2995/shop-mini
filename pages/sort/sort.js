@@ -98,23 +98,22 @@ Page({
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
-        var _this = this;
         wx.showActionSheet({
-          itemList: _this.data.goodsAttrs,
-          success(res) {
-            _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            CartService.addCart(_this.data.skuId, _this.data.goodsAttr)
+          itemList: this.data.goodsAttrs,
+          success: (res) => {
+            this.data.goodsAttr = this.data.goodsAttrs[res.tapIndex];
+            CartService.addCart(this.data.skuId, this.data.goodsAttr)
               .then((res) => {
                 wx.showToast({
                   title: res.data.message,
                   icon: 'none',
                 });
-                _this.data.idSelected.forEach((item) => {
-                  if (+item.id === +_this.data.skuId) {
+                this.data.idSelected.forEach((item) => {
+                  if (+item.id === +this.data.skuId) {
                     item.num = res.data.data.goods_sku_num;
                   }
                 });
-                _this.getCartNumber();
+                this.getCartNumber();
               })
               .catch((error) => {
                 wx.showToast({

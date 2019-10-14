@@ -308,15 +308,13 @@ Page({
       if (payType === 1) {
         this.WxPay();
       } else if (payType === 2) {
-        let _this = this;
         wx.showModal({
           title: '余额支付',
           content: '确认支付？',
           confirmColor: '#11A24A',
-          success(res) {
+          success: (res) => {
             if (res.confirm) {
-              _this.balancePay();
-            } else if (res.cancel) {
+              this.balancePay();
             }
           },
         });
@@ -389,15 +387,13 @@ Page({
             if (payType === 1) {
               this.WxPay();
             } else if (payType === 2) {
-              let _this = this;
               wx.showModal({
                 title: '余额支付',
                 content: '确认支付？',
                 confirmColor: '#11A24A',
-                success(res) {
+                success: (res) => {
                   if (res.confirm) {
-                    _this.balancePay();
-                  } else if (res.cancel) {
+                    this.balancePay();
                   }
                 },
               });

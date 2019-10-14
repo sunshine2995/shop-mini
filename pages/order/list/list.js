@@ -248,14 +248,13 @@ Page({
   },
 
   payByBalance() {
-    const _this = this;
     wx.showModal({
       title: '余额支付',
       content: '确认支付？',
       confirmColor: '#11A24A',
-      success(res) {
+      success: (res) => {
         if (res.confirm) {
-          _this.balancePay();
+          this.balancePay();
         } else if (res.cancel) {
         }
       },
@@ -289,17 +288,15 @@ Page({
     OrderService.WxPay(this.data.orderNo)
       .then((res) => {
         const data = res.data.data;
-        const _this = this;
         wx.requestPayment({
           timeStamp: data.timestamp,
           nonceStr: data.nonceStr,
           package: data.package,
           signType: data.signType,
           paySign: data.paySign,
-          success: function(res) {
-            _this.setData({
+          success: (res) => {
+            this.setData({
               isShowCurtain: false,
-              // showTimePicker: false,
             });
             RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}`);
           },
@@ -317,17 +314,15 @@ Page({
   },
 
   timePicker(e) {
-    const orderNo = e.currentTarget.dataset.orderNo;
     this.getDeliveryTime(e);
-    const _this = this;
     wx.showModal({
       title: '提示',
       content: '请点击立即付款后先重新选择时间',
       confirmColor: '#11A24A',
       confirmText: '知道啦',
-      success(res) {
+      success: (res) => {
         if (res.confirm) {
-          _this.setData({
+          this.setData({
             showTimePicker: true,
           });
         } else if (res.cancel) {

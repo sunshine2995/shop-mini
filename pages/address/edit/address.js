@@ -64,9 +64,8 @@ Page({
 
   // 监听textarea
   bindTextAreaChange: throttle.throttle(function(e) {
-    var _this = this;
-    _this.data.address.street = e[0].detail.value;
-    _this.getLocationByAddress();
+    this.data.address.street = e[0].detail.value;
+    this.getLocationByAddress();
   }, 500),
 
   // 监听更改城市

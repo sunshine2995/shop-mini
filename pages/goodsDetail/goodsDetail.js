@@ -104,15 +104,14 @@ Page({
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.selectSkuId)) {
-        var _this = this;
         wx.showActionSheet({
-          itemList: _this.data.goodsAttrs,
-          success(res) {
-            _this.data.goodsAttr = _this.data.goodsAttrs[res.tapIndex];
-            CartService.addCart(_this.data.selectSkuId, _this.data.goodsAttr)
+          itemList: this.data.goodsAttrs,
+          success: (res) => {
+            this.data.goodsAttr = this.data.goodsAttrs[res.tapIndex];
+            CartService.addCart(this.data.selectSkuId, this.data.goodsAttr)
               .then((res) => {
-                _this.getCartCount();
-                _this.getAllCarts();
+                this.getCartCount();
+                this.getAllCarts();
               })
               .catch((error) => {
                 wx.showToast({

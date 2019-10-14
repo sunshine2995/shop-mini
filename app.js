@@ -4,14 +4,9 @@ App({
     var _this = this;
     //初始化购物车
     _this.timer = setInterval(function() {
-      _this.scanCart(_this);
+      _this.scanCart();
     }, 100);
-    _this.scanCart(_this);
-
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || [];
-    logs.unshift(Date.now());
-    wx.setStorageSync('logs', logs);
+    _this.scanCart();
 
     // 获取用户信息
     wx.getSetting({
@@ -43,7 +38,7 @@ App({
     chooseAddress: 0,
     sortOneId: 0,
   },
-  scanCart(that) {
+  scanCart() {
     //购物车数量都缓存，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
     const cart = wx.getStorageSync('cartNum');
     if (cart > 0) {
