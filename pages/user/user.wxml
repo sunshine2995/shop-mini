@@ -46,7 +46,7 @@
       <text class="number" wx:else>0</text>
       <text class="text">余额</text>
     </navigator>
-    <navigator class="red-envelopes" url="/pages/userCenter/couponList/coupon" hover-class="none">
+    <navigator class="red-envelopes" url="/pages/userCenter/couponList/couponList" hover-class="none">
       <text class="number" wx:if="{{ userInfo.coupons_number }}">{{ userInfo.coupons_number }}</text>
       <text class="number" wx:else>0</text>
       <text class="text">红包</text>

@@ -1,4 +1,3 @@
-<!--pages/userCenter/couponList/coupon.wxml-->
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 
 <view class="CouponContainer">

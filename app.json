@@ -32,7 +32,7 @@
     "pages/address/add/address",
     "pages/address/list/list",
     "pages/address/edit/address",
-    "pages/userCenter/couponList/coupon",
+    "pages/userCenter/couponList/couponList",
     "pages/activity/newUser/newUser",
     "pages/activity/chooseGift/chooseGift",
     "pages/activity/share/share",

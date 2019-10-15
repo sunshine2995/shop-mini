@@ -1,4 +1,3 @@
-// pages/userCenter/couponList/coupon.js
 import * as UserService from '../../../services/UserService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
