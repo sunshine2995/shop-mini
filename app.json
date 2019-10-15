@@ -40,6 +40,7 @@
     "pages/activity/invite/invite",
     "pages/activity/prepaidGift/prepaidGift",
     "pages/activity/rechargeGift/rechargeGift",
+    "pages/activity/recharge/recharge",
     "pages/recharge/recharge",
     "pages/order/list/list",
     "pages/order/coupon/coupon",

@@ -8,6 +8,7 @@ export function getCouponsList(money) {
 // submit
 export function submitOrder(model) {
   return http.post('/order/submit', {
+    form_id: model.formId,
     pay_channel: 2,
     gift_id: model.giftId,
     address_id: model.addressId,
@@ -34,6 +35,19 @@ export function submitRechargeOrder(paymentType, totalAmount, rechargeTypeId, gi
     payment_type: paymentType,
     total_amount: totalAmount,
     recharge_type_id: rechargeTypeId,
+  });
+}
+
+// 分享充值
+export function submitRechargeShare(paymentType, totalAmount, rechargeTypeId, giftId, shareId, userId) {
+  return http.post('/order/recharge/submit', {
+    pay_channel: 2,
+    recharge_gift_id: giftId,
+    payment_type: paymentType,
+    total_amount: totalAmount,
+    recharge_type_id: rechargeTypeId,
+    share_id: shareId,
+    be_shared_user_id: userId,
   });
 }
 

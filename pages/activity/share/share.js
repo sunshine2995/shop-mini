@@ -1,10 +1,12 @@
 import * as GiftService from '../../../services/GiftService';
+import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
   data: {
     shareList: [], // 未完成任务
     finishShareList: [], // 已完成任务列表
     share_id: 0, // 正在进行的任务的id,
+    inviteId: 0, // 正在进行的任务的id,
   },
 
   getShareTip() {
@@ -69,6 +71,14 @@ Page({
       });
   },
 
+  getRecharge() {
+    if (this.data.inviteId !== 0) {
+      RouterUtil.go(`/pages/activity/recharge/recharge?shareId=${this.data.inviteId}`);
+    } else {
+      RouterUtil.go('/pages/recharge/recharge');
+    }
+  },
+
   receiveReward(e) {
     const taskId = e.currentTarget.dataset.taskId;
     GiftService.receiveReward(taskId)
@@ -90,21 +100,17 @@ Page({
   },
 
   onShow: function() {
-    // this.getShareTask();
+    this.getShareTask();
   },
+
   onLoad(options) {
     if (options.share_id) {
-      wx.showToast({
-        title: `options.share_id${options.share_id}`,
-        icon: 'none',
-        duration: 20000,
-      });
-      this.getShareTask();
+      this.data.inviteId = options.share_id;
     }
   },
 
   onShareAppMessage: function(res) {
-    const url = encodeURIComponent('/pages/activity/share/share?share_id=' + this.data.share_id);
+    // const url = encodeURIComponent('/pages/activity/share/share?share_id=' + this.data.share_id);
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target, 'share');

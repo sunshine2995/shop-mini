@@ -36,6 +36,7 @@ Page({
     isEnough: false, // 是否显示余额付款
 
     isShowCurtain: false, // 遮罩层
+    formId: '',
   },
 
   cancelPay() {
@@ -210,7 +211,8 @@ Page({
       });
   },
 
-  choosePayType() {
+  choosePayType(e) {
+    this.data.formId = e.detail.formId;
     if (this.data.showWait) {
       this.data.isEnough = +app.globalData.userData.balance >= +this.data.finallyMoney;
       this.setData({
@@ -366,6 +368,7 @@ Page({
           finallyAmount = this.data.finallyMoneyNoShipping;
         }
         const model = {
+          formId: this.data.formId,
           giftId: app.globalData.chooseGiftId,
           addressId: this.data.defaultAddress.id,
           paymentType: 1,

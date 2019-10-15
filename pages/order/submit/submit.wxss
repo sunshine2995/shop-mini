@@ -352,21 +352,37 @@
   font-size: 36rpx;
   color: #fff;
   text-align: center;
-  padding: 30rpx 26rpx;
-  box-sizing: border-box;
+  /* padding: 30rpx 26rpx; */
+  /* box-sizing: border-box; */
 }
 
 .pay-money {
+  line-height: 1;
   text-align: left;
   width: 60%;
   background-color: #4a4c5b;
-  padding-left: 30rpx;
+  padding: 30rpx 26rpx 30rpx 30rpx;
   box-sizing: border-box;
 }
 
 .pay-for {
   width: 40%;
   background-color: #11a24a;
+}
+
+.pay-for .button-hover {
+  color: unset;
+  background-color: unset;
+}
+.pay-for button {
+  padding: 30rpx 26rpx;
+  color: unset;
+  background-color: unset;
+  line-height: 1;
+}
+
+button::after {
+  border: unset;
 }
 .Curtain {
   display: flex;

@@ -57,6 +57,7 @@
   padding: unset;
   color: unset;
   background-color: unset;
+  line-height: 1;
 }
 
 button::after {
@@ -176,6 +177,6 @@ button::after {
   white-space: nowrap;
   font-size: 30rpx;
   color: #e8b11d;
-  padding: 2rpx 0;
+  padding: 12rpx 0;
   box-sizing: border-box;
 }

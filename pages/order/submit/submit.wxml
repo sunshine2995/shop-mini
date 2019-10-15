@@ -208,9 +208,14 @@
       </view>
     </view>
   </view>
-  <cover-view class="bottom_contact">
-    <cover-view class="pay-money" wx:if="{{ showWait }}">付款￥{{ finallyMoney }}元</cover-view>
-    <cover-view class="pay-money" wx:else>付款￥{{ finallyMoneyNoShipping }}元</cover-view>
-    <cover-view class="pay-for" bindtap="choosePayType">去支付</cover-view>
-  </cover-view>
+  <form bindsubmit="choosePayType" report-submit="true">
+    <cover-view class="bottom_contact">
+      <cover-view class="pay-money" wx:if="{{ showWait }}">付款￥{{ finallyMoney }}元</cover-view>
+      <cover-view class="pay-money" wx:else>付款￥{{ finallyMoneyNoShipping }}元</cover-view>
+      <cover-view class="pay-for"> <button form-type="submit" type="default">去支付</button></cover-view>
+      <!-- <cover-view class="pay-for" bindtap="choosePayType">去支付</cover-view> -->
+    </cover-view>
+    <!-- <form bindsubmit="choosePayType" report-submit="true"> -->
+    <!-- <button form-type="submit" type="default" size="mini">去支付</button> -->
+  </form>
 </view>

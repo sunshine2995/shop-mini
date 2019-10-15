@@ -14,7 +14,7 @@
     <view class="share-button-image" wx:else catchtap="getShareTip">
       <image class="share-button-img" src="https://img.caibashi.com/04adf00321f29efd8d98decba7a4f899.png"></image>
     </view>
-    <view class="recharge-button-image">
+    <view class="recharge-button-image" catchtap="getRecharge">
       <image
         class="share-button-img"
         src="https://img.caibashi.com/dadc2896c9dc5d719372e0a18f9e305c.png"
@@ -46,7 +46,7 @@
       >
         <image
           class="user-image"
-          src="shareInfo.be_shared_user.headimgurl"
+          src="{{ shareInfo.be_shared_user.headimgurl }}"
           wx:if="{{ shareInfo.be_shared_user.headimgurl }}"
         ></image>
         <image

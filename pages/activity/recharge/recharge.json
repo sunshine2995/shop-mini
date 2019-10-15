@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "Curtain": "/components/Curtain/Curtain",
+    "bind": "/components/bind/bind"
+  },
+  "navigationBarTitleText": "分享充值中心"
+}
