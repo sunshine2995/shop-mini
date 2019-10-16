@@ -1,9 +1,9 @@
 const isPhoneNumber = (value) => {
-  return Boolean(value.match(/^1\d{10}$/));
+  return /^1\d{10}$/.test(value);
 };
 
 const isBlank = (value) => {
-  return Boolean(value.match(/^\s*$/));
+  return /^\s*$/.test(value);
 };
 
 export default {
