@@ -88,7 +88,7 @@
                     <view class="goods-different-price" wx:if="{{ !goodSpu.is_standard }}">
                       <text class="market-price-text">单价</text>
                       <text class="market-price-number"
-                        >￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_sell_unit.name }}</text
+                        >￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text
                       >
                     </view>
                     <view class="goods-remarks">

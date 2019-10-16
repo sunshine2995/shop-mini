@@ -95,7 +95,7 @@
         </view>
       </block>
       <block wx:if="{{ !goodsInfo.is_standard }}">
-        <text class="invalid-price">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_sell_unit.name }}</text>
+        <text class="invalid-price">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text>
       </block>
     </view>
     <view class="goods-text-standard-stock ">
