@@ -48,7 +48,8 @@
     "pages/order/addressList/addressList",
     "pages/userCenter/profile/profile",
     "pages/login/login",
-    "pages/shopList/shopList"
+    "pages/shopList/shopList",
+    "pages/activity/rewardDetail/rewardDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

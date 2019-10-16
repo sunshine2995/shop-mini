@@ -1,0 +1,56 @@
+/* pages/userCenter/historyBill/historyBill.wxss */
+
+.bill-content,
+.bill-type-orderNo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bill-content {
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #ebebeb;
+}
+.bill-info {
+  flex: 1;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.bill-type,
+.bill-money {
+  font-size: 30rpx;
+}
+.user-image {
+  width: 100rpx;
+  height: 100rpx;
+}
+.user-img {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+
+.bill-order-number,
+.bill-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.bill-time {
+  padding: 15rpx 0 10rpx;
+  box-sizing: border-box;
+}
+.reach-bottom {
+  text-align: center;
+  color: #999;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.empty {
+  text-align: center;
+  color: #666;
+  padding-top: 200rpx;
+  box-sizing: border-box;
+}

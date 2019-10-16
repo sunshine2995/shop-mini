@@ -58,7 +58,11 @@ Page({
 
   toggle(e) {
     const active = e.currentTarget.dataset.index;
-    this.data.money = e.currentTarget.dataset.value;
+    this.data.typeOptions.forEach((item) => {
+      if (+item.value === +e.currentTarget.dataset.value) {
+        this.data.money = item.text;
+      }
+    });
     if (Number(this.data.money) > Number(this.data.userInfo.withdrawal)) {
       this.data.showButton = false;
     } else {

@@ -42,6 +42,11 @@ export function getHistoryBill(page) {
   return http.get(`/user/logs?page=${page}&size=11`);
 }
 
+// 用户奖金记录
+export function getRewardDetail(page) {
+  return http.get(`/user/invited/me/log?page=${page}&size=11`);
+}
+
 // 获取用户信息
 export function getUserInfo() {
   return http.get('/user/info');

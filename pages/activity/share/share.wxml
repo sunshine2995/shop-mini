@@ -50,11 +50,11 @@
         ></image>
         <image
           class="user-image"
-          src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png"
+          src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"
           wx:elif="{{ shareInfo.be_shared_user.nickname }}"
         ></image>
         <button open-type="share" class="share-user-button" wx:else>
-          <image class="user-image" src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"></image>
+          <image class="user-image" src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png"></image>
         </button>
         <text class="user-name" wx:if="{{ shareInfo.be_shared_user.nickname }}">{{
           shareInfo.be_shared_user.nickname
@@ -80,7 +80,7 @@
         <view class="share_user_info" wx:for="{{ finish.be_shared_user_list }}" wx:key="index" wx:for-item="shareInfo">
           <image
             class="user-image"
-            src="shareInfo.be_shared_user.headimgurl"
+            src="{{ shareInfo.be_shared_user.headimgurl }}"
             wx:if="{{ shareInfo.be_shared_user.headimgurl }}"
           ></image>
           <image class="user-image" src="https://img.caibashi.com/720c2a7de5cd509728a8b628afb7cce9.png" wx:else></image>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "奖金详情",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

@@ -35,10 +35,10 @@
   <view class="invite-user">
     <view class="title">
       <text>我邀请的好友</text>
-      <view class="reward-detail" wx:if="{{ inviteList.length }}">
+      <navigator url="/pages/activity/rewardDetail/rewardDetail" hover-class="none" class="reward-detail" wx:if="{{ inviteList.length }}">
         <text>奖金详情</text>
         <icon class="iconfont icon-right"></icon>
-      </view>
+      </navigator>
     </view>
 
     <view class="invite-empty" wx:if="{{ !inviteList.length }}">
