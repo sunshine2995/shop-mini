@@ -47,7 +47,8 @@
     "pages/userCenter/myGift/myGift",
     "pages/order/addressList/addressList",
     "pages/userCenter/profile/profile",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/shopList/shopList"
   ],
   "window": {
     "backgroundTextStyle": "light",
