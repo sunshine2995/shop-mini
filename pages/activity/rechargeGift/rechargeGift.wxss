@@ -1,5 +1,3 @@
-/* pages/activity/rechargeGift/rechargeGift.wxss */
-
 .rechargeGiftContainer {
   background-color: #6a38cc;
 }

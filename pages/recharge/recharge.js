@@ -3,7 +3,7 @@ import * as GiftService from '../../services/GiftService';
 import * as UserService from '../../services/UserService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {
@@ -193,7 +193,7 @@ Page({
   },
   // 点击标题切换当前页时改变样式
   swichNav: function(e) {
-    var cur = e.target.dataset.current;
+    const cur = e.target.dataset.current;
     if (this.data.currentTaB == cur) {
       return false;
     } else {
@@ -223,21 +223,20 @@ Page({
   },
 
   onLoad(option) {
-    var that = this;
     if (+option.rechargeId) {
-      that.data.rechargeTypeId = +option.rechargeId;
+      this.data.rechargeTypeId = +option.rechargeId;
     }
-    that.getUser();
-    that.getRechargeGift();
-    that.getRechargeList();
+    this.getUser();
+    this.getRechargeGift();
+    this.getRechargeList();
     //  高度自适应
     wx.getSystemInfo({
-      success: function(res) {
-        var clientHeight = res.windowHeight,
-          clientWidth = res.windowWidth,
-          rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 180;
-        that.setData({
+      success: (res) => {
+        const clientHeight = res.windowHeight;
+        const clientWidth = res.windowWidth;
+        const rpxR = 750 / clientWidth;
+        const calc = clientHeight * rpxR - 180;
+        this.setData({
           winHeight: calc,
         });
       },

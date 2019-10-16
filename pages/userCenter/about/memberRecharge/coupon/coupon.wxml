@@ -1,4 +1,3 @@
-<!--pages/userCenter/about/memberRecharge/coupon/coupon.wxml-->
 <view class="aboutCouponContainer">
   <view class="about-content">
     <view class="about-title">

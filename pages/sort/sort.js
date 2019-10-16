@@ -2,20 +2,17 @@ import * as GoodsService from '../../services/GoodsService';
 import * as CartService from '../../services/CartService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
-var app = getApp();
+const app = getApp();
 
 //声明全局变量
-let proListToTop = [],
-  menuToTop = [],
-  MENU = 0,
-  windowHeight,
-  timeoutId;
+let proListToTop = [];
+let menuToTop = [];
+let MENU = 0;
+let windowHeight;
+let timeoutId;
 // MENU ==> 是否为点击左侧进行滚动的，如果是，则不需要再次设置左侧的激活状态
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     currentActiveIndex: 0,
     oneList: [], // 一级分类标题列表
@@ -44,18 +41,6 @@ Page({
   sortTest() {
     RouterUtil.go('/pages/sortTest/sort');
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    this.getOneCategory();
-    this.getCartNumber();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
 
   getCartCount() {
     CartService.getCartCount().then((res) => {
@@ -176,7 +161,6 @@ Page({
         setTimeout(() => {
           this.getAllRects();
         }, 20);
-        // wx.hideLoading();
       })
       .catch((error) => {
         wx.showToast({
@@ -213,7 +197,6 @@ Page({
           currentTab: this.data.currentTab,
           oneList: this.data.oneList,
         });
-        // wx.hideLoading();
       })
       .catch((error) => {
         wx.showToast({
@@ -300,14 +283,13 @@ Page({
   },
   setMenuAnimation(i) {
     // 设置动画，使menu滚动到指定位置。
-    let self = this;
     if (menuToTop[i].animate) {
       // 节流操作
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
       timeoutId = setTimeout(() => {
-        self.setData({
+        this.setData({
           leftMenuTop: menuToTop[i].top - windowHeight,
         });
       }, 50);
@@ -357,38 +339,17 @@ Page({
       })
       .exec();
   },
-  // 获取系统的高度信息
+
   getSystemInfo() {
-    let self = this;
     wx.getSystemInfo({
-      success: function(res) {
+      success: (res) => {
         windowHeight = res.windowHeight / 2;
       },
     });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {},
+  onShow() {
+    this.getOneCategory();
+    this.getCartNumber();
+  },
 });

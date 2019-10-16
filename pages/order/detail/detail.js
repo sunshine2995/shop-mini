@@ -14,23 +14,6 @@ Page({
     ifSubmit: false, // 是否下完订单之后跳转的
   },
 
-  onLoad: function(options) {
-    this.data.orderNo = options.orderNo;
-    this.data.ifSubmit = options.ifSubmit;
-  },
-
-  // 返回键返回到指定页面
-  onUnload() {
-    if (this.data.ifSubmit) {
-      RouterUtil.go('/pages/order/list/list');
-    }
-  },
-
-  onShow: function() {
-    moment.suppressDeprecationWarnings = true;
-    this.getOrderDetail();
-  },
-
   freeTell() {
     wx.makePhoneCall({
       phoneNumber: this.data.order.driver_phone,
@@ -38,7 +21,6 @@ Page({
   },
 
   getOrderDetail() {
-    // OrderService.getOrderDetail('20190902174937376732')
     OrderService.getOrderDetail(this.data.orderNo)
       .then((res) => {
         this.data.order = res.data.data.order;
@@ -72,5 +54,21 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  onLoad: function(options) {
+    this.data.orderNo = options.orderNo;
+    this.data.ifSubmit = options.ifSubmit;
+  },
+
+  onShow: function() {
+    moment.suppressDeprecationWarnings = true;
+    this.getOrderDetail();
+  },
+
+  onUnload() {
+    if (this.data.ifSubmit) {
+      RouterUtil.go('/pages/order/list/list');
+    }
   },
 });

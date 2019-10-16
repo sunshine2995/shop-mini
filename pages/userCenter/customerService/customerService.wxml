@@ -1,4 +1,3 @@
-<!--pages/userCenter/customerService/customerService.wxml-->
 <view class="customer-service-container">
   <view class="wx-content">
     <text class="wx-name">微信客服</text>

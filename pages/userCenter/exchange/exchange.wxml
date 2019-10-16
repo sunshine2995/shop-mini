@@ -1,4 +1,3 @@
-<!--pages/userCenter/exchange/exchange.wxml-->
 <view class="exchange-container {{ !phoneNum ? 'tip' : '' }}">
   <Curtain isShowCurtain="{{ isShowCurtain }}"></Curtain>
   <view class="mobile-container" wx:if="{{ isShowCurtain }}">

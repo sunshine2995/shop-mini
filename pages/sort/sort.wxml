@@ -1,10 +1,7 @@
-<!--pages/sort/sort.wxml-->
 <view class="SortContainer">
   <view class="sort-head">
     <view class="search">
-      <!-- <navigator url="/pages/userCenter/customerService/customerService" class='help-service' hover-class="none"> -->
       <navigator url="/pages/sortTest/sort" class="help-service" hover-class="none">
-        <!-- <navigator url="/pages/left/left" class='help-service' hover-class="none"> -->
         <icon class="iconfont icon-help"></icon>
         <text class="text-help">客服</text>
       </navigator>
@@ -88,12 +85,6 @@
                 }}</text>
                 <block wx:for="{{ goodSpu.goods_sku_list }}" wx:key="index" wx:for-item="goodSku">
                   <view class="marketing-different-price">
-                    <!-- <view class="goods-different-price" wx:if="{{ goodSpu.is_standard }}">
-                      <text class="market-price-text">市场价</text>
-                      <text class="market-price-number"
-                        >￥{{ goodSku.market_price }}/{{ goodSku.goods_sku_unit.name }}</text
-                      >
-                    </view> -->
                     <view class="goods-different-price" wx:if="{{ !goodSpu.is_standard }}">
                       <text class="market-price-text">单价</text>
                       <text class="market-price-number"

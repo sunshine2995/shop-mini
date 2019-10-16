@@ -1,5 +1,3 @@
-/* pages/address/add/address.wxss */
-
 .address-container,
 .address-content,
 .address_input {

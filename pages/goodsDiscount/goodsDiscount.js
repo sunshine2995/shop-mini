@@ -20,10 +20,6 @@ Page({
     RouterUtil.go(`/pages/goodsDetail/goodsDetail?goodId=${id}`);
   },
 
-  onShow: function(options) {
-    this.getDiscountList();
-  },
-
   getDiscountList() {
     wx.showLoading({
       title: '',
@@ -141,5 +137,9 @@ Page({
           icon: 'none',
         });
       });
+  },
+
+  onShow: function(options) {
+    this.getDiscountList();
   },
 });

@@ -1,2 +1,1 @@
-/* pages/userCenter/about/memberRecharge/member/member.wxss */
 @import '../../order/order.wxss';

@@ -1,5 +1,3 @@
-/**index.wxss**/
-
 .IndexContainer {
   width: 100%;
 }

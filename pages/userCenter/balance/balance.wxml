@@ -1,4 +1,3 @@
-<!--pages/userCenter/balance/balance.wxml-->
 <view class="balanceContainer">
   <Curtain isShowCurtain="{{ isShowCurtain }}"></Curtain>
   <view class="curtain-explain" wx:if="{{ isShowCurtain }}">

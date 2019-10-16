@@ -14,7 +14,6 @@ Page({
               wx.navigateBack({
                 delta: 1,
               });
-              // RouterUtil.go('/pages/home/home');
             })
             .catch((error) => {
               wx.showToast({

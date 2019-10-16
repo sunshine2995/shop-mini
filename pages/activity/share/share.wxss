@@ -1,5 +1,3 @@
-/* pages/activity/share/share.wxss */
-
 .ShareContainer {
   min-height: 100vh;
   background-color: #161619;

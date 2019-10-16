@@ -19,10 +19,11 @@ Page({
 
   // 监听字数
   bindTextAreaChange: function(e) {
-    var that = this;
-    var value = e.detail.value,
-      len = parseInt(value.length);
-    if (len > that.data.noteMaxLen) return;
+    const value = e.detail.value;
+    const len = parseInt(value.length);
+    if (len > that.data.noteMaxLen) {
+      return;
+    }
     that.setData({
       info: value,
       noteNowLen: len,
@@ -104,7 +105,6 @@ Page({
     });
   },
 
-  // 提交清空当前值
   bindSubmit() {
     const goodsValue = [];
     this.data.orderList.forEach((item) => {
@@ -121,14 +121,13 @@ Page({
 
     OrderService.rateOrder(this.data.orderNo, evaluteInfo)
       .then((res) => {
-        var that = this;
         wx.showToast({
           title: res.data.data.message,
           icon: 'success',
           duration: 1500,
           mask: false,
-          success: function() {
-            that.setData({
+          success: () => {
+            this.setData({
               info: '',
               noteNowLen: 0,
               userStar: 5,
@@ -220,27 +219,26 @@ Page({
       },
     });
   },
+
   /**
    * 预览图片方法
    */
   listenerButtonPreviewImage: function(e) {
     let index = e.target.dataset.index;
-    let that = this;
     wx.previewImage({
-      current: that.data.tempFilePaths[index],
-      urls: that.data.tempFilePaths,
+      current: this.data.tempFilePaths[index],
+      urls: this.data.tempFilePaths,
       success: function(res) {},
       fail: function() {},
     });
   },
 
   deleteImage(e) {
-    var that = this;
-    var imgList = that.data.tempFilePaths;
-    var index = e.currentTarget.dataset.index;
+    const imgList = this.data.tempFilePaths;
+    const index = e.currentTarget.dataset.index;
     imgList.splice(index, 1);
-    that.data.imgList.splice(index, 1);
-    that.setData({
+    this.data.imgList.splice(index, 1);
+    this.setData({
       tempFilePaths: imgList,
     });
   },

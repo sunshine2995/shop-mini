@@ -1,4 +1,3 @@
-<!--pages/activity/newUser/newUser.wxml-->
 <view class="NewUserContainer">
   <view class="new-user-content">
     <image

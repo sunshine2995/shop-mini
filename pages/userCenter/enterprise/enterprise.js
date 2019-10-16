@@ -1,10 +1,9 @@
-var app = getApp();
+const app = getApp();
+
 Page({
   data: {
     phoneNumber: '',
   },
-
-  onLoad: function(options) {},
 
   onShow: function() {
     this.data.phoneNumber = app.globalData.shopInfo.shop_contact_phone;

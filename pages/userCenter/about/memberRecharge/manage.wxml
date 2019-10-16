@@ -1,4 +1,3 @@
-<!--pages/userCenter/about/memberRecharge/manage.wxml-->
 <view class="MemberRechargeContainer">
   <view class="problem-content" bindtap="goMember">
     <text class="problem-title">会员说明</text>

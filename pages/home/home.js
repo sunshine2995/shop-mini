@@ -137,7 +137,7 @@ Page({
   },
 
   onShow: function() {
-    var inviteImages = [
+    const inviteImages = [
       {
         img: 'https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png',
         // url: '/pages/activity/share/share',
@@ -150,7 +150,7 @@ Page({
       },
     ];
 
-    var images = [
+    const images = [
       {
         img: 'https://img.caibashi.com/70d8999cb5bfdcdcd6b30c7cfeb579cd.png',
         url: '/pages/activity/newUser/newUser',
@@ -175,7 +175,7 @@ Page({
     GoodsService.getOneCategory()
       .then((res) => {
         wx.hideLoading();
-        var sortTitle = res.data.data;
+        const sortTitle = res.data.data;
         this.setData({
           sortList: sortTitle,
         });
@@ -322,15 +322,13 @@ Page({
     GoodsService.getCategoryOneAllGoods()
       .then((res) => {
         wx.hideLoading();
-        var categoryOneList = res.data.data;
+        const categoryOneList = res.data.data;
         this.setData({
           categoryOneList: categoryOneList,
         });
       })
       .catch(() => {});
   },
-
-  onReachBottom: function() {},
 
   getCustom() {
     wx.showLoading({

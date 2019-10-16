@@ -1,4 +1,3 @@
-<!--pages/userCenter/problem/problem.wxml-->
 <view class="problem-container">
   <navigator class="problem-content" url="/pages/userCenter/about/order/order">
     <text class="problem-title">关于订单</text>

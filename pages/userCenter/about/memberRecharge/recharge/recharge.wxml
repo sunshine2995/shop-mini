@@ -1,4 +1,3 @@
-<!--pages/userCenter/about/memberRecharge/recharge/recharge.wxml-->
 <view class="aboutRechargeContainer">
   <view class="about-content">
     <view class="about-title">

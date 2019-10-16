@@ -2,7 +2,9 @@ import * as GoodsService from '../../../services/GoodsService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
-  data: {},
+  data: {
+    collectList: [],
+  },
 
   goCollectGood() {
     RouterUtil.go('/pages/home/home');
@@ -17,7 +19,7 @@ Page({
     GoodsService.getCollectList()
       .then((res) => {
         wx.hideLoading();
-        var collectList = res.data.data;
+        const collectList = res.data.data;
         this.setData({
           collectList: collectList,
         });
@@ -31,22 +33,10 @@ Page({
       });
   },
 
-  onReady: function() {},
-
   onShow: function() {
     wx.showLoading({
       title: '',
     });
     this.getCollectList();
   },
-
-  onHide: function() {},
-
-  onUnload: function() {},
-
-  onPullDownRefresh: function() {},
-
-  onReachBottom: function() {},
-
-  onShareAppMessage: function() {},
 });

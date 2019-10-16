@@ -1,4 +1,3 @@
-<!--pages/activity/share/share.wxml-->
 <view class="ShareContainer">
   <view class="share-gift-image">
     <image
@@ -57,7 +56,6 @@
         <button open-type="share" class="share-user-button" wx:else>
           <image class="user-image" src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"></image>
         </button>
-        <!-- <image class="user-image" src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png" wx:else></image> -->
         <text class="user-name" wx:if="{{ shareInfo.be_shared_user.nickname }}">{{
           shareInfo.be_shared_user.nickname
         }}</text>
@@ -65,7 +63,6 @@
         <button open-type="share" class="share-user-button" wx:else>
           <text class="user-name">去分享</text>
         </button>
-        <!-- <text class="user-name" wx:else>去分享</text> -->
       </view>
     </view>
   </view>

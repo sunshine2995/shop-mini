@@ -19,9 +19,9 @@ Page({
   },
   // 监听字数
   bindTextAreaChange(e) {
-    var value = e.detail.value;
+    const value = e.detail.value;
     this.data.feedback.content = e.detail.value;
-    var len = parseInt(value.length);
+    const len = parseInt(value.length);
     if (len > this.data.noteMaxLen) return;
     this.setData({
       info: value,
@@ -33,9 +33,6 @@ Page({
     this.data.feedback.contact = e.detail.value;
   },
 
-  onLoad: function(options) {
-    this.data.tempFilePaths = [];
-  },
   /**
    * 上传图片方法
    */
@@ -155,27 +152,31 @@ Page({
       },
     });
   },
+
   /**
    * 预览图片方法
    */
   listenerButtonPreviewImage: function(e) {
-    let index = e.target.dataset.index;
-    let that = this;
+    const index = e.target.dataset.index;
+
     wx.previewImage({
-      current: that.data.tempFilePaths[index],
-      urls: that.data.tempFilePaths,
+      current: this.data.tempFilePaths[index],
+      urls: this.data.tempFilePaths,
       success: function(res) {},
       fail: function() {},
     });
   },
 
   deleteImage(e) {
-    var that = this;
-    var imgList = that.data.tempFilePaths;
-    var index = e.currentTarget.dataset.index;
+    const imgList = this.data.tempFilePaths;
+    const index = e.currentTarget.dataset.index;
     imgList.splice(index, 1);
-    that.setData({
+    this.setData({
       tempFilePaths: imgList,
     });
+  },
+
+  onLoad: function(options) {
+    this.data.tempFilePaths = [];
   },
 });

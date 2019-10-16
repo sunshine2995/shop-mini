@@ -1,4 +1,3 @@
-<!--pages/shopList/shopList.wxml-->
 <wxs module="filter" src="../../filter.wxs"></wxs>
 
 <view class="ShopListContainer">

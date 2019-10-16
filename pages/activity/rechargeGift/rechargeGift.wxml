@@ -1,4 +1,3 @@
-<!--pages/activity/rechargeGift/rechargeGift.wxml-->
 <view class="rechargeGiftContainer">
   <view class="recharge-gift-image">
     <image

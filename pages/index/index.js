@@ -1,7 +1,6 @@
 import * as UserService from '../../services/UserService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
-//获取应用实例
 const app = getApp();
 
 Page({
@@ -11,6 +10,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
+
   bindUserInfo(nickName, headImg) {
     UserService.bindUserInfo(nickName, headImg)
       .then(() => {})
@@ -21,6 +21,7 @@ Page({
         });
       });
   },
+
   getUserInfo: function(e) {
     if (e.detail.userInfo) {
       const userInfo = e.detail.userInfo;

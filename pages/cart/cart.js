@@ -131,11 +131,11 @@ Page({
 
   //点击全选
   allcheckTap() {
-    let shopcar = this.data.validCarts,
-      allsel = !this.data.allsel, //点击全选后allsel变化
-      total = 0,
-      discountMoney = 0,
-      finallyMoney = 0;
+    let shopcar = this.data.validCarts;
+    let allsel = !this.data.allsel; //点击全选后allsel变化
+    let total = 0;
+    let discountMoney = 0;
+    let finallyMoney = 0;
     for (let i = 0, len = shopcar.length; i < len; i++) {
       shopcar[i].check = allsel; //所有商品的选中状态和allsel值一样
       if (allsel) {
@@ -173,9 +173,9 @@ Page({
 
   //判断是否为全选
   judgmentAll() {
-    let shopcar = this.data.validCarts,
-      shoplen = shopcar.length,
-      lenIndex = 0; //选中的物品的个数
+    let shopcar = this.data.validCarts;
+    let shoplen = shopcar.length;
+    let lenIndex = 0; //选中的物品的个数
     for (let i = 0; i < shoplen; i++) {
       //计算购物车选中的商品的个数
       shopcar[i].check && lenIndex++;
@@ -215,12 +215,6 @@ Page({
           selarr.splice(index, 1);
         }
       });
-      // for (let i = 0, len = selarr.length; i < len; i++) {
-      //   if (shopcar[Index].id == selarr[i].id) {
-      //     selarr.splice(i, 1);
-      //     break;
-      //   }
-      // }
     }
     finallyMoney = total - discountMoney;
     this.getCartGift(finallyMoney);
@@ -265,11 +259,11 @@ Page({
   },
 
   decrementQuantity(e) {
-    let Index = e.currentTarget.dataset.index, //点击的商品下标值
-      shopcar = this.data.validCarts,
-      total = this.data.total, //总计
-      discountMoney = this.data.discountMoney,
-      finallyMoney = this.data.finallyMoney; //实际
+    let Index = e.currentTarget.dataset.index; //点击的商品下标值
+    let shopcar = this.data.validCarts;
+    let total = this.data.total; //总计
+    let discountMoney = this.data.discountMoney;
+    let finallyMoney = this.data.finallyMoney; //实际
     if (shopcar[Index].goods_sku_num === 1) {
       wx.showModal({
         title: '删除商品',
@@ -515,9 +509,6 @@ Page({
       });
   },
 
-  onLoad: function(options) {},
-  onReady: function() {},
-
   getAllCarts() {
     CartService.getAllCarts()
       .then((res) => {
@@ -633,7 +624,6 @@ Page({
             }
           });
         }
-        // this.data.showGiftTip = res.data.data.flag === 0;
         this.data.showGiftButton = res.data.data.flag === 1;
         this.data.giftTip = res.data.data.reason;
         this.setData({
@@ -651,7 +641,6 @@ Page({
       });
   },
 
-  /**   * 生命周期函数--监听页面显示   */
   onShow() {
     this.getUser();
     this.getshippingCharge();

@@ -2,14 +2,7 @@ import * as AddressService from '../../../services/AddressService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {},
-
-  onUnload() {
-    RouterUtil.go('/pages/user/user');
-  },
 
   getAddressList() {
     wx.showLoading({
@@ -51,7 +44,7 @@ Page({
           title: res.data.data.message,
           icon: 'none',
           duration: 3000,
-          success: function() {
+          success: () => {
             setTimeout(function() {
               wx.hideToast();
             }, 2000);
@@ -86,32 +79,7 @@ Page({
     this.getAddressList();
   },
 
-  onShow: function() {
-    // this.getAddressList();
+  onUnload() {
+    RouterUtil.go('/pages/user/user');
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {},
 });

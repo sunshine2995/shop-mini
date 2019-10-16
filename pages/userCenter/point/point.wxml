@@ -1,4 +1,3 @@
-<!--pages/userCenter/point/point.wxml-->
 <view class="pointContainer">
   <view class="tip">
     <image

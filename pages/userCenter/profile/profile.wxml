@@ -1,4 +1,3 @@
-<!--pages/userCenter/profile/profile.wxml-->
 <view class="profileContainer">
   <text class="title">菜巴士用户注册协议</text>
   <text class="content"

@@ -1,5 +1,3 @@
-/* pages/order/list/list.wxss */
-
 .OrderListContainer {
   min-height: 100vh;
   padding-top: 10rpx;

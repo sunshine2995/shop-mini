@@ -1,4 +1,3 @@
-<!--pages/order/detail/detail.wxml-->
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 
 <view class="OrderDetail">

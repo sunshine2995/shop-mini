@@ -94,9 +94,6 @@
           <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
         </view>
       </block>
-      <!-- <block wx:if="{{ goodsInfo.is_standard }}">
-        <text class="invalid-price-line">市场价 ￥{{ goodSku.market_price }}/{{ goodSku.goods_sku_unit.name }}</text>
-      </block> -->
       <block wx:if="{{ !goodsInfo.is_standard }}">
         <text class="invalid-price">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_sell_unit.name }}</text>
       </block>

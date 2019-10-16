@@ -1,5 +1,3 @@
-/* pages/activity/invite/invite.wxss */
-
 .inviteContainer {
   min-height: 100vh;
   background-color: #6a38cc;

@@ -1,5 +1,3 @@
-/* pages/recharge/recharge.wxss */
-
 .RechargeContainer {
   min-height: 100vh;
   padding-bottom: 60rpx;
@@ -54,22 +52,9 @@
 }
 
 .tab-item.active {
-  /* position: relative; */
   border: 1px solid #fe3059;
   color: #fe3059;
 }
-
-/* .tab-item.active:after {
-  content: "";
-  display: block;
-  height: 8rpx;
-  width: 52rpx;
-  background: #4675f9;
-  position: absolute;
-  bottom: 0;
-  left: 5rpx;
-  border-radius: 16rpx;
-} */
 
 .tab-content {
   height: 433rpx;

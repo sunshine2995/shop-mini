@@ -6,9 +6,8 @@ Page({
     activityImgs: [],
   },
   goPath(event) {
-    let path;
     if (event.currentTarget.dataset.path) {
-      path = event.currentTarget.dataset.path;
+      const path = event.currentTarget.dataset.path;
       RouterUtil.go(path);
     }
   },

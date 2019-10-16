@@ -1,4 +1,3 @@
-/* pages/userCenter/about/order/order.wxss */
 .about-title {
   padding: 40rpx 0 30rpx;
   box-sizing: border-box;

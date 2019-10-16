@@ -180,12 +180,6 @@
             <block wx:for="{{ goodSpu.goods_sku_list }}" wx:key="index" wx:for-item="goodSku">
               <view class="marketing-standard">
                 <view class="marketing-different-price">
-                  <!-- <view class="goods-different-price" wx:if="{{ goodSpu.is_standard }}">
-                    <text class="market-price-text">市场价</text>
-                    <text class="market-price-number"
-                      >￥{{ goodSku.market_price }}/{{ goodSku.goods_sku_unit.name }}</text
-                    >
-                  </view> -->
                   <view class="goods-different-price" wx:if="{{ !goodSpu.is_standard }}">
                     <text class="market-price-text">单价</text>
                     <text class="market-price-number"

@@ -1,4 +1,3 @@
-/* pages/userCenter/point/point.wxss */
 .tip {
   text-align: center;
   margin: 120rpx auto;

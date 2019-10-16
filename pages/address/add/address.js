@@ -3,8 +3,6 @@ import key from '../../../libs/config';
 import throttle from '../../../utils/util';
 import * as AddressService from '../../../services/AddressService';
 
-var myAmapFun;
-
 Page({
   data: {
     latitude: '', //纬度
@@ -93,17 +91,7 @@ Page({
             self.data.latitude = res.latitude;
             self.data.longitude = res.longitude;
           }
-          // self.data.markers = [{
-          //   id: 0,
-          //   longitude: res.longitude,
-          //   latitude: res.latitude,
-          //   title: res.address,
-          //   iconPath: '../../../images/home/user.png',
-          //   width: 32,
-          //   height: 32
-          // }]
           self.setData({
-            // markers: self.data.markers,
             latitude: self.data.latitude,
             longitude: self.data.longitude,
           });
@@ -130,8 +118,6 @@ Page({
         //成功回调
         [this.data.longitude, this.data.latitude] = String(_res.streetNumber.location).split(',');
         this.setData({
-          //设置markers属性和地图位置poi，将结果在地图展示
-          // markers: this.data.markers,
           latitude: this.data.latitude,
           longitude: this.data.longitude,
           street: this.data.address.street,
@@ -143,7 +129,6 @@ Page({
 
   // 地址转经纬度
   getLocationByAddress() {
-    console.log('getLocationByAddress');
     wx.showLoading({
       title: '',
     });
@@ -162,10 +147,6 @@ Page({
       })
       .catch((error) => {});
   },
-
-  markertap(e) {},
-
-  controltap(e) {},
 
   // 更改地址类型
   toggle(e) {
@@ -267,17 +248,9 @@ Page({
   onLoad: function(options) {
     var self = this;
     self.data.address.id = options.addressId;
-    myAmapFun = new amapFile.AMapWX({
+    const myAmapFun = new amapFile.AMapWX({
       key: self.data.key,
     });
-    // wx.getLocation({
-    //   type: 'gcj02',
-    //   success(res) {
-    //     self.data.latitude = res.latitude;
-    //     self.data.longitude = res.longitude;
-    //     self.getAddressByLocation()
-    //   }
-    // })
 
     myAmapFun.getRegeo({
       success: function(res) {
@@ -311,39 +284,7 @@ Page({
           region: [self.data.address.province, self.data.address.city, self.data.address.area],
         });
       },
-      fail: function(info) {
-        //失败回调
-      },
+      fail: function(info) {},
     });
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-
-  onShow: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {},
 });

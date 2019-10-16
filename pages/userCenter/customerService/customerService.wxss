@@ -1,4 +1,3 @@
-/* pages/userCenter/customerService/customerService.wxss */
 .customer-service-container {
   min-height: 100vh;
   text-align: center;

@@ -1,5 +1,3 @@
-/* pages/order/submit/submit.wxss */
-
 .SubmitContainer {
   padding-bottom: 100rpx;
   box-sizing: border-box;

@@ -2,7 +2,7 @@ import moment from '../../../utils/moment';
 import * as OrderService from '../../../services/OrderService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {
@@ -64,12 +64,6 @@ Page({
     ifEvaluate: false, // 是否从评论跳转的
   },
 
-  onUnload() {
-    if (this.data.ifEvaluate) {
-      RouterUtil.go('/pages/user/user');
-    }
-  },
-
   cancelPay() {
     this.data.isShowCurtain = false;
     this.setData({
@@ -85,7 +79,7 @@ Page({
       .then((res) => {
         wx.hideLoading();
         const statusNumList = res.data.data;
-        (this.data.statusList = [
+        this.data.statusList = [
           {
             status: '全部',
             num: 0,
@@ -118,10 +112,10 @@ Page({
             status: '退款/售后',
             num: 0,
           },
-        ]),
-          this.setData({
-            statusList: this.data.statusList,
-          });
+        ];
+        this.setData({
+          statusList: this.data.statusList,
+        });
       })
       .catch((error) => {
         wx.showToast({
@@ -181,7 +175,7 @@ Page({
   },
 
   bindMultiPickerColumnChange(e) {
-    var data = {
+    let data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex,
     };
@@ -271,7 +265,6 @@ Page({
         });
         this.setData({
           isShowCurtain: false,
-          // showTimePicker: false,
         });
         RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
       })
@@ -294,14 +287,12 @@ Page({
           package: data.package,
           signType: data.signType,
           paySign: data.paySign,
-          success: (res) => {
+          success: () => {
             this.setData({
               isShowCurtain: false,
             });
             RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}`);
           },
-          fail: function(res) {},
-          complete: function(res) {},
         });
       })
       .catch((error) => {
@@ -386,9 +377,7 @@ Page({
       .as('minutes');
     const diff = moment.duration(moment(endTime).valueOf() - moment(startTime).valueOf()).as('minutes');
 
-    const todayTimes = []; // 从当前时间开始到配送时间结束时间段的数组
     const reduceMoneyTimes = []; // 有折扣商品的时间段的数组
-    const durationTimes = []; // 配送时间段的数组
     this.data.todayTimes = [];
     this.data.durationTimes = [];
 
@@ -601,7 +590,6 @@ Page({
   // 点击标题切换当前页时改变样式
   swichNav(e) {
     const index = e.target.dataset.current;
-    // var cur = e.target.dataset.current;
     if (this.data.currentTab == index) {
       return false;
     } else {
@@ -673,7 +661,13 @@ Page({
       title: '加载中',
     });
     this.getStatusNum();
-    // this.getAllOrderDetails();
+  },
+
+  lower() {
+    if (this.data.orderNum.length === 10) {
+      this.data.page = this.data.page + 1;
+      this.checkStatus();
+    }
   },
 
   onLoad(option) {
@@ -685,10 +679,9 @@ Page({
     }
   },
 
-  lower(e) {
-    if (this.data.orderNum.length === 10) {
-      this.data.page = this.data.page + 1;
-      this.checkStatus();
+  onUnload() {
+    if (this.data.ifEvaluate) {
+      RouterUtil.go('/pages/user/user');
     }
   },
 });

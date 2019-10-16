@@ -1,5 +1,3 @@
-/* pages/activity/withdraw/withdraw.wxss */
-
 .withdrawContainer {
   min-height: 100vh;
   background-color: #6a38cc;

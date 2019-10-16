@@ -1,4 +1,3 @@
-/* pages/userCenter/about/memberRecharge/manage.wxss */
 .problem-content {
   display: flex;
   align-items: center;

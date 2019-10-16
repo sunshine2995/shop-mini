@@ -1,4 +1,3 @@
-/* pages/userCenter/enterprise/enterprise.wxss */
 .enterprise-image {
   width: 100%;
   height: 1255rpx;

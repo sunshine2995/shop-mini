@@ -18,18 +18,6 @@ Page({
     RouterUtil.go(`/pages/order/submit/submit?money=${money}&couponId=${couponId}`);
   },
 
-  onLoad: function(options) {
-    // 页面创建时执行
-    this.data.money = options.money;
-  },
-
-  onShow: function() {
-    wx.showLoading({
-      title: '',
-    });
-    this.getCouponsList();
-  },
-
   getCouponsList() {
     UserService.getCouponsList(this.data.money)
       .then((res) => {
@@ -46,5 +34,16 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  onLoad: function(options) {
+    this.data.money = options.money;
+  },
+
+  onShow: function() {
+    wx.showLoading({
+      title: '',
+    });
+    this.getCouponsList();
   },
 });

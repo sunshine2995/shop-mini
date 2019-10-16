@@ -1,4 +1,3 @@
-/* pages/userCenter/join/join.wxss */
 .joinContainer {
   padding-bottom: 30rpx;
   box-sizing: border-box;

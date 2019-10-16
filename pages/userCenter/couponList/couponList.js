@@ -15,13 +15,6 @@ Page({
     RouterUtil.go('/pages/sort/sort');
   },
 
-  onShow: function() {
-    wx.showLoading({
-      title: '',
-    });
-    this.getMyCoupons();
-  },
-
   getMyCoupons() {
     UserService.getMyCoupons()
       .then((res) => {
@@ -40,5 +33,12 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  onShow: function() {
+    wx.showLoading({
+      title: '',
+    });
+    this.getMyCoupons();
   },
 });

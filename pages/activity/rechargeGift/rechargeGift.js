@@ -1,16 +1,15 @@
-// pages/activity/rechargeGift/rechargeGift.js
 Page({
   data: {
     ani: '',
   },
 
   startAnimation() {
-    var animation = wx.createAnimation({
+    const animation = wx.createAnimation({
       duration: 2000,
       timingFunction: 'ease',
       delay: 0,
     });
-    var next = false;
+    let next = false;
     setInterval(() => {
       if (next) {
         //根据需求实现相应的动画

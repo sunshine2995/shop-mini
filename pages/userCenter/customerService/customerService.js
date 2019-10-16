@@ -1,7 +1,6 @@
-// pages/userCenter/customerService/customerService.js
 import * as UserService from '../../../services/UserService';
 
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {

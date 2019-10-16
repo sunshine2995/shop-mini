@@ -17,6 +17,7 @@ Page({
     subbranchArea: '', // 配送地址
     shipping: 0, // 免配送费条件
   },
+
   getUser() {
     UserService.getUser()
       .then((res) => {
@@ -120,7 +121,6 @@ Page({
                 });
               });
           },
-          fail(res) {},
         });
       } else {
         this.addCart();
@@ -160,7 +160,7 @@ Page({
     GoodsService.getDetail(this.data.spuId)
       .then((res) => {
         wx.hideLoading();
-        var goodsInfo = res.data.data;
+        const goodsInfo = res.data.data;
         this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
         this.data.stock = goodsInfo.goods_sku_list[0].stock;
         this.setData({
@@ -202,7 +202,7 @@ Page({
     GoodsService.getCollectStatus(this.data.spuId)
       .then((res) => {
         this.getDetail();
-        var collectionStatus = Boolean(res.data.data.status);
+        const collectionStatus = Boolean(res.data.data.status);
         this.setData({
           collectionStatus: collectionStatus,
         });
@@ -216,6 +216,30 @@ Page({
       });
   },
 
+  //图片滑动事件
+  change(e) {
+    const index = e.detail.current;
+    const imgUrls = this.data.goodsInfo.goods_spu_details_image;
+    this.imgH(imgUrls[index].details_img_url);
+  },
+
+  //获取图片的高度，把它设置成swiper的高度
+  imgH(e) {
+    const winWid = wx.getSystemInfoSync().windowWidth * 2;
+    wx.getImageInfo({
+      //获取图片长宽等信息
+      src: e,
+      success: (res) => {
+        const imgw = res.width;
+        const imgh = res.height;
+        const swiperH = (winWid * imgh) / imgw;
+        this.setData({
+          swiperHeight: swiperH, //设置高度
+        });
+      },
+    });
+  },
+
   onLoad(option) {
     wx.showLoading({
       title: '加载中',
@@ -224,30 +248,5 @@ Page({
     this.getCollectStatus();
     this.getUser();
     this.getshippingCharge();
-  },
-
-  //图片滑动事件
-  change(e) {
-    var index = e.detail.current;
-    var imgUrls = this.data.goodsInfo.goods_spu_details_image;
-    this.imgH(imgUrls[index].details_img_url);
-  },
-
-  //获取图片的高度，把它设置成swiper的高度
-  imgH(e) {
-    var that = this;
-    var winWid = wx.getSystemInfoSync().windowWidth * 2;
-    wx.getImageInfo({
-      //获取图片长宽等信息
-      src: e,
-      success: function(res) {
-        var imgw = res.width;
-        var imgh = res.height;
-        var swiperH = (winWid * imgh) / imgw;
-        that.setData({
-          swiperHeight: swiperH, //设置高度
-        });
-      },
-    });
   },
 });

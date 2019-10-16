@@ -1,4 +1,3 @@
-/* pages/userCenter/profile/profile.wxss */
 .profileContainer {
   padding: 30rpx;
   box-sizing: border-box;

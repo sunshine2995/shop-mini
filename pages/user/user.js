@@ -2,7 +2,7 @@ import * as UserService from '../../services/UserService';
 import * as OrderService from '../../services/OrderService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {
@@ -120,7 +120,7 @@ Page({
     UserService.getUserInfo()
       .then((res) => {
         wx.hideLoading();
-        var userInfo = res.data.data;
+        const userInfo = res.data.data;
         this.setData({
           userInfo: userInfo,
         });

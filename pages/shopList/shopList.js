@@ -1,17 +1,12 @@
 import * as AddressService from '../../services/AddressService.js';
 import * as RouterUtil from '../../utils/RouterUtil';
 
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {
     shopList: [], // 店铺列表
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {},
 
   getShopListByLocation(longitude, latitude) {
     wx.showLoading({
@@ -84,47 +79,17 @@ Page({
       });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-    const that = this;
-    let latitude, longitude;
     wx.getLocation({
       type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
-      success(res) {
-        latitude = res.latitude;
-        longitude = res.longitude;
-        that.getShopListByLocation(longitude, latitude);
+      success: (res) => {
+        const latitude = res.latitude;
+        const longitude = res.longitude;
+        this.getShopListByLocation(longitude, latitude);
       },
       fail(res) {
-        that.getShopList();
+        this.getShopList();
       },
     });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {},
 });

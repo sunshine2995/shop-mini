@@ -1,5 +1,3 @@
-/* pages/goodsSearch/goodsSearch.wxss */
-
 .search-input {
   display: flex;
   align-items: center;

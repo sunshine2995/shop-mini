@@ -4,7 +4,7 @@ import * as AddressService from '../../../services/AddressService';
 import * as OrderService from '../../../services/OrderService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {
@@ -109,8 +109,8 @@ Page({
 
   // 监听字数
   bindTextAreaChange(e) {
-    var value = e.detail.value;
-    var len = parseInt(value.length);
+    const value = e.detail.value;
+    const len = parseInt(value.length);
     if (len > this.data.noteMaxLen) return;
     this.setData({
       info: value,
@@ -579,15 +579,11 @@ Page({
   },
 
   onShow() {
-    var pages = getCurrentPages(); //获取加载的页面
-    var currentPage = pages[pages.length - 1]; //获取当前页面的对象
     this.data.balance = app.globalData.userData.balance;
     moment.suppressDeprecationWarnings = true;
     this.data.mobile = app.globalData.userData.phone;
     this.data.skuIds = wx.getStorageSync('selectedIds');
-    // if (this.data.skuIds.length) {
     this.checkout();
-    // }
     this.getDeliveryTime();
     if (app.globalData.deliveryEnd) {
       if (moment(app.globalData.deliveryEnd).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')) {

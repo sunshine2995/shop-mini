@@ -1,4 +1,3 @@
-/* pages/userCenter/balance/balance.wxss */
 .adverdting-image-history-bill {
   position: relative;
 }

@@ -1,5 +1,3 @@
-/* pages/activity/newUser/newUser.wxss */
-
 .new-user-content {
   position: relative;
 }

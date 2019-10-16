@@ -1,4 +1,3 @@
-// pages/activity/withdraw/withdraw.js
 import * as UserService from '../../../services/UserService';
 import * as GiftService from '../../../services/GiftService';
 
@@ -90,7 +89,7 @@ Page({
     UserService.getUser()
       .then((res) => {
         wx.hideLoading();
-        var userInfo = res.data.data;
+        const userInfo = res.data.data;
         this.setData({
           userInfo: userInfo,
         });
@@ -105,12 +104,12 @@ Page({
   },
 
   startAnimation() {
-    var animation = wx.createAnimation({
+    const animation = wx.createAnimation({
       duration: 2000,
       timingFunction: 'ease',
       delay: 0,
     });
-    var next = false;
+    let next = false;
     setInterval(() => {
       if (next) {
         animation.rotate(30).step();
@@ -133,7 +132,6 @@ Page({
   onShareAppMessage: function(res) {
     const invitedId = this.data.userInfo.id;
     if (res.from === 'button') {
-      // 来自页面内转发按钮
       console.log(res.target, 'share');
     }
     return {

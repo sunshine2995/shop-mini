@@ -3,8 +3,6 @@ import key from '../../../libs/config';
 import throttle from '../../../utils/util';
 import * as AddressService from '../../../services/AddressService';
 
-let myAmapFun;
-
 Page({
   data: {
     latitude: '', //纬度
@@ -25,7 +23,6 @@ Page({
     ],
 
     region: ['单击选择地址', '', ''],
-    // customItem: '全部',
 
     typeOptions: [
       {
@@ -84,26 +81,25 @@ Page({
 
   // 拖动地图
   regionchange(e) {
-    let self = this;
-    self.mapCtx = wx.createMapContext('map');
+    this.mapCtx = wx.createMapContext('map');
     if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')) {
-      self.mapCtx.getCenterLocation({
-        success: function(res) {
+      this.mapCtx.getCenterLocation({
+        success: (res) => {
           if (res.latitude && res.longitude) {
-            self.data.latitude = res.latitude;
-            self.data.longitude = res.longitude;
+            this.data.latitude = res.latitude;
+            this.data.longitude = res.longitude;
           }
-          self.setData({
+          this.setData({
             // markers: self.data.markers,
-            latitude: self.data.latitude,
-            longitude: self.data.longitude,
+            latitude: this.data.latitude,
+            longitude: this.data.longitude,
           });
           wx.showLoading({
             title: '',
           });
-          self.getAddressByLocation();
-          if (!self.data.latitude || !self.data.longitude) {
-            self.getLocationByAddress();
+          this.getAddressByLocation();
+          if (!this.data.latitude || !this.data.longitude) {
+            this.getLocationByAddress();
           }
         },
       });
@@ -166,10 +162,6 @@ Page({
       })
       .catch((error) => {});
   },
-
-  markertap(e) {},
-
-  controltap(e) {},
 
   // 更改地址类型
   toggle(e) {
@@ -278,8 +270,6 @@ Page({
         this.data.address.street = addressInfo.buyer_address;
         this.data.address.radioValue = addressInfo.sex;
         this.data.address.addressType = addressInfo.address_type;
-        // this.data.latitude = addressInfo.latitude;
-        // this.data.longitude = addressInfo.longitude;
         this.data.defaultCheck = addressInfo.is_default;
         this.data.options.forEach((item) => {
           if (+item.value === +this.data.address.radioValue) {
@@ -302,8 +292,6 @@ Page({
           defaultCheck: this.data.defaultCheck,
           options: this.data.options,
           active: this.data.active,
-          // latitude: this.data.latitude,
-          // longitude: this.data.longitude,
         });
         this.getLocationByAddress();
       })
@@ -313,44 +301,12 @@ Page({
         });
       });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad(options) {
     this.data.address.id = options.addressId;
     this.getAddressInfo();
-    myAmapFun = new amapFile.AMapWX({
+    const myAmapFun = new amapFile.AMapWX({
       key: this.data.key,
     });
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-
-  onShow: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {},
 });

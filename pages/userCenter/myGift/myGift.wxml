@@ -1,4 +1,3 @@
-<!--pages/userCenter/myGift/myGift.wxml-->
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 <view class="MyGift">
   <view class="invalid-gift" wx:if="{{ myGiftList.length }}">

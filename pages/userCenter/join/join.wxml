@@ -1,4 +1,3 @@
-<!--pages/userCenter/join/join.wxml-->
 <view class="joinContainer">
   <view class="join-term">
     <text>如果你是</text>

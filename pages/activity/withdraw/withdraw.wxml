@@ -1,5 +1,3 @@
-<!--pages/activity/withdraw/withdraw.wxml-->
-
 <view class="withdrawContainer">
   <view class="recharge-gift-image" wx:if="{{ !rechargeGiftList.length }}">
     <image
@@ -40,11 +38,6 @@
           mode="widthFix"
         ></image>
       </button>
-      <!-- <image
-        class="recharge-button-img"
-        src="https://img.caibashi.com/713d380d45533eddf4bd86094c8843c6.png"
-        mode="widthFix"
-      ></image> -->
     </view>
   </view>
   <view class="invite-withdraw">

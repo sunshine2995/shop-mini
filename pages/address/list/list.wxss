@@ -1,4 +1,3 @@
-/* pages/address/list/list.wxss */
 .AddressListContainer {
   background-color: #f4f4f3;
   min-height: 100vh;

@@ -1,5 +1,3 @@
-/* pages/activity/prepaidGift/prepaidGift.wxss */
-
 .recharge-gift-image {
   background-color: #6a38cc;
   position: relative;
