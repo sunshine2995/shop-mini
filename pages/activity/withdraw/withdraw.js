@@ -37,9 +37,10 @@ Page({
       GiftService.getWithdraw(this.data.money)
         .then((res) => {
           wx.showToast({
-            title: '请求成功',
+            title: '提现成功',
             icon: 'none',
           });
+          wx.navigateBack();
         })
         .catch(() => {
           wx.showToast({

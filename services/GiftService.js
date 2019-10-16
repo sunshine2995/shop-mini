@@ -42,7 +42,7 @@ export function createTask() {
 
 // 领取奖励
 export function receiveReward(shareId) {
-  return http.post(`/activity/share_recharge/leg?share_id=${shareId}`);
+  return http.get(`/activity/share_recharge/leg?share_id=${shareId}`);
 }
 
 // 获取我邀请的人
@@ -52,10 +52,10 @@ export function getMyInvite() {
 
 // 获取二维码
 export function getShareQrcode() {
-  return http.get('/activity/share_mini_qrcode');
+  return http.post('/user/qr_code');
 }
 
 // 获取二维码
 export function getWithdraw(money) {
-  return http.post('/wechat/transfer', { money });
+  return http.post('/wechat/mini_transfer', { money });
 }
