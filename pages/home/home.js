@@ -140,13 +140,11 @@ Page({
     const inviteImages = [
       {
         img: 'https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png',
-        // url: '/pages/activity/share/share',
-        url: '/pages/home/home',
+        url: '/pages/activity/share/share',
       },
       {
         img: 'https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png',
-        // url: '/pages/activity/invite/invite',
-        url: '/pages/home/home',
+        url: '/pages/activity/invite/invite',
       },
     ];
 
