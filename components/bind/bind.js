@@ -37,7 +37,7 @@ Component({
     },
 
     sendMsg() {
-      var phoneNum = this.data.phoneNum;
+      const phoneNum = this.data.phoneNum;
       if (phoneNum == '' || phoneNum.replace(/\s/gi, '').length !== 11) {
         wx.showToast({
           title: '请输入正确的手机号码',
