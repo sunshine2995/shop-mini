@@ -1,14 +1,9 @@
 import * as UserService from '../../services/UserService';
+import validator from '../../utils/validator';
 
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {},
 
-  /**
-   * 组件的初始数据
-   */
   data: {
     phoneNum: '', // 用户手机号
     code: '', // 验证码
@@ -38,7 +33,7 @@ Component({
 
     sendMsg() {
       const phoneNum = this.data.phoneNum;
-      if (phoneNum == '' || phoneNum.replace(/\s/gi, '').length !== 11) {
+      if (!validator.isPhoneNumber(phoneNum)) {
         wx.showToast({
           title: '请输入正确的手机号码',
           icon: 'none',
@@ -124,20 +119,5 @@ Component({
           });
       }
     },
-
-    // onTapChild () {
-    // detail对象，提供给事件监听函数
-    // var myEventDetail = {
-    //   id: event.currentTarget.dataset.id
-    // }
-    // 触发事件的选项
-    // var myEventOption = {}
-    // 使用 triggerEvent 方法触发自定义组件事件，指定事件名、detail对象和事件选项
-    //   this.triggerEvent('bindPhone', {
-    //     phoneNum: this.data.phoneNum,
-    //     code: this.data.code,
-    //     agreementStatus: this.data.agreementStatus,
-    //   })
-    // }
   },
 });

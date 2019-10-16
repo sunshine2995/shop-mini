@@ -2,6 +2,7 @@ import amapFile from '../../../libs/amap-wx';
 import key from '../../../libs/config';
 import throttle from '../../../utils/util';
 import * as AddressService from '../../../services/AddressService';
+import validator from '../../../utils/validator';
 
 Page({
   data: {
@@ -214,7 +215,8 @@ Page({
       longi: this.data.longitude,
       lati: this.data.latitude,
     };
-    if (this.data.address.name.replace(/\s/gi, '').length === 0) {
+
+    if (validator.isBlank(this.data.address.name)) {
       wx.showToast({
         title: '请填写您的姓名',
         icon: 'none',
@@ -224,7 +226,7 @@ Page({
         title: '请填写您的电话号码',
         icon: 'none',
       });
-    } else if (this.data.address.mobile.replace(/\s/gi, '').length !== 11) {
+    } else if (!validator.isPhoneNumber(this.data.address.mobile)) {
       wx.showToast({
         title: '请填写正确的电话号码',
         icon: 'none',
@@ -234,7 +236,7 @@ Page({
         title: '选择城市信息',
         icon: 'none',
       });
-    } else if (!this.data.address.street.replace(/\s/gi, '')) {
+    } else if (validator.isBlank(this.data.address.street)) {
       wx.showToast({
         title: '请填写具体地址',
         icon: 'none',
