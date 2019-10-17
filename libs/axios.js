@@ -1,22 +1,22 @@
 import * as RouterUtil from '../utils/RouterUtil';
 
 function wxPromise(method, url, data, header) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     wx.request({
       url: url,
       method: method,
       data: data,
       header: header,
-      success: function(res) {
-        if (res.data.code == 200 || res.data.infocode == 10000) {
+      success: (res) => {
+        if (res.data.code === 200 || res.data.infocode === 10000) {
           resolve(res);
-        } else if (res.data.code == 401) {
+        } else if (res.data.code === 401) {
           RouterUtil.go('/pages/login/login');
         } else {
           reject(res);
         }
       },
-      fail: function(res) {
+      fail: (res) => {
         reject(res);
       },
     });

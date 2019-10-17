@@ -175,22 +175,14 @@ Page({
 
   // 是否为默认地址
   checkboxChange(e) {
-    if (e.detail.value == '默认') {
-      this.data.defaultCheck = true;
-    } else {
-      this.data.defaultCheck = false;
-    }
+    this.data.defaultCheck = e.detail.value === '默认';
   },
 
   // 更换性别
   radioChange(e) {
     this.data.address.radioValue = +e.detail.value;
     this.data.options.forEach((item) => {
-      if (+item.value === +e.detail.value) {
-        item.checked = true;
-      } else {
-        item.checked = false;
-      }
+      item.checked = +item.value === +e.detail.value;
       this.setData({
         options: this.data.options,
       });
@@ -274,11 +266,7 @@ Page({
         this.data.address.addressType = addressInfo.address_type;
         this.data.defaultCheck = addressInfo.is_default;
         this.data.options.forEach((item) => {
-          if (+item.value === +this.data.address.radioValue) {
-            item.checked = true;
-          } else {
-            item.checked = false;
-          }
+          item.checked = +item.value === +this.data.address.radioValue;
         });
         this.data.typeOptions.forEach((item, index) => {
           if (+item.value === +this.data.address.addressType) {

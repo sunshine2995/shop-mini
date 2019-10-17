@@ -64,11 +64,7 @@ Page({
         this.data.money = item.text;
       }
     });
-    if (Number(this.data.money) > Number(this.data.userInfo.withdrawal)) {
-      this.data.showButton = false;
-    } else {
-      this.data.showButton = true;
-    }
+    this.data.showButton = Number(this.data.money) <= Number(this.data.userInfo.withdrawal);
     this.setData({
       active: active,
       showButton: this.data.showButton,

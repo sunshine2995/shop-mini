@@ -12,8 +12,8 @@ Component({
       type: String,
       value: '',
       observer: function(newVal, oldVal) {
-        var first = '';
-        var second = '';
+        let first;
+        let second = '';
         if (String(Number(newVal)).split('.').length > 1) {
           [first, second] = String(Number(newVal)).split('.');
         } else {
@@ -57,10 +57,4 @@ Component({
     // 跳转活动详情
     activityDetailTap: function(e) {},
   },
-
-  ready() {},
-  // 组件生命周期函数，可以为函数，或一个在methods段中定义的方法名
-  attached: function() {},
-  moved: function() {},
-  detached: function() {},
 });

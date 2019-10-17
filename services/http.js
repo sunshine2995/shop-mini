@@ -14,9 +14,9 @@ const generateSignature = (timestamp) => {
 
 http.addRequestInterceptor((header) => {
   const token = wx.getStorageSync('token');
-  header.Authorization = token;
   const timestamp = getTime();
   const signature = generateSignature(timestamp);
+  header.Authorization = token;
   header.Timestamp = timestamp;
   header.Signature = signature;
 });

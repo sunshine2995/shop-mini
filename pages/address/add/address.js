@@ -84,7 +84,7 @@ Page({
   regionchange(e) {
     let self = this;
     self.mapCtx = wx.createMapContext('map');
-    if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')) {
+    if (e.type === 'end' && (e.causedBy === 'scale' || e.causedBy === 'drag')) {
       self.mapCtx.getCenterLocation({
         success: function(res) {
           if (res.latitude && res.longitude) {
@@ -159,22 +159,14 @@ Page({
 
   // 是否为默认地址
   checkboxChange(e) {
-    if (e.detail.value == '默认') {
-      this.data.defaultCheck = true;
-    } else {
-      this.data.defaultCheck = false;
-    }
+    this.data.defaultCheck = e.detail.value === '默认';
   },
 
   // 更换性别
   radioChange(e) {
     this.data.address.radioValue = +e.detail.value;
     this.data.options.forEach((item) => {
-      if (+item.value === +e.detail.value) {
-        item.checked = true;
-      } else {
-        item.checked = false;
-      }
+      item.checked = +item.value === +e.detail.value;
       this.setData({
         options: this.data.options,
       });
@@ -244,7 +236,7 @@ Page({
   },
 
   onLoad: function(options) {
-    var self = this;
+    const self = this;
     self.data.address.id = options.addressId;
     const myAmapFun = new amapFile.AMapWX({
       key: self.data.key,

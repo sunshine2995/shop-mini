@@ -530,10 +530,10 @@ Page({
             this.data.invalidSkuIds.push(item.goods_sku_id);
           });
           this.data.selarr = [];
-          var selectedIds = wx.getStorageSync('selectedIds');
-          var total = 0;
-          var discountMoney = 0;
-          var finallyMoney = 0;
+          const selectedIds = wx.getStorageSync('selectedIds');
+          let total = 0;
+          let discountMoney = 0;
+          let finallyMoney = 0;
 
           if (selectedIds.length) {
             this.data.validCarts.forEach((item) => {
@@ -544,7 +544,7 @@ Page({
               });
             });
           }
-          var selarr = this.data.selarr;
+          const selarr = this.data.selarr;
           for (let i = 0, len = this.data.validCarts.length; i < len; i++) {
             //这里是对选中的商品的价格进行总结
             if (this.data.validCarts[i].check) {

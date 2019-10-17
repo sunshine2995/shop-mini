@@ -1,5 +1,4 @@
 import * as UserService from '../../services/UserService';
-import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({
   login() {

@@ -88,9 +88,9 @@ Page({
         /**
          * 上传完成后把文件上传到服务器
          */
-        var count = 0;
+        let count = 0;
         this.data.imgList = [];
-        for (var i = 0, h = that.data.tempFilePaths.length; i < h; i++) {
+        for (let i = 0, h = that.data.tempFilePaths.length; i < h; i++) {
           //上传文件
           wx.uploadFile({
             url: 'https://upload.caibashi.com/uploads/',

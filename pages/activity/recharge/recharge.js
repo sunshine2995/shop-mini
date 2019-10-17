@@ -77,11 +77,7 @@ Page({
           this.data.giftId = 0;
         }
         this.data.giftList.forEach((item, index) => {
-          if (index === 0) {
-            item.checked = true;
-          } else {
-            item.checked = false;
-          }
+          item.checked = index === 0;
         });
         this.setData({
           giftList: this.data.giftList,

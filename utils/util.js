@@ -15,11 +15,11 @@ const formatNumber = (n) => {
 };
 
 const throttle = (fn, interval) => {
-  var enterTime = 0;
-  var gapTime = interval || 300;
+  let enterTime = 0;
+  const gapTime = interval || 300;
   return function() {
-    var context = this;
-    var backTime = new Date();
+    const context = this;
+    const backTime = new Date();
     if (backTime - enterTime > gapTime) {
       fn.call(context, arguments);
       enterTime = backTime;

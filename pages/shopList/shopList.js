@@ -16,11 +16,7 @@ Page({
       .then((res) => {
         res.data.data.forEach((item) => {
           wx.hideLoading();
-          if (item.id === app.globalData.shopInfo.id) {
-            item.showMask = false;
-          } else {
-            item.showMask = true;
-          }
+          item.showMask = item.id !== app.globalData.shopInfo.id;
         });
         this.setData({
           shopList: res.data.data,

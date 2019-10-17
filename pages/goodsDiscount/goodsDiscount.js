@@ -27,7 +27,7 @@ Page({
     GoodsService.getDiscountList()
       .then((res) => {
         wx.hideLoading();
-        var discountList = res.data.data;
+        const discountList = res.data.data;
         this.setData({
           discountList: discountList,
         });
