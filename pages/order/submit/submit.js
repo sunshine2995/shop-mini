@@ -132,8 +132,11 @@ Page({
     if (!this.data.showWait) {
       this.data.showWait = true;
       this.data.showTodo = false;
+      this.data.arriveDate = '';
+      this.getDeliveryTime();
     }
     this.setData({
+      arriveDate: this.data.arriveDate,
       showWait: this.data.showWait,
       showTodo: this.data.showTodo,
     });
@@ -143,8 +146,11 @@ Page({
     if (!this.data.showTodo) {
       this.data.showTodo = true;
       this.data.showWait = false;
+      this.data.arriveDate = '';
+      this.getDeliveryTime();
     }
     this.setData({
+      arriveDate: this.data.arriveDate,
       showWait: this.data.showWait,
       showTodo: this.data.showTodo,
     });
@@ -438,19 +444,27 @@ Page({
         .format('YYYY/MM/DD HH:mm:ss');
     } else {
       chooseTime = shopTime;
-      todayTime = moment().format('YYYY/MM/DD HH:mm:ss');
+      todayTime = moment()
+        .add(15, 'minutes')
+        .format('YYYY/MM/DD HH:mm:ss');
     }
 
     const [start, end] = chooseTime.split(' - ');
-    const startTime = moment(`${moment().format('YYYY/MM/DD')} ${start}:00`)
-      .add(35, 'minutes')
-      .format('YYYY/MM/DD HH:mm:ss');
+    let startTime;
+    if (this.data.showWait) {
+      startTime = moment(`${moment().format('YYYY/MM/DD')} ${start}:00`)
+        .add(35, 'minutes')
+        .format('YYYY/MM/DD HH:mm:ss');
+    } else {
+      startTime = moment(`${moment().format('YYYY/MM/DD')} ${start}:00`)
+        .add(15, 'minutes')
+        .format('YYYY/MM/DD HH:mm:ss');
+    }
 
     const reduceMoneyTime = moment()
       .startOf('day')
       .add(22, 'hours')
       .add(10, 'minutes');
-
     const endTime = `${moment().format('YYYY/MM/DD')} ${end}:00`;
 
     const todayDiff = moment.duration(moment(endTime).valueOf() - moment(todayTime).valueOf()).as('minutes');
@@ -459,9 +473,9 @@ Page({
       .as('minutes');
     const diff = moment.duration(moment(endTime).valueOf() - moment(startTime).valueOf()).as('minutes');
 
-    const todayTimes = []; // 从当前时间开始到配送时间结束时间段的数组
+    this.data.todayTimes = []; // 从当前时间开始到配送时间结束时间段的数组
     const reduceMoneyTimes = []; // 有折扣商品的时间段的数组
-    const durationTimes = []; // 配送时间段的数组
+    this.data.durationTimes = []; // 配送时间段的数组
 
     const distance = 10;
 
