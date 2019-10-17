@@ -87,7 +87,7 @@ Page({
         const longitude = res.longitude;
         this.getShopListByLocation(longitude, latitude);
       },
-      fail(res) {
+      fail: (res) => {
         this.getShopList();
       },
     });

@@ -367,6 +367,9 @@ Page({
   },
 
   onLoad: function(options) {
+    if (options.scene) {
+      this.data.inviteId = decodeURIComponent(options.scene);
+    }
     if (options.invite_id) {
       this.data.inviteId = options.invite_id;
     }
