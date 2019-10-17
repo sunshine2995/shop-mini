@@ -11,7 +11,6 @@ Page({
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
     rechargeImg: [], //充值图片
-    isShowCurtain: false, // 遮罩层
     paymentType: 1, // 支付方式
     totalAmount: 0, // 充值金额
     rechargeTypeId: 4, //充值金额的Id
