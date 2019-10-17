@@ -1,7 +1,7 @@
 import * as GoodsService from '../../services/GoodsService';
 import * as CartService from '../../services/CartService';
 import * as RouterUtil from '../../utils/RouterUtil';
-import throttle from '../../utils/util';
+import * as _ from '../../libs/lodash';
 
 Page({
   data: {
@@ -79,7 +79,7 @@ Page({
   },
 
   // 商品名列表
-  fuzzySearchGoodsIdName: throttle.throttle(function(e) {
+  fuzzySearchGoodsIdName: _.throttle(function(e) {
     GoodsService.fuzzySearchGoodsIdName(this.data.inputVal)
       .then((res) => {
         const goodsList = res.data.data;

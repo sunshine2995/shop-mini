@@ -1,8 +1,8 @@
 import amapFile from '../../../libs/amap-wx';
 import key from '../../../libs/config';
-import throttle from '../../../utils/util';
 import * as AddressService from '../../../services/AddressService';
 import validator from '../../../utils/validator';
+import * as _ from '../../../libs/lodash';
 
 Page({
   data: {
@@ -63,7 +63,7 @@ Page({
   },
 
   // 监听textarea
-  bindTextAreaChange: throttle.throttle(function(e) {
+  bindTextAreaChange: _.throttle(function(e) {
     this.data.address.street = e[0].detail.value;
     this.getLocationByAddress();
   }, 500),
