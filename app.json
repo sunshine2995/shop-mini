@@ -49,7 +49,8 @@
     "pages/userCenter/profile/profile",
     "pages/login/login",
     "pages/shopList/shopList",
-    "pages/activity/rewardDetail/rewardDetail"
+    "pages/activity/rewardDetail/rewardDetail",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",
