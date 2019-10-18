@@ -350,12 +350,11 @@ Page({
         if (imgList.length) {
           customPath = imgList[0].mini_turn_url;
           customImg = imgList[0].img_url;
+          this.setData({
+            customImg: customImg,
+            customPath: customPath,
+          });
         }
-
-        this.setData({
-          customImg: customImg,
-          customPath: customPath,
-        });
       })
       .catch((res) => {
         wx.showToast({
