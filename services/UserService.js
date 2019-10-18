@@ -8,10 +8,12 @@ export function login(code) {
 }
 
 // 保存信息
-export function bindUserInfo(nickname, headImg) {
+export function bindUserInfo(nickname, headImg, iv, encryptedData) {
   return http.post('/user/bind_info', {
     nickname,
     headImg,
+    iv,
+    enData: encryptedData,
   });
 }
 

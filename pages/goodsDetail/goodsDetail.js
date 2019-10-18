@@ -36,9 +36,11 @@ Page({
   getShopInfo(shopId) {
     UserService.getShopInfo(shopId)
       .then((res) => {
-        this.setData({
-          subbranchArea: res.data.data.subbranch_area,
-        });
+        if (res.data.data.subbranch_area) {
+          this.setData({
+            subbranchArea: res.data.data.subbranch_area,
+          });
+        }
       })
       .catch((error) => {
         wx.showToast({

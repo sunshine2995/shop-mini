@@ -11,8 +11,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
 
-  bindUserInfo(nickName, headImg) {
-    UserService.bindUserInfo(nickName, headImg)
+  bindUserInfo(nickName, headImg, iv, encryptedData) {
+    UserService.bindUserInfo(nickName, headImg, iv, encryptedData)
       .then(() => {})
       .catch((error) => {
         wx.showToast({
@@ -23,6 +23,8 @@ Page({
   },
 
   getUserInfo: function(e) {
+    const iv = e.detail.iv;
+    const encryptedData = e.detail.encryptedData;
     if (e.detail.userInfo) {
       const userInfo = e.detail.userInfo;
       app.globalData.userInfo = userInfo;
@@ -30,7 +32,7 @@ Page({
         userInfo: userInfo,
         hasUserInfo: true,
       });
-      this.bindUserInfo(userInfo.nickName, userInfo.avatarUrl);
+      this.bindUserInfo(userInfo.nickName, userInfo.avatarUrl, iv, encryptedData);
     } else {
       wx.showToast({
         title: '残忍地拒绝了授权',

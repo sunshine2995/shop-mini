@@ -17,6 +17,7 @@ http.addRequestInterceptor((header) => {
   const timestamp = getTime();
   const signature = generateSignature(timestamp);
   header.Authorization = token;
+  header.Origin = 'wxapp';
   header.Timestamp = timestamp;
   header.Signature = signature;
 });
