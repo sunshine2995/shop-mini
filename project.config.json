@@ -21,7 +21,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "2.8.3",
+  "libVersion": "2.6.6",
   "appid": "wxdc611584d3371f48",
   "projectname": "mini.caibashi.com",
   "debugOptions": {

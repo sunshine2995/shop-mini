@@ -1,0 +1,4 @@
+.version-container {
+  padding: 50rpx 0;
+  text-align: center;
+}
