@@ -67,7 +67,7 @@ Page({
     }
   },
 
-  upload: function() {
+  upload() {
     let that = this;
     wx.chooseImage({
       count: 4, // 默认9
@@ -99,7 +99,7 @@ Page({
             header: {
               'Content-Type': 'multipart/form-data',
             },
-            success: function(res) {
+            success(res) {
               if (res.statusCode === 406) {
                 wx.showToast({
                   title: JSON.parse(res.data).message,
@@ -139,7 +139,7 @@ Page({
                 }
               }
             },
-            fail: function(res) {
+            fail: () => {
               wx.showToast({
                 title: '上传失败',
                 icon: 'loading',
@@ -156,14 +156,12 @@ Page({
   /**
    * 预览图片方法
    */
-  listenerButtonPreviewImage: function(e) {
+  listenerButtonPreviewImage(e) {
     const index = e.target.dataset.index;
 
     wx.previewImage({
       current: this.data.tempFilePaths[index],
       urls: this.data.tempFilePaths,
-      success: function(res) {},
-      fail: function() {},
     });
   },
 
@@ -176,7 +174,7 @@ Page({
     });
   },
 
-  onLoad: function(options) {
+  onLoad() {
     this.data.tempFilePaths = [];
   },
 });

@@ -35,7 +35,7 @@ Page({
       title: '领取中',
     });
     GiftService.getNewUserEgg()
-      .then((res) => {
+      .then(() => {
         wx.hideLoading();
         this.data.isNewUser = false;
         this.setData({

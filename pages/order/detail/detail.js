@@ -56,12 +56,12 @@ Page({
       });
   },
 
-  onLoad: function(options) {
+  onLoad(options) {
     this.data.orderNo = options.orderNo;
     this.data.ifSubmit = options.ifSubmit;
   },
 
-  onShow: function() {
+  onShow() {
     moment.suppressDeprecationWarnings = true;
     this.getOrderDetail();
   },

@@ -22,14 +22,14 @@ Page({
       });
   },
 
-  getUserInfo: function(e) {
+  getUserInfo(e) {
     const iv = e.detail.iv;
     const encryptedData = e.detail.encryptedData;
     if (e.detail.userInfo) {
       const userInfo = e.detail.userInfo;
       app.globalData.userInfo = userInfo;
       this.setData({
-        userInfo: userInfo,
+        userInfo,
         hasUserInfo: true,
       });
       this.bindUserInfo(userInfo.nickName, userInfo.avatarUrl, iv, encryptedData);

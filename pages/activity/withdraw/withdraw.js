@@ -35,16 +35,16 @@ Page({
   getWithdraw() {
     if (this.data.money) {
       GiftService.getWithdraw(this.data.money)
-        .then((res) => {
+        .then(() => {
           wx.showToast({
             title: '提现成功',
             icon: 'none',
           });
           wx.navigateBack();
         })
-        .catch(() => {
+        .catch((error) => {
           wx.showToast({
-            title: res.data.message,
+            title: error.data.message,
             icon: 'none',
             duration: 2000,
           });
@@ -66,7 +66,7 @@ Page({
     });
     this.data.showButton = Number(this.data.money) <= Number(this.data.userInfo.withdrawal);
     this.setData({
-      active: active,
+      active,
       showButton: this.data.showButton,
     });
   },
@@ -92,12 +92,12 @@ Page({
         wx.hideLoading();
         const userInfo = res.data.data;
         this.setData({
-          userInfo: userInfo,
+          userInfo,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
@@ -125,12 +125,12 @@ Page({
     }, 150);
   },
 
-  onShow: function() {
+  onShow() {
     this.getUser();
     this.startAnimation();
   },
 
-  onShareAppMessage: function(res) {
+  onShareAppMessage(res) {
     const invitedId = this.data.userInfo.id;
     if (res.from === 'button') {
       console.log(res.target, 'share');

@@ -27,20 +27,20 @@ Page({
           couponList: this.data.couponList,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
       });
   },
 
-  onLoad: function(options) {
+  onLoad(options) {
     this.data.money = options.money;
   },
 
-  onShow: function() {
+  onShow() {
     wx.showLoading({
       title: '',
     });

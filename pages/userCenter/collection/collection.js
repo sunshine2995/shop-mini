@@ -21,19 +21,19 @@ Page({
         wx.hideLoading();
         const collectList = res.data.data;
         this.setData({
-          collectList: collectList,
+          collectList,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
       });
   },
 
-  onShow: function() {
+  onShow() {
     wx.showLoading({
       title: '',
     });

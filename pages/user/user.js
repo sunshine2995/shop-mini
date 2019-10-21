@@ -31,7 +31,7 @@ Page({
     });
   },
 
-  onShow: function() {
+  onShow() {
     if (app.globalData.userInfo) {
       this.setData({
         authUserInfo: app.globalData.userInfo,
@@ -122,7 +122,7 @@ Page({
         wx.hideLoading();
         const userInfo = res.data.data;
         this.setData({
-          userInfo: userInfo,
+          userInfo,
         });
       })
       .catch((error) => {

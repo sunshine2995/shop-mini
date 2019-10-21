@@ -18,13 +18,13 @@ Page({
   },
 
   // 监听字数
-  bindTextAreaChange: function(e) {
+  bindTextAreaChange(e) {
     const value = e.detail.value;
     const len = parseInt(value.length);
-    if (len > that.data.noteMaxLen) {
+    if (len > this.data.noteMaxLen) {
       return;
     }
-    that.setData({
+    this.setData({
       info: value,
       noteNowLen: len,
     });
@@ -150,7 +150,7 @@ Page({
   /**
    * 上传图片方法
    */
-  upload: function() {
+  upload() {
     let that = this;
     wx.chooseImage({
       count: 4, // 默认9
@@ -183,7 +183,7 @@ Page({
             header: {
               'Content-Type': 'multipart/form-data',
             },
-            success: function(res) {
+            success(res) {
               if (res.statusCode === 406) {
                 wx.showToast({
                   title: JSON.parse(res.data).message,
@@ -206,7 +206,7 @@ Page({
                 }
               }
             },
-            fail: function(res) {
+            fail() {
               wx.showToast({
                 title: '上传失败',
                 icon: 'loading',
@@ -223,13 +223,13 @@ Page({
   /**
    * 预览图片方法
    */
-  listenerButtonPreviewImage: function(e) {
+  listenerButtonPreviewImage(e) {
     let index = e.target.dataset.index;
     wx.previewImage({
       current: this.data.tempFilePaths[index],
       urls: this.data.tempFilePaths,
-      success: function(res) {},
-      fail: function() {},
+      success() {},
+      fail() {},
     });
   },
 

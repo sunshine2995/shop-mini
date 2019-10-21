@@ -72,7 +72,7 @@ Page({
     this.data.selectSkuId = e.currentTarget.dataset.skuId;
     this.data.stock = e.currentTarget.dataset.stock;
     this.setData({
-      active: active,
+      active,
       stock: this.data.stock,
     });
   },
@@ -103,7 +103,7 @@ Page({
       this.data.cartIds.push(cart.goods_sku_id);
     });
     CartService.getGoodsAttr(this.data.selectSkuId).then((res) => {
-      res.data.data.forEach((item, index) => {
+      res.data.data.forEach((item) => {
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.selectSkuId)) {
@@ -112,7 +112,7 @@ Page({
           success: (res) => {
             this.data.goodsAttr = this.data.goodsAttrs[res.tapIndex];
             CartService.addCart(this.data.selectSkuId, this.data.goodsAttr)
-              .then((res) => {
+              .then(() => {
                 this.getCartCount();
                 this.getAllCarts();
               })
@@ -166,7 +166,7 @@ Page({
         this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
         this.data.stock = goodsInfo.goods_sku_list[0].stock;
         this.setData({
-          goodsInfo: goodsInfo,
+          goodsInfo,
           stock: this.data.stock,
         });
         if (goodsInfo.goods_spu_details_image.length > 0) {
@@ -191,9 +191,9 @@ Page({
           collectionStatus: Boolean(res.data.data.status),
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
@@ -206,7 +206,7 @@ Page({
         this.getDetail();
         const collectionStatus = Boolean(res.data.data.status);
         this.setData({
-          collectionStatus: collectionStatus,
+          collectionStatus,
         });
       })
       .catch((res) => {

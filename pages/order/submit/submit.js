@@ -57,7 +57,7 @@ Page({
     });
   },
 
-  bindMultiPickerChange: function(e) {
+  bindMultiPickerChange(e) {
     if (this.data.multiArray[0][0].name === '店铺已打烊') {
       wx.showToast({
         title: '店铺已打烊',
@@ -79,7 +79,7 @@ Page({
     }
   },
 
-  bindMultiPickerColumnChange: function(e) {
+  bindMultiPickerColumnChange(e) {
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex,
@@ -180,7 +180,7 @@ Page({
           reduceMoney: this.data.reduceMoney,
         });
       })
-      .catch((error) => {
+      .catch(() => {
         RouterUtil.go('/pages/cart/cart');
       });
   },
@@ -294,11 +294,9 @@ Page({
           package: data.package,
           signType: data.signType,
           paySign: data.paySign,
-          success: function(res) {
+          success: () => {
             RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
           },
-          fail: function(res) {},
-          complete: function(res) {},
         });
       })
       .catch((error) => {

@@ -29,7 +29,7 @@ Page({
         wx.hideLoading();
         const discountList = res.data.data;
         this.setData({
-          discountList: discountList,
+          discountList,
         });
         this.data.goodSkuId = [];
         discountList.forEach((item) => {
@@ -84,7 +84,7 @@ Page({
       this.data.cartIds.push(cart.goods_sku_id);
     });
     CartService.getGoodsAttr(this.data.skuId).then((res) => {
-      res.data.data.forEach((item, index) => {
+      res.data.data.forEach((item) => {
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
@@ -108,7 +108,7 @@ Page({
                 });
               });
           },
-          fail(res) {},
+          fail() {},
         });
       } else {
         this.addCart();
@@ -139,7 +139,7 @@ Page({
       });
   },
 
-  onShow: function(options) {
+  onShow() {
     this.getDiscountList();
   },
 });

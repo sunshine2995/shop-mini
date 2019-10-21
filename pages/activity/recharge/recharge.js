@@ -138,11 +138,9 @@ Page({
           package: data.package,
           signType: data.signType,
           paySign: data.paySign,
-          success: function(res) {
+          success: () => {
             RouterUtil.go('/pages/user/user');
           },
-          fail: function(res) {},
-          complete: function(res) {},
         });
       })
       .catch((error) => {
@@ -194,7 +192,7 @@ Page({
     this.checkCor();
   },
   // 点击标题切换当前页时改变样式
-  swichNav: function(e) {
+  swichNav(e) {
     const cur = e.target.dataset.current;
     if (this.data.currentTaB == cur) {
       return false;
@@ -205,7 +203,7 @@ Page({
     }
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
-  checkCor: function() {
+  checkCor() {
     if (this.data.currentTab > 4) {
       this.setData({
         scrollLeft: 300,

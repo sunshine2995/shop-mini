@@ -79,7 +79,7 @@ Page({
       this.data.cartIds.push(cart.goods_sku_id);
     });
     CartService.getGoodsAttr(this.data.skuId).then((res) => {
-      res.data.data.forEach((item, index) => {
+      res.data.data.forEach((item) => {
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
@@ -103,7 +103,6 @@ Page({
                 });
               });
           },
-          fail(res) {},
         });
       } else {
         this.addCart();
@@ -324,11 +323,11 @@ Page({
     // 获取menu数组的位置信息
     wx.createSelectorQuery()
       .selectAll('.menu-item')
-      .boundingClientRect(function(rects) {
+      .boundingClientRect((rects) => {
         wx.getSystemInfo({
-          success: function(res) {
+          success: (res) => {
             windowHeight = res.windowHeight / 2;
-            rects.forEach(function(rect) {
+            rects.forEach((rect) => {
               menuToTop.push({
                 top: rect.top,
                 animate: rect.top > windowHeight,

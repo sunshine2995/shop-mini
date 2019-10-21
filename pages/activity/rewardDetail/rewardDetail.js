@@ -21,20 +21,20 @@ Page({
         });
         this.data.total = res.data.data.total_elements;
         this.setData({
-          billList: billList,
+          billList,
           isLoading: this.data.isLoading,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
       });
   },
 
-  onShow: function() {
+  onShow() {
     moment.suppressDeprecationWarnings = true;
     wx.showLoading({
       title: '',
@@ -45,7 +45,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh() {
     wx.showNavigationBarLoading();
     wx.hideNavigationBarLoading();
     wx.stopPullDownRefresh();
@@ -54,7 +54,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom() {
     if (this.data.page * 11 < this.data.total) {
       wx.showLoading({
         title: '玩命加载中',

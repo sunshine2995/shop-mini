@@ -124,19 +124,19 @@ Page({
   },
 
   // 活动页跳转页面
-  bindViewTap: function(event) {
+  bindViewTap(event) {
     const url = event.currentTarget.dataset.url;
     RouterUtil.go(url);
   },
 
-  bindJumpPath: function(event) {
+  bindJumpPath(event) {
     if (event.currentTarget.dataset.path) {
       const path = event.currentTarget.dataset.path;
       RouterUtil.go(path);
     }
   },
 
-  onShow: function() {
+  onShow() {
     function compareVersion(v1, v2) {
       v1 = v1.split('.');
       v2 = v2.split('.');
@@ -192,8 +192,8 @@ Page({
     ];
 
     this.setData({
-      images: images,
-      inviteImages: inviteImages,
+      images,
+      inviteImages,
     });
     this.getUser();
   },
@@ -222,7 +222,7 @@ Page({
         wx.hideLoading();
         const marketingTypeList = res.data.data;
         this.setData({
-          marketingTypeList: marketingTypeList,
+          marketingTypeList,
         });
         this.data.goodSkuId = [];
         marketingTypeList.forEach((item) => {
@@ -284,7 +284,7 @@ Page({
       this.data.cartIds.push(cart.goods_sku_id);
     });
     CartService.getGoodsAttr(this.data.skuId).then((res) => {
-      res.data.data.forEach((item, index) => {
+      res.data.data.forEach((item) => {
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
@@ -314,7 +314,7 @@ Page({
                 });
               });
           },
-          fail(res) {},
+          fail() {},
         });
       } else {
         this.addCart();
@@ -354,7 +354,7 @@ Page({
         wx.hideLoading();
         const categoryOneList = res.data.data;
         this.setData({
-          categoryOneList: categoryOneList,
+          categoryOneList,
         });
       })
       .catch(() => {});
@@ -383,8 +383,8 @@ Page({
           customPath = imgList[0].mini_turn_url;
           customImg = imgList[0].img_url;
           this.setData({
-            customImg: customImg,
-            customPath: customPath,
+            customImg,
+            customPath,
           });
         }
       })
@@ -397,7 +397,7 @@ Page({
       });
   },
 
-  onLoad: function(options) {
+  onLoad(options) {
     if (options.scene) {
       this.data.inviteId = decodeURIComponent(options.scene);
     }
@@ -406,7 +406,7 @@ Page({
     }
   },
 
-  onShareAppMessage: function(res) {
+  onShareAppMessage() {
     return {
       title: '菜巴士，送货到家~',
       path: '/pages/home/home',

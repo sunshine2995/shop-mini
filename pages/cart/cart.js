@@ -157,11 +157,11 @@ Page({
     }
     // this.data.selarr = allsel ? shopcar : []; //如果选中状态为true那么所有商品为选中状态，将物品加入选中变量，否则为空
     this.setData({
-      allsel: allsel,
+      allsel,
       validCarts: shopcar,
-      total: total,
-      discountMoney: discountMoney,
-      finallyMoney: finallyMoney,
+      total,
+      discountMoney,
+      finallyMoney,
       selarr: this.data.selarr,
     });
     this.data.selectedIds = [];
@@ -220,10 +220,10 @@ Page({
     this.getCartGift(finallyMoney);
     this.setData({
       validCarts: shopcar,
-      total: total,
-      discountMoney: discountMoney,
-      finallyMoney: finallyMoney,
-      selarr: selarr,
+      total,
+      discountMoney,
+      finallyMoney,
+      selarr,
     });
     this.judgmentAll(); //每次按钮点击后都判断是否满足全选的条件
   },
@@ -240,13 +240,13 @@ Page({
     finallyMoney = total - discountMoney;
     this.getCartGift(finallyMoney);
     CartService.updateCart(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num + 1)
-      .then((res) => {
+      .then(() => {
         shopcar[Index].goods_sku_num = shopcar[Index].goods_sku_num + 1;
         this.setData({
           validCarts: shopcar,
-          total: total,
-          discountMoney: discountMoney,
-          finallyMoney: finallyMoney,
+          total,
+          discountMoney,
+          finallyMoney,
         });
         this.getCartCount();
       })
@@ -277,17 +277,16 @@ Page({
             total = Number(total.toFixed(2));
             finallyMoney = total - discountMoney;
             this.setData({
-              total: total,
-              discountMoney: discountMoney,
-              finallyMoney: finallyMoney,
+              total,
+              discountMoney,
+              finallyMoney,
             });
-          } else if (res.cancel) {
           }
         },
       });
     } else {
       CartService.updateCart(shopcar[Index].goods_sku_id, shopcar[Index].goods_sku_num - 1)
-        .then((res) => {
+        .then(() => {
           shopcar[Index].goods_sku_num = shopcar[Index].goods_sku_num - 1;
           shopcar[Index].check && (total -= +shopcar[Index].price); //如果商品为选中的，则合计价格-商品单价
           shopcar[Index].check && shopcar[Index].reduce_money && (discountMoney -= +shopcar[Index].reduce_money);
@@ -295,9 +294,9 @@ Page({
           finallyMoney = total - discountMoney;
           this.setData({
             validCarts: shopcar,
-            total: total,
-            discountMoney: discountMoney,
-            finallyMoney: finallyMoney,
+            total,
+            discountMoney,
+            finallyMoney,
           });
           this.getCartGift(finallyMoney);
           this.getCartCount();
@@ -313,7 +312,7 @@ Page({
   // 删除购物车
   deleteCart(skuId) {
     CartService.deleteCart(skuId)
-      .then((res) => {
+      .then(() => {
         this.data.selectedIds.forEach((item, index) => {
           if (skuId === item) {
             this.data.selectedIds.splice(index, 1);
@@ -356,7 +355,7 @@ Page({
               title: '',
             });
             CartService.deleteCarts(this.data.selectedIds.map(Number))
-              .then((res) => {
+              .then(() => {
                 wx.setStorageSync('selectedIds', []);
                 wx.hideLoading();
                 this.getAllCarts();
@@ -368,7 +367,6 @@ Page({
                   icon: 'none',
                 });
               });
-          } else if (res.cancel) {
           }
         },
       });
@@ -396,7 +394,6 @@ Page({
                 icon: 'none',
               });
             });
-        } else if (res.cancel) {
         }
       },
     });
@@ -418,7 +415,7 @@ Page({
       this.data.cartIds.push(cart.goods_sku_id);
     });
     CartService.getGoodsAttr(this.data.skuId).then((res) => {
-      res.data.data.forEach((item, index) => {
+      res.data.data.forEach((item) => {
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0) {
@@ -466,7 +463,7 @@ Page({
                 });
             }
           },
-          fail(res) {},
+          fail() {},
         });
       } else {
         this.addCart();
@@ -501,7 +498,7 @@ Page({
           guessList: this.data.guessList,
         });
       })
-      .catch((error) => {
+      .catch(() => {
         wx.showToast({
           title: '',
           icon: 'none',
@@ -561,17 +558,17 @@ Page({
           this.setData({
             validCarts: this.data.validCarts,
             invalidCarts: this.data.invalidCarts,
-            total: total,
-            discountMoney: discountMoney,
-            finallyMoney: finallyMoney,
-            selarr: selarr,
+            total,
+            discountMoney,
+            finallyMoney,
+            selarr,
           });
           this.judgmentAll(); //判断是否全选
         }
 
         this.getLikeList();
       })
-      .catch((error) => {});
+      .catch(() => {});
   },
 
   showCartGift(giftId) {

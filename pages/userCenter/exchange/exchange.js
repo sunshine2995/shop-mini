@@ -75,7 +75,7 @@ Page({
     return this.data.code;
   },
 
-  onShow: function() {
+  onShow() {
     this.getUser();
   },
 });

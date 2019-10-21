@@ -25,12 +25,12 @@ Page({
         wx.hideLoading();
         const userInfo = res.data.data;
         this.setData({
-          userInfo: userInfo,
+          userInfo,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
@@ -76,9 +76,9 @@ Page({
           qrImage: this.data.qrImage,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });

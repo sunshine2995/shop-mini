@@ -79,17 +79,17 @@ Page({
   },
 
   // 商品名列表
-  fuzzySearchGoodsIdName: _.throttle(function(e) {
+  fuzzySearchGoodsIdName: _.throttle(function() {
     GoodsService.fuzzySearchGoodsIdName(this.data.inputVal)
       .then((res) => {
         const goodsList = res.data.data;
         this.data.showSpuName = true;
         this.setData({
-          goodsList: goodsList,
+          goodsList,
           showSpuName: this.data.showSpuName,
         });
       })
-      .catch((res) => {});
+      .catch(() => {});
   }, 500),
 
   // 商品详情
@@ -99,11 +99,11 @@ Page({
         this.getHistoryList();
         const goodsDetailList = res.data.data;
         this.setData({
-          goodsDetailList: goodsDetailList,
+          goodsDetailList,
           showSpuName: false,
         });
       })
-      .catch((res) => {});
+      .catch(() => {});
   },
 
   exchangeVal(e) {
@@ -186,7 +186,7 @@ Page({
       this.data.cartIds.push(cart.goods_sku_id);
     });
     CartService.getGoodsAttr(this.data.skuId).then((res) => {
-      res.data.data.forEach((item, index) => {
+      res.data.data.forEach((item) => {
         this.data.goodsAttrs.push(item);
       });
       if (this.data.goodsAttrs.length > 0 && !this.data.cartIds.includes(this.data.skuId)) {
@@ -210,7 +210,7 @@ Page({
                 });
               });
           },
-          fail(res) {},
+          fail() {},
         });
       } else {
         this.addCart();
@@ -236,7 +236,7 @@ Page({
       .catch(() => {});
   },
 
-  onShow: function() {
+  onShow() {
     this.data.HistoryList = wx.getStorageSync('historyList') || [];
     this.getHotSearch();
     this.getRecommended();

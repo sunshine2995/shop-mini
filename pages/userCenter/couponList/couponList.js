@@ -26,16 +26,16 @@ Page({
           expiredCouponList: this.data.expiredCouponList,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         wx.showToast({
-          title: res.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000,
         });
       });
   },
 
-  onShow: function() {
+  onShow() {
     wx.showLoading({
       title: '',
     });

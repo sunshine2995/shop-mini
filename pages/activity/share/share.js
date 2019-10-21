@@ -53,7 +53,7 @@ Page({
       title: '',
     });
     GiftService.createTask()
-      .then((res) => {
+      .then(() => {
         wx.hideLoading();
         wx.showToast({
           title: '创建成功',
@@ -82,7 +82,7 @@ Page({
   receiveReward(e) {
     const taskId = e.currentTarget.dataset.taskId;
     GiftService.receiveReward(taskId)
-      .then((res) => {
+      .then(() => {
         wx.showToast({
           title: '创建成功',
           icon: 'none',
@@ -99,7 +99,7 @@ Page({
       });
   },
 
-  onShow: function() {
+  onShow() {
     this.getShareTask();
   },
 
@@ -109,7 +109,7 @@ Page({
     }
   },
 
-  onShareAppMessage: function(res) {
+  onShareAppMessage(res) {
     if (res.from === 'button') {
       console.log(res.target, 'share');
     }

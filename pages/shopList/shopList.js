@@ -63,7 +63,7 @@ Page({
       shopList: this.data.shopList,
     });
     AddressService.changeShop(shopId)
-      .then((res) => {
+      .then(() => {
         RouterUtil.go('/pages/home/home');
       })
       .catch((error) => {
@@ -83,7 +83,7 @@ Page({
         const longitude = res.longitude;
         this.getShopListByLocation(longitude, latitude);
       },
-      fail: (res) => {
+      fail: () => {
         this.getShopList();
       },
     });

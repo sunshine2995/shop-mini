@@ -249,7 +249,6 @@ Page({
       success: (res) => {
         if (res.confirm) {
           this.balancePay();
-        } else if (res.cancel) {
         }
       },
     });
@@ -316,7 +315,6 @@ Page({
           this.setData({
             showTimePicker: true,
           });
-        } else if (res.cancel) {
         }
       },
     });
@@ -630,7 +628,7 @@ Page({
   },
 
   //判断当前滚动超过一屏时，设置tab标题滚动条。
-  checkCor: function() {
+  checkCor() {
     if (this.data.currentTab > 3) {
       this.setData({
         scrollLeft: 300,

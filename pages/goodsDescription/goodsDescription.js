@@ -41,7 +41,7 @@ Page({
       });
   },
 
-  onShow: function() {
+  onShow() {
     this.getCustom();
   },
 });

@@ -21,9 +21,9 @@ Page({
         const invalidList = res.data.data.invalid_list;
         const totalList = validList.concat(invalidList);
         this.setData({
-          validList: validList,
-          invalidList: invalidList,
-          totalList: totalList,
+          validList,
+          invalidList,
+          totalList,
         });
       })
       .catch((error) => {
@@ -50,7 +50,7 @@ Page({
     });
   },
 
-  onShow: function() {
+  onShow() {
     this.getAddressList();
   },
 });

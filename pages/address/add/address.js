@@ -86,7 +86,7 @@ Page({
     self.mapCtx = wx.createMapContext('map');
     if (e.type === 'end' && (e.causedBy === 'scale' || e.causedBy === 'drag')) {
       self.mapCtx.getCenterLocation({
-        success: function(res) {
+        success(res) {
           if (res.latitude && res.longitude) {
             self.data.latitude = res.latitude;
             self.data.longitude = res.longitude;
@@ -124,7 +124,7 @@ Page({
           region: [this.data.address.province, this.data.address.city, this.data.address.area],
         });
       })
-      .catch((error) => {});
+      .catch(() => {});
   },
 
   // 地址转经纬度
@@ -145,7 +145,7 @@ Page({
           longitude: this.data.longitude,
         });
       })
-      .catch((error) => {});
+      .catch(() => {});
   },
 
   // 更改地址类型
@@ -153,7 +153,7 @@ Page({
     const active = e.currentTarget.dataset.index;
     this.data.address.addressType = e.currentTarget.dataset.value;
     this.setData({
-      active: active,
+      active,
     });
   },
 
@@ -235,7 +235,7 @@ Page({
     }
   },
 
-  onLoad: function(options) {
+  onLoad(options) {
     const self = this;
     self.data.address.id = options.addressId;
     const myAmapFun = new amapFile.AMapWX({
@@ -243,7 +243,7 @@ Page({
     });
 
     myAmapFun.getRegeo({
-      success: function(res) {
+      success(res) {
         wx.hideLoading();
         self.data.address.province = res[0].regeocodeData.addressComponent.province;
         self.data.address.city = res[0].regeocodeData.addressComponent.city;
@@ -274,7 +274,6 @@ Page({
           region: [self.data.address.province, self.data.address.city, self.data.address.area],
         });
       },
-      fail: function(info) {},
     });
   },
 });
