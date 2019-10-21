@@ -136,7 +136,7 @@ Page({
       console.log(res.target, 'share');
     }
     return {
-      title: '分享三人次好友充值即可免费领取羊腿～',
+      title: '新人首单，一盒鸡蛋免费送到家！买菜超方便，下单最快30分钟送达。',
       path: `/pages/home/home?invite_id=${invitedId}`,
     };
   },

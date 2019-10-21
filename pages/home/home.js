@@ -405,4 +405,11 @@ Page({
       this.data.inviteId = options.invite_id;
     }
   },
+
+  onShareAppMessage: function(res) {
+    return {
+      title: '菜巴士，送货到家~',
+      path: '/pages/home/home',
+    };
+  },
 });
