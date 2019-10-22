@@ -1,40 +1,42 @@
-function Dep() {
-  this.subs = [];
-}
+class Dep {
+  constructor() {
+    this.subs = [];
+  }
 
-Dep.prototype = {
   addSubs(watcher) {
     this.subs.push(watcher);
-  },
+  }
+
   notify() {
     this.subs.forEach((watcher) => {
       watcher.update();
     });
-  },
-};
-
-function Watcher(key, gd, fn) {
-  this.key = key;
-  this.gd = gd;
-  this.fn = fn;
-
-  Dep.target = this;
-  let arr = key.split('.');
-  let val = this.gd;
-  arr.forEach((key) => {
-    val = val[key];
-  });
-  Dep.target = undefined;
+  }
 }
 
-Watcher.prototype.update = function() {
-  let arr = this.key.split('.');
-  let val = this.gd;
-  arr.forEach((key) => {
-    val = val[key];
-  });
-  this.fn(val);
-};
+class Watcher {
+  constructor(key, gd, fn) {
+    this.key = key;
+    this.gd = gd;
+    this.fn = fn;
+    Dep.target = this;
+    let arr = key.split('.');
+    let val = this.gd;
+    arr.forEach((key) => {
+      val = val[key];
+    });
+    Dep.target = undefined;
+  }
+
+  update() {
+    let arr = this.key.split('.');
+    let val = this.gd;
+    arr.forEach((key) => {
+      val = val[key];
+    });
+    this.fn(val);
+  }
+}
 
 App({
   globalData: {
