@@ -239,7 +239,7 @@ Page({
 
   getCartCount() {
     CartService.getCartCount().then((res) => {
-      wx.setStorageSync('cartNum', res.data.data);
+      app.globalData.store.cartNum = res.data.data;
     });
   },
 

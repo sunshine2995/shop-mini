@@ -4,6 +4,8 @@ import * as UserService from '../../services/UserService';
 import * as AddressService from '../../services/AddressService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
+const app = getApp();
+
 Page({
   data: {
     active: 0,
@@ -54,9 +56,10 @@ Page({
 
   getCartCount() {
     CartService.getCartCount().then((res) => {
-      wx.setStorageSync('cartNum', res.data.data);
+      const cartNum = res.data.data;
+      app.globalData.store.cartNum = cartNum;
       this.setData({
-        cartNum: res.data.data,
+        cartNum,
       });
     });
   },

@@ -2,6 +2,8 @@ import * as GoodsService from '../../services/GoodsService';
 import * as CartService from '../../services/CartService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
+const app = getApp();
+
 Page({
   data: {
     idSelected: [],
@@ -50,7 +52,7 @@ Page({
 
   getCartCount() {
     CartService.getCartCount().then((res) => {
-      wx.setStorageSync('cartNum', res.data.data);
+      app.globalData.store.cartNum = res.data.data;
     });
   },
 

@@ -1,5 +1,46 @@
+function Dep() {
+  this.subs = [];
+}
+
+Dep.prototype = {
+  addSubs(watcher) {
+    this.subs.push(watcher);
+  },
+  notify() {
+    this.subs.forEach((watcher) => {
+      watcher.update();
+    });
+  },
+};
+
+function Watcher(key, gd, fn) {
+  this.key = key;
+  this.gd = gd;
+  this.fn = fn;
+
+  Dep.target = this;
+  let arr = key.split('.');
+  let val = this.gd;
+  arr.forEach((key) => {
+    val = val[key];
+  });
+  Dep.target = undefined;
+}
+
+Watcher.prototype.update = function() {
+  let arr = this.key.split('.');
+  let val = this.gd;
+  arr.forEach((key) => {
+    val = val[key];
+  });
+  this.fn(val);
+};
+
 App({
   globalData: {
+    store: {
+      cartNum: 0,
+    },
     userInfo: null,
     userData: {},
     shopInfo: {},
@@ -9,13 +50,46 @@ App({
     sortOneId: 0,
   },
 
-  scanCart() {
+  observe(data) {
+    if (!data || typeof data !== 'object') {
+      return;
+    }
+    this.Observe(data);
+  },
+
+  Observe(data) {
+    let _this = this;
+    for (let key in data) {
+      let val = data[key];
+      this.observe(data[key]);
+      let dep = new Dep();
+      Object.defineProperty(data, key, {
+        configurable: true,
+        get() {
+          Dep.target && dep.addSubs(Dep.target);
+          return val;
+        },
+        set(newValue) {
+          if (val === newValue) {
+            return;
+          }
+          val = newValue;
+          _this.observe(newValue);
+          dep.notify();
+
+          // persist
+          wx.setStorageSync(key, newValue);
+        },
+      });
+    }
+  },
+
+  scanCart(cartNum) {
     //购物车数量都缓存，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
-    const cart = wx.getStorageSync('cartNum');
-    if (cart > 0) {
+    if (cartNum > 0) {
       wx.setTabBarBadge({
         index: 2,
-        text: '' + cart + '',
+        text: '' + cartNum + '',
       });
     } else {
       wx.removeTabBarBadge({
@@ -24,12 +98,19 @@ App({
     }
   },
 
-  onLaunch: function() {
+  makeWatcher(key, gb, fn) {
+    new Watcher(key, gb, fn);
+  },
+
+  onLaunch() {
+    this.observe(this.globalData.store);
     this.scanCart();
-    //初始化购物车
-    this.timer = setInterval(() => {
-      this.scanCart();
-    }, 100);
+    this.makeWatcher('store.cartNum', this.globalData, (newValue) => {
+      this.scanCart(newValue);
+    });
+
+    const cartNum = wx.getStorageSync('cartNum');
+    this.globalData.store.cartNum = cartNum;
 
     // 获取用户信息
     wx.getSetting({

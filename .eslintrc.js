@@ -10,6 +10,7 @@ module.exports = {
         "Page": true,
         "wx": true,
         "getApp": true,
+        "App": true,
     },
     "parserOptions": {
         "ecmaVersion": 2018,

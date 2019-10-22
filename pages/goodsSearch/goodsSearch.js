@@ -3,6 +3,8 @@ import * as CartService from '../../services/CartService';
 import * as RouterUtil from '../../utils/RouterUtil';
 import * as _ from '../../libs/lodash';
 
+const app = getApp();
+
 Page({
   data: {
     showClear: false, // 清除图标展示与否
@@ -152,7 +154,7 @@ Page({
 
   getCartCount() {
     CartService.getCartCount().then((res) => {
-      wx.setStorageSync('cartNum', res.data.data);
+      app.globalData.store.cartNum = res.data.data;
     });
   },
 
