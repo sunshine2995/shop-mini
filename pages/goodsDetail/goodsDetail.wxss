@@ -54,16 +54,54 @@
   border-bottom: 6rpx solid #f4f4f3;
 }
 
+.goods-share {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-hover {
+  color: unset;
+  background-color: unset;
+}
+
+button::after {
+  border: unset;
+}
+.share-button {
+  padding: unset;
+  text-align: left;
+  color: unset;
+  background-color: unset;
+  line-height: 1;
+}
+
+.share {
+  text-align: center;
+  color: #666;
+  border-left: 1px solid #e6e6e6;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.icon-fenxiang1 {
+  font-size: 45rpx;
+}
+.share-text {
+  font-size: 28rpx;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+}
+
 .goods-advertise {
   font-size: 45rpx;
   color: #808080;
-  width: 99%;
+  width: 86%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1;
-  padding-bottom: 15rpx;
-  box-sizing: border-box;
+  /* padding-bottom: 15rpx; */
+  /* box-sizing: border-box; */
 }
 
 .goods-desc {
@@ -287,6 +325,17 @@
   position: fixed;
   bottom: 0;
   right: 0;
+}
+.go-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  height: 100rpx;
+  font-size: 30rpx;
+  border-top: 1px solid #e6e6e6;
+  padding: 0 30rpx;
+  box-sizing: border-box;
 }
 
 .cart-icon {

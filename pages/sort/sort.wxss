@@ -219,6 +219,7 @@ background: #c00; */
 
 .marketing-goods-detail {
   flex: 1;
+  width: 71%;
   /* height: 300rpx; */
   padding: 0 8rpx 0 18rpx;
   box-sizing: border-box;
@@ -280,10 +281,13 @@ background: #c00; */
 }
 
 .goods-remarks {
-  flex: 1;
+  flex: 1 1 55%;
   padding: 0 8rpx;
   box-sizing: border-box;
   margin: 5rpx 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .market-price-text,
@@ -292,6 +296,13 @@ background: #c00; */
 .market-price-remark {
   font-size: 26rpx;
   color: #999;
+}
+.market-price-standard,
+.market-price-remark {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .normal-diacount-price {
   border-bottom: 1px solid #f4f4f3;

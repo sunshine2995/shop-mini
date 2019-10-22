@@ -1,6 +1,7 @@
 import * as GoodsService from '../../services/GoodsService';
 import * as CartService from '../../services/CartService';
 import * as UserService from '../../services/UserService';
+import * as AddressService from '../../services/AddressService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
 Page({
@@ -16,39 +17,9 @@ Page({
     goodsAttr: '', // 商品属性
     subbranchArea: '', // 配送地址
     shipping: 0, // 免配送费条件
-  },
-
-  getUser() {
-    UserService.getUser()
-      .then((res) => {
-        const shopId = res.data.data.current_subbranch_id;
-        this.getShopInfo(shopId);
-      })
-      .catch((error) => {
-        wx.showToast({
-          title: error.data.message,
-          icon: 'none',
-          duration: 2000,
-        });
-      });
-  },
-
-  getShopInfo(shopId) {
-    UserService.getShopInfo(shopId)
-      .then((res) => {
-        if (res.data.data.subbranch_area) {
-          this.setData({
-            subbranchArea: res.data.data.subbranch_area,
-          });
-        }
-      })
-      .catch((error) => {
-        wx.showToast({
-          title: error.data.message,
-          icon: 'none',
-          duration: 2000,
-        });
-      });
+    shopId: 0, // 当前店铺Id
+    shareShopId: 0, // 分享的店铺Id
+    ifShare: false, // 是否由分享打开
   },
 
   getshippingCharge() {
@@ -161,7 +132,6 @@ Page({
   getDetail() {
     GoodsService.getDetail(this.data.spuId)
       .then((res) => {
-        wx.hideLoading();
         const goodsInfo = res.data.data;
         this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
         this.data.stock = goodsInfo.goods_sku_list[0].stock;
@@ -241,14 +211,91 @@ Page({
       },
     });
   },
+  getUser() {
+    UserService.getUser()
+      .then((res) => {
+        const shopId = res.data.data.current_subbranch_id;
+        this.data.shopId = shopId;
+        if (this.data.shopId !== this.data.shareShopId && this.data.shareShopId !== 0) {
+          AddressService.changeShop(this.data.shareShopId)
+            .then(() => {
+              wx.showToast({
+                title: '已切换到此商品所在分店',
+                icon: 'none',
+                duration: 2000,
+              });
+              this.data.shopId = this.data.shareShopId;
+              this.getShopInfo(this.data.shopId);
+              this.getCollectStatus();
+              this.getshippingCharge();
+            })
+            .catch((error) => {
+              wx.showToast({
+                title: error.data.message,
+                icon: 'none',
+                duration: 2000,
+              });
+            });
+        } else {
+          this.getShopInfo(this.data.shopId);
+          this.getCollectStatus();
+          this.getshippingCharge();
+        }
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+
+  getShopInfo(shopId) {
+    UserService.getShopInfo(shopId)
+      .then((res) => {
+        if (res.data.data.subbranch_area) {
+          this.setData({
+            subbranchArea: res.data.data.subbranch_area,
+          });
+        }
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+
+  backHome() {
+    RouterUtil.go('/pages/home/home');
+  },
 
   onLoad(option) {
-    wx.showLoading({
-      title: '加载中',
-    });
+    if (option.shareShopId) {
+      this.data.shareShopId = option.shareShopId;
+      this.setData({
+        ifShare: true,
+      });
+      wx.showToast({
+        title: option.shareShopId + 'option.shareShopId',
+        icon: 'none',
+        duration: 20000,
+      });
+    }
     this.data.spuId = option.goodId;
-    this.getCollectStatus();
     this.getUser();
-    this.getshippingCharge();
+  },
+
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      console.log(res.target, 'share');
+    }
+    return {
+      title: '热卖商品，送货到家~',
+      path: `/pages/goodsDetail/goodsDetail?goodId=${this.data.spuId}&shareShopId=${this.data.shopId}`,
+    };
   },
 });

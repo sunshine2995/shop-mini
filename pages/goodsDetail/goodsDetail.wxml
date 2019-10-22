@@ -44,7 +44,15 @@
     ></icon>
   </view>
   <view class="goods-advertise-desc">
-    <text class="goods-advertise">{{ goodsInfo.advertising }}</text>
+    <view class="goods-share">
+      <text class="goods-advertise">{{ goodsInfo.advertising }}</text>
+      <button open-type="share" class="share-button">
+        <view class="share">
+          <icon class="iconfont icon-fenxiang1"></icon>
+          <text class="share-text">分享</text>
+        </view>
+      </button>
+    </view>
     <text class="goods-desc">{{ goodsInfo.brief }}</text>
   </view>
   <view class="choose-standard">
@@ -174,9 +182,10 @@
     <image class="promotion-image " src="https://img.caibashi.com/ec423e0cd60a92f973ed3f535324d341.png "></image>
   </view>
   <view class="bottom-cart ">
-    <view class="cart-icon " bindtap="goToCart">
+    <view class="go-home" wx:if="{{ ifShare }}" bindtap="backHome">首页</view>
+    <view class="cart-icon" bindtap="goToCart">
       <icon class="iconfont icon-shopping-cart "></icon>
-      <text class="cart-num">{{ cartNum }}</text>
+      <text class="cart-num" wx:if="{{ cartNum !== 0 }}">{{ cartNum }}</text>
     </view>
     <view class="cart-text cart-text-green" bindtap="getGoodsAttr" wx:if="{{ stock }}">
       <text>加入购物车</text>
