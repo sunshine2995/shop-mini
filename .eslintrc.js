@@ -17,6 +17,7 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-      "object-shorthand": ["error", "always"]
+      "object-shorthand": ["error", "always"],
+      "no-console": "error"
     }
 };

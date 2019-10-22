@@ -228,7 +228,6 @@ Page({
     }
     if (+option.shareId) {
       this.data.share_id = +option.shareId;
-      console.log('share_id', this.data.share_id);
     }
     this.getUser();
     this.getRechargeGift();

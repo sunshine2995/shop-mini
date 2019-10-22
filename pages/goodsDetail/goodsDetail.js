@@ -292,10 +292,7 @@ Page({
     this.getUser();
   },
 
-  onShareAppMessage(res) {
-    if (res.from === 'button') {
-      console.log(res.target, 'share');
-    }
+  onShareAppMessage() {
     return {
       title: '热卖商品，送货到家~',
       path: `/pages/goodsDetail/goodsDetail?goodId=${this.data.spuId}&shareShopId=${this.data.shopId}`,
