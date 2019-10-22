@@ -1,4 +1,4 @@
-import moment from '../../../utils/moment';
+import moment from '../../../libs/moment';
 import * as OrderService from '../../../services/OrderService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 

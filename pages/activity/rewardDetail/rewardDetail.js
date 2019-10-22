@@ -1,5 +1,5 @@
 import * as UserService from '../../../services/UserService';
-import moment from '../../../utils/moment';
+import moment from '../../../libs/moment';
 
 Page({
   data: {

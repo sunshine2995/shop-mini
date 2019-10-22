@@ -1,4 +1,4 @@
-import moment from '../../../utils/moment';
+import moment from '../../../libs/moment';
 import * as CartService from '../../../services/CartService';
 import * as AddressService from '../../../services/AddressService';
 import * as OrderService from '../../../services/OrderService';
