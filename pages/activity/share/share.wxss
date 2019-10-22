@@ -12,6 +12,18 @@
   width: 100%;
   height: auto;
 }
+.go-home {
+  position: absolute;
+  top: 43%;
+  left: 15%;
+  background-color: #f3bc44;
+  color: #74370e;
+  font-weight: bold;
+  border: 1px solid #e8b11d;
+  border-radius: 50rpx;
+  padding: 15rpx 65rpx;
+  box-sizing: border-box;
+}
 
 .share-button-image,
 .recharge-button-image,
@@ -28,7 +40,7 @@
 }
 
 .share-button-image {
-  top: 47%;
+  top: 50%;
 }
 
 .recharge-button-image {

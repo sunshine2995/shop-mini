@@ -7,6 +7,7 @@ Page({
     finishShareList: [], // 已完成任务列表
     share_id: 0, // 正在进行的任务的id,
     inviteId: 0, // 正在进行的任务的id,
+    ifShare: false, // 是否从分享链接进入页面
   },
 
   getShareTip() {
@@ -99,6 +100,10 @@ Page({
       });
   },
 
+  backHome() {
+    RouterUtil.go('/pages/home/home');
+  },
+
   onShow() {
     this.getShareTask();
   },
@@ -106,6 +111,9 @@ Page({
   onLoad(options) {
     if (options.share_id) {
       this.data.inviteId = options.share_id;
+      this.setData({
+        ifShare: true,
+      });
     }
   },
 

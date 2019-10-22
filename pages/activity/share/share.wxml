@@ -5,6 +5,7 @@
       src="https://img.caibashi.com/a53895d5ba3e2c4dd1f0a4d624286261.png"
       mode="widthFix"
     ></image>
+    <view class="go-home" wx:if="{{ ifShare }}" bindtap="backHome"> 去首页 </view>
     <view class="share-button-image" wx:if="{{ shareList.length > 0 }}">
       <button open-type="share" class="share-button">
         <image class="share-button-img" src="https://img.caibashi.com/04adf00321f29efd8d98decba7a4f899.png"></image>

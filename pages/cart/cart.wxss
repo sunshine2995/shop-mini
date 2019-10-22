@@ -253,6 +253,10 @@
 }
 
 .guess-goods-name {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-align: left;
   font-size: 34rpx;
   padding: 20rpx 0;
