@@ -117,7 +117,7 @@ Page({
         this.data.address.province = _res.province;
         this.data.address.city = _res.city;
         this.data.address.area = _res.district;
-        this.data.address.street = _res.township + _res.streetNumber.street;
+        this.data.address.street = _res.township + _res.streetNumber.street + _res.streetNumber.number;
         //成功回调
         [this.data.longitude, this.data.latitude] = String(_res.streetNumber.location).split(',');
         this.data.markers = [

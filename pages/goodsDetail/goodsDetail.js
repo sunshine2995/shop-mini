@@ -282,11 +282,6 @@ Page({
       this.setData({
         ifShare: true,
       });
-      wx.showToast({
-        title: option.shareShopId + 'option.shareShopId',
-        icon: 'none',
-        duration: 20000,
-      });
     }
     this.data.spuId = option.goodId;
     this.getUser();

@@ -8,7 +8,7 @@ function wxPromise(method, url, data, header) {
       data: data,
       header: header,
       success: (res) => {
-        if (res.data.code === 200 || res.data.infocode === 10000) {
+        if (+res.data.code === 200 || +res.data.infocode === 10000) {
           resolve(res);
         } else if (res.data.code === 401) {
           RouterUtil.go('/pages/login/login');

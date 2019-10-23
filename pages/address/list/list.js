@@ -75,7 +75,7 @@ Page({
       });
   },
 
-  onLoad: function(options) {
+  onShow() {
     this.getAddressList();
   },
 

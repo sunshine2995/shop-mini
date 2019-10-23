@@ -92,9 +92,7 @@
       longitude="{{ longitude }}"
       latitude="{{ latitude }}"
       scale="16"
-      bindcontroltap="controltap"
       markers="{{ markers }}"
-      bindmarkertap="markertap"
       bindregionchange="regionchange"
       style="width: 100%; height: 300px;"
     >
