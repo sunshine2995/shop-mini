@@ -41,7 +41,20 @@
     <view class="detail-content">
       <view class="title">
         <text class="now">立即送出</text>
-        <text class="cai-go-home">菜巴士:送菜到家</text>
+        <view class="share">
+          <button open-type="share" class="share-button" wx:if="{{ showShare }}">
+            分享
+          </button>
+          <block wx:else>
+            <form bindsubmit="submitGoodsShare" report-submit="true" wx:if="{{ showChecked && selectedIds.length }}">
+              <button form-type="submit" class="share-button">
+                确定商品
+              </button>
+            </form>
+            <icon class="iconfont icon-fenxiang1" wx:else bindtap="getChecked"></icon>
+          </block>
+          <text class="cai-go-home">菜巴士:送菜到家</text>
+        </view>
       </view>
       <view class="goods-container">
         <view class="goods-content" wx:for="{{ orderItems }}" wx:key="this">
@@ -49,6 +62,10 @@
             <icon class="iconfont icon-yituikuan"></icon>
           </view>
           <view class="goods-image">
+            <view class="good_check_box" data-index="{{ index }}" catchtap="itemSelected" wx:if="{{ showChecked }}">
+              <icon class="iconfont icon-selected" wx-if="{{ item.check }}"></icon>
+              <icon class="iconfont icon-Unselected" wx-if="{{ !item.check }}"></icon>
+            </view>
             <image
               class="goods-img"
               wx:if="{{ item.goods_spu_thumbnail_url }}"

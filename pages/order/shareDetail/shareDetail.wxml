@@ -1,0 +1,29 @@
+<view class="shareDetail">
+  <view class="user-info">
+    <view class="user-image">
+      <image class="user-img" wx:if="{{ userInfo.headimgurl }}" src="{{ userInfo.headimgurl }}"></image>
+      <image class="user-img" wx:else src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"></image>
+    </view>
+    <view class="user-name">{{ userInfo.nickname }}在{{ creatTime }}号买过的好东西</view>
+  </view>
+  <view class="goods-content">
+    <view
+      class="goods-info"
+      wx:for="{{ shareGood }}"
+      wx:key="index"
+      wx:for-item="goods"
+      data-good-id="{{ goods.goods_spu_id }}"
+      bindtap="goToDetail"
+    >
+      <view class="user-image">
+        <image class="user-img" wx:if="{{ goods.image }}" src="{{ goods.image }}"></image>
+        <image class="user-img" wx:else src="https://img.caibashi.com/63153af8a2858e524fb0c6ad4ed7003c.png"></image>
+      </view>
+      <view class="goods-name">
+        <text class="good-name">{{ goods.goods_spu_name }}</text>
+        <text class="good-standard">{{ goods.goods_sku_name }}</text>
+        <text class="good-price">{{ goods.price }}元/{{ goods.unit }}</text>
+      </view>
+    </view>
+  </view>
+</view>

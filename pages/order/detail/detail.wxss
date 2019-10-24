@@ -52,7 +52,7 @@
 
 .detail-content {
   background-color: #fff;
-  padding: 15rpx 20rpx;
+  padding: 15rpx;
   box-sizing: border-box;
 }
 
@@ -71,6 +71,30 @@
   line-height: 1;
   border-left: 4px solid #11a24a;
   padding-left: 5rpx;
+  box-sizing: border-box;
+}
+.share {
+  display: flex;
+  align-items: center;
+}
+.button-hover {
+  color: unset;
+  background-color: unset;
+}
+.share-button {
+  padding: unset;
+  text-align: left;
+  font-size: 30rpx;
+  color: #11a24a;
+  background-color: unset;
+  line-height: 1;
+  padding: 10rpx;
+  margin-right: 15rpx;
+}
+.icon-fenxiang1 {
+  font-size: 40rpx;
+  color: #666;
+  padding-right: 15rpx;
   box-sizing: border-box;
 }
 
@@ -134,6 +158,21 @@
   margin: 10rpx 0;
 }
 
+.icon-selected {
+  color: #11a24a;
+}
+
+.icon-Unselected {
+  color: #999;
+}
+
+.icon-Unselected,
+.icon-selected {
+  font-size: 36rpx;
+  line-height: 1;
+  margin-right: 7px;
+}
+
 .mask {
   position: absolute;
   display: flex;
@@ -159,6 +198,7 @@
 }
 
 .goods-image {
+  display: flex;
   width: 20%;
   position: relative;
 }

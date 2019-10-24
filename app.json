@@ -50,7 +50,8 @@
     "pages/login/login",
     "pages/shopList/shopList",
     "pages/activity/rewardDetail/rewardDetail",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/order/shareDetail/shareDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

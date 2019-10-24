@@ -5,6 +5,20 @@ export function getCouponsList(money) {
   return http.get(`/order/coupons_list？order_money=${money}`);
 }
 
+// 要分享的商品
+export function submitGoodsShare(userId, orderNo, selectedIds) {
+  return http.post('/order/share', {
+    user_id: userId,
+    order_no: orderNo,
+    item_ids: selectedIds,
+  });
+}
+
+// 分享的订单的商品详情
+export function getGoodsShare(recordNo) {
+  return http.get(`/order/share/${recordNo}`);
+}
+
 // submit
 export function submitOrder(model) {
   return http.post('/order/submit', {
