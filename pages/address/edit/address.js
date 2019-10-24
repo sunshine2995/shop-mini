@@ -175,7 +175,7 @@ Page({
 
   // 是否为默认地址
   checkboxChange(e) {
-    this.data.defaultCheck = e.detail.value === '默认';
+    this.data.defaultCheck = e.detail.value == '默认';
   },
 
   // 更换性别
