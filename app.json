@@ -53,6 +53,9 @@
     "pages/test/test",
     "pages/order/shareDetail/shareDetail"
   ],
+  "usingComponents": {
+    "formId": "/components/formId/formId"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

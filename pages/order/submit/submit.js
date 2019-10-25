@@ -36,7 +36,7 @@ Page({
     isEnough: false, // 是否显示余额付款
 
     isShowCurtain: false, // 遮罩层
-    formId: '',
+    formIds: '',
   },
 
   cancelPay() {
@@ -217,8 +217,7 @@ Page({
       });
   },
 
-  choosePayType(e) {
-    this.data.formId = e.detail.formId;
+  choosePayType() {
     if (this.data.showWait) {
       this.data.isEnough = +app.globalData.userData.balance >= +this.data.finallyMoney;
       this.setData({
@@ -371,8 +370,12 @@ Page({
           totalAmount = this.data.orderMessage.goods_amount;
           finallyAmount = this.data.finallyMoneyNoShipping;
         }
+        this.data.formids = wx.getStorageSync('formids');
+        if (this.data.formids) {
+          wx.removeStorage({ key: 'formids' });
+        }
         const model = {
-          formId: this.data.formId,
+          formIds: this.data.formids,
           giftId: app.globalData.chooseGiftId,
           addressId: this.data.defaultAddress.id,
           paymentType: 1,

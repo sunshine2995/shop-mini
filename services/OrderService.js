@@ -22,7 +22,7 @@ export function getGoodsShare(recordNo) {
 // submit
 export function submitOrder(model) {
   return http.post('/order/submit', {
-    form_id: model.formId,
+    form_ids: model.formIds,
     pay_channel: 2,
     gift_id: model.giftId,
     address_id: model.addressId,

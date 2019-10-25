@@ -402,7 +402,7 @@ button::after {
   left: 0;
   z-index: 220;
   width: 100%;
-  padding: 40rpx 40rpx 100rpx;
+  padding: 40rpx 40rpx 200rpx;
   box-sizing: border-box;
   background-color: #fff;
 }
@@ -419,7 +419,9 @@ button::after {
 }
 
 .pay-type {
-  padding: 30rpx;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 30rpx 0;
   box-sizing: border-box;
 }
 
@@ -436,6 +438,7 @@ button::after {
 
 .wx-pay,
 .balance-pay {
+  flex: 1;
   font-size: 40rpx;
   color: #666;
   padding-left: 30rpx;

@@ -361,6 +361,9 @@
   color: #999;
   text-align: center;
 }
+.add-cart-num .icon-sort-add {
+  font-size: 60rpx;
+}
 
 .icon-sort-add {
   line-height: 1;
