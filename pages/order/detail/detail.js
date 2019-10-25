@@ -40,12 +40,10 @@ Page({
     const index = e.currentTarget.dataset.index;
     const item = this.data.orderItems[index];
     item.check = !item.check;
-    this.data.selectedIds = [];
-    this.data.orderItems.forEach((item) => {
-      if (item.check) {
-        this.data.selectedIds.push(item.id);
-      }
-    });
+    // prettier-ignore
+    this.data.selectedIds = this.data.orderItems
+                              .filter((item) => item.check)
+                              .map((item) => item.id);
     this.setData({
       orderItems: this.data.orderItems,
       selectedIds: this.data.selectedIds,
