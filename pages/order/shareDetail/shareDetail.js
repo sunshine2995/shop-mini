@@ -47,7 +47,6 @@ Page({
   getGoodsShare() {
     if (this.data.recordNo) {
       OrderService.getGoodsShare(this.data.recordNo)
-        // OrderService.getGoodsShare('201910221542430026091571827430')
         .then((res) => {
           this.data.userInfo = res.data.data.user_info;
           this.data.shareShopId = this.data.userInfo.subbranch_id;

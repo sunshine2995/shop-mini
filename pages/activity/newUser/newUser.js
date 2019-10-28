@@ -2,8 +2,6 @@ import * as GiftService from '../../../services/GiftService';
 import * as UserService from '../../../services/UserService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
-const app = getApp();
-
 Page({
   data: {
     isNewUser: false,
@@ -55,11 +53,36 @@ Page({
       });
   },
 
-  onShow() {
-    this.getshippingCharge();
-    this.data.isNewUser = app.globalData.userData.is_new_user;
-    this.setData({
-      isNewUser: this.data.isNewUser,
+  getUser() {
+    wx.showLoading({
+      title: '',
     });
+    UserService.getUser()
+      .then((res) => {
+        wx.hideLoading();
+        this.data.isNewUser = res.data.data.is_new_user;
+        this.setData({
+          isNewUser: this.data.isNewUser,
+        });
+        this.getshippingCharge();
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+
+  onShow() {
+    this.getUser();
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '新人首单免费领鸡蛋～',
+      path: '/pages/activity/newUser/newUser',
+    };
   },
 });

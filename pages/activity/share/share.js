@@ -117,10 +117,7 @@ Page({
     }
   },
 
-  onShareAppMessage(res) {
-    if (res.from === 'button') {
-      console.log(res.target, 'share');
-    }
+  onShareAppMessage() {
     return {
       title: '分享三人次好友充值即可免费领取羊腿～',
       path: '/pages/activity/share/share?share_id=' + this.data.share_id,
