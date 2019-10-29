@@ -15,6 +15,48 @@ Page({
       showQrImage: false,
     });
   },
+  getImageInfo() {
+    wx.getImageInfo({
+      src: this.data.qrImage,
+      success: (res) => {
+        var path = res.path;
+        //保存图片到本地
+        wx.saveImageToPhotosAlbum({
+          filePath: path,
+          success: () => {
+            wx.showToast({
+              title: '保存成功',
+            });
+          },
+          fail: () => {
+            wx.showModal({
+              title: '',
+              content: '检测到您未打开保存图片权限，是否前往开启',
+              confirmText: '前往开启',
+              cancelText: '暂不开启',
+              confirmColor: '#11A24A',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.openSetting({
+                    //打开设置页
+                    success(res) {
+                      //成功，返回页面回调
+                      //如果同意了位置授权则userLocation=true
+                      if (res.authSetting['scope.writePhotosAlbum']) {
+                        // 业务逻辑
+                      }
+                    },
+                  });
+                } else if (res.cancel) {
+                  // 未开启
+                }
+              },
+            });
+          },
+        });
+      },
+    });
+  },
 
   getUser() {
     wx.showLoading({

@@ -5,6 +5,7 @@
         <image class="qr-img" src="{{ qrImage }}" mode="widthFix"></image>
       </view>
       <view class="qr-text">菜巴士•扫一扫•送菜到家</view>
+      <view class="qr-save" catchtap="getImageInfo"><text>保存到相册</text></view>
     </view>
   </view>
   <view class="recharge-gift-image" wx:if="{{ !rechargeGiftList.length }}">

@@ -13,8 +13,7 @@
   bottom: 0;
   right: 0;
   margin: auto;
-  background-color: rgba(128, 128, 128, 1);
-  /*background-color: rgba(255, 255, 255, 0.4);*/
+  background-color: #fff;
   z-index: 20;
 }
 
@@ -27,8 +26,19 @@
   text-align: center;
   padding: 50rpx 0 100rpx;
   box-sizing: border-box;
-  font-size: 36rpx;
+  font-size: 40rpx;
+  color: #666;
+}
+.qr-save text {
+  background-color: #11a24a;
+  width: 50%;
   color: #fff;
+  text-align: center;
+  margin: 30rpx auto;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  border-radius: 50rpx;
 }
 
 .qr-img {

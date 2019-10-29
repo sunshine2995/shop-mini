@@ -84,7 +84,29 @@ Page({
         this.getShopListByLocation(longitude, latitude);
       },
       fail: () => {
-        this.getShopList();
+        wx.showModal({
+          title: '',
+          content: '检测到您未打开地理位置权限，是否前往开启',
+          confirmText: '前往开启',
+          cancelText: '暂不开启',
+          confirmColor: '#11A24A',
+          success: (res) => {
+            if (res.confirm) {
+              wx.openSetting({
+                //打开设置页
+                success(res) {
+                  //成功，返回页面回调
+                  //如果同意了位置授权则userLocation=true
+                  if (res.authSetting['scope.userLocation']) {
+                    // 业务逻辑
+                  }
+                },
+              });
+            } else if (res.cancel) {
+              this.getShopList();
+            }
+          },
+        });
       },
     });
   },
