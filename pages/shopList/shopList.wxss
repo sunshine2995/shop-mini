@@ -1,6 +1,6 @@
 .ShopListContainer {
   background-color: #e6e6e6;
-  height: 100vh;
+  min-height: 100vh;
   padding: 10rpx 0;
   box-sizing: border-box;
 }

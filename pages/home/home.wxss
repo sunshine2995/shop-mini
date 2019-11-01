@@ -2,6 +2,61 @@
   padding: 100rpx 0 5rpx;
   box-sizing: border-box;
 }
+.mask {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgba(128, 128, 128, 0.8);
+  z-index: 40;
+}
+.icon {
+  text-align: right;
+  padding: 10rpx 30rpx 0;
+  box-sizing: border-box;
+}
+.icon-cancel {
+  font-size: 45rpx;
+  color: #fff;
+}
+.share-tip {
+  background-color: #fe6950;
+  width: 68%;
+  height: 65%;
+  margin: auto;
+  border-radius: 20rpx;
+}
+
+.qr-text {
+  padding: 20rpx 100rpx 0;
+  box-sizing: border-box;
+  font-size: 45rpx;
+  color: #fff;
+}
+.qr-save text {
+  width: 70%;
+  color: #fff;
+  text-align: center;
+  margin: 30rpx auto;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  border-radius: 50rpx;
+}
+.qr-image {
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+.qr-img {
+  display: block;
+  width: 400rpx;
+  height: 400rpx;
+  margin: auto;
+}
 
 .home-nav {
   position: fixed;

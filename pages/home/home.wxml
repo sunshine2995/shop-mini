@@ -1,4 +1,19 @@
 <view class="HomeContainer">
+  <view class="mask" wx:if="{{ showImage }}" bindtap="hideImage">
+    <view class="share-tip">
+      <view class="icon" bindtap="hideImage"> <icon class="iconfont icon-cancel"></icon></view>
+      <view class="qr-text">恭喜您！</view>
+      <view class="qr-text"><text>获得新人礼一份</text></view>
+      <view class="qr-image">
+        <image
+          class="qr-img"
+          src="https://img.caibashi.com/38e968891764b35806f4ea5688b2d6c7.png"
+          mode="widthFix"
+        ></image>
+      </view>
+      <view class="qr-save" bindtap="getNewUserEgg"><text>立即领取</text></view>
+    </view>
+  </view>
   <view class="home-nav">
     <navigator url="/pages/shopList/shopList" hover-class="none" class="change-shop">
       <icon class="iconfont icon-dingwei"></icon>

@@ -1,5 +1,6 @@
 import * as UserService from '../../services/UserService';
 import * as GoodsService from '../../services/GoodsService';
+import * as GiftService from '../../services/GiftService';
 import * as CartService from '../../services/CartService';
 import * as RouterUtil from '../../utils/RouterUtil';
 
@@ -22,6 +23,12 @@ Page({
     shopInfo: {}, // 店铺信息
     showShopName: true, // 是否展示店铺名称
     inviteId: 0, // 邀请人的Id
+    showImage: false, // 是否展示活动弹窗
+  },
+  hideImage() {
+    this.setData({
+      showImage: false,
+    });
   },
 
   jumpSort() {
@@ -32,6 +39,30 @@ Page({
     this.setData({
       showShopName: false,
     });
+  },
+  getNewUserEgg() {
+    wx.showLoading({
+      title: '领取中',
+    });
+    GiftService.getNewUserEgg()
+      .then(() => {
+        wx.hideLoading();
+        this.data.showImage = false;
+        this.setData({
+          showImage: this.data.showImage,
+        });
+        wx.showToast({
+          title: '领取成功',
+          icon: 'none',
+        });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
   },
 
   getUser() {
@@ -49,6 +80,12 @@ Page({
           RouterUtil.go('/pages/shopList/shopList');
         } else {
           this.getShopInfo();
+        }
+        this.data.showImage = res.data.data.is_new_user;
+        if (this.data.showImage) {
+          this.setData({
+            showImage: true,
+          });
         }
         this.getOneCategory();
         this.getCustom();
