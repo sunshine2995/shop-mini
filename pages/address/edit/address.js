@@ -1,7 +1,7 @@
 import amapFile from '../../../libs/amap-wx';
 import key from '../../../libs/config';
 import * as AddressService from '../../../services/AddressService';
-import validator from '../../../utils/validator';
+import * as validator from '../../../utils/validator';
 import * as _ from '../../../libs/lodash';
 
 Page({

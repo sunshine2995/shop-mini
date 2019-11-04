@@ -1,5 +1,5 @@
 import * as UserService from '../../services/UserService';
-import validator from '../../utils/validator';
+import * as validator from '../../utils/validator';
 
 Component({
   properties: {},
