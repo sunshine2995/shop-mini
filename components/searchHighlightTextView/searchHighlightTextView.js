@@ -34,11 +34,11 @@ Component({
       let searchArray = this.getHilightStrArray(newVal.goods_spu_name, this.properties.keywords);
       this.setData({
         keyName: this.properties.keywords,
-        searchArray: searchArray,
+        searchArray,
       });
     },
 
-    getHilightStrArray: function(str, key) {
+    getHilightStrArray(str, key) {
       return str.replace(new RegExp(`${key}`, 'g'), `%%${key}%%`).split('%%');
     },
   },

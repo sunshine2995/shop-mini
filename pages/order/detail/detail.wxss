@@ -249,9 +249,6 @@
   box-sizing: border-box;
 }
 
-.goods-spu {
-}
-
 .num-icon {
   display: flex;
   align-items: center;
@@ -322,9 +319,6 @@
 
 .refund-title {
   color: #fe3059;
-}
-
-.sum {
 }
 
 .goods-count {

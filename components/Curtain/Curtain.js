@@ -20,5 +20,5 @@ Component({
    */
   methods: {},
 
-  ready: function() {},
+  ready() {},
 });

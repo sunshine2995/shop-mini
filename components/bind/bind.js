@@ -64,8 +64,8 @@ Component({
       }
     },
 
-    timer: function() {
-      let promise = new Promise((resolve, reject) => {
+    timer() {
+      const promise = new Promise((resolve) => {
         let setTimer = setInterval(() => {
           this.setData({
             second: this.data.second - 1,

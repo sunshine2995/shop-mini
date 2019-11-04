@@ -11,7 +11,7 @@ Component({
     price: {
       type: String,
       value: '',
-      observer: function(newVal, oldVal) {
+      observer(newVal) {
         let first;
         let second = '';
         if (String(Number(newVal)).split('.').length > 1) {
@@ -20,8 +20,8 @@ Component({
           [first] = String(Number(newVal)).split('.');
         }
         this.setData({
-          first: first,
-          second: second,
+          first,
+          second,
         });
       },
     },
@@ -55,6 +55,6 @@ Component({
   //组件的方法，包括事件响应函数和任意的自定义方法
   methods: {
     // 跳转活动详情
-    activityDetailTap: function(e) {},
+    activityDetailTap() {},
   },
 });
