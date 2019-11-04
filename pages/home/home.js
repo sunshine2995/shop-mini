@@ -3,7 +3,7 @@ import * as GoodsService from '../../services/GoodsService';
 import * as GiftService from '../../services/GiftService';
 import * as CartService from '../../services/CartService';
 import * as RouterUtil from '../../utils/RouterUtil';
-import config from '../../config/config';
+import * as utils from '../../utils/utils';
 
 const app = getApp();
 
@@ -176,43 +176,19 @@ Page({
   },
 
   onShow() {
-    if (config.env == 'dev') {
+    if (utils.inDevelopment()) {
       this.setData({
         showPath: true,
       });
     }
-    function compareVersion(v1, v2) {
-      v1 = v1.split('.');
-      v2 = v2.split('.');
-      const len = Math.max(v1.length, v2.length);
 
-      while (v1.length < len) {
-        v1.push('0');
-      }
-      while (v2.length < len) {
-        v2.push('0');
-      }
-
-      for (let i = 0; i < len; i++) {
-        const num1 = parseInt(v1[i]);
-        const num2 = parseInt(v2[i]);
-
-        if (num1 > num2) {
-          return 1;
-        } else if (num1 < num2) {
-          return -1;
-        }
-      }
-
-      return 0;
-    }
     const version = wx.getSystemInfoSync().SDKVersion;
-
-    if (compareVersion(version, '2.6.6') < 0) {
+    if (utils.compareVersion(version, '2.6.6') < 0) {
       wx.redirectTo({
         url: '/pages/test/test',
       });
     }
+
     const inviteImages = [
       {
         img: 'https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png',

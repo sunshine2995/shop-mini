@@ -140,7 +140,7 @@ Page({
           region: [this.data.address.province, this.data.address.city, this.data.address.area],
         });
       })
-      .catch((error) => {});
+      .catch(() => {});
   },
 
   // 地址转经纬度
@@ -161,7 +161,7 @@ Page({
           longitude: this.data.longitude,
         });
       })
-      .catch((error) => {});
+      .catch(() => {});
   },
 
   // 更改地址类型
@@ -169,7 +169,7 @@ Page({
     const active = e.currentTarget.dataset.index;
     this.data.address.addressType = e.currentTarget.dataset.value;
     this.setData({
-      active: active,
+      active,
     });
   },
 
@@ -252,7 +252,7 @@ Page({
     }
   },
 
-  getAddressInfo(addressId) {
+  getAddressInfo() {
     AddressService.getAddressInfo(this.data.address.id)
       .then((res) => {
         const addressInfo = res.data.data;
@@ -295,7 +295,7 @@ Page({
   onLoad(options) {
     this.data.address.id = options.addressId;
     this.getAddressInfo();
-    const myAmapFun = new amapFile.AMapWX({
+    new amapFile.AMapWX({
       key: this.data.key,
     });
   },

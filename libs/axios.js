@@ -3,10 +3,10 @@ import * as RouterUtil from '../utils/RouterUtil';
 function wxPromise(method, url, data, header) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: url,
-      method: method,
-      data: data,
-      header: header,
+      url,
+      method,
+      data,
+      header,
       success: (res) => {
         if (+res.data.code === 200 || +res.data.infocode === 10000) {
           resolve(res);
