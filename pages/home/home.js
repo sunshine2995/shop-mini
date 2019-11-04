@@ -89,7 +89,7 @@ Page({
           this.inviteBind();
         }
         app.globalData.userData = res.data.data;
-        this.data.showImage = !res.data.data.is_new_user;
+        this.data.showImage = res.data.data.is_new_user;
         const locationTip = wx.getStorageSync('locationTip');
         if (locationTip) {
           this.setData({
