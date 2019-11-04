@@ -1,5 +1,5 @@
 <view class="HomeContainer">
-  <view class="mask" wx:if="{{ showImage }}" bindtap="hideImage">
+  <view class="mask" wx:if="{{ showImage && !showLocation }}" bindtap="hideImage">
     <view class="share-tip">
       <view class="icon" bindtap="hideImage"> <icon class="iconfont icon-cancel"></icon></view>
       <view class="qr-text">恭喜您！</view>
@@ -11,7 +11,18 @@
           mode="widthFix"
         ></image>
       </view>
-      <view class="qr-save" bindtap="getNewUserEgg"><text>立即领取</text></view>
+      <view class="qr-save" catchtap="getNewUserEgg"><text>立即领取</text></view>
+    </view>
+  </view>
+  <view class="mask" wx:if="{{ showLocation && locationTip }}" bindtap="hideLocation">
+    <view class="shop-tip">
+      <view class="icon" bindtap="hideLocation"> <icon class="iconfont icon-cancel"></icon></view>
+      <view class="shop-text">据当前位置最近站点:</view>
+      <view class="shop-text"
+        ><text>{{ shopList[0].name }}</text></view
+      >
+      <view class="shop-save" catchtap="changeShop"><text>立即切换</text></view>
+      <view class="shop-close-tip" catchtap="closeShopTip"><text>不再提示</text></view>
     </view>
   </view>
   <view class="home-nav">

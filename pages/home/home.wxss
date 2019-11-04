@@ -23,10 +23,19 @@
   font-size: 45rpx;
   color: #fff;
 }
+.shop-tip .icon-cancel {
+  color: #666;
+}
 .share-tip {
   background-color: #fe6950;
   width: 68%;
   height: 65%;
+  margin: auto;
+  border-radius: 20rpx;
+}
+.shop-tip {
+  background-color: #fff;
+  width: 68%;
   margin: auto;
   border-radius: 20rpx;
 }
@@ -37,15 +46,37 @@
   font-size: 45rpx;
   color: #fff;
 }
-.qr-save text {
+.shop-text {
+  text-align: center;
+  padding: 20rpx 50rpx 0;
+  box-sizing: border-box;
+  font-size: 35rpx;
+}
+.shop-text text {
+  font-size: 40rpx;
+  color: #11a24a;
+}
+.qr-save text,
+.shop-save text,
+.shop-close-tip text {
   width: 70%;
-  color: #fff;
   text-align: center;
   margin: 30rpx auto;
   padding: 20rpx 30rpx;
   box-sizing: border-box;
   border: 1px solid #e6e6e6;
   border-radius: 50rpx;
+}
+
+.qr-save text {
+  color: #fff;
+}
+.shop-save text {
+  background-color: #11a24a;
+  color: #fff;
+}
+.shop-close-tip text {
+  color: #333;
 }
 .qr-image {
   padding: 20rpx 0;

@@ -2,6 +2,7 @@ import * as UserService from '../../services/UserService';
 import * as GoodsService from '../../services/GoodsService';
 import * as GiftService from '../../services/GiftService';
 import * as CartService from '../../services/CartService';
+import * as AddressService from '../../services/AddressService.js';
 import * as RouterUtil from '../../utils/RouterUtil';
 import * as utils from '../../utils/utils';
 
@@ -26,10 +27,20 @@ Page({
     inviteId: 0, // 邀请人的Id
     showImage: false, // 是否展示活动弹窗
     showPath: false, // 判断环境的变量
+    showLocation: false, // 判断环境的变量
+    locationTip: true, // 是否不再提示切换店铺
+    shopList: [], // 店铺列表
   },
   hideImage() {
     this.setData({
       showImage: false,
+    });
+  },
+
+  hideLocation() {
+    this.setData({
+      showLocation: false,
+      showImage: this.data.showImage,
     });
   },
 
@@ -78,22 +89,61 @@ Page({
           this.inviteBind();
         }
         app.globalData.userData = res.data.data;
-        if (app.globalData.userData.current_subbranch_id === 0) {
-          RouterUtil.go('/pages/shopList/shopList');
-        } else {
-          this.getShopInfo();
-        }
-        this.data.showImage = res.data.data.is_new_user;
-        if (this.data.showImage) {
+
+        // if (app.globalData.userData.current_subbranch_id === 0) {
+        //   RouterUtil.go('/pages/shopList/shopList');
+        // } else {
+        // }
+
+        this.data.showImage = !res.data.data.is_new_user;
+        const locationTip = wx.getStorageSync('locationTip');
+        if (locationTip) {
           this.setData({
-            showImage: true,
+            locationTip,
           });
         }
+        this.getShopInfo();
         this.getOneCategory();
         this.getCustom();
         this.getMarketingAlltype();
         this.getCategoryOneAllGoods();
         this.getNewUserGoods();
+        wx.getLocation({
+          type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
+          success: (res) => {
+            const latitude = res.latitude;
+            const longitude = res.longitude;
+            this.getShopListByLocation(longitude, latitude);
+          },
+          fail: () => {
+            wx.showModal({
+              title: '',
+              content: '检测到您未打开地理位置权限，是否前往开启',
+              confirmText: '前往开启',
+              cancelText: '暂不开启',
+              confirmColor: '#11A24A',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.openSetting({
+                    //打开设置页
+                    success(res) {
+                      //成功，返回页面回调
+                      //如果同意了位置授权则userLocation=true
+                      if (res.authSetting['scope.userLocation']) {
+                        // 业务逻辑
+                      }
+                    },
+                  });
+                } else if (res.cancel) {
+                  // this.setData({
+                  //   showImage: this.data.showImage,
+                  // });
+                  this.getShopList();
+                }
+              },
+            });
+          },
+        });
       })
       .catch((error) => {
         wx.showToast({
@@ -102,6 +152,79 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  getShopListByLocation(longitude, latitude) {
+    wx.showLoading({
+      title: '加载中',
+    });
+    AddressService.getShopListByLocation(longitude, latitude)
+      .then((res) => {
+        wx.hideLoading();
+        this.data.shopList = res.data.data;
+        this.data.showLocation = app.globalData.userData.current_subbranch_id !== this.data.shopList[0].id;
+        this.setData({
+          shopList: this.data.shopList,
+          showLocation: this.data.showLocation,
+          showImage: this.data.showImage,
+        });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+
+  getShopList() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    AddressService.getShopList()
+      .then((res) => {
+        wx.hideLoading();
+        this.data.shopList = res.data.data;
+        this.data.showLocation = app.globalData.userData.current_subbranch_id !== this.data.shopList[0].id;
+        this.setData({
+          shopList: res.data.data,
+          showLocation: this.data.showLocation,
+          showImage: this.data.showImage,
+        });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+
+  changeShop() {
+    AddressService.changeShop(this.data.shopList[0].id)
+      .then(() => {
+        this.getUser();
+        this.setData({
+          showLocation: false,
+          showImage: this.data.showImage,
+        });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+  closeShopTip() {
+    wx.setStorageSync('locationTip', false);
+    this.setData({
+      locationTip: false,
+      showImage: this.data.showImage,
+    });
   },
 
   inviteBind() {
