@@ -89,12 +89,6 @@ Page({
           this.inviteBind();
         }
         app.globalData.userData = res.data.data;
-
-        // if (app.globalData.userData.current_subbranch_id === 0) {
-        //   RouterUtil.go('/pages/shopList/shopList');
-        // } else {
-        // }
-
         this.data.showImage = !res.data.data.is_new_user;
         const locationTip = wx.getStorageSync('locationTip');
         if (locationTip) {
@@ -135,10 +129,9 @@ Page({
                     },
                   });
                 } else if (res.cancel) {
-                  // this.setData({
-                  //   showImage: this.data.showImage,
-                  // });
-                  this.getShopList();
+                  this.setData({
+                    showImage: this.data.showImage,
+                  });
                 }
               },
             });
@@ -165,30 +158,6 @@ Page({
         this.data.showLocation = app.globalData.userData.current_subbranch_id !== this.data.shopList[0].id;
         this.setData({
           shopList: this.data.shopList,
-          showLocation: this.data.showLocation,
-          showImage: this.data.showImage,
-        });
-      })
-      .catch((error) => {
-        wx.showToast({
-          title: error.data.message,
-          icon: 'none',
-          duration: 2000,
-        });
-      });
-  },
-
-  getShopList() {
-    wx.showLoading({
-      title: '加载中',
-    });
-    AddressService.getShopList()
-      .then((res) => {
-        wx.hideLoading();
-        this.data.shopList = res.data.data;
-        this.data.showLocation = app.globalData.userData.current_subbranch_id !== this.data.shopList[0].id;
-        this.setData({
-          shopList: res.data.data,
           showLocation: this.data.showLocation,
           showImage: this.data.showImage,
         });
