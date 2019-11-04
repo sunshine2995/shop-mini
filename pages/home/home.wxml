@@ -18,7 +18,8 @@
     <navigator url="/pages/shopList/shopList" hover-class="none" class="change-shop">
       <icon class="iconfont icon-dingwei"></icon>
     </navigator>
-    <navigator url="/pages/shopList/shopList" class="logo-image" hover-class="none">
+    <view wx:if="{{ showPath }}">测试版</view>
+    <navigator url="/pages/shopList/shopList" class="logo-image" hover-class="none" wx:else>
       <image class="caibashi-logo" src="/images/home/home_title.png"></image>
     </navigator>
     <navigator url="/pages/userCenter/customerService/customerService" class="help-service" hover-class="none">

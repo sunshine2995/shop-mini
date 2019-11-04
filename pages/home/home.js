@@ -3,6 +3,7 @@ import * as GoodsService from '../../services/GoodsService';
 import * as GiftService from '../../services/GiftService';
 import * as CartService from '../../services/CartService';
 import * as RouterUtil from '../../utils/RouterUtil';
+import config from '../../config/config';
 
 const app = getApp();
 
@@ -24,6 +25,7 @@ Page({
     showShopName: true, // 是否展示店铺名称
     inviteId: 0, // 邀请人的Id
     showImage: false, // 是否展示活动弹窗
+    showPath: false, // 判断环境的变量
   },
   hideImage() {
     this.setData({
@@ -174,6 +176,11 @@ Page({
   },
 
   onShow() {
+    if (config.env == 'dev') {
+      this.setData({
+        showPath: true,
+      });
+    }
     function compareVersion(v1, v2) {
       v1 = v1.split('.');
       v2 = v2.split('.');
