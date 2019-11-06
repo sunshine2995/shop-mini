@@ -264,7 +264,16 @@ Page({
     let total = this.data.total; //总计
     let discountMoney = this.data.discountMoney;
     let finallyMoney = this.data.finallyMoney; //实际
-    if (shopcar[Index].goods_sku_num === 1) {
+    if (Number(shopcar[Index].goods_sku_num) <= 0) {
+      shopcar[Index].goods_sku_num = 1;
+      wx.showToast({
+        title: '数量不能再少了',
+        icon: 'none',
+      });
+      this.setData({
+        validCarts: shopcar,
+      });
+    } else if (shopcar[Index].goods_sku_num === 1) {
       wx.showModal({
         title: '删除商品',
         content: '确定要删除该商品吗？',
@@ -277,6 +286,7 @@ Page({
             total = Number(total.toFixed(2));
             finallyMoney = total - discountMoney;
             this.setData({
+              validCarts: shopcar,
               total,
               discountMoney,
               finallyMoney,
@@ -323,10 +333,17 @@ Page({
           if (skuId === item.goods_sku_id) {
             this.data.validCarts.splice(index, 1);
           }
-          this.setData({
-            validCarts: this.data.validCarts,
-            selectedIds: this.data.selectedIds,
-          });
+        });
+        this.data.validCarts.forEach((item) => {
+          this.data.selarr = [];
+          if (item.check) {
+            this.data.selarr.push(item);
+          }
+        });
+        this.setData({
+          validCarts: this.data.validCarts,
+          selectedIds: this.data.selectedIds,
+          selarr: this.data.selarr,
         });
         this.getCartCount();
       })

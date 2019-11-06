@@ -9,6 +9,7 @@ Page({
     rechargeImg: [], //充值图片
     statusNumList: {}, // 不同状态订单数量
     isShowCurtain: false, // 遮罩层
+    showAllInfo: false, // 未授权是否展示信息
     authUserInfo: {}, // 授权信息
   },
 
@@ -35,6 +36,7 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         authUserInfo: app.globalData.userInfo,
+        showAllInfo: true,
       });
     }
     this.getUserInfo();

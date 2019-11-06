@@ -148,12 +148,8 @@ Page({
   },
 
   getShopListByLocation(longitude, latitude) {
-    wx.showLoading({
-      title: '加载中',
-    });
     AddressService.getShopListByLocation(longitude, latitude)
       .then((res) => {
-        wx.hideLoading();
         this.data.shopList = res.data.data;
         this.data.showLocation = app.globalData.userData.current_subbranch_id !== this.data.shopList[0].id;
         this.setData({

@@ -180,7 +180,12 @@ Page({
           reduceMoney: this.data.reduceMoney,
         });
       })
-      .catch(() => {
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
         RouterUtil.go('/pages/cart/cart');
       });
   },
@@ -436,8 +441,10 @@ Page({
     this.data.shopInfo = app.globalData.shopInfo;
     let deliveryTime = app.globalData.shopInfo.shop_delivery_time;
     let shopTime = app.globalData.shopInfo.shop_business_time;
-    let chooseTime;
-    let todayTime;
+    let chooseTime = '';
+    let todayTime = '';
+    let start = '';
+    let end = '';
     if (this.data.showWait) {
       chooseTime = deliveryTime;
       todayTime = moment()
@@ -450,8 +457,8 @@ Page({
         .format('YYYY/MM/DD HH:mm:ss');
     }
 
-    const [start, end] = chooseTime.split(' - ');
-    let startTime;
+    [start, end] = chooseTime.split(' - ');
+    let startTime = '';
     if (this.data.showWait) {
       startTime = moment(`${moment().format('YYYY/MM/DD')} ${start}:00`)
         .add(35, 'minutes')
@@ -473,7 +480,6 @@ Page({
       .duration(moment(reduceMoneyTime).valueOf() - moment(todayTime).valueOf())
       .as('minutes');
     const diff = moment.duration(moment(endTime).valueOf() - moment(startTime).valueOf()).as('minutes');
-
     this.data.todayTimes = []; // 从当前时间开始到配送时间结束时间段的数组
     const reduceMoneyTimes = []; // 有折扣商品的时间段的数组
     this.data.durationTimes = []; // 配送时间段的数组

@@ -23,7 +23,7 @@
         <text class="user-name">点击登录账户</text>
       </view>
     </navigator>
-    <view class="activity-swiper">
+    <view class="activity-swiper" wx:if="{{ showAllInfo }}">
       <swiper vertical="{{ false }}" autoplay="true" indicator-dots="true" indicator-active-color="#11A24A">
         <swiper-item>
           <navigator url="/pages/activity/share/share" hover-class="none">
@@ -38,65 +38,68 @@
       </swiper>
     </view>
   </view>
-  <view class="integration">
-    <navigator class="balance" url="/pages/userCenter/balance/balance" hover-class="none">
-      <text class="number" wx:if="{{ userInfo.balance }}">￥{{ userInfo.balance }}元</text>
-      <text class="number" wx:else>0</text>
-      <text class="text">余额</text>
-    </navigator>
-    <navigator class="red-envelopes" url="/pages/userCenter/couponList/couponList" hover-class="none">
-      <text class="number" wx:if="{{ userInfo.coupons_number }}">{{ userInfo.coupons_number }}</text>
-      <text class="number" wx:else>0</text>
-      <text class="text">红包</text>
-    </navigator>
-    <navigator class="common-menu" url="/pages/userCenter/collection/collection" hover-class="none">
-      <text class="number" wx:if="{{ userInfo.collection_numbers }}">{{ userInfo.collection_numbers }}</text>
-      <text class="number" wx:else>0</text>
-      <text class="text">收藏</text>
-    </navigator>
-    <navigator class="integral" url="/pages/userCenter/point/point" hover-class="none">
-      <text class="number" wx:if="{{ userInfo.user_integral }}">{{ userInfo.user_integral }}</text>
-      <text class="number" wx:else>0</text>
-      <text class="text">积分</text>
-    </navigator>
-  </view>
-  <view class="order-moudle">
-    <navigator class="all-order" url="/pages/order/list/list" hover-class="none">
-      <text>我的订单</text>
-      <view class="order-icon">
-        <text>全部订单</text>
-        <icon class="iconfont icon-right"></icon>
-      </view>
-    </navigator>
-    <view class="order-status">
-      <view class="order-type" data-status="待付款" bindtap="orderList">
-        <icon class="iconfont icon-pending-payment"></icon>
-        <text class="order-type-text">待付款</text>
-        <text class="status-num" wx:if="{{ statusNumList.wait_pay > 0 }}">{{ statusNumList.wait_pay }}</text>
-      </view>
-      <view class="order-type" data-status="待分拣" bindtap="orderList">
-        <icon class="iconfont icon-store"></icon>
-        <text class="order-type-text">待分拣</text>
-        <text class="status-num" wx:if="{{ statusNumList.wait_sorted > 0 }}">{{ statusNumList.wait_sorted }}</text>
-      </view>
-      <view class="order-type" data-status="分拣中" bindtap="orderList">
-        <icon class="iconfont icon-chengzhong"></icon>
-        <text class="order-type-text">分拣中</text>
-        <text class="status-num" wx:if="{{ statusNumList.sorting > 0 }}">{{ statusNumList.sorting }}</text>
-      </view>
-      <view class="order-type" data-status="待配送" bindtap="orderList">
-        <icon class="iconfont icon-to-be-delivered"></icon>
-        <text class="order-type-text">待配送</text>
-        <text class="status-num" wx:if="{{ statusNumList.wait_delivery > 0 }}">{{ statusNumList.wait_delivery }}</text>
-      </view>
-      <view class="order-type" data-status="待收货" bindtap="orderList">
-        <icon class="iconfont icon-to-be-received"></icon>
-        <text class="order-type-text">待收货</text>
-        <text class="status-num" wx:if="{{ statusNumList.wait_confirm > 0 }}">{{ statusNumList.wait_confirm }}</text>
+  <view wx:if="{{ showAllInfo }}">
+    <view class="integration">
+      <navigator class="balance" url="/pages/userCenter/balance/balance" hover-class="none">
+        <text class="number" wx:if="{{ userInfo.balance }}">￥{{ userInfo.balance }}元</text>
+        <text class="number" wx:else>0</text>
+        <text class="text">余额</text>
+      </navigator>
+      <navigator class="red-envelopes" url="/pages/userCenter/couponList/couponList" hover-class="none">
+        <text class="number" wx:if="{{ userInfo.coupons_number }}">{{ userInfo.coupons_number }}</text>
+        <text class="number" wx:else>0</text>
+        <text class="text">红包</text>
+      </navigator>
+      <navigator class="common-menu" url="/pages/userCenter/collection/collection" hover-class="none">
+        <text class="number" wx:if="{{ userInfo.collection_numbers }}">{{ userInfo.collection_numbers }}</text>
+        <text class="number" wx:else>0</text>
+        <text class="text">收藏</text>
+      </navigator>
+      <navigator class="integral" url="/pages/userCenter/point/point" hover-class="none">
+        <text class="number" wx:if="{{ userInfo.user_integral }}">{{ userInfo.user_integral }}</text>
+        <text class="number" wx:else>0</text>
+        <text class="text">积分</text>
+      </navigator>
+    </view>
+    <view class="order-moudle">
+      <navigator class="all-order" url="/pages/order/list/list" hover-class="none">
+        <text>我的订单</text>
+        <view class="order-icon">
+          <text>全部订单</text>
+          <icon class="iconfont icon-right"></icon>
+        </view>
+      </navigator>
+      <view class="order-status">
+        <view class="order-type" data-status="待付款" bindtap="orderList">
+          <icon class="iconfont icon-pending-payment"></icon>
+          <text class="order-type-text">待付款</text>
+          <text class="status-num" wx:if="{{ statusNumList.wait_pay > 0 }}">{{ statusNumList.wait_pay }}</text>
+        </view>
+        <view class="order-type" data-status="待分拣" bindtap="orderList">
+          <icon class="iconfont icon-store"></icon>
+          <text class="order-type-text">待分拣</text>
+          <text class="status-num" wx:if="{{ statusNumList.wait_sorted > 0 }}">{{ statusNumList.wait_sorted }}</text>
+        </view>
+        <view class="order-type" data-status="分拣中" bindtap="orderList">
+          <icon class="iconfont icon-chengzhong"></icon>
+          <text class="order-type-text">分拣中</text>
+          <text class="status-num" wx:if="{{ statusNumList.sorting > 0 }}">{{ statusNumList.sorting }}</text>
+        </view>
+        <view class="order-type" data-status="待配送" bindtap="orderList">
+          <icon class="iconfont icon-to-be-delivered"></icon>
+          <text class="order-type-text">待配送</text>
+          <text class="status-num" wx:if="{{ statusNumList.wait_delivery > 0 }}">{{
+            statusNumList.wait_delivery
+          }}</text>
+        </view>
+        <view class="order-type" data-status="待收货" bindtap="orderList">
+          <icon class="iconfont icon-to-be-received"></icon>
+          <text class="order-type-text">待收货</text>
+          <text class="status-num" wx:if="{{ statusNumList.wait_confirm > 0 }}">{{ statusNumList.wait_confirm }}</text>
+        </view>
       </view>
     </view>
-  </view>
-  <!-- <view class="recharge-moudle">
+    <!-- <view class="recharge-moudle">
     <navigator url="/pages/recharge/recharge" hover-class="none" class="go-to-recharge">
       <text>充值有礼</text>
       <view class="order-icon">
@@ -112,73 +115,75 @@
       </view>
     </scroll-view>
   </view> -->
-  <view class="activity-moudle">
-    <view class="activity-title">
-      <text>活动中心</text>
+    <view class="activity-moudle">
+      <view class="activity-title">
+        <text>活动中心</text>
+      </view>
+      <view class="activity-content">
+        <navigator class="activity-type" url="/pages/activity/prepaidGift/prepaidGift" hover-class="none">
+          <icon class="iconfont icon-huodong"></icon>
+          <text class="activity-type-text">充值赠礼</text>
+        </navigator>
+        <navigator url="/pages/activity/share/share" class="activity-type" hover-class="none">
+          <icon class="iconfont icon-fenxiang1"></icon>
+          <text class="activity-type-text">分享充值送</text>
+        </navigator>
+        <navigator url="/pages/activity/invite/invite" class="activity-type" hover-class="none">
+          <icon class="iconfont icon-jinlingyingcaiwangtubiao04"></icon>
+          <text class="activity-type-text">邀请有礼</text>
+        </navigator>
+      </view>
     </view>
-    <view class="activity-content">
-      <navigator class="activity-type" url="/pages/activity/prepaidGift/prepaidGift" hover-class="none">
-        <icon class="iconfont icon-huodong"></icon>
-        <text class="activity-type-text">充值赠礼</text>
-      </navigator>
-      <navigator url="/pages/activity/share/share" class="activity-type" hover-class="none">
-        <icon class="iconfont icon-fenxiang1"></icon>
-        <text class="activity-type-text">分享充值送</text>
-      </navigator>
-      <navigator url="/pages/activity/invite/invite" class="activity-type" hover-class="none">
-        <icon class="iconfont icon-jinlingyingcaiwangtubiao04"></icon>
-        <text class="activity-type-text">邀请有礼</text>
-      </navigator>
+    <view class="service-moudle">
+      <view class="service-title">
+        <text>我的服务</text>
+      </view>
+      <view class="service-content">
+        <navigator class="service-type" url="/pages/userCenter/feedback/feedback" hover-class="none">
+          <icon class="iconfont icon-message"></icon>
+          <text class="service-type-text">留言反馈</text>
+        </navigator>
+
+        <navigator class="service-type" url="/pages/userCenter/enterprise/enterprise" hover-class="none">
+          <icon class="iconfont icon-qiyedinggou"></icon>
+          <text class="service-type-text">企业订购</text>
+        </navigator>
+
+        <navigator class="service-type" url="/pages/userCenter/customerService/customerService" hover-class="none">
+          <icon class="iconfont icon-help"></icon>
+          <text class="service-type-text">联系客服</text>
+        </navigator>
+
+        <navigator class="service-type" url="/pages/userCenter/join/join" hover-class="none">
+          <icon class="iconfont icon-cooperation"></icon>
+          <text class="service-type-text">合作加盟</text>
+        </navigator>
+
+        <navigator class="service-type" url="/pages/userCenter/problem/problem" hover-class="none">
+          <icon class="iconfont icon-problem"></icon>
+          <text class="service-type-text">常见问题</text>
+        </navigator>
+
+        <navigator class="service-type" url="/pages/address/list/list" hover-class="none">
+          <icon class="iconfont icon-address-manage"></icon>
+          <text class="service-type-text">收货地址</text>
+        </navigator>
+
+        <navigator class="service-type" url="/pages/recharge/recharge" hover-class="none">
+          <icon class="iconfont icon-recharge"></icon>
+          <text class="service-type-text">充值中心</text>
+        </navigator>
+
+        <navigator class="service-type" url="/pages/userCenter/exchange/exchange" hover-class="none">
+          <icon class="iconfont icon-exchange"></icon>
+          <text class="service-type-text">兑换礼卡</text>
+        </navigator>
+        <navigator class="service-type" url="/pages/userCenter/myGift/myGift" hover-class="none">
+          <icon class="iconfont icon-exchange"></icon>
+          <text class="service-type-text">我的赠礼</text>
+        </navigator>
+      </view>
     </view>
   </view>
-  <view class="service-moudle">
-    <view class="service-title">
-      <text>我的服务</text>
-    </view>
-    <view class="service-content">
-      <navigator class="service-type" url="/pages/userCenter/feedback/feedback" hover-class="none">
-        <icon class="iconfont icon-message"></icon>
-        <text class="service-type-text">留言反馈</text>
-      </navigator>
-
-      <navigator class="service-type" url="/pages/userCenter/enterprise/enterprise" hover-class="none">
-        <icon class="iconfont icon-qiyedinggou"></icon>
-        <text class="service-type-text">企业订购</text>
-      </navigator>
-
-      <navigator class="service-type" url="/pages/userCenter/customerService/customerService" hover-class="none">
-        <icon class="iconfont icon-help"></icon>
-        <text class="service-type-text">联系客服</text>
-      </navigator>
-
-      <navigator class="service-type" url="/pages/userCenter/join/join" hover-class="none">
-        <icon class="iconfont icon-cooperation"></icon>
-        <text class="service-type-text">合作加盟</text>
-      </navigator>
-
-      <navigator class="service-type" url="/pages/userCenter/problem/problem" hover-class="none">
-        <icon class="iconfont icon-problem"></icon>
-        <text class="service-type-text">常见问题</text>
-      </navigator>
-
-      <navigator class="service-type" url="/pages/address/list/list" hover-class="none">
-        <icon class="iconfont icon-address-manage"></icon>
-        <text class="service-type-text">收货地址</text>
-      </navigator>
-
-      <navigator class="service-type" url="/pages/recharge/recharge" hover-class="none">
-        <icon class="iconfont icon-recharge"></icon>
-        <text class="service-type-text">充值中心</text>
-      </navigator>
-
-      <navigator class="service-type" url="/pages/userCenter/exchange/exchange" hover-class="none">
-        <icon class="iconfont icon-exchange"></icon>
-        <text class="service-type-text">兑换礼卡</text>
-      </navigator>
-      <navigator class="service-type" url="/pages/userCenter/myGift/myGift" hover-class="none">
-        <icon class="iconfont icon-exchange"></icon>
-        <text class="service-type-text">我的赠礼</text>
-      </navigator>
-    </view>
-  </view>
+  <view class="all-empty" wx:else>暂无信息~</view>
 </view>
