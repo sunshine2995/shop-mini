@@ -50,6 +50,7 @@ App({
     chooseGiftId: 0,
     chooseAddress: 0,
     sortOneId: 0,
+    scene: 1036,
   },
 
   observe(data) {
@@ -104,7 +105,9 @@ App({
     new Watcher(key, gb, fn);
   },
 
-  onLaunch() {
+  onLaunch(object) {
+    this.globalData.scene = object.scene;
+    console.log(`this.globalData.scene:${this.globalData.scene}`);
     this.observe(this.globalData.store);
     this.scanCart();
     this.makeWatcher('store.cartNum', this.globalData, (newValue) => {

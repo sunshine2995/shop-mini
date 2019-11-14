@@ -30,6 +30,8 @@ Page({
     showLocation: false, // 判断环境的变量
     locationTip: true, // 是否不再提示切换店铺
     shopList: [], // 店铺列表
+    ifGoBackApp: false,
+    platform: '',
   },
   hideImage() {
     this.setData({
@@ -166,7 +168,13 @@ Page({
         });
       });
   },
-
+  showTip() {
+    wx.showToast({
+      title: '请确保已经下载了app',
+      icon: 'none',
+      duration: 3000,
+    });
+  },
   changeShop() {
     AddressService.changeShop(this.data.shopList[0].id)
       .then(() => {
@@ -511,6 +519,21 @@ Page({
     }
     if (options.invite_id) {
       this.data.inviteId = options.invite_id;
+    }
+    wx.setEnableDebug({
+      enableDebug: false,
+    });
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          platform: res.platform,
+        });
+      },
+    });
+    if (app.globalData.scene == 1036 || app.globalData.scene == 1069 || this.data.platform !== 'ios') {
+      this.setData({
+        ifGoBackApp: true,
+      });
     }
   },
 

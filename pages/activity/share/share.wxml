@@ -1,4 +1,9 @@
 <view class="ShareContainer">
+  <view class="go-back-app" bindtap="showTip" wx:if="{{ ifGoBackApp }}">
+    <button open-type="launchApp" app-parameter="share" binderror="launchAppError">
+      打开APP
+    </button>
+  </view>
   <view class="share-gift-image">
     <image
       class="share-gift-img"

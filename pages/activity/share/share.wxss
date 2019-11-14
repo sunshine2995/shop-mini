@@ -3,6 +3,33 @@
   background-color: #161619;
 }
 
+.go-back-app {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 200rpx;
+  bottom: 100rpx;
+  right: 30rpx;
+  border-radius: 30rpx;
+  margin: auto;
+  background-color: rgba(128, 128, 128, 0.5);
+  z-index: 40;
+}
+.go-back-app .button-hover {
+  color: unset;
+  background-color: unset;
+}
+.go-back-app button {
+  padding: 26rpx;
+  color: unset;
+  background-color: unset;
+  line-height: 1;
+}
+
+button::after {
+  border: unset;
+}
+
 .share-gift-image {
   position: relative;
 }

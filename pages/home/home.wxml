@@ -1,4 +1,9 @@
 <view class="HomeContainer">
+  <view class="go-back-app" bindtap="showTip" wx:if="{{ ifGoBackApp }}">
+    <button open-type="launchApp" app-parameter="home" binderror="launchAppError">
+      打开APP
+    </button>
+  </view>
   <view class="mask" wx:if="{{ showImage && !showLocation }}" bindtap="hideImage">
     <view class="share-tip">
       <view class="icon" bindtap="hideImage"> <icon class="iconfont icon-cancel"></icon></view>

@@ -2,10 +2,13 @@ import * as GiftService from '../../../services/GiftService';
 import * as UserService from '../../../services/UserService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
+const app = getApp();
 Page({
   data: {
     isNewUser: false,
     shipping: 0, // 免配送费条件
+    ifGoBackApp: false,
+    platform: '',
   },
 
   goToHome() {
@@ -75,8 +78,28 @@ Page({
       });
   },
 
+  showTip() {
+    wx.showToast({
+      title: '请确保已经下载了app',
+      icon: 'none',
+      duration: 3000,
+    });
+  },
+
   onShow() {
     this.getUser();
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          platform: res.platform,
+        });
+      },
+    });
+    if (app.globalData.scene == 1036 || app.globalData.scene == 1069 || this.data.platform !== 'ios') {
+      this.setData({
+        ifGoBackApp: true,
+      });
+    }
   },
 
   onShareAppMessage() {

@@ -1,6 +1,7 @@
 import * as GiftService from '../../../services/GiftService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 
+const app = getApp();
 Page({
   data: {
     shareList: [], // 未完成任务
@@ -8,6 +9,8 @@ Page({
     share_id: 0, // 正在进行的任务的id,
     inviteId: 0, // 正在进行的任务的id,
     ifShare: false, // 是否从分享链接进入页面
+    ifGoBackApp: false, // 是否分享进入的
+    platform: '',
   },
 
   getShareTip() {
@@ -106,6 +109,26 @@ Page({
 
   onShow() {
     this.getShareTask();
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          platform: res.platform,
+        });
+      },
+    });
+    if (app.globalData.scene == 1036 || app.globalData.scene == 1069 || this.data.platform !== 'ios') {
+      this.setData({
+        ifGoBackApp: true,
+      });
+    }
+  },
+
+  showTip() {
+    wx.showToast({
+      title: '请确保已经下载了app',
+      icon: 'none',
+      duration: 3000,
+    });
   },
 
   onLoad(options) {

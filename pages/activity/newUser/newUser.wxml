@@ -1,4 +1,9 @@
 <view class="NewUserContainer">
+  <view class="go-back-app" bindtap="showTip" wx:if="{{ ifGoBackApp }}">
+    <button open-type="launchApp" app-parameter="home" binderror="launchAppError">
+      打开APP
+    </button>
+  </view>
   <view class="new-user-content">
     <image
       class="new-user-image"
