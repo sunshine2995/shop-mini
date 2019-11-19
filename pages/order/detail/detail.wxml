@@ -268,7 +268,10 @@
       <view class="content">
         <view class="driver-type">
           <text>支付方式</text>
-          <text class="right-info">待支付</text>
+          <text class="right-info" wx:if="{{ order.status === 1 || order.status === 2 }}">未支付</text>
+          <text class="right-info" wx:elif="{{ order.payment_type === 1 }}">微信支付</text>
+          <text class="right-info" wx:elif="{{ order.payment_type === 2 }}">余额支付</text>
+          <text class="right-info" wx:elif="{{ order.payment_type === 3 }}">支付宝支付</text>
         </view>
         <view class="driver-type">
           <text>支付时间</text>

@@ -43,8 +43,7 @@ button::after {
   position: absolute;
   top: 43%;
   left: 15%;
-  background-color: #f3bc44;
-  color: #74370e;
+  color: #f3bc44;
   font-weight: bold;
   border: 1px solid #e8b11d;
   border-radius: 50rpx;

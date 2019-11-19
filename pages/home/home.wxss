@@ -24,6 +24,16 @@
   background-color: unset;
   line-height: 1;
 }
+.help-service button,
+.help-service .button-hover {
+  color: #11a24a;
+  background-color: unset;
+}
+.help-service button {
+  padding: 10rpx;
+  box-sizing: border-box;
+  line-height: 1;
+}
 
 button::after {
   border: unset;

@@ -89,7 +89,7 @@ App({
 
   scanCart(cartNum) {
     //购物车数量都缓存，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
-    if (cartNum > 0) {
+    if (+cartNum > 0) {
       wx.setTabBarBadge({
         index: 2,
         text: '' + cartNum + '',

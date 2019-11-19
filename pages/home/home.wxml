@@ -38,10 +38,16 @@
     <navigator url="/pages/shopList/shopList" class="logo-image" hover-class="none" wx:else>
       <image class="caibashi-logo" src="/images/home/home_title.png"></image>
     </navigator>
-    <navigator url="/pages/userCenter/customerService/customerService" class="help-service" hover-class="none">
+    <!-- <navigator url="/pages/userCenter/customerService/customerService" class="help-service" hover-class="none">
       <icon class="iconfont icon-help"></icon>
       <text class="text-help">客服</text>
-    </navigator>
+    </navigator> -->
+    <view class="help-service">
+      <button type="primary" size="40" open-type="contact">
+        <icon class="iconfont icon-help"></icon>
+        客服
+      </button>
+    </view>
     <navigator url="/pages/goodsSearch/goodsSearch" class="search-border" hover-class="none">
       <icon class="iconfont icon-search"></icon>
       <text class="search-text">找你要的菜{{ cartNUM }}</text>
@@ -283,7 +289,7 @@
               <view class="sort-expand-goods-price" wx:if="{{ goodSpu.is_standard }}">
                 <price-component
                   price="{{ goodSpu.goods_sku_info.sell_price }}"
-                  unit="{{ goodSpu.goods_sku_info.goods_sku_sell_unit.name + '起' }}"
+                  unit="{{ goodSpu.goods_sku_info.goods_sku_sell_unit.name }}"
                   text-color="text-color "
                   custom-template="custom-template "
                 ></price-component>
@@ -291,7 +297,7 @@
               <view class="sort-expand-goods-price" wx:else>
                 <price-component
                   price="{{ goodSpu.goods_sku_info.sell_price }}"
-                  unit="{{ goodSpu.goods_sku_info.goods_sku_sell_unit.name + '起' }}"
+                  unit="{{ goodSpu.goods_sku_info.goods_sku_sell_unit.name }}"
                   text-color="text-color "
                   custom-template="custom-template "
                 ></price-component>

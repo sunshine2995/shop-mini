@@ -95,7 +95,7 @@ Page({
         });
       },
     });
-    if (app.globalData.scene == 1036 || app.globalData.scene == 1069 || this.data.platform !== 'ios') {
+    if ((app.globalData.scene == 1036 || app.globalData.scene == 1069) && this.data.platform !== 'ios') {
       this.setData({
         ifGoBackApp: true,
       });

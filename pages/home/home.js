@@ -355,6 +355,17 @@ Page({
 
   getCartCount() {
     CartService.getCartCount().then((res) => {
+      const cartNum = res.data.data;
+      if (+cartNum > 0) {
+        wx.setTabBarBadge({
+          index: 2,
+          text: '' + cartNum + '',
+        });
+      } else {
+        wx.removeTabBarBadge({
+          index: 2,
+        });
+      }
       app.globalData.store.cartNum = res.data.data;
     });
   },
@@ -530,7 +541,7 @@ Page({
         });
       },
     });
-    if (app.globalData.scene == 1036 || app.globalData.scene == 1069 || this.data.platform !== 'ios') {
+    if ((app.globalData.scene == 1036 || app.globalData.scene == 1069) && this.data.platform !== 'ios') {
       this.setData({
         ifGoBackApp: true,
       });

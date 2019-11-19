@@ -419,6 +419,17 @@ Page({
   // 获取购物车数量
   getCartCount() {
     CartService.getCartCount().then((res) => {
+      const cartNum = res.data.data;
+      if (+cartNum > 0) {
+        wx.setTabBarBadge({
+          index: 2,
+          text: '' + cartNum + '',
+        });
+      } else {
+        wx.removeTabBarBadge({
+          index: 2,
+        });
+      }
       app.globalData.store.cartNum = res.data.data;
     });
   },
