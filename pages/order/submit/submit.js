@@ -445,6 +445,8 @@ Page({
     let todayTime = '';
     let start = '';
     let end = '';
+    let todayDiff = '';
+    let reduceMoneyDiff = '';
     if (this.data.showWait) {
       chooseTime = deliveryTime;
       todayTime = moment()
@@ -475,21 +477,29 @@ Page({
       .add(10, 'minutes');
     const endTime = `${moment().format('YYYY/MM/DD')} ${end}:00`;
 
-    const todayDiff = moment.duration(moment(endTime).valueOf() - moment(todayTime).valueOf()).as('minutes');
-    const reduceMoneyDiff = moment
-      .duration(moment(reduceMoneyTime).valueOf() - moment(todayTime).valueOf())
-      .as('minutes');
+    if (startTime > todayTime) {
+      todayTime = startTime;
+    }
+    todayDiff = moment.duration(moment(endTime).valueOf() - moment(todayTime).valueOf()).as('minutes');
+    reduceMoneyDiff = moment.duration(moment(reduceMoneyTime).valueOf() - moment(todayTime).valueOf()).as('minutes');
     const diff = moment.duration(moment(endTime).valueOf() - moment(startTime).valueOf()).as('minutes');
     this.data.todayTimes = []; // 从当前时间开始到配送时间结束时间段的数组
     const reduceMoneyTimes = []; // 有折扣商品的时间段的数组
     this.data.durationTimes = []; // 配送时间段的数组
 
     const distance = 10;
-
-    const len = parseInt(String(diff / distance), 10);
-    const todayLen = parseInt(String(todayDiff / distance), 10);
-    const reduceMoneyLen = parseInt(String(reduceMoneyDiff / distance), 10);
-
+    let todayLen = -1;
+    let reduceMoneyLen = -1;
+    let len = -1;
+    if (todayDiff / distance >= 0) {
+      todayLen = parseInt(String(todayDiff / distance), 10); // 此处的10是10进制，转化时间戳
+    }
+    if (reduceMoneyDiff / distance > 0) {
+      reduceMoneyLen = parseInt(String(reduceMoneyDiff / distance), 10);
+    }
+    if (diff / distance > 0) {
+      len = parseInt(String(diff / distance), 10);
+    }
     for (let i = 0; i <= len; i++) {
       const aa = (moment.duration(moment(startTime).valueOf()).as('minutes') + i * distance) * 60 * 1000;
       this.data.durationTimes.push({

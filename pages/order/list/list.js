@@ -324,8 +324,12 @@ Page({
     this.data.shopInfo = app.globalData.shopInfo;
     let deliveryTime = app.globalData.shopInfo.shop_delivery_time;
     let shopTime = app.globalData.shopInfo.shop_business_time;
-    let chooseTime;
-    let todayTime;
+    let chooseTime = '';
+    let todayTime = '';
+    let start = '';
+    let end = '';
+    let todayDiff = '';
+    let reduceMoneyDiff = '';
     let deliveryType;
     let discountAmount;
     let finallyMoney;
@@ -357,10 +361,17 @@ Page({
       todayTime = moment().format('YYYY/MM/DD HH:mm:ss');
     }
 
-    const [start, end] = chooseTime.split(' - ');
-    const startTime = moment(`${moment().format('YYYY/MM/DD')} ${start}:00`)
-      .add(35, 'minutes')
-      .format('YYYY/MM/DD HH:mm:ss');
+    [start, end] = chooseTime.split(' - ');
+    let startTime = '';
+    if (this.data.showWait) {
+      startTime = moment(`${moment().format('YYYY/MM/DD')} ${start}:00`)
+        .add(35, 'minutes')
+        .format('YYYY/MM/DD HH:mm:ss');
+    } else {
+      startTime = moment(`${moment().format('YYYY/MM/DD')} ${start}:00`)
+        .add(15, 'minutes')
+        .format('YYYY/MM/DD HH:mm:ss');
+    }
 
     const reduceMoneyTime = moment()
       .startOf('day')
@@ -369,10 +380,11 @@ Page({
 
     const endTime = `${moment().format('YYYY/MM/DD')} ${end}:00`;
 
-    const todayDiff = moment.duration(moment(endTime).valueOf() - moment(todayTime).valueOf()).as('minutes');
-    const reduceMoneyDiff = moment
-      .duration(moment(reduceMoneyTime).valueOf() - moment(todayTime).valueOf())
-      .as('minutes');
+    if (startTime > todayTime) {
+      todayTime = startTime;
+    }
+    todayDiff = moment.duration(moment(endTime).valueOf() - moment(todayTime).valueOf()).as('minutes');
+    reduceMoneyDiff = moment.duration(moment(reduceMoneyTime).valueOf() - moment(todayTime).valueOf()).as('minutes');
     const diff = moment.duration(moment(endTime).valueOf() - moment(startTime).valueOf()).as('minutes');
 
     const reduceMoneyTimes = []; // 有折扣商品的时间段的数组
@@ -381,9 +393,18 @@ Page({
 
     const distance = 10;
 
-    const len = parseInt(String(diff / distance), 10);
-    const todayLen = parseInt(String(todayDiff / distance), 10);
-    const reduceMoneyLen = parseInt(String(reduceMoneyDiff / distance), 10);
+    let todayLen = -1;
+    let reduceMoneyLen = -1;
+    let len = -1;
+    if (todayDiff / distance >= 0) {
+      todayLen = parseInt(String(todayDiff / distance), 10); // 此处的10是10进制，转化时间戳
+    }
+    if (reduceMoneyDiff / distance > 0) {
+      reduceMoneyLen = parseInt(String(reduceMoneyDiff / distance), 10);
+    }
+    if (diff / distance > 0) {
+      len = parseInt(String(diff / distance), 10);
+    }
 
     for (let i = 0; i <= len; i++) {
       const aa = (moment.duration(moment(startTime).valueOf()).as('minutes') + i * distance) * 60 * 1000;
