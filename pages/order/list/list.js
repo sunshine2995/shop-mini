@@ -430,75 +430,50 @@ Page({
       });
     }
 
-    if (+discountAmount > 0) {
-      if (reduceMoneyTimes.length) {
-        this.data.multiArray[0] = [
-          {
-            name: '今天',
-            value: moment().format('YYYY/MM/DD'),
-          },
-        ];
-        this.data.multiArray[1] = reduceMoneyTimes;
-      } else {
-        this.data.multiArray[0] = [
-          {
-            name: '店铺已打烊',
-            value: moment().format('YYYY/MM/DD'),
-          },
-        ];
-        this.data.multiArray[1] = [
-          {
-            name: '明天早点来',
-            value: moment().format('YYYY/MM/DD'),
-          },
-        ];
-      }
+    if (this.data.todayTimes.length) {
+      this.data.multiArray[0] = [
+        {
+          name: '今天',
+          value: moment().format('YYYY/MM/DD'),
+        },
+        {
+          name: moment()
+            .add(1, 'days')
+            .format('YYYY/MM/DD'),
+          value: moment()
+            .add(1, 'days')
+            .format('YYYY/MM/DD'),
+        },
+        {
+          name: moment()
+            .add(2, 'days')
+            .format('YYYY/MM/DD'),
+          value: moment()
+            .add(2, 'days')
+            .format('YYYY/MM/DD'),
+        },
+      ];
+      this.data.multiArray[1] = this.data.todayTimes;
     } else {
-      if (this.data.todayTimes.length) {
-        this.data.multiArray[0] = [
-          {
-            name: '今天',
-            value: moment().format('YYYY/MM/DD'),
-          },
-          {
-            name: moment()
-              .add(1, 'days')
-              .format('YYYY/MM/DD'),
-            value: moment()
-              .add(1, 'days')
-              .format('YYYY/MM/DD'),
-          },
-          {
-            name: moment()
-              .add(2, 'days')
-              .format('YYYY/MM/DD'),
-            value: moment()
-              .add(2, 'days')
-              .format('YYYY/MM/DD'),
-          },
-        ];
-        this.data.multiArray[1] = this.data.todayTimes;
-      } else {
-        this.data.multiArray[0] = [
-          {
-            name: moment()
-              .add(1, 'days')
-              .format('YYYY/MM/DD'),
-            value: moment()
-              .add(1, 'days')
-              .format('YYYY/MM/DD'),
-          },
-          {
-            name: moment()
-              .add(2, 'days')
-              .format('YYYY/MM/DD'),
-            value: moment()
-              .add(2, 'days')
-              .format('YYYY/MM/DD'),
-          },
-        ];
-        this.data.multiArray[1] = this.data.durationTimes;
-      }
+      this.data.multiArray[0] = [
+        {
+          name: moment()
+            .add(1, 'days')
+            .format('YYYY/MM/DD'),
+          value: moment()
+            .add(1, 'days')
+            .format('YYYY/MM/DD'),
+        },
+        {
+          name: moment()
+            .add(2, 'days')
+            .format('YYYY/MM/DD'),
+          value: moment()
+            .add(2, 'days')
+            .format('YYYY/MM/DD'),
+        },
+      ];
+      this.data.multiArray[1] = this.data.durationTimes;
     }
     this.setData({
       multiArray: this.data.multiArray,
