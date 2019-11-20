@@ -36,6 +36,7 @@ Page({
     isEnough: false, // 是否显示余额付款
 
     isShowCurtain: false, // 遮罩层
+    isShowShopTip: false, // 自提提示
     formIds: '',
   },
 
@@ -228,38 +229,54 @@ Page({
       this.setData({
         isEnough: this.data.isEnough,
       });
+      if (!this.data.defaultAddress.id) {
+        wx.showToast({
+          title: '请选择地址',
+          icon: 'none',
+        });
+      } else if (!this.data.arriveDate) {
+        wx.showToast({
+          title: '请选择送达时间',
+          icon: 'none',
+        });
+      } else if (!this.data.defaultAddress.satisfy_display) {
+        wx.showToast({
+          title: '请选择地址',
+          icon: 'none',
+        });
+      } else {
+        this.data.isShowCurtain = true;
+        this.setData({
+          isShowCurtain: this.data.isShowCurtain,
+        });
+      }
     } else {
       this.data.isEnough = +app.globalData.userData.balance >= +this.data.finallyMoneyNoShipping;
       this.setData({
         isEnough: this.data.isEnough,
       });
+      if (!this.data.arriveDate) {
+        wx.showToast({
+          title: '请选择自取时间',
+          icon: 'none',
+        });
+      } else {
+        this.setData({
+          isShowShopTip: true,
+        });
+      }
     }
-    if (!this.data.defaultAddress.id && this.data.showWait) {
-      wx.showToast({
-        title: '请选择地址',
-        icon: 'none',
-      });
-    } else if (!this.data.arriveDate && this.data.showWait) {
-      wx.showToast({
-        title: '请选择送达时间',
-        icon: 'none',
-      });
-    } else if (!this.data.arriveDate && !this.data.showWait) {
-      wx.showToast({
-        title: '请选择自取时间',
-        icon: 'none',
-      });
-    } else if (!this.data.defaultAddress.satisfy_display && this.data.showWait) {
-      wx.showToast({
-        title: '请选择地址',
-        icon: 'none',
-      });
-    } else {
-      this.data.isShowCurtain = true;
-      this.setData({
-        isShowCurtain: this.data.isShowCurtain,
-      });
-    }
+  },
+
+  shopConfirm() {
+    this.setData({
+      isShowShopTip: false,
+      isShowCurtain: true,
+    });
+  },
+
+  changeShop() {
+    RouterUtil.go('/pages/shopList/shopList');
   },
 
   payNotEnough() {

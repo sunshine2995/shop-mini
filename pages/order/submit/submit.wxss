@@ -43,6 +43,12 @@
   justify-content: space-between;
   font-size: 30rpx;
 }
+.delivery-time {
+  font-size: 33rpx;
+  color: #666;
+  padding: 30rpx 20rpx 0;
+  box-sizing: border-box;
+}
 
 .address {
   padding: 36rpx 20rpx;
@@ -379,7 +385,7 @@
   line-height: 1;
 }
 
-button::after {
+.pay-for button::after {
   border: unset;
 }
 .Curtain {
@@ -405,6 +411,43 @@ button::after {
   padding: 40rpx 40rpx 200rpx;
   box-sizing: border-box;
   background-color: #fff;
+}
+
+.choose-shop {
+  z-index: 220;
+  width: 80%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.shop-name {
+  font-size: 35rpx;
+  color: #fe3059;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.shop-confirm {
+  display: flex;
+}
+.shop-confirm .button-hover {
+  color: unset;
+  background-color: unset;
+}
+.shop-confirm button {
+  flex: 1;
+  color: #11a24a;
+  background-color: unset;
+  line-height: 1;
+  padding: 20rpx 26rpx;
+  box-sizing: border-box;
+  margin: 10rpx 20rpx;
+  border: 1px solid #11a24a;
+}
+
+.shop-confirm button::after {
+  border: 1px solid #11a24a;
 }
 
 .choose-title,

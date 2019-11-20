@@ -38,16 +38,16 @@
     <navigator url="/pages/shopList/shopList" class="logo-image" hover-class="none" wx:else>
       <image class="caibashi-logo" src="/images/home/home_title.png"></image>
     </navigator>
-    <!-- <navigator url="/pages/userCenter/customerService/customerService" class="help-service" hover-class="none">
+    <navigator url="/pages/userCenter/customerService/customerService" class="help-service" hover-class="none">
       <icon class="iconfont icon-help"></icon>
       <text class="text-help">客服</text>
-    </navigator> -->
-    <view class="help-service">
+    </navigator>
+    <!-- <view class="help-service">
       <button type="primary" size="40" open-type="contact">
         <icon class="iconfont icon-help"></icon>
         客服
       </button>
-    </view>
+    </view> -->
     <navigator url="/pages/goodsSearch/goodsSearch" class="search-border" hover-class="none">
       <icon class="iconfont icon-search"></icon>
       <text class="search-text">找你要的菜{{ cartNUM }}</text>

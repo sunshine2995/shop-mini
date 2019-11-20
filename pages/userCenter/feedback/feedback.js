@@ -1,5 +1,6 @@
 import * as UserService from '../../../services/UserService';
 import * as RouterUtil from '../../../utils/RouterUtil';
+import * as validator from '../../../utils/validator';
 
 Page({
   data: {
@@ -37,17 +38,22 @@ Page({
    * 上传图片方法
    */
   addFeedback() {
-    this.data.feedback = Object.assign({}, this.data.feedback, {
-      content: this.data.feedback.content,
-      contact: this.data.feedback.contact,
-    });
     if (!this.data.feedback.content) {
       wx.showToast({
         title: '未填写反馈建议',
         icon: 'none',
         duration: 2000,
       });
+    } else if (!validator.isPhoneNumber(this.data.feedback.contact)) {
+      wx.showToast({
+        title: '请填写正确的电话号码',
+        icon: 'none',
+      });
     } else {
+      this.data.feedback = Object.assign({}, this.data.feedback, {
+        content: this.data.feedback.content,
+        contact: this.data.feedback.contact,
+      });
       UserService.addFeedback(this.data.feedback)
         .then((res) => {
           wx.showToast({

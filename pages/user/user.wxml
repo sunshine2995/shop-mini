@@ -40,11 +40,11 @@
   </view>
   <view wx:if="{{ showAllInfo }}">
     <view class="integration">
-      <navigator class="balance" url="/pages/userCenter/balance/balance" hover-class="none">
+      <view class="balance">
         <text class="number" wx:if="{{ userInfo.balance }}">￥{{ userInfo.balance }}元</text>
         <text class="number" wx:else>0</text>
         <text class="text">余额</text>
-      </navigator>
+      </view>
       <navigator class="red-envelopes" url="/pages/userCenter/couponList/couponList" hover-class="none">
         <text class="number" wx:if="{{ userInfo.coupons_number }}">{{ userInfo.coupons_number }}</text>
         <text class="number" wx:else>0</text>
@@ -149,9 +149,9 @@
           <text class="service-type-text">企业订购</text>
         </navigator>
 
-        <navigator class="service-type" url="/pages/userCenter/customerService/customerService" hover-class="none">
+        <navigator class="service-type" url="/pages/userCenter/historyBill/historyBill" hover-class="none">
           <icon class="iconfont icon-help"></icon>
-          <text class="service-type-text">联系客服</text>
+          <text class="service-type-text">历史账单</text>
         </navigator>
 
         <navigator class="service-type" url="/pages/userCenter/join/join" hover-class="none">

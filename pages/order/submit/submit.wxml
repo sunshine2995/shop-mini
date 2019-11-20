@@ -1,6 +1,18 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 <formId>
   <view class="SubmitContainer">
+    <cover-view class="Curtain" wx:if="{{ isShowShopTip }}">
+      <cover-view class="choose-shop">
+        <cover-view class="shop-title">当前所选分店</cover-view>
+        <cover-view class="shop-name">{{ shopInfo.name }}</cover-view>
+        <cover-view class="shop-title">自提店铺地址</cover-view>
+        <cover-view class="shop-name">{{ shopInfo.address }}</cover-view>
+        <cover-view class="shop-confirm">
+          <button form-type="submit" type="default" bindtap="changeShop">切换分店</button>
+          <button form-type="submit" type="default" bindtap="shopConfirm">确认</button>
+        </cover-view>
+      </cover-view>
+    </cover-view>
     <cover-view class="Curtain" wx:if="{{ isShowCurtain }}">
       <cover-view class="choose-pay-type">
         <cover-view class="choose-title">
@@ -93,6 +105,7 @@
       </view>
     </view>
     <view class="goods-amount">
+      <text class="delivery-time" wx:if="{{ showWait }}">配送时间范围:{{ shopInfo.shop_delivery_time }}</text>
       <view class="time">
         <text class="arrive-type">菜巴士配送</text>
         <block wx:if="{{ arriveDate }}">
