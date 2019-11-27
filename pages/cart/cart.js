@@ -40,6 +40,7 @@ Page({
     shipping: 0, // 免配送费条件
     isShowCurtain: false, // 遮罩层
     phoneNum: '', // 用户手机号
+    showAuthorize: true, // 未授权是否展示信息
   },
 
   hideCurtain() {
@@ -68,6 +69,16 @@ Page({
 
   goHome() {
     RouterUtil.go('/pages/home/home');
+  },
+
+  goAuthorize() {
+    RouterUtil.go('/pages/index/index');
+  },
+
+  hideAuthorize() {
+    this.setData({
+      showAuthorize: true,
+    });
   },
 
   goSubmit() {
@@ -673,5 +684,9 @@ Page({
     if (app.globalData.chooseGiftId !== 0) {
       this.showCartGift(app.globalData.chooseGiftId);
     }
+    this.data.showAuthorize = app.globalData.userInfo;
+    this.setData({
+      showAuthorize: this.data.showAuthorize,
+    });
   },
 });

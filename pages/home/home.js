@@ -25,17 +25,29 @@ Page({
     shopInfo: {}, // 店铺信息
     showShopName: true, // 是否展示店铺名称
     inviteId: 0, // 邀请人的Id
+    showAuthorize: true, // 未授权是否展示信息
     showImage: false, // 是否展示活动弹窗
     showPath: false, // 判断环境的变量
-    showLocation: false, // 判断环境的变量
+    showLocation: false, // 是否展示更换店铺的弹窗
     locationTip: true, // 是否不再提示切换店铺
     shopList: [], // 店铺列表
     ifGoBackApp: false,
     platform: '',
   },
+
   hideImage() {
     this.setData({
       showImage: false,
+    });
+  },
+
+  goAuthorize() {
+    RouterUtil.go('/pages/index/index');
+  },
+
+  hideAuthorize() {
+    this.setData({
+      showAuthorize: true,
     });
   },
 
@@ -60,14 +72,14 @@ Page({
       title: '领取中',
     });
     GiftService.getNewUserEgg()
-      .then(() => {
+      .then((res) => {
         wx.hideLoading();
         this.data.showImage = false;
         this.setData({
           showImage: this.data.showImage,
         });
         wx.showToast({
-          title: '领取成功',
+          title: res.data.data.message,
           icon: 'none',
         });
       })
@@ -132,7 +144,7 @@ Page({
                   });
                 } else if (res.cancel) {
                   this.setData({
-                    showImage: this.data.showImage,
+                    showAuthorize: this.data.showAuthorize,
                   });
                 }
               },
@@ -156,6 +168,7 @@ Page({
         this.data.showLocation = app.globalData.userData.current_subbranch_id !== this.data.shopList[0].id;
         this.setData({
           shopList: this.data.shopList,
+          showAuthorize: this.data.showAuthorize,
           showLocation: this.data.showLocation,
           showImage: this.data.showImage,
         });
@@ -278,6 +291,7 @@ Page({
       });
     }
 
+    this.data.showAuthorize = app.globalData.userInfo;
     const version = wx.getSystemInfoSync().SDKVersion;
     if (utils.compareVersion(version, '2.6.6') < 0) {
       wx.redirectTo({

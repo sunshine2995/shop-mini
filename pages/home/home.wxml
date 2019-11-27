@@ -4,7 +4,7 @@
       打开APP
     </button>
   </view>
-  <view class="mask" wx:if="{{ showImage && !showLocation }}" bindtap="hideImage">
+  <view class="mask" wx:if="{{ showImage && !showLocation && showAuthorize }}" bindtap="hideImage">
     <view class="share-tip">
       <view class="icon" bindtap="hideImage"> <icon class="iconfont icon-cancel"></icon></view>
       <view class="qr-text">恭喜您！</view>
@@ -19,7 +19,17 @@
       <view class="qr-save" catchtap="getNewUserEgg"><text>立即领取</text></view>
     </view>
   </view>
-  <view class="mask" wx:if="{{ showLocation && locationTip }}" bindtap="hideLocation">
+  <view class="mask" wx:if="{{ !showAuthorize }}" bindtap="hideAuthorize">
+    <view class="mask-info">
+      <image class="userinfo-avatar" src="https://img.caibashi.com/559e8b745c2a5a6cb0d429f7759b89ec.png"></image>
+      <view class="info-text"><text>授权登录之后可以获取到您的头像和昵称，便于查看更多个人中心的信息</text></view>
+      <view class="info-button"
+        ><text class="ignore" catchtap="hideAuthorize">暂不授权</text
+        ><text class="go-authorize" catchtap="goAuthorize">去授权</text></view
+      >
+    </view>
+  </view>
+  <view class="mask" wx:if="{{ showLocation && locationTip && showAuthorize }}" bindtap="hideLocation">
     <view class="shop-tip">
       <view class="icon" bindtap="hideLocation"> <icon class="iconfont icon-cancel"></icon></view>
       <view class="shop-text">据当前位置最近站点:</view>

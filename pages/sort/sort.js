@@ -23,6 +23,7 @@ Page({
 
     idSelected: [],
     goodSkuId: [],
+    showAuthorize: true, // 未授权是否展示信息
 
     // 属性相关
     skuId: 0,
@@ -40,6 +41,16 @@ Page({
 
   sortTest() {
     RouterUtil.go('/pages/sortTest/sort');
+  },
+
+  goAuthorize() {
+    RouterUtil.go('/pages/index/index');
+  },
+
+  hideAuthorize() {
+    this.setData({
+      showAuthorize: true,
+    });
   },
 
   getCartCount() {
@@ -361,5 +372,9 @@ Page({
   onShow() {
     this.getOneCategory();
     this.getCartNumber();
+    this.data.showAuthorize = app.globalData.userInfo;
+    this.setData({
+      showAuthorize: this.data.showAuthorize,
+    });
   },
 });

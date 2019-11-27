@@ -12,6 +12,17 @@
       <text>未绑定手机号码的提示</text>
     </view>
 
+    <view class="maskInfo" wx:if="{{ !showAuthorize }}" bindtap="hideAuthorize">
+      <view class="mask-info">
+        <image class="userinfo-avatar" src="https://img.caibashi.com/559e8b745c2a5a6cb0d429f7759b89ec.png"></image>
+        <view class="info-text"><text>授权登录之后可以获取到您的头像和昵称，便于查看更多个人中心的信息</text></view>
+        <view class="info-button"
+          ><text class="ignore" catchtap="hideAuthorize">暂不授权</text
+          ><text class="go-authorize" catchtap="goAuthorize">去授权</text></view
+        >
+      </view>
+    </view>
+
     <view class="cart-empty" wx:if="{{ !validCarts.length && !invalidCarts.length }}">
       <view class="activity-image">
         <image
