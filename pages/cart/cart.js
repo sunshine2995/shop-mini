@@ -41,6 +41,7 @@ Page({
     isShowCurtain: false, // 遮罩层
     phoneNum: '', // 用户手机号
     showAuthorize: true, // 未授权是否展示信息
+    moveData: null,
   },
 
   hideCurtain() {
@@ -677,6 +678,24 @@ Page({
       });
   },
 
+  startAnimation() {
+    const animation = wx.createAnimation({
+      duration: 800,
+      timingFunction: 'ease',
+    });
+    animation.translateY(1500).step();
+    this.setData({
+      moveData: animation.export(),
+      showAuthorize: this.data.showAuthorize,
+    });
+    setTimeout(() => {
+      animation.translateY(0).step();
+      this.setData({
+        moveData: animation.export(),
+      });
+    }, 200);
+  },
+
   onShow() {
     this.getUser();
     this.getshippingCharge();
@@ -685,8 +704,6 @@ Page({
       this.showCartGift(app.globalData.chooseGiftId);
     }
     this.data.showAuthorize = app.globalData.userInfo;
-    this.setData({
-      showAuthorize: this.data.showAuthorize,
-    });
+    this.startAnimation();
   },
 });

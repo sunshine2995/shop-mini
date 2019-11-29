@@ -26,6 +26,7 @@ Page({
     showShopName: true, // 是否展示店铺名称
     inviteId: 0, // 邀请人的Id
     showAuthorize: true, // 未授权是否展示信息
+    moveData: null,
     showImage: false, // 是否展示活动弹窗
     showPath: false, // 判断环境的变量
     showLocation: false, // 是否展示更换店铺的弹窗
@@ -143,9 +144,7 @@ Page({
                     },
                   });
                 } else if (res.cancel) {
-                  this.setData({
-                    showAuthorize: this.data.showAuthorize,
-                  });
+                  this.startAnimation();
                 }
               },
             });
@@ -166,6 +165,7 @@ Page({
       .then((res) => {
         this.data.shopList = res.data.data;
         this.data.showLocation = app.globalData.userData.current_subbranch_id !== this.data.shopList[0].id;
+        this.startAnimation();
         this.setData({
           shopList: this.data.shopList,
           showAuthorize: this.data.showAuthorize,
@@ -282,50 +282,6 @@ Page({
       const path = event.currentTarget.dataset.path;
       RouterUtil.go(path);
     }
-  },
-
-  onShow() {
-    if (utils.inDevelopment()) {
-      this.setData({
-        showPath: true,
-      });
-    }
-
-    this.data.showAuthorize = app.globalData.userInfo;
-    const version = wx.getSystemInfoSync().SDKVersion;
-    if (utils.compareVersion(version, '2.6.6') < 0) {
-      wx.redirectTo({
-        url: '/pages/test/test',
-      });
-    }
-
-    const inviteImages = [
-      {
-        img: 'https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png',
-        url: '/pages/activity/share/share',
-      },
-      {
-        img: 'https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png',
-        url: '/pages/activity/invite/invite',
-      },
-    ];
-
-    const images = [
-      {
-        img: 'https://img.caibashi.com/70d8999cb5bfdcdcd6b30c7cfeb579cd.png',
-        url: '/pages/activity/newUser/newUser',
-      },
-      {
-        img: 'https://img.caibashi.com/0f276789b03f793bdf076d3d49e474e3.png',
-        url: '/pages/activity/rechargeGift/rechargeGift',
-      },
-    ];
-
-    this.setData({
-      images,
-      inviteImages,
-    });
-    this.getUser();
   },
 
   getOneCategory() {
@@ -536,6 +492,70 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  startAnimation() {
+    const animation = wx.createAnimation({
+      duration: 800,
+      timingFunction: 'ease',
+    });
+    animation.translateY(1000).step();
+    this.setData({
+      moveData: animation.export(),
+      showAuthorize: this.data.showAuthorize,
+    });
+    setTimeout(() => {
+      animation.translateY(0).step();
+      this.setData({
+        moveData: animation.export(),
+      });
+    }, 200);
+  },
+
+  onShow() {
+    if (utils.inDevelopment()) {
+      this.setData({
+        showPath: true,
+      });
+    }
+    this.setData({
+      showAuthorize: true,
+    });
+    this.data.showAuthorize = app.globalData.userInfo;
+    const version = wx.getSystemInfoSync().SDKVersion;
+    if (utils.compareVersion(version, '2.6.6') < 0) {
+      wx.redirectTo({
+        url: '/pages/test/test',
+      });
+    }
+
+    const inviteImages = [
+      {
+        img: 'https://img.caibashi.com/07ec9d284b2577a064698ce483f7a3aa.png',
+        url: '/pages/activity/share/share',
+      },
+      {
+        img: 'https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png',
+        url: '/pages/activity/invite/invite',
+      },
+    ];
+
+    const images = [
+      {
+        img: 'https://img.caibashi.com/70d8999cb5bfdcdcd6b30c7cfeb579cd.png',
+        url: '/pages/activity/newUser/newUser',
+      },
+      {
+        img: 'https://img.caibashi.com/0f276789b03f793bdf076d3d49e474e3.png',
+        url: '/pages/activity/rechargeGift/rechargeGift',
+      },
+    ];
+
+    this.setData({
+      images,
+      inviteImages,
+    });
+    this.getUser();
   },
 
   onLoad(options) {

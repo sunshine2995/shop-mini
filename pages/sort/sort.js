@@ -24,6 +24,7 @@ Page({
     idSelected: [],
     goodSkuId: [],
     showAuthorize: true, // 未授权是否展示信息
+    moveData: null,
 
     // 属性相关
     skuId: 0,
@@ -369,12 +370,28 @@ Page({
     });
   },
 
+  startAnimation() {
+    const animation = wx.createAnimation({
+      duration: 800,
+      timingFunction: 'ease',
+    });
+    animation.translateY(2000).step();
+    this.setData({
+      moveData: animation.export(),
+      showAuthorize: this.data.showAuthorize,
+    });
+    setTimeout(() => {
+      animation.translateY(0).step();
+      this.setData({
+        moveData: animation.export(),
+      });
+    }, 200);
+  },
+
   onShow() {
     this.getOneCategory();
     this.getCartNumber();
     this.data.showAuthorize = app.globalData.userInfo;
-    this.setData({
-      showAuthorize: this.data.showAuthorize,
-    });
+    this.startAnimation();
   },
 });
