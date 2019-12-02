@@ -33,6 +33,7 @@ Page({
     locationTip: true, // 是否不再提示切换店铺
     shopList: [], // 店铺列表
     ifGoBackApp: false,
+    highVersion: true, //版本号判断
     platform: '',
   },
 
@@ -40,10 +41,6 @@ Page({
     this.setData({
       showImage: false,
     });
-  },
-
-  goAuthorize() {
-    RouterUtil.go('/pages/index/index');
   },
 
   hideAuthorize() {
@@ -512,6 +509,37 @@ Page({
     }, 200);
   },
 
+  goAuthorize() {
+    RouterUtil.go('/pages/index/index');
+  },
+
+  bindUserInfo(nickName, headImg, iv, encryptedData) {
+    UserService.bindUserInfo(nickName, headImg, iv, encryptedData)
+      .then(() => {})
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+        });
+      });
+  },
+
+  getUserInfo(e) {
+    const iv = e.detail.iv;
+    const encryptedData = e.detail.encryptedData;
+    let userInfo = '';
+    if (e.detail.userInfo) {
+      userInfo = e.detail.userInfo;
+      app.globalData.userInfo = userInfo;
+      this.bindUserInfo(userInfo.nickName, userInfo.avatarUrl, iv, encryptedData);
+    } else {
+      wx.showToast({
+        title: '残忍地拒绝了授权',
+        icon: 'none',
+      });
+    }
+  },
+
   onShow() {
     if (utils.inDevelopment()) {
       this.setData({
@@ -523,6 +551,11 @@ Page({
     });
     this.data.showAuthorize = app.globalData.userInfo;
     const version = wx.getSystemInfoSync().SDKVersion;
+    if (utils.compareVersion(version, '2.7.2') < 0) {
+      this.setData({
+        highVersion: false,
+      });
+    }
     if (utils.compareVersion(version, '2.6.6') < 0) {
       wx.redirectTo({
         url: '/pages/test/test',

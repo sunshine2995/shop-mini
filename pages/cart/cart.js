@@ -2,6 +2,7 @@ import * as CartService from '../../services/CartService';
 import * as GiftService from '../../services/GiftService';
 import * as UserService from '../../services/UserService';
 import * as RouterUtil from '../../utils/RouterUtil';
+import * as utils from '../../utils/utils';
 
 const app = getApp();
 
@@ -42,6 +43,7 @@ Page({
     phoneNum: '', // 用户手机号
     showAuthorize: true, // 未授权是否展示信息
     moveData: null,
+    hignVersion: true, // 版本判断
   },
 
   hideCurtain() {
@@ -70,10 +72,6 @@ Page({
 
   goHome() {
     RouterUtil.go('/pages/home/home');
-  },
-
-  goAuthorize() {
-    RouterUtil.go('/pages/index/index');
   },
 
   hideAuthorize() {
@@ -696,6 +694,36 @@ Page({
     }, 200);
   },
 
+  goAuthorize() {
+    RouterUtil.go('/pages/index/index');
+  },
+
+  bindUserInfo(nickName, headImg, iv, encryptedData) {
+    UserService.bindUserInfo(nickName, headImg, iv, encryptedData)
+      .then(() => {})
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+        });
+      });
+  },
+
+  getUserInfo(e) {
+    const iv = e.detail.iv;
+    const encryptedData = e.detail.encryptedData;
+    if (e.detail.userInfo) {
+      const userInfo = e.detail.userInfo;
+      app.globalData.userInfo = userInfo;
+      this.bindUserInfo(userInfo.nickName, userInfo.avatarUrl, iv, encryptedData);
+    } else {
+      wx.showToast({
+        title: '残忍地拒绝了授权',
+        icon: 'none',
+      });
+    }
+  },
+
   onShow() {
     this.getUser();
     this.getshippingCharge();
@@ -704,6 +732,12 @@ Page({
       this.showCartGift(app.globalData.chooseGiftId);
     }
     this.data.showAuthorize = app.globalData.userInfo;
+    const version = wx.getSystemInfoSync().SDKVersion;
+    if (utils.compareVersion(version, '2.7.2') < 0) {
+      this.setData({
+        highVersion: false,
+      });
+    }
     this.startAnimation();
   },
 });

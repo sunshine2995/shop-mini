@@ -2,11 +2,17 @@
   <view class="mask" wx:if="{{ !showAuthorize }}" bindtap="hideAuthorize">
     <view class="mask-info" wx:if="{{ !showAuthorize }}" animation="{{ moveData }}">
       <image class="userinfo-avatar" src="https://img.caibashi.com/559e8b745c2a5a6cb0d429f7759b89ec.png"></image>
-      <view class="info-text"><text>授权登录之后可以获取到您的头像和昵称，便于查看更多个人中心的信息</text></view>
-      <view class="info-button"
-        ><text class="ignore" catchtap="hideAuthorize">暂不授权</text
-        ><text class="go-authorize" catchtap="goAuthorize">去授权</text></view
-      >
+      <view class="info-text"><text>未登录</text></view>
+      <view class="info-button" wx:if="{{ highVersion }}">
+        <button class="authorize" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          登录
+        </button>
+      </view>
+      <view class="info-button" wx:else>
+        <button class="authorize" type="primary" catchtap="goAuthorize">
+          登录
+        </button>
+      </view>
     </view>
   </view>
   <view class="sort-head">

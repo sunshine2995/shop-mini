@@ -1,6 +1,8 @@
 import * as GoodsService from '../../services/GoodsService';
 import * as CartService from '../../services/CartService';
+import * as UserService from '../../services/UserService';
 import * as RouterUtil from '../../utils/RouterUtil';
+import * as utils from '../../utils/utils';
 
 const app = getApp();
 
@@ -33,6 +35,7 @@ Page({
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
     shopId: 0, // 店铺Id
+    hignVersion: true, // 版本判断
   },
 
   goDetail(e) {
@@ -42,10 +45,6 @@ Page({
 
   sortTest() {
     RouterUtil.go('/pages/sortTest/sort');
-  },
-
-  goAuthorize() {
-    RouterUtil.go('/pages/index/index');
   },
 
   hideAuthorize() {
@@ -388,10 +387,50 @@ Page({
     }, 200);
   },
 
+  goAuthorize() {
+    RouterUtil.go('/pages/index/index');
+  },
+
+  bindUserInfo(nickName, headImg, iv, encryptedData) {
+    UserService.bindUserInfo(nickName, headImg, iv, encryptedData)
+      .then(() => {})
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+        });
+      });
+  },
+
+  getUserInfo(e) {
+    const iv = e.detail.iv;
+    const encryptedData = e.detail.encryptedData;
+    if (e.detail.userInfo) {
+      wx.showToast({
+        title: e.detail.userInfo,
+        icon: 'none',
+      });
+      const userInfo = e.detail.userInfo;
+      app.globalData.userInfo = userInfo;
+      this.bindUserInfo(userInfo.nickName, userInfo.avatarUrl, iv, encryptedData);
+    } else {
+      wx.showToast({
+        title: '残忍地拒绝了授权',
+        icon: 'none',
+      });
+    }
+  },
+
   onShow() {
     this.getOneCategory();
     this.getCartNumber();
     this.data.showAuthorize = app.globalData.userInfo;
+    const version = wx.getSystemInfoSync().SDKVersion;
+    if (utils.compareVersion(version, '2.7.2') < 0) {
+      this.setData({
+        highVersion: false,
+      });
+    }
     this.startAnimation();
   },
 });

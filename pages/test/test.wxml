@@ -1,4 +1,5 @@
 <view class="version-container">
   <text>当前设备微信版本：{{ version }}</text>
   <text>对应客户端基础库版本：{{ SDKVersion }}</text>
+  <text>当前版本太低，请更新微信版本后重启</text>
 </view>
