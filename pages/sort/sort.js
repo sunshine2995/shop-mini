@@ -35,7 +35,7 @@ Page({
     goodsAttrs: [], // 商品属性列表
     goodsAttr: '', // 商品属性
     shopId: 0, // 店铺Id
-    hignVersion: true, // 版本判断
+    highVersion: true, // 版本判断
   },
 
   goDetail(e) {
@@ -426,7 +426,7 @@ Page({
     this.getCartNumber();
     this.data.showAuthorize = app.globalData.userInfo;
     const version = wx.getSystemInfoSync().SDKVersion;
-    if (utils.compareVersion(version, '2.7.2') < 0) {
+    if (utils.compareVersion(version, '2.7.3') < 0) {
       this.setData({
         highVersion: false,
       });

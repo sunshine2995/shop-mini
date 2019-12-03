@@ -492,6 +492,7 @@ Page({
   },
 
   startAnimation() {
+    this.data.showAuthorize = app.globalData.userInfo;
     const animation = wx.createAnimation({
       duration: 800,
       timingFunction: 'ease',
@@ -547,9 +548,8 @@ Page({
       });
     }
     this.setData({
-      showAuthorize: true,
+      showAuthorize: this.data.showAuthorize,
     });
-    this.data.showAuthorize = app.globalData.userInfo;
     const version = wx.getSystemInfoSync().SDKVersion;
     if (utils.compareVersion(version, '2.7.2') < 0) {
       this.setData({

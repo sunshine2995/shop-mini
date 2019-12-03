@@ -43,7 +43,7 @@ Page({
     phoneNum: '', // 用户手机号
     showAuthorize: true, // 未授权是否展示信息
     moveData: null,
-    hignVersion: true, // 版本判断
+    highVersion: true, // 版本判断
   },
 
   hideCurtain() {
@@ -733,7 +733,7 @@ Page({
     }
     this.data.showAuthorize = app.globalData.userInfo;
     const version = wx.getSystemInfoSync().SDKVersion;
-    if (utils.compareVersion(version, '2.7.2') < 0) {
+    if (utils.compareVersion(version, '2.7.3') < 0) {
       this.setData({
         highVersion: false,
       });
