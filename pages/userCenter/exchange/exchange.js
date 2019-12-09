@@ -1,4 +1,5 @@
 import * as UserService from '../../../services/UserService';
+import * as validator from '../../../utils/validator';
 
 Page({
   data: {
@@ -43,9 +44,9 @@ Page({
   },
 
   codeSubmit() {
-    if (!this.data.code) {
+    if (!this.data.code || this.data.code.length !== 15) {
       wx.showToast({
-        title: '请输入正确的兑换码',
+        title: '请输入正确的15位兑换码',
         icon: 'none',
         duration: 2000,
       });
@@ -71,7 +72,7 @@ Page({
   },
 
   bindKeyInput(e) {
-    this.data.code = e.detail.value.toUpperCase();
+    this.data.code = e.detail.value.replace(/\s/gi, '').toUpperCase();
     return this.data.code;
   },
 

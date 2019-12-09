@@ -164,7 +164,6 @@ Page({
    */
   listenerButtonPreviewImage(e) {
     const index = e.target.dataset.index;
-
     wx.previewImage({
       current: this.data.tempFilePaths[index],
       urls: this.data.tempFilePaths,

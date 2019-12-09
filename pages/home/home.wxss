@@ -7,12 +7,14 @@
   display: flex;
   align-items: center;
   width: 200rpx;
-  bottom: 10rpx;
+  top: 100rpx;
   right: 30rpx;
   border-radius: 30rpx;
+  height: 60rpx;
   margin: auto;
-  background-color: rgba(128, 128, 128, 0.5);
+  background-color: rgba(128, 128, 128, 0.8);
   z-index: 40;
+  color: red;
 }
 .go-back-app .button-hover {
   color: unset;

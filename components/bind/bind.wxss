@@ -40,7 +40,7 @@
   font-size: 24rpx;
 }
 
-.get-code-btn.disabled {
+.get-code-btn .disabled {
   width: 130rpx;
   background-color: #999;
 }
