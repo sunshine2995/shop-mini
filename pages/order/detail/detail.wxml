@@ -97,7 +97,6 @@
             <view class="goods-price" wx:if="{{ !item.is_standard }}">
               <view class="goods-standard">
                 <view class="standard-row">
-                  <text>规格</text>
                   <text wx:if="{{ item.goods_sku_name }}"> 约{{ item.goods_sku_name }}</text>
                   <text wx:else> 暂无</text>
                 </view>
@@ -151,7 +150,6 @@
             <view class="goods-price" wx:else>
               <view class="goods-standard">
                 <view class="standard-row">
-                  <text>规格</text>
                   <text wx:if="{{ item.goods_sku_name }}"> {{ item.goods_sku_name }}</text>
                   <text wx:else> 暂无</text>
                 </view>

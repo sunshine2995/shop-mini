@@ -133,6 +133,11 @@
   padding-top: 5rpx;
   padding-bottom: 5rpx;
   box-sizing: border-box;
+  word-break: break-all;
+}
+
+.driver-type text:nth-child(1) {
+  min-width: 20%;
 }
 
 .driver-type {
@@ -198,7 +203,6 @@
 }
 
 .goods-image {
-  display: flex;
   width: 20%;
   position: relative;
 }
