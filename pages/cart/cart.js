@@ -98,7 +98,7 @@ Page({
   },
 
   goCollectGood() {
-    RouterUtil.go('/pages/home/home');
+    RouterUtil.go('/pages/sort/sort');
   },
 
   goToChooseGift() {

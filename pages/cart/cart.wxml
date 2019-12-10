@@ -30,13 +30,18 @@
     </view>
 
     <view class="cart-empty" wx:if="{{ !validCarts.length && !invalidCarts.length }}">
-      <view class="activity-image">
+      <navigator
+        url="/pages/activity/rechargeGift/rechargeGift"
+        hover-class="none"
+        class="activity-image"
+        bindtap="goRechargeGift"
+      >
         <image
           class="activity-img"
           src="https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png"
           mode="widthFix"
         ></image>
-      </view>
+      </navigator>
       <view class="empty-image" bindtap="goCollectGood">
         <image
           class="empty-img"
@@ -98,13 +103,18 @@
           <icon class="iconfont icon-delete" bindtap="deleteGoods"></icon>
         </view>
 
-        <view class="activity-image" wx:if="{{ !userInfo.is_new_user }}">
+        <navigator
+          url="/pages/activity/rechargeGift/rechargeGift"
+          hover-class="none"
+          class="activity-image"
+          wx:if="{{ !userInfo.is_new_user }}"
+        >
           <image
             class="activity-img"
             src="https://img.caibashi.com/0ead8bfbad0af6841091d1441b62f758.png"
             mode="widthFix"
           ></image>
-        </view>
+        </navigator>
         <navigator url="/pages/activity/newUser/newUser" hover-class="none" class="activity-image" wx:else>
           <image
             class="activity-img"
