@@ -1,0 +1,22 @@
+<view class="RewardedContainer">
+  <view class="reward-container">
+    <view class="reward-money">
+      <view class="reward-content">
+        <text>奖励金金额</text>
+        <view class="number">
+          <text>{{ money }}</text>
+          元
+        </view>
+        <text class="no-cash" wx:if="{{ !ifCash }}">暂未提现</text>
+        <text class="have-cash" wx:else>已提现</text>
+      </view>
+    </view>
+  </view>
+  <view class="reward-text">
+    <text>关于奖励金:</text>
+    <text>1、新用户所获得的奖励金额度；</text>
+    <text>2、新用户绑定手机号即可提现使用；</text>
+    <text>3、如有疑问请咨询菜巴士客服</text>
+  </view>
+  <view class="submit" bindtap="getWithdraw" wx:if="{{ !ifCash }}">提现</view>
+</view>

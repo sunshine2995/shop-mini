@@ -22,6 +22,7 @@ Page({
   },
 
   getCustom() {
+    this.data.activityImgs = [];
     wx.showLoading({
       title: '加载中',
     });

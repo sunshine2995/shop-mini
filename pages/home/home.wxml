@@ -19,6 +19,18 @@
       <view class="qr-save" catchtap="getNewUserEgg"><text>立即领取</text></view>
     </view>
   </view>
+  <view class="mask" wx:if="{{ !showImage && !showLocation && showAuthorize && showReward }}" bindtap="hideReward">
+    <view class="rewarded-tip">
+      <view class="icon" bindtap="hideReward"> <icon class="iconfont icon-cancel"></icon></view>
+      <view class="qr-text">新用户奖励</view>
+      <view class="rewarded-text"><text>恭喜您成功获得</text></view>
+      <view class="rewarded-text"
+        ><view class="rewarded-money">{{ rewardMoney }}元</view><text>奖励金</text></view
+      >
+      <view class="rewarded-text"><text>请到“我的”—“奖励金”提现使用</text></view>
+      <view class="qr-save" catchtap="goToUser"><text>去使用</text></view>
+    </view>
+  </view>
   <view class="mask" wx:if="{{ !showAuthorize }}" bindtap="hideAuthorize">
     <view class="mask-info" wx:if="{{ !showAuthorize }}" animation="{{ moveData }}">
       <image class="userinfo-avatar" src="https://img.caibashi.com/559e8b745c2a5a6cb0d429f7759b89ec.png"></image>

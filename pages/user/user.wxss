@@ -65,20 +65,22 @@ swiper {
 }
 
 .integration {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20rpx 0;
   box-sizing: border-box;
-  border-bottom: 2rpx solid #ebebeb;
+  /* border-bottom: 2rpx solid #ebebeb; */
 }
 
 .balance,
 .red-envelopes,
 .common-menu,
 .integral {
-  flex: 1;
-  flex-shrink: 1;
+  /* flex: 1; */
+  width: 25%;
+  flex-shrink: 0;
   font-size: 30rpx;
   color: #808080;
   border-right: 2rpx solid #ebebeb;
@@ -86,15 +88,20 @@ swiper {
   padding: 0 8rpx;
   box-sizing: border-box;
 }
-
-.balance {
-  flex: 1.5;
+.reward {
+  color: #fe3059;
 }
+
+/* .balance {
+  flex: 1.5;
+} */
 
 .integral {
   border-right: unset;
 }
-
+.order-moudle {
+  border-top: 2rpx solid #ebebeb;
+}
 .order-moudle,
 .recharge-moudle,
 .activity-moudle,

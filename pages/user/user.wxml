@@ -39,28 +39,40 @@
     </view>
   </view>
   <view wx:if="{{ showAllInfo }}">
-    <view class="integration">
-      <view class="balance">
-        <text class="number" wx:if="{{ userInfo.balance }}">￥{{ userInfo.balance }}元</text>
-        <text class="number" wx:else>0</text>
-        <text class="text">余额</text>
+    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+      <view class="integration">
+        <view class="balance">
+          <text class="number" wx:if="{{ userInfo.balance }}">￥{{ userInfo.balance }}元</text>
+          <text class="number" wx:else>0</text>
+          <text class="text">余额</text>
+        </view>
+        <navigator class="red-envelopes" url="/pages/userCenter/couponList/couponList" hover-class="none">
+          <text class="number" wx:if="{{ userInfo.coupons_number }}">{{ userInfo.coupons_number }}</text>
+          <text class="number" wx:else>0</text>
+          <text class="text">红包</text>
+        </navigator>
+        <navigator class="common-menu" url="/pages/userCenter/collection/collection" hover-class="none">
+          <text class="number" wx:if="{{ userInfo.collection_numbers }}">{{ userInfo.collection_numbers }}</text>
+          <text class="number" wx:else>0</text>
+          <text class="text">收藏</text>
+        </navigator>
+        <navigator
+          class="common-menu reward"
+          url="/pages/reward/reward"
+          hover-class="none"
+          animation="{{ ani }}"
+          wx:if="{{ !ifCash && rewardMoney > 0 }}"
+        >
+          <text class="number" wx:if="{{ userInfo.user_integral }}">￥{{ rewardMoney }}</text>
+          <text class="text">奖励金</text>
+        </navigator>
+        <navigator class="integral" url="/pages/userCenter/point/point" hover-class="none">
+          <text class="number" wx:if="{{ userInfo.user_integral }}">{{ userInfo.user_integral }}</text>
+          <text class="number" wx:else>0</text>
+          <text class="text">积分</text>
+        </navigator>
       </view>
-      <navigator class="red-envelopes" url="/pages/userCenter/couponList/couponList" hover-class="none">
-        <text class="number" wx:if="{{ userInfo.coupons_number }}">{{ userInfo.coupons_number }}</text>
-        <text class="number" wx:else>0</text>
-        <text class="text">红包</text>
-      </navigator>
-      <navigator class="common-menu" url="/pages/userCenter/collection/collection" hover-class="none">
-        <text class="number" wx:if="{{ userInfo.collection_numbers }}">{{ userInfo.collection_numbers }}</text>
-        <text class="number" wx:else>0</text>
-        <text class="text">收藏</text>
-      </navigator>
-      <navigator class="integral" url="/pages/userCenter/point/point" hover-class="none">
-        <text class="number" wx:if="{{ userInfo.user_integral }}">{{ userInfo.user_integral }}</text>
-        <text class="number" wx:else>0</text>
-        <text class="text">积分</text>
-      </navigator>
-    </view>
+    </scroll-view>
     <view class="order-moudle">
       <navigator class="all-order" url="/pages/order/list/list" hover-class="none">
         <text>我的订单</text>

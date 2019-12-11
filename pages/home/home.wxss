@@ -78,12 +78,19 @@ button::after {
 .shop-tip .icon-cancel {
   color: #666;
 }
-.share-tip {
-  background-color: #fe6950;
+.share-tip,
+.rewarded-tip {
   width: 68%;
   height: 65%;
   margin: auto;
   border-radius: 20rpx;
+}
+.share-tip {
+  background-color: #fe6950;
+}
+.rewarded-tip {
+  height: 50%;
+  background-color: #51ac47;
 }
 .shop-tip {
   background-color: #fff;
@@ -97,6 +104,34 @@ button::after {
   box-sizing: border-box;
   font-size: 45rpx;
   color: #fff;
+}
+.rewarded-tip .qr-text {
+  text-align: center;
+  font-size: 50rpx;
+  padding-top: 0;
+  padding-bottom: 20rpx;
+}
+
+.rewarded-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  color: #fff;
+}
+.rewarded-text text {
+  text-align: center;
+  opacity: 0.6;
+}
+
+.rewarded-money {
+  font-size: 45rpx;
+  color: #fff;
+  opacity: 1;
+  padding-right: 10rpx;
+  box-sizing: border-box;
 }
 .shop-text,
 .info-text {

@@ -34,13 +34,18 @@ Page({
 
   getWithdraw() {
     if (this.data.money) {
-      GiftService.getWithdraw(this.data.money)
+      GiftService.getWithdraw(this.data.money, 1)
         .then(() => {
           wx.showToast({
             title: '提现成功',
             icon: 'none',
+            duration: 2000,
+            success: () => {
+              setTimeout(function() {
+                wx.navigateBack();
+              }, 1000);
+            },
           });
-          wx.navigateBack();
         })
         .catch((error) => {
           wx.showToast({

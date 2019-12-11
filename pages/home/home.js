@@ -28,6 +28,7 @@ Page({
     showAuthorize: true, // 未授权是否展示信息
     moveData: null,
     showImage: false, // 是否展示活动弹窗
+    showReward: false, // 是否展示奖励金弹窗
     showPath: false, // 判断环境的变量
     showLocation: false, // 是否展示更换店铺的弹窗
     locationTip: true, // 是否不再提示切换店铺
@@ -35,11 +36,18 @@ Page({
     ifGoBackApp: false,
     highVersion: true, //版本号判断
     platform: '',
+    rewardMoney: 0, // 奖励金金额
   },
 
   hideImage() {
     this.setData({
       showImage: false,
+    });
+  },
+
+  hideReward() {
+    this.setData({
+      showReward: false,
     });
   },
 
@@ -75,6 +83,7 @@ Page({
         this.data.showImage = false;
         this.setData({
           showImage: this.data.showImage,
+          showReward: this.data.showReward,
         });
         wx.showToast({
           title: res.data.data.message,
@@ -102,6 +111,13 @@ Page({
         }
         app.globalData.userData = res.data.data;
         this.data.showImage = res.data.data.is_new_user;
+        this.data.rewardMoney = +res.data.data.reward_money;
+        this.setData({
+          rewardMoney: this.data.rewardMoney,
+        });
+        if (!res.data.data.rewarded && +res.data.data.reward_money > 0) {
+          this.data.showReward = true;
+        }
         const locationTip = wx.getStorageSync('locationTip');
         if (locationTip) {
           this.setData({
@@ -142,6 +158,9 @@ Page({
                   });
                 } else if (res.cancel) {
                   this.startAnimation();
+                  this.setData({
+                    showReward: this.data.showReward,
+                  });
                 }
               },
             });
@@ -168,6 +187,7 @@ Page({
           showAuthorize: this.data.showAuthorize,
           showLocation: this.data.showLocation,
           showImage: this.data.showImage,
+          showReward: this.data.showReward,
         });
       })
       .catch((error) => {
@@ -192,6 +212,7 @@ Page({
         this.setData({
           showLocation: false,
           showImage: this.data.showImage,
+          showReward: this.data.showReward,
         });
       })
       .catch((error) => {
@@ -207,6 +228,7 @@ Page({
     this.setData({
       locationTip: false,
       showImage: this.data.showImage,
+      showReward: this.data.showReward,
     });
   },
 
@@ -262,6 +284,10 @@ Page({
   goToSort(e) {
     app.globalData.sortOneId = e.currentTarget.dataset.oneId;
     RouterUtil.go('/pages/sort/sort');
+  },
+
+  goToUser() {
+    RouterUtil.go('/pages/user/user');
   },
 
   toSort() {

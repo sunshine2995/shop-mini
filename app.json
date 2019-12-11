@@ -51,7 +51,9 @@
     "pages/shopList/shopList",
     "pages/activity/rewardDetail/rewardDetail",
     "pages/test/test",
-    "pages/order/shareDetail/shareDetail"
+    "pages/order/shareDetail/shareDetail",
+    "pages/reward/reward",
+    "pages/reward/bindPhone/bindPhone"
   ],
   "usingComponents": {
     "formId": "/components/formId/formId"

@@ -55,7 +55,7 @@ export function getShareQrcode() {
   return http.post('/user/qr_code');
 }
 
-// 获取二维码
-export function getWithdraw(money) {
-  return http.post('/wechat/mini_transfer', { money });
+// 提现
+export function getWithdraw(money, type) {
+  return http.post('/wechat/mini_transfer', { money, type });
 }

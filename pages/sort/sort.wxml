@@ -17,12 +17,12 @@
   </view>
   <view class="sort-head">
     <view class="search">
-      <navigator url="/pages/sortTest/sort" class="help-service" hover-class="none">
+      <navigator url="/pages/userCenter/customerService/customerService" class="help-service" hover-class="none">
         <icon class="iconfont icon-help"></icon>
         <text class="text-help">客服</text>
       </navigator>
       <navigator url="/pages/goodsSearch/goodsSearch" class="search-border" hover-class="none">
-        <text class="search-text">找你要的菜{{ cartNUM }}</text>
+        <text class="search-text">找你要的菜</text>
         <icon class="iconfont icon-search"></icon>
       </navigator>
     </view>
@@ -59,8 +59,8 @@
         data-index="{{ index }}"
         id="{{ index }}"
         catchtap="changeMenu"
-        >{{ item.category_two_name }}</text
-      >
+        >{{ item.category_two_name }}
+        </text>
     </scroll-view>
   </view>
   <!-- 右侧滚动商品 -->

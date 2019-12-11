@@ -1,0 +1,66 @@
+.RewardedContainer {
+  height: 100vh;
+  background-color: #ebebeb;
+}
+.reward-container {
+  display: flex;
+  justify-content: center;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.reward-money {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #999;
+  border-radius: 50%;
+  width: 350rpx;
+  height: 350rpx;
+  text-align: center;
+  padding: 30rpx;
+  font-size: 28rpx;
+}
+.reward-content text {
+  line-height: 1;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.no-cash {
+  color: #11a24a;
+}
+.have-cash {
+  color: #fe3059;
+}
+.number {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 50rpx;
+  box-sizing: border-box;
+}
+.number text {
+  font-size: 50rpx;
+  color: #fe3059;
+  padding: unset;
+}
+.reward-text {
+  margin: auto;
+  font-size: 30rpx;
+  padding: 50rpx 100rpx;
+  box-sizing: border-box;
+}
+.reward-text text {
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.submit {
+  width: 60%;
+  text-align: center;
+  background-color: #11a24a;
+  color: #fff;
+  border: 1rpx solid #11a24a;
+  border-radius: 50rpx;
+  margin: 100rpx auto 0;
+  padding: 20rpx;
+  box-sizing: border-box;
+}

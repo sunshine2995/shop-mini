@@ -11,6 +11,9 @@ Page({
     isShowCurtain: false, // 遮罩层
     showAllInfo: false, // 未授权是否展示信息
     authUserInfo: {}, // 授权信息
+    ani: '', //动画
+    rewardMoney: 0, // 奖励金金额
+    ifCash: false,
   },
 
   hideCurtain() {
@@ -31,6 +34,26 @@ Page({
       isShowCurtain: false,
     });
   },
+  startAnimation() {
+    const animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease',
+      delay: 0,
+    });
+    let next = false;
+    setInterval(() => {
+      if (next) {
+        animation.scale(1.25).step();
+        next = !next;
+      } else {
+        animation.scale(1.0).step();
+        next = !next;
+      }
+      this.setData({
+        ani: animation.export(),
+      });
+    }, 500);
+  },
 
   onShow() {
     if (app.globalData.userInfo) {
@@ -43,6 +66,7 @@ Page({
     this.getUser();
     this.getRechargeList();
     this.getStatusNum();
+    this.startAnimation();
     wx.showLoading({
       title: '',
     });
@@ -104,6 +128,12 @@ Page({
       .then((res) => {
         app.globalData.userData = res.data.data;
         this.getShopInfo();
+        this.data.rewardMoney = +res.data.data.reward_money;
+        this.data.ifCash = res.data.data.rewarded;
+        this.setData({
+          rewardMoney: this.data.rewardMoney,
+          ifCash: this.data.ifCash,
+        });
       })
       .catch((error) => {
         wx.showToast({
