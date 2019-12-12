@@ -9,8 +9,6 @@ Page({
     giftInfo: {}, // 赠礼相关信息
     orderItems: [], // order商品信息
     totalNumber: 0, // 商品总件数
-    differencePrice: 0, // 商品差价
-    finallyRefundMoney: 0, // 最终退款金额
     orderNo: '', // 订单号
     ifSubmit: false, // 是否下完订单之后跳转的
     selectedIds: [], // 被选中的要分享的商品id
@@ -97,15 +95,11 @@ Page({
           this.data.totalNumber += item.goods_sku_num;
           item.check = false;
         });
-        this.data.differencePrice = +this.data.order.finally_amount - +this.data.order.finally_amount_before_weighing;
-        this.data.finallyRefundMoney = +this.data.order.refund_money - Math.abs(+this.data.differencePrice);
         this.setData({
           order: this.data.order,
           giftInfo: this.data.giftInfo,
           orderItems: this.data.orderItems,
           totalNumber: this.data.totalNumber,
-          differencePrice: this.data.differencePrice,
-          finallyRefundMoney: this.data.finallyRefundMoney,
         });
       })
       .catch((error) => {

@@ -29,15 +29,7 @@
 
 .order-refund text:nth-child(1) {
   font-size: 36rpx;
-  padding-bottom: 20rpx;
-  box-sizing: border-box;
 }
-
-.order-refund text:nth-child(2) {
-  font-size: 30rpx;
-  opacity: 0.6;
-}
-
 .icon-pay-success,
 .icon-order-complate,
 .icon-to-be-received,
@@ -307,7 +299,8 @@
   box-sizing: border-box;
 }
 
-.refund {
+.refund,
+.discount_price {
   color: #fe3059;
 }
 

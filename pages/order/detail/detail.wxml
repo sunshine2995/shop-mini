@@ -36,7 +36,6 @@
     </view>
     <view class="order-refund" wx:if="{{ order.status === 9 }}">
       <text>退款成功</text>
-      <text>退款原因：{{ order.refund_reason }}</text>
     </view>
     <view class="detail-content">
       <view class="title">
@@ -100,9 +99,9 @@
                   <text wx:if="{{ item.goods_sku_name }}"> 约{{ item.goods_sku_name }}</text>
                   <text wx:else> 暂无</text>
                 </view>
-                <view class="standard-row" wx:if="{{ Number(item.discount_price) > 0 }}">
-                  <text>折后价</text>
-                  <text>{{ Number(item.discount_price) }}元/{{ item.unit_name }}</text>
+                <view class="standard-row" wx:if="{{ item.discount_price !== '0.00' }}">
+                  <text class="discount_price">折后价</text>
+                  <text class="discount_price">{{ item.discount_price }}元/{{ item.unit_name }}</text>
                 </view>
                 <view class="standard-row" wx:else>
                   <text>售价</text>
@@ -153,9 +152,9 @@
                   <text wx:if="{{ item.goods_sku_name }}"> {{ item.goods_sku_name }}</text>
                   <text wx:else> 暂无</text>
                 </view>
-                <view class="standard-row" wx:if="{{ Number(item.discount_price) > 0 }}">
-                  <text>折后价</text>
-                  <text>{{ Number(item.discount_price) }}元/{{ item.unit_name }}</text>
+                <view class="standard-row" wx:if="{{ item.discount_price !== '0.00' }}">
+                  <text class="discount_price">折后价</text>
+                  <text class="discount_price">{{ item.discount_price }}元/{{ item.unit_name }}</text>
                 </view>
                 <view class="standard-row" wx:else>
                   <text>售价</text>
@@ -211,29 +210,38 @@
           <text>运费</text>
           <text>{{ order.shipping_cost }}元</text>
         </view>
-        <view class="goods-count">
-          <text>商品已付</text>
+        <view class="goods-count" wx:if="{{ order.status === 11 || order.status === 12 }}">
+          <text>商品预付</text>
           <text>{{ order.finally_amount_before_weighing }}元</text>
         </view>
-        <view class="goods-count" wx:if="{{ order.finally_amount }}">
-          <text>称重差价</text>
-          <text class="red-price" wx:if="{{ differencePrice < 0 }}"
-            >称重退款 {{ filter.numToFixed(differencePrice) }}元</text
-          >
-          <text class="red-price" wx:if="{{ differencePrice > 0 }}"
-            >称重补扣款 {{ filter.numToFixed(differencePrice) }}元</text
-          >
+        <view class="goods-count" wx:elif="{{ order.status === 1 }}">
+          <text>商品应付</text>
+          <text>{{ order.finally_amount_before_weighing }}元</text>
         </view>
-        <view class="finally_pay" wx:if="{{ order.finally_amount }}">
-          <view class="tip">
-            <text>本次实付</text>
-            <text>商品已按实称结算</text>
+        <view wx:else>
+          <view class="goods-count">
+            <text>商品已付</text>
+            <text>{{ order.finally_amount_before_weighing }}元</text>
           </view>
-          <text class="weight">{{ order.finally_amount }}元</text>
-        </view>
-        <view class="discount-price" wx:if="{{ finallyRefundMoney > 0 }}">
-          <text>商品退款</text>
-          <text>-{{ filter.numToFixed(finallyRefundMoney) }}元</text>
+          <view class="goods-count">
+            <text>称重差价</text>
+            <text class="red-price">称重退款 -{{ filter.numToFixed(order.weighing_the_difference) }}元</text>
+          </view>
+          <view class="discount-price">
+            <text>商品退款</text>
+            <text>-{{ filter.numToFixed(order.commodity_refund) }}元</text>
+          </view>
+          <view class="discount-price">
+            <text>运费退款</text>
+            <text>-{{ filter.numToFixed(order.refund_shipping_fee) }}元</text>
+          </view>
+          <view class="finally_pay">
+            <view class="tip">
+              <text>本次实付</text>
+              <text>商品已按实称结算</text>
+            </view>
+            <text class="weight">{{ order.amount_actually_paid }}元</text>
+          </view>
         </view>
       </view>
     </view>
