@@ -105,21 +105,27 @@
                 <text>{{ item.order.finally_amount_before_weighing }}</text>
               </view>
             </view>
-            <view class="pay-money actual-price" wx:if="{{ item.order.finally_amount }}">
+            <view
+              class="pay-money actual-price"
+              wx:if="{{ item.order.status !== 1 && item.order.status !== 11 && item.order.status !== 12 }}"
+            >
               <icon class="iconfont icon-yichengzhong-"></icon>
               <text class="type">实付总额：</text>
               <view class="pay-number">
                 <text>￥</text>
-                <text>{{ item.order.finally_amount }}</text>
+                <text>{{ item.order.amount_actually_paid }}</text>
               </view>
             </view>
           </view>
 
-          <view class="pay-money refund-money" wx:if="{{ item.order.refund_money }}">
-            <text class="type">商品退款</text>
+          <view
+            class="pay-money refund-money"
+            wx:if="{{ item.order.status !== 11 && item.order.status !== 12 && item.order.total_refund !== '0.00' }}"
+          >
+            <text class="type">退款金额：</text>
             <view class="pay-number">
-              <text>-￥</text>
-              <text>{{ item.order.refund_money }}</text>
+              <text>￥</text>
+              <text>{{ item.order.total_refund }}</text>
             </view>
           </view>
           <view
