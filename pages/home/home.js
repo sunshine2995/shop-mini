@@ -32,6 +32,7 @@ Page({
     showPath: false, // 判断环境的变量
     showLocation: false, // 是否展示更换店铺的弹窗
     locationTip: true, // 是否不再提示切换店铺
+    rewardTip: true, // 是否不再提示领取奖励金
     shopList: [], // 店铺列表
     ifGoBackApp: false,
     highVersion: true, //版本号判断
@@ -48,6 +49,15 @@ Page({
   hideReward() {
     this.setData({
       showReward: false,
+    });
+  },
+
+  closeRewardTip() {
+    wx.setStorageSync('rewardTip', false);
+    this.setData({
+      rewardTip: false,
+      showImage: this.data.showImage,
+      showReward: this.data.showReward,
     });
   },
 
@@ -119,9 +129,15 @@ Page({
           this.data.showReward = true;
         }
         const locationTip = wx.getStorageSync('locationTip');
+        const rewardTip = wx.getStorageSync('rewardTip');
         if (locationTip) {
           this.setData({
             locationTip,
+          });
+        }
+        if (rewardTip) {
+          this.setData({
+            rewardTip,
           });
         }
         this.getShopInfo();

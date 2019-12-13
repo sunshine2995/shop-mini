@@ -63,7 +63,7 @@
           animation="{{ ani }}"
           wx:if="{{ !ifCash && rewardMoney > 0 }}"
         >
-          <text class="number" wx:if="{{ userInfo.user_integral }}">￥{{ rewardMoney }}</text>
+          <text class="number">￥{{ rewardMoney }}</text>
           <text class="text">奖励金</text>
         </navigator>
         <navigator class="integral" url="/pages/userCenter/point/point" hover-class="none">
