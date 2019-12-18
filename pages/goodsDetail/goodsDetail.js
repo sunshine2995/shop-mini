@@ -11,6 +11,7 @@ Page({
     active: 0,
     spuId: 0,
     stock: 0,
+    cartNum: 0,
     // 属性相关
     selectSkuId: 0,
     carts: [], // 购物车信息
@@ -136,12 +137,14 @@ Page({
     GoodsService.getDetail(this.data.spuId)
       .then((res) => {
         const goodsInfo = res.data.data;
-        this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
-        this.data.stock = goodsInfo.goods_sku_list[0].stock;
-        this.setData({
-          goodsInfo,
-          stock: this.data.stock,
-        });
+        if (goodsInfo.goods_sku_list.length) {
+          this.data.selectSkuId = goodsInfo.goods_sku_list[0].id;
+          this.data.stock = goodsInfo.goods_sku_list[0].stock;
+          this.setData({
+            goodsInfo,
+            stock: this.data.stock,
+          });
+        }
         if (goodsInfo.goods_spu_details_image.length > 0) {
           this.imgH(goodsInfo.goods_spu_details_image[0].details_img_url);
         }

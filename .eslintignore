@@ -5,3 +5,4 @@ build.js
 services/http.js
 libs/axios.js
 libs/amap-wx.js
+filter.wxs

@@ -23,12 +23,18 @@ module.exports = {
         return '订单退款';
       case 22:
         return '余额支付';
+      case 222:
+        return '支付宝支付';
       case 61:
         return '领取充值赠礼';
       case 62:
         return '领取新人赠礼';
       case 63:
         return '领取分享充值送赠礼';
+      case 64:
+        return '新人扫码提现';
+      case 65:
+        return '邀请好友提现';
       default:
         return '其他';
     }
@@ -54,6 +60,22 @@ module.exports = {
       num = Number(num);
     }
     return num.toFixed(digits);
+  },
+
+  showOrderNum: function(logType) {
+    if (logType !== '61' && logType !== '62' && logType !== '63' && logType !== '64' && logType !== '65') {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  showReduceType: function(logType) {
+    if (logType === '2' || logType === '6' || logType === '22' || logType === '222') {
+      return true;
+    } else {
+      return false;
+    }
   },
 
   showAddress: function(province, city, area) {

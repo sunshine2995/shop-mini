@@ -332,7 +332,7 @@
               </view>
             </view>
           </block>
-          <view class="sort-expand-detail" bindtap="jumpSort">
+          <view class="sort-expand-detail" data-one-id="{{ categoryOne.category_one_id }}" bindtap="goToSort">
             <image class="sort-expand-goods-image" src="/images/home/home_more.png"></image>
           </view>
         </view>

@@ -7,18 +7,18 @@
       <view class="bill-info">
         <view class="bill-type-orderNo">
           <text class="bill-type">{{ filter.logType(bill.log_type) }}</text>
-          <text class="bill-order-number">订单号：{{ bill.order_no }}</text>
+          <text class="bill-order-number" wx:if="{{ filter.showOrderNum(bill.log_type) }}"
+            >订单号：{{ bill.order_no }}</text
+          >
         </view>
         <text class="bill-time">{{ bill.create_time }}</text>
       </view>
-      <view class="bill-money" wx:if="{{ bill.log_type === '2' || bill.log_type === '22' || bill.log_type === '6' }}"
-        >- {{ bill.money }} 元
-      </view>
+      <view class="bill-money" wx:if="{{ filter.showReduceType(bill.log_type) }}">- {{ bill.money }} 元 </view>
       <view
         class="bill-money"
         wx:elif="{{ bill.log_type === '61' || bill.log_type === '62' || bill.log_type === '63' }}"
       >
-        {{ bill.info }} 元
+        {{ bill.info }}
       </view>
       <view class="bill-money" wx:elif="{{ bill.log_type === '4' || bill.log_type === '5' }}">
         {{ bill.money }} 元
