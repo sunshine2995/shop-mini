@@ -145,6 +145,9 @@ icon-right {
   padding: 20rpx;
   box-sizing: border-box;
 }
+.service-content {
+  justify-content: flex-start;
+}
 
 .activity-type,
 .service-type {

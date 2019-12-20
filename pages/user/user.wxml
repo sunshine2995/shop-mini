@@ -181,10 +181,10 @@
           <text class="service-type-text">收货地址</text>
         </navigator>
 
-        <navigator class="service-type" url="/pages/recharge/recharge" hover-class="none">
+        <!-- <navigator class="service-type" url="/pages/recharge/recharge" hover-class="none">
           <icon class="iconfont icon-recharge"></icon>
           <text class="service-type-text">充值中心</text>
-        </navigator>
+        </navigator> -->
 
         <navigator class="service-type" url="/pages/userCenter/exchange/exchange" hover-class="none">
           <icon class="iconfont icon-exchange"></icon>

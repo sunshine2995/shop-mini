@@ -166,6 +166,11 @@ Page({
         this.setData({
           collectionStatus: Boolean(res.data.data.status),
         });
+        wx.showToast({
+          title: res.data.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
       })
       .catch((error) => {
         wx.showToast({
