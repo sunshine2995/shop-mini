@@ -134,11 +134,11 @@
       <view class="activity-content">
         <navigator class="activity-type" url="/pages/activity/prepaidGift/prepaidGift" hover-class="none">
           <icon class="iconfont icon-huodong"></icon>
-          <text class="activity-type-text">充值赠礼</text>
+          <text class="activity-type-text">赠礼相关</text>
         </navigator>
         <navigator url="/pages/activity/share/share" class="activity-type" hover-class="none">
           <icon class="iconfont icon-fenxiang1"></icon>
-          <text class="activity-type-text">分享充值送</text>
+          <text class="activity-type-text">分享送羊腿</text>
         </navigator>
         <navigator url="/pages/activity/invite/invite" class="activity-type" hover-class="none">
           <icon class="iconfont icon-jinlingyingcaiwangtubiao04"></icon>

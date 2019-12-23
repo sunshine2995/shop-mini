@@ -19,13 +19,13 @@
     <view class="share-button-image" wx:else catchtap="getShareTip">
       <image class="share-button-img" src="https://img.caibashi.com/04adf00321f29efd8d98decba7a4f899.png"></image>
     </view>
-    <view class="recharge-button-image" catchtap="getRecharge">
+    <!-- <view class="recharge-button-image" catchtap="getRecharge">
       <image
         class="share-button-img"
         src="https://img.caibashi.com/dadc2896c9dc5d719372e0a18f9e305c.png"
         mode="widthFix"
       ></image>
-    </view>
+    </view> -->
     <view class="describe">
       <view class="describe-title">羊腿如何免费领:</view>
       <view class="rule-text">
