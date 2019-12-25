@@ -294,7 +294,7 @@ Page({
           icon: 'none',
           duration: 2000,
         });
-        RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
+        RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true`);
       })
       .catch((error) => {
         wx.showToast({
@@ -316,7 +316,7 @@ Page({
           signType: data.signType,
           paySign: data.paySign,
           success: () => {
-            RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
+            RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true`);
           },
         });
       })

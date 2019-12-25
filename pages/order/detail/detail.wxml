@@ -251,6 +251,13 @@
         <text wx:if="{{ order.delivery_type === 1 }}">地址 : {{ order.buyer_address }}</text>
       </view>
     </view>
+    <view class="activity-image" bindtap="goToActivity" wx:if="{{ ifShowActivity }}">
+      <image
+        class="activity-img"
+        src="https://img.caibashi.com/afe8aeac4d6a26f65542dac87272c6d6.png"
+        mode="widthFix"
+      ></image>
+    </view>
     <view class="driver-time">
       <view class="content">
         <view class="driver-type">

@@ -38,6 +38,8 @@ Page({
     highVersion: true, //版本号判断
     platform: '',
     rewardMoney: 0, // 奖励金金额
+    customImg: '',
+    customPath: '',
   },
 
   hideImage() {
@@ -521,6 +523,11 @@ Page({
           this.setData({
             customImg,
             customPath,
+          });
+        } else {
+          this.setData({
+            customImg: 'http://img.caibashi.com/9897bbde16930230c2818a3bfce45a3c.png',
+            customPath: '/pages/recharge/recharge',
           });
         }
       })

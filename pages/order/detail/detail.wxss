@@ -109,6 +109,12 @@
   padding-right: 20rpx;
   box-sizing: border-box;
 }
+.activity-image {
+  margin-top: 15rpx;
+}
+.activity-img {
+  width: 100%;
+}
 
 .user-name-address,
 .driver-time {

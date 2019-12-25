@@ -6,7 +6,6 @@
 
 .user-detail {
   display: flex;
-  align-items: center;
   padding: 45rpx;
   box-sizing: border-box;
 }
@@ -18,9 +17,14 @@
 }
 
 .user-info {
+  flex: 1;
   color: #fff;
   padding-left: 30rpx;
   box-sizing: border-box;
+}
+.icon-qiandaoshezhi {
+  font-size: 40rpx;
+  color: #fff;
 }
 
 .user-name {
@@ -128,7 +132,7 @@ swiper {
   align-items: flex-end;
 }
 
-icon-right {
+.icon-right {
   display: block;
   line-height: 1;
   padding-left: 10rpx;

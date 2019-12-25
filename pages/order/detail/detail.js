@@ -11,6 +11,7 @@ Page({
     totalNumber: 0, // 商品总件数
     orderNo: '', // 订单号
     ifSubmit: false, // 是否下完订单之后跳转的
+    ifShowActivity: false, // 是否显示活动图片
     selectedIds: [], // 被选中的要分享的商品id
     showChecked: false, // 是否显示选择框
     userId: 0, // 用户id
@@ -18,11 +19,16 @@ Page({
     showShare: false, // 是否确定分享
   },
 
+  goToActivity() {
+    RouterUtil.go('/pages/activity/invite/invite');
+  },
+
   freeTell() {
     wx.makePhoneCall({
       phoneNumber: this.data.order.driver_phone,
     });
   },
+
   getChecked() {
     wx.showToast({
       title: '请选择要分享的商品',
@@ -113,7 +119,15 @@ Page({
 
   onLoad(options) {
     this.data.orderNo = options.orderNo;
-    this.data.ifSubmit = options.ifSubmit;
+    if (options.ifSubmit) {
+      this.data.ifSubmit = options.ifSubmit;
+    }
+    if (options.showActivity) {
+      this.data.ifShowActivity = options.showActivity;
+      this.setData({
+        ifShowActivity: this.data.ifShowActivity,
+      });
+    }
   },
 
   onShow() {

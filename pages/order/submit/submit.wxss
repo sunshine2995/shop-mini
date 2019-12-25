@@ -361,7 +361,7 @@
 }
 
 .pay-money {
-  line-height: 1;
+  /* line-height: 1; */
   text-align: left;
   width: 60%;
   background-color: #4a4c5b;
@@ -387,6 +387,9 @@
 
 .pay-for button::after {
   border: unset;
+}
+.pay-for button wx-cover-view {
+  line-height: normal;
 }
 .Curtain {
   display: flex;
