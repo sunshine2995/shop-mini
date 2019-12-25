@@ -1,0 +1,8 @@
+<view class="problem-container">
+  <navigator class="problem-content" url="/pages/userCenter/profile/profile" hover-class="none">
+    <text class="problem-title">用户协议</text>
+  </navigator>
+  <view class="problem-content" bindtap="Login">
+    <text class="problem-title">刷新登录状态</text>
+  </view>
+</view>

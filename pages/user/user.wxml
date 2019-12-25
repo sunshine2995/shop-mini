@@ -14,6 +14,9 @@
         <text class="user-phone" wx:if="{{ userInfo.phone }}">{{ userInfo.phone }}</text>
         <text class="user-phone" wx:else bindtap="showCurtain">去绑定手机号</text>
       </view>
+      <navigator url="/pages/userCenter/setting/setting" hover-class="none">
+        <icon class="iconfont icon-qiandaoshezhi"></icon>
+      </navigator>
     </view>
     <navigator url="/pages/index/index" hover-class="none" class="user-detail" wx:else>
       <view class="user-avatarUrl">

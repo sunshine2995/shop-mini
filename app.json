@@ -53,7 +53,8 @@
     "pages/test/test",
     "pages/order/shareDetail/shareDetail",
     "pages/reward/reward",
-    "pages/reward/bindPhone/bindPhone"
+    "pages/reward/bindPhone/bindPhone",
+    "pages/userCenter/setting/setting"
   ],
   "usingComponents": {
     "formId": "/components/formId/formId"
