@@ -121,6 +121,8 @@
         >
           <view class="{{ index == active ? 'goods-standard-active ' : 'goods-standard ' }}" wx:if="{{ goodSku.name }}">
             {{ goodSku.name }}
+
+            <text class="remark" wx:if="{{ goodSku.remark }}">| {{ goodSku.remark }}</text>
           </view>
           <view class="{{ index == active ? 'goods-standard-active ' : 'goods-standard ' }}" wx:else>
             默认

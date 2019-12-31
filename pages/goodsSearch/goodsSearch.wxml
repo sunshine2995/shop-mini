@@ -107,8 +107,10 @@
           <text class="goods-advertising">{{ goods.advertising }}</text>
           <block wx:for="{{ goods.goods_sku_list }}" wx:key="index" wx:for-item="goodSku">
             <view class="different-price">
-              <view class="goods-different-price" wx:if="{{ !goods.is_standard }}">
-                <text class="goods-price-text">单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text>
+              <view class="goods-different-price">
+                <text class="goods-price-text" wx:if="{{ !goods.is_standard }}"
+                  >单价 ￥{{ goodSku.unit_price }}/{{ goodSku.goods_sku_unit.name }}</text
+                >
                 <price-component
                   price="{{ goodSku.sell_price }}"
                   unit="{{ goodSku.goods_sku_sell_unit.name }}"

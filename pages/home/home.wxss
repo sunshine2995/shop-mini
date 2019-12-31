@@ -610,6 +610,19 @@ swiper {
   width: 100%;
   height: 304rpx;
 }
+.recharge-type {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 5rpx;
+  box-sizing: border-box;
+}
+
+.recharge-image {
+  width: 260rpx;
+  height: 143rpx;
+  margin: 0 10rpx 26rpx;
+}
 
 .sort-expand-content {
   display: flex;
@@ -619,12 +632,13 @@ swiper {
   box-sizing: border-box;
 }
 .new-goods-low-price {
-  justify-content: center;
+  /* justify-content: center; */
+  margin: 0 10rpx 26rpx;
 }
 
 .sort-expand-detail {
   width: 300rpx;
-  /* height: 362rpx; */
+  height: 362rpx;
   text-align: center;
   margin: 0 10rpx;
 }

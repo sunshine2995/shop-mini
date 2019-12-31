@@ -228,6 +228,7 @@ button::after {
 .goods-stock {
   font-size: 26rpx;
   color: #999;
+  flex-shrink: 0;
 }
 
 .explain-desc-name {
