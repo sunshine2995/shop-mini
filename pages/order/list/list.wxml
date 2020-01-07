@@ -9,7 +9,7 @@
           src="https://img.caibashi.com/0ed4036c520f66f18314d99d6b3a4ad5.png"
         ></cover-image>
       </cover-view>
-      <cover-view class="pay-type" data-pay-type="{{ 1 }}" bindtap="WxPay">
+      <cover-view class="pay-type" data-pay-type="{{ 1 }}" bindtap="compareVersions">
         <cover-image
           class="wx-pay-image"
           src="https://img.caibashi.com/53395cb81974e687f3b72a4055ebfe96.png"
@@ -27,7 +27,7 @@
         ></cover-image>
         <cover-view class="balance-not-enough">余额支付（剩余{{ balance }}元）</cover-view>
       </cover-view>
-      <cover-view class="pay-type" data-pay-type="{{ 2 }}" bindtap="payByBalance" wx:elif="{{ isEnough }}">
+      <cover-view class="pay-type" data-pay-type="{{ 2 }}" bindtap="compareVersions" wx:elif="{{ isEnough }}">
         <cover-image
           class="cancel-pay-image"
           src="https://img.caibashi.com/5ed5d2ac36be24e218628a02504576c5.png"

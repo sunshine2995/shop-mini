@@ -1,6 +1,7 @@
 import moment from '../../../libs/moment';
 import * as OrderService from '../../../services/OrderService';
 import * as RouterUtil from '../../../utils/RouterUtil';
+import * as utils from '../../../utils/utils';
 
 const app = getApp();
 
@@ -62,6 +63,9 @@ Page({
     isEnough: false, // 是否显示余额付款
     failureOrder: {}, // 失效订单信息
     ifEvaluate: false, // 是否从评论跳转的
+    platform: '', // 设备型号
+    version: '', // 微信版本号
+    payType: 1, // 支付方式
   },
 
   cancelPay() {
@@ -239,6 +243,53 @@ Page({
       title: '订单已失效',
       icon: 'none',
     });
+  },
+
+  choosePay() {
+    if (this.data.payType === 1) {
+      this.WxPay();
+    } else if (this.data.payType === 2) {
+      this.payByBalance();
+    }
+  },
+
+  compareVersions(e) {
+    this.data.version = wx.getSystemInfoSync().version;
+    const SDKVersion = wx.getSystemInfoSync().SDKVersion;
+    this.data.payType = e.currentTarget.dataset.payType;
+    wx.getSystemInfo({
+      success: (res) => {
+        this.data.platform = res.platform;
+      },
+    });
+    if (
+      (utils.compareVersion(this.data.version, '7.0.5') >= 0 && this.data.platform === 'ios') ||
+      (utils.compareVersion(this.data.version, '7.0.6') >= 0 && this.data.platform === 'android')
+    ) {
+      wx.requestSubscribeMessage({
+        tmplIds: [
+          'F3slfbG1b31y8gC_XIzSQwu014C3WCS6u-1K6oF8uR8',
+          'O_1_j5on1YvG_ndrKQy-i5CjMDx1hGDBnRjANDOF87k',
+          '1_zvt7oVm_6SqHWxi4oQ2mIVtgFEHwW2htELFKb-YxQ',
+        ],
+        complete: () => {
+          this.choosePay();
+        },
+      });
+    } else if (utils.compareVersion(SDKVersion, '2.8.3') < 0) {
+      wx.showToast({
+        title: '检测到当前微信版本过低，建议升级微信版本',
+        icon: 'none',
+      });
+      this.choosePay();
+    } else {
+      wx.requestSubscribeMessage({
+        tmplIds: ['O_1_j5on1YvG_ndrKQy-i5CjMDx1hGDBnRjANDOF87k'],
+        complete: () => {
+          this.choosePay();
+        },
+      });
+    }
   },
 
   payByBalance() {
@@ -437,9 +488,7 @@ Page({
           value: moment().format('YYYY/MM/DD'),
         },
         {
-          name: moment()
-            .add(1, 'days')
-            .format('YYYY/MM/DD'),
+          name: '明天',
           value: moment()
             .add(1, 'days')
             .format('YYYY/MM/DD'),
@@ -457,9 +506,7 @@ Page({
     } else {
       this.data.multiArray[0] = [
         {
-          name: moment()
-            .add(1, 'days')
-            .format('YYYY/MM/DD'),
+          name: '明天',
           value: moment()
             .add(1, 'days')
             .format('YYYY/MM/DD'),

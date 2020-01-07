@@ -3,6 +3,7 @@ import * as CartService from '../../../services/CartService';
 import * as AddressService from '../../../services/AddressService';
 import * as OrderService from '../../../services/OrderService';
 import * as RouterUtil from '../../../utils/RouterUtil';
+import * as utils from '../../../utils/utils';
 
 const app = getApp();
 
@@ -38,6 +39,9 @@ Page({
     isShowCurtain: false, // 遮罩层
     isShowShopTip: false, // 自提提示
     formIds: '',
+    platform: '', // 设备型号
+    version: '', // 微信版本号
+    payType: 1, // 支付方式
   },
 
   cancelPay() {
@@ -59,13 +63,13 @@ Page({
   },
 
   bindMultiPickerChange(e) {
-    if (this.data.multiArray[0][0].name === '店铺已打烊') {
+    this.data.multiIndex = e.detail.value;
+    if (this.data.multiArray[0][this.data.multiIndex[0]].name === '今日') {
       wx.showToast({
-        title: '店铺已打烊',
+        title: '今日店铺已打烊',
         icon: 'none',
       });
     } else {
-      this.data.multiIndex = e.detail.value;
       const date = this.data.multiArray[0][this.data.multiIndex[0]].value.replace(/\//g, '-');
       this.data.deliveryEnd = date + ' ' + this.data.multiArray[1][this.data.multiIndex[1]].value;
       this.data.arriveDate =
@@ -94,9 +98,21 @@ Page({
             multiArray: [this.data.multiArray[0], this.data.todayTimes],
           });
         } else {
-          this.setData({
-            multiArray: [this.data.multiArray[0], this.data.durationTimes],
-          });
+          let todayTime = [
+            {
+              value: '',
+              name: '配送小哥已下班',
+            },
+          ];
+          if (this.data.multiArray[0][0].name === '今日') {
+            this.setData({
+              multiArray: [this.data.multiArray[0], todayTime],
+            });
+          } else {
+            this.setData({
+              multiArray: [this.data.multiArray[0], this.data.durationTimes],
+            });
+          }
         }
       }
       if (e.detail.value == 1 || e.detail.value == 2) {
@@ -135,11 +151,13 @@ Page({
       this.data.showTodo = false;
       this.data.arriveDate = '';
       this.getDeliveryTime();
+      this.data.multiIndex = [0, 0];
     }
     this.setData({
       arriveDate: this.data.arriveDate,
       showWait: this.data.showWait,
       showTodo: this.data.showTodo,
+      multiIndex: this.data.multiIndex,
     });
   },
 
@@ -149,11 +167,13 @@ Page({
       this.data.showWait = false;
       this.data.arriveDate = '';
       this.getDeliveryTime();
+      this.data.multiIndex = [0, 0];
     }
     this.setData({
       arriveDate: this.data.arriveDate,
       showWait: this.data.showWait,
       showTodo: this.data.showTodo,
+      multiIndex: this.data.multiIndex,
     });
   },
 
@@ -329,19 +349,65 @@ Page({
       });
   },
 
+  choosePay() {
+    if (this.data.payType === 1) {
+      this.WxPay();
+    } else if (this.data.payType === 2) {
+      this.balancePay();
+    }
+  },
+
+  compareVersions() {
+    this.data.version = wx.getSystemInfoSync().version;
+    const SDKVersion = wx.getSystemInfoSync().SDKVersion;
+    wx.getSystemInfo({
+      success: (res) => {
+        this.data.platform = res.platform;
+      },
+    });
+    if (
+      (utils.compareVersion(this.data.version, '7.0.5') >= 0 && this.data.platform === 'ios') ||
+      (utils.compareVersion(this.data.version, '7.0.6') >= 0 && this.data.platform === 'android')
+    ) {
+      wx.requestSubscribeMessage({
+        tmplIds: [
+          'F3slfbG1b31y8gC_XIzSQwu014C3WCS6u-1K6oF8uR8',
+          'O_1_j5on1YvG_ndrKQy-i5CjMDx1hGDBnRjANDOF87k',
+          '1_zvt7oVm_6SqHWxi4oQ2mIVtgFEHwW2htELFKb-YxQ',
+        ],
+        complete: () => {
+          this.choosePay();
+        },
+      });
+    } else if (utils.compareVersion(SDKVersion, '2.8.3') < 0) {
+      wx.showToast({
+        title: '检测到当前微信版本过低，建议升级微信版本',
+        icon: 'none',
+      });
+      this.choosePay();
+    } else {
+      wx.requestSubscribeMessage({
+        tmplIds: ['O_1_j5on1YvG_ndrKQy-i5CjMDx1hGDBnRjANDOF87k'],
+        complete: () => {
+          this.choosePay();
+        },
+      });
+    }
+  },
+
   pay(e) {
-    const payType = +e.currentTarget.dataset.payType;
+    this.data.payType = +e.currentTarget.dataset.payType;
     if (this.data.orderNo) {
-      if (payType === 1) {
-        this.WxPay();
-      } else if (payType === 2) {
+      if (this.data.payType === 1) {
+        this.compareVersions();
+      } else if (this.data.payType === 2) {
         wx.showModal({
           title: '余额支付',
           content: '确认支付？',
           confirmColor: '#11A24A',
           success: (res) => {
             if (res.confirm) {
-              this.balancePay();
+              this.compareVersions();
             }
           },
         });
@@ -416,16 +482,16 @@ Page({
         OrderService.submitOrder(model)
           .then((res) => {
             this.data.orderNo = res.data.data.orderNo;
-            if (payType === 1) {
-              this.WxPay();
-            } else if (payType === 2) {
+            if (this.data.payType === 1) {
+              this.compareVersions();
+            } else if (this.data.payType === 2) {
               wx.showModal({
                 title: '余额支付',
                 content: '确认支付？',
                 confirmColor: '#11A24A',
                 success: (res) => {
                   if (res.confirm) {
-                    this.balancePay();
+                    this.compareVersions();
                   }
                 },
               });
@@ -548,9 +614,7 @@ Page({
           value: moment().format('YYYY/MM/DD'),
         },
         {
-          name: moment()
-            .add(1, 'days')
-            .format('YYYY/MM/DD'),
+          name: '明天',
           value: moment()
             .add(1, 'days')
             .format('YYYY/MM/DD'),
@@ -566,11 +630,19 @@ Page({
       ];
       this.data.multiArray[1] = this.data.todayTimes;
     } else {
+      let todayTime = [
+        {
+          value: '',
+          name: '配送小哥已下班',
+        },
+      ];
       this.data.multiArray[0] = [
         {
-          name: moment()
-            .add(1, 'days')
-            .format('YYYY/MM/DD'),
+          name: '今日',
+          value: '',
+        },
+        {
+          name: '明天',
           value: moment()
             .add(1, 'days')
             .format('YYYY/MM/DD'),
@@ -584,7 +656,11 @@ Page({
             .format('YYYY/MM/DD'),
         },
       ];
-      this.data.multiArray[1] = this.data.durationTimes;
+      if (this.data.multiArray[0][0].name === '今日') {
+        this.data.multiArray[1] = todayTime;
+      } else {
+        this.data.multiArray[1] = this.data.durationTimes;
+      }
     }
     this.setData({
       multiArray: this.data.multiArray,

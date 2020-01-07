@@ -5,6 +5,7 @@
 
 .image-swiper {
   width: 750rpx;
+  max-height: 600rpx;
 }
 
 .default-swiper-swiper {

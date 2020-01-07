@@ -648,7 +648,7 @@ Page({
         if (res.data.data.satisfy_list.length) {
           const giftIds = [];
           res.data.data.satisfy_list.forEach((item) => {
-            giftIds.push(item.activity_id);
+            giftIds.push(item.id);
           });
           if (app.globalData.chooseGiftId !== 0 && !giftIds.includes(app.globalData.chooseGiftId)) {
             app.globalData.chooseGiftId = 0;
