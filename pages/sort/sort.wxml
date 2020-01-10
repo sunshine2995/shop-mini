@@ -60,7 +60,7 @@
         id="{{ index }}"
         catchtap="changeMenu"
         >{{ item.category_two_name }}
-        </text>
+      </text>
     </scroll-view>
   </view>
   <!-- 右侧滚动商品 -->
@@ -145,7 +145,12 @@
                       </view>
                     </view>
                     <view class="not-show-icon" wx:if="{{ goodSku.marketing }}">
-                      <view class="discount-rule" wx:if="{{ goodSku.stock !== 0 }}">
+                      <view
+                        class="discount-rule"
+                        wx:if="{{ goodSku.stock !== 0 }}"
+                        data-good-sku-id="{{ goodSku.id }}"
+                        catchtap="getGoodsAttr"
+                      >
                         <text class="discount-cart">{{ goodSku.marketing.marketing_simple_name }} | 马上抢</text>
                         <block wx:for="{{ idSelected }}" wx:key="index" wx:for-item="select">
                           <text class="cart-num" wx:if="{{ goodSku.id === select.id }}">{{ select.num }}</text>

@@ -160,6 +160,14 @@ input {
 .goods-price-text-line {
   text-decoration: line-through;
 }
+.sell-price {
+  display: flex;
+  align-items: center;
+}
+.sell-price text {
+  font-size: 30rpx;
+  color: #fe3059;
+}
 
 .text-color {
   color: #fe3059;

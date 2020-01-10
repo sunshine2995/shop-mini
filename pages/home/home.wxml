@@ -263,26 +263,26 @@
                   </view>
                 </view>
                 <view class="marketing-goods-price">
-                  <view class="marketing-sell-price" wx:if="{{ goodSpu.is_standard }}">
+                  <view class="marketing-sell-price">
                     <price-component
+                      wx:if="{{ goodSku.marketing }}"
+                      price="{{ goodSku.marketing.marketing_price }}"
+                      unit="{{ goodSku.goods_sku_sell_unit.name }}"
+                      text-color="text-color"
+                    ></price-component>
+                    <price-component
+                      wx:else
                       price="{{ goodSku.sell_price }}"
                       unit="{{ goodSku.goods_sku_sell_unit.name }}"
                       text-color="text-color"
                     ></price-component>
+                    <text wx:if="{{ goodSku.marketing }}" class="limit">限购3件</text>
                     <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
                   </view>
-                  <view class="marketing-sell-price" wx:else>
-                    <price-component
-                      price="{{ goodSku.sell_price }}"
-                      unit="{{ goodSku.goods_sku_sell_unit.name }}"
-                      text-color="text-color "
-                    ></price-component>
-                    <icon class="iconfont icon-jiangjia" wx:if="{{ goodSku.price_sign }}"></icon>
-                  </view>
-                  <view class="add-cart-num" wx:if="{{ !goodSku.stock }}">
+                  <view class="add-cart-num" wx:if="{{ !goodSku.marketing && !goodSku.stock }}">
                     <icon class="iconfont icon-yiqiangwan"></icon>
                   </view>
-                  <view class="add-cart-num" wx:else>
+                  <view class="add-cart-num" wx:elif="{{ !goodSku.marketing && goodSku.stock !== 0 }}">
                     <icon
                       class="iconfont icon-sort-add"
                       data-good-sku-id="{{ goodSku.id }}"
@@ -291,6 +291,22 @@
                     <block wx:for="{{ idSelected }}" wx:key="index" wx:for-item="select">
                       <text class="cart-num" wx:if="{{ goodSku.id === select.id }}">{{ select.num }}</text>
                     </block>
+                  </view>
+                </view>
+                <view class="not-show-icon" wx:if="{{ goodSku.marketing }}">
+                  <view
+                    class="discount-rule"
+                    wx:if="{{ goodSku.stock !== 0 }}"
+                    data-good-sku-id="{{ goodSku.id }}"
+                    catchtap="getGoodsAttr"
+                  >
+                    <text class="discount-cart">{{ goodSku.marketing.marketing_simple_name }} | 马上抢</text>
+                    <block wx:for="{{ idSelected }}" wx:key="index" wx:for-item="select">
+                      <text class="cart-num" wx:if="{{ goodSku.id === select.id }}">{{ select.num }}</text>
+                    </block>
+                  </view>
+                  <view class="discount-rule sale-out" wx:else>
+                    <text class="discount-cart">{{ goodSku.marketing.marketing_simple_name }} | 已抢完</text>
                   </view>
                 </view>
               </view>
