@@ -648,14 +648,14 @@ Page({
         if (res.data.data.satisfy_list.length) {
           const giftIds = [];
           res.data.data.satisfy_list.forEach((item) => {
-            giftIds.push(item.id);
+            giftIds.push(item.gift_bind_user_id);
           });
           if (app.globalData.chooseGiftId !== 0 && !giftIds.includes(app.globalData.chooseGiftId)) {
             app.globalData.chooseGiftId = 0;
           }
           res.data.data.satisfy_list.forEach((item) => {
             if (+item.activity_id === +this.data.activityId && app.globalData.chooseGiftId === 0) {
-              this.showCartGift(item.id);
+              this.showCartGift(item.gift_bind_user_id);
             }
           });
         }

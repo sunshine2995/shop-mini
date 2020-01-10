@@ -60,7 +60,7 @@ export function getGoodsAttr(skuId) {
 
 // 确认订单商品
 export function checkout(skuIds, giftId) {
-  return http.post('/cart/checkout', {
+  return http.post('/cart/new/checkout', {
     goods_sku_ids: skuIds,
     gift_id: giftId,
   });

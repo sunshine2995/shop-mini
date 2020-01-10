@@ -12,7 +12,7 @@ export function getCartGift(money) {
 
 // 根据赠礼id显示购物车赠礼
 export function showCartGift(giftId) {
-  return http.get(`/activity/gift/${giftId}`);
+  return http.get(`/activity/new/gift/${giftId}`);
 }
 
 // 获取充值页当前充值金额下的赠礼

@@ -9,7 +9,7 @@
       wx:for="{{ satisfyList }}"
       wx:key="this"
       wx:for-item="satisfy"
-      data-gift-id="{{ satisfy.id }}"
+      data-gift-id="{{ satisfy.gift_bind_user_id }}"
       bindtap="goToCart"
     >
       <view class="gift-image">
