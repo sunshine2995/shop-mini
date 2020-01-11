@@ -1,0 +1,84 @@
+.recharge-gift-image {
+  min-height: 100vh;
+  position: relative;
+}
+
+.recharge-gift-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.no-gift-tip {
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  margin: auto;
+}
+
+.three-image {
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+.three-image:nth-child(2) {
+  top: 25%;
+}
+.three-image:nth-child(3) {
+  top: 39%;
+}
+.three-image:nth-child(4) {
+  top: 53%;
+}
+.three-image:nth-child(5) {
+  top: 67%;
+}
+
+.coupon-money {
+  position: relative;
+}
+.number-text {
+  position: absolute;
+  right: 12%;
+  top: 15%;
+  font-size: 70rpx;
+  color: #e50044;
+}
+.num {
+  display: inline-block;
+  line-height: 1;
+  font-size: 160rpx;
+  padding-right: 8rpx;
+  box-sizing: border-box;
+}
+.desc {
+  position: absolute;
+  right: 3%;
+  top: 80%;
+  line-height: 1;
+  font-size: 28rpx;
+  color: #a2653c;
+}
+
+.rule-text {
+  width: 80%;
+  position: absolute;
+  bottom: 80rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.rule-text text {
+  text-align: left;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #930015;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+  line-height: 1.4;
+}

@@ -22,6 +22,26 @@ export function getCustom() {
   return http.get('/custom/all');
 }
 
+// 获取获取新年红包列表
+export function getNewYearCoupon() {
+  return http.get('/activity/new_year/coupons');
+}
+
+// 领取新年红包
+export function getNewYearGift(name, num) {
+  return http.get('/activity/new_year/gift', {
+    coupons_name: name,
+    pickup_method: num,
+  });
+}
+
+// 检查是否可使用红包
+export function getCheckCoupon(skuIds) {
+  return http.get('/order/check/coupons', {
+    sku_ids: JSON.stringify(skuIds),
+  });
+}
+
 // 获取用户信息
 export function getUser() {
   return http.get('/user/me');

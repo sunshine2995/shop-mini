@@ -54,7 +54,8 @@
     "pages/order/shareDetail/shareDetail",
     "pages/reward/reward",
     "pages/reward/bindPhone/bindPhone",
-    "pages/userCenter/setting/setting"
+    "pages/userCenter/setting/setting",
+    "pages/userCenter/coupon/coupon"
   ],
   "usingComponents": {
     "formId": "/components/formId/formId"
