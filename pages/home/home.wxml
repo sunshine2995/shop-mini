@@ -4,6 +4,16 @@
       打开APP
     </button>
   </view>
+  <navigator url="/pages/userCenter/coupon/coupon" class="coupon-mask" animation="{{ couponAni }}" hover-class="none">
+    <view class="coupon-text"><text>鼠年红包</text></view>
+    <view class="coupon-image">
+      <image
+        class="coupon-img"
+        src="https://img.caibashi.com/abe28d7b16ca5628b4c66e74a61c0d27.png"
+        mode="widthFix"
+      ></image>
+    </view>
+  </navigator>
   <view class="mask" wx:if="{{ showImage && !showLocation && showAuthorize && !showReward }}" bindtap="hideImage">
     <view class="share-tip">
       <view class="icon" bindtap="hideImage"> <icon class="iconfont icon-cancel"></icon></view>

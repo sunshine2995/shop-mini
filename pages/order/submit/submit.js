@@ -2,6 +2,7 @@ import moment from '../../../libs/moment';
 import * as CartService from '../../../services/CartService';
 import * as AddressService from '../../../services/AddressService';
 import * as OrderService from '../../../services/OrderService';
+import * as UserService from '../../../services/UserService';
 import * as RouterUtil from '../../../utils/RouterUtil';
 import * as utils from '../../../utils/utils';
 
@@ -28,6 +29,8 @@ Page({
     redMoney: 0, // 红包金额
     couponId: 0, // 红包Id
     skuIds: [], //已选中商品
+    couponType: 0, // 红包类型
+    couponMoney: 0, // 红包金额
 
     defaultAddress: '', // 默认地址
     deliveryType: 1, // 自提还是送货上门
@@ -178,7 +181,25 @@ Page({
   },
 
   chooseCoupon() {
-    RouterUtil.go(`/pages/order/coupon/coupon?money=${this.data.orderMessage.now_amount}`);
+    UserService.getCheckCoupon(this.data.skuIds)
+      .then((res) => {
+        if (res.data.data.flag) {
+          wx.showToast({
+            title: res.data.data.message,
+            icon: 'none',
+            duration: 3000,
+          });
+        } else {
+          RouterUtil.go(`/pages/order/coupon/coupon?money=${this.data.orderMessage.now_amount}`);
+        }
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
   },
 
   checkout() {
@@ -314,7 +335,9 @@ Page({
           icon: 'none',
           duration: 2000,
         });
-        RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true`);
+        RouterUtil.go(
+          `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true&couponType=${this.data.couponType}&couponMoney=${this.data.couponMoney}`,
+        );
       })
       .catch((error) => {
         wx.showToast({
@@ -336,7 +359,9 @@ Page({
           signType: data.signType,
           paySign: data.paySign,
           success: () => {
-            RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true`);
+            RouterUtil.go(
+              `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true&couponType=${this.data.couponType}&couponMoney=${this.data.couponMoney}`,
+            );
           },
         });
       })
@@ -482,6 +507,8 @@ Page({
         OrderService.submitOrder(model)
           .then((res) => {
             this.data.orderNo = res.data.data.orderNo;
+            this.data.couponType = res.data.data.coupons.coupons_type;
+            this.data.couponMoney = res.data.data.coupons.money;
             if (this.data.payType === 1) {
               this.compareVersions();
             } else if (this.data.payType === 2) {

@@ -27,6 +27,7 @@ Page({
     inviteId: 0, // 邀请人的Id
     showAuthorize: true, // 未授权是否展示信息
     moveData: null,
+    couponAni: '', //动画
     showImage: false, // 是否展示活动弹窗
     showReward: false, // 是否展示奖励金弹窗
     showPath: false, // 判断环境的变量
@@ -142,6 +143,7 @@ Page({
             rewardTip,
           });
         }
+        this.couponAnimation();
         this.getShopInfo();
         this.getOneCategory();
         this.getCustom();
@@ -538,6 +540,27 @@ Page({
           duration: 2000,
         });
       });
+  },
+
+  couponAnimation() {
+    const animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease',
+      delay: 0,
+    });
+    let next = false;
+    setInterval(() => {
+      if (next) {
+        animation.translate(0, 5).step();
+        next = !next;
+      } else {
+        animation.translate(0, -5).step();
+        next = !next;
+      }
+      this.setData({
+        couponAni: animation.export(),
+      });
+    }, 500);
   },
 
   startAnimation() {

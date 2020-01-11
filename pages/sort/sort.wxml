@@ -1,4 +1,14 @@
 <view class="SortContainer">
+  <navigator url="/pages/userCenter/coupon/coupon" class="coupon-mask" animation="{{ couponAni }}" hover-class="none">
+    <view class="coupon-text"><text>鼠年红包</text></view>
+    <view class="coupon-image">
+      <image
+        class="coupon-img"
+        src="https://img.caibashi.com/abe28d7b16ca5628b4c66e74a61c0d27.png"
+        mode="widthFix"
+      ></image>
+    </view>
+  </navigator>
   <view class="mask" wx:if="{{ !showAuthorize }}" bindtap="hideAuthorize">
     <view class="mask-info" wx:if="{{ !showAuthorize }}" animation="{{ moveData }}">
       <image class="userinfo-avatar" src="https://img.caibashi.com/559e8b745c2a5a6cb0d429f7759b89ec.png"></image>

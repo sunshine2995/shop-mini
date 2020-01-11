@@ -8,6 +8,31 @@
 .detail-container {
   margin: 15rpx;
 }
+.coupon-image {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 220;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.5);
+}
+.coupon-tip {
+  text-align: center;
+}
+.coupon-img {
+  display: block;
+}
+.icon-cancel {
+  color: #fff;
+  font-size: 50rpx;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
 
 .order-status {
   display: flex;

@@ -2,6 +2,29 @@
   height: 100vh;
   /* padding-top: 88rpx; */
 }
+.coupon-mask {
+  position: fixed;
+  bottom: 60rpx;
+  right: 30rpx;
+  width: 20%;
+  z-index: 39;
+}
+.coupon-text {
+  text-align: center;
+  line-height: 1;
+  font-size: 35rpx;
+  color: #fe3059;
+  padding-bottom: 10rpx;
+  box-sizing: border-box;
+}
+.coupon-image {
+  width: 80%;
+  margin: auto;
+}
+.coupon-img {
+  display: block;
+  width: 100%;
+}
 .mask {
   position: fixed;
   display: flex;

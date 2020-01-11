@@ -36,6 +36,7 @@ Page({
     goodsAttr: '', // 商品属性
     shopId: 0, // 店铺Id
     highVersion: true, // 版本判断
+    couponAni: '', //动画
   },
 
   goDetail(e) {
@@ -421,8 +422,30 @@ Page({
     }
   },
 
+  couponAnimation() {
+    const animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease',
+      delay: 0,
+    });
+    let next = false;
+    setInterval(() => {
+      if (next) {
+        animation.translate(0, 5).step();
+        next = !next;
+      } else {
+        animation.translate(0, -5).step();
+        next = !next;
+      }
+      this.setData({
+        couponAni: animation.export(),
+      });
+    }, 500);
+  },
+
   onShow() {
     this.getOneCategory();
+    this.couponAnimation();
     this.getCartNumber();
     this.data.showAuthorize = app.globalData.userInfo;
     const version = wx.getSystemInfoSync().SDKVersion;

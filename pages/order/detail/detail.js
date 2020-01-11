@@ -10,6 +10,8 @@ Page({
     orderItems: [], // order商品信息
     totalNumber: 0, // 商品总件数
     orderNo: '', // 订单号
+    isShowCurtain: false, // 遮罩层
+    couponMoney: 0, // 红包金额
     ifSubmit: false, // 是否下完订单之后跳转的
     ifShowActivity: false, // 是否显示活动图片
     selectedIds: [], // 被选中的要分享的商品id
@@ -26,6 +28,12 @@ Page({
   freeTell() {
     wx.makePhoneCall({
       phoneNumber: this.data.order.driver_phone,
+    });
+  },
+
+  hide() {
+    this.setData({
+      isShowCurtain: false,
     });
   },
 
@@ -117,6 +125,26 @@ Page({
       });
   },
 
+  getNewYearGift() {
+    this.hide();
+    const couponName = `新年${this.data.couponMoney}元红包`;
+    UserService.getNewYearGift(couponName, 0)
+      .then((res) => {
+        wx.showToast({
+          title: res.data.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      })
+      .catch((error) => {
+        wx.showToast({
+          title: error.data.message,
+          icon: 'none',
+          duration: 2000,
+        });
+      });
+  },
+
   onLoad(options) {
     this.data.orderNo = options.orderNo;
     if (options.ifSubmit) {
@@ -126,6 +154,18 @@ Page({
       this.data.ifShowActivity = options.showActivity;
       this.setData({
         ifShowActivity: this.data.ifShowActivity,
+      });
+    }
+    if (options.couponType && +options.couponType === 4) {
+      this.data.isShowCurtain = true;
+      this.setData({
+        isShowCurtain: true,
+      });
+    }
+    if (options.couponMoney) {
+      this.data.couponMoney = +options.couponMoney;
+      this.setData({
+        couponMoney: this.data.couponMoney,
       });
     }
   },

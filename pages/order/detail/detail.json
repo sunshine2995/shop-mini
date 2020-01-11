@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "Curtain": "/components/Curtain/Curtain",
     "price-component": "/components/price-component/price-component"
   },
   "navigationBarTitleText": "订单详情"

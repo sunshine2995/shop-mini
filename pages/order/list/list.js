@@ -59,6 +59,8 @@ Page({
     showTimePicker: false, // 是否展示时间选择器
     orderNo: '', // 当前操作的订单
     isShowCurtain: false, // 遮罩层
+    couponType: 0, // 红包类型
+    couponMoney: 0, // 红包金额
     balance: 0, // 余额
     isEnough: false, // 是否显示余额付款
     failureOrder: {}, // 失效订单信息
@@ -218,6 +220,8 @@ Page({
           duration: 2000,
         });
         this.data.isShowCurtain = true;
+        this.data.couponType = res.data.data.coupons.coupons_type;
+        this.data.couponMoney = res.data.data.coupons.money;
         this.setData({
           isShowCurtain: this.data.isShowCurtain,
         });
@@ -316,7 +320,9 @@ Page({
         this.setData({
           isShowCurtain: false,
         });
-        RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true`);
+        RouterUtil.go(
+          `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true&couponType=${this.data.couponType}&couponMoney=${this.data.couponMoney}`,
+        );
       })
       .catch((error) => {
         wx.showToast({
@@ -341,7 +347,9 @@ Page({
             this.setData({
               isShowCurtain: false,
             });
-            RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&showActivity=true`);
+            RouterUtil.go(
+              `/pages/order/detail/detail?orderNo=${this.data.orderNo}&showActivity=true&couponType=${this.data.couponType}&couponMoney=${this.data.couponMoney}`,
+            );
           },
         });
       })

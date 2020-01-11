@@ -1,6 +1,36 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 
 <view class="OrderDetail">
+  <Curtain isShowCurtain="{{ isShowCurtain }}"></Curtain>
+  <view class="coupon-image" bindtap="hide" wx:if="{{ isShowCurtain }}">
+    <view class="coupon-tip" catchtap="getNewYearGift">
+      <image
+        wx:if="{{ couponMoney === 3 }}"
+        class="coupon-img"
+        src="https://img.caibashi.com/723c9caf88e337e0c316b982d2cb4fa0.png"
+        mode="widthFix"
+      ></image>
+      <image
+        wx:if="{{ couponMoney === 8 }}"
+        class="coupon-img"
+        src="https://img.caibashi.com/68e8003c97c5c0554c49a0b62c3613e2.png"
+        mode="widthFix"
+      ></image>
+      <image
+        wx:if="{{ couponMoney === 10 }}"
+        class="coupon-img"
+        src="https://img.caibashi.com/5326f78d8594c3b7328b5b1ad27842e2.png"
+        mode="widthFix"
+      ></image>
+      <image
+        wx:if="{{ couponMoney === 15 }}"
+        class="coupon-img"
+        src="https://img.caibashi.com/83f77d347f16352ec742b327122a95c8.png"
+        mode="widthFix"
+      ></image>
+      <icon class="iconfont icon-cancel"></icon>
+    </view>
+  </view>
   <view class="detail-container">
     <view class="order-status" wx:if="{{ order.status === 3 && order.delivery_type === 1 }}">
       <text>待配送</text>
