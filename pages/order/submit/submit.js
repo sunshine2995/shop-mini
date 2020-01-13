@@ -41,7 +41,6 @@ Page({
 
     isShowCurtain: false, // 遮罩层
     isShowShopTip: false, // 自提提示
-    formIds: '',
     platform: '', // 设备型号
     version: '', // 微信版本号
     payType: 1, // 支付方式
@@ -483,12 +482,7 @@ Page({
           totalAmount = this.data.orderMessage.goods_amount;
           finallyAmount = this.data.finallyMoneyNoShipping;
         }
-        this.data.formids = wx.getStorageSync('formids');
-        if (this.data.formids) {
-          wx.removeStorage({ key: 'formids' });
-        }
         const model = {
-          formIds: this.data.formids,
           giftId: app.globalData.chooseGiftId,
           addressId: this.data.defaultAddress.id,
           paymentType: 1,
