@@ -93,7 +93,32 @@ Page({
     } else if (!app.globalData.userInfo) {
       RouterUtil.go('/pages/index/index');
     } else {
-      RouterUtil.go('/pages/order/submit/submit');
+      UserService.getCheckCoupon(this.data.selectedIds)
+        .then((res) => {
+          if (res.data.data.flag) {
+            wx.showModal({
+              title: '温馨提示',
+              content: res.data.data.message,
+              confirmColor: '#11A24A',
+              confirmText: '继续下单',
+              cancelText: '重选商品',
+              success: (res) => {
+                if (res.confirm) {
+                  RouterUtil.go('/pages/order/submit/submit');
+                }
+              },
+            });
+          } else {
+            RouterUtil.go('/pages/order/submit/submit');
+          }
+        })
+        .catch((error) => {
+          wx.showToast({
+            title: error.data.message,
+            icon: 'none',
+            duration: 2000,
+          });
+        });
     }
   },
 

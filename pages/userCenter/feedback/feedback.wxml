@@ -7,8 +7,8 @@
         bindinput="bindTextAreaChange"
         placeholder="请输入您的反馈建议..."
         value="{{ info }}"
+        focus="{{ true }}"
         maxlength="{{ noteMaxLen }}"
-        focus
       ></textarea>
       <view class="weui-textarea-counter">{{ noteNowLen }}/{{ noteMaxLen }}</view>
     </view>
@@ -39,7 +39,7 @@
   <view class="feedback-contact">
     <text class="title">联系电话</text>
     <view class="input-contact">
-      <input bindinput="bindKeyInput" placeholder="请输入您的手机号码" focus="{{ true }}" type="number" />
+      <input bindinput="bindKeyInput" placeholder="请输入您的手机号码" type="number" />
     </view>
   </view>
   <view class="submit-feedback">

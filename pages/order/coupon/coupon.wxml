@@ -36,7 +36,7 @@
                 >
               </view>
               <view class="now-user">
-                <text>全场通用</text>
+                <text>新人活动和折扣商品除外</text>
               </view>
             </view>
           </view>
@@ -70,7 +70,7 @@
               >
             </view>
             <view class="now-user">
-              <text>全场通用</text>
+              <text>新人活动和折扣商品除外</text>
               <text class="go-to-user">立即使用</text>
             </view>
           </view>
