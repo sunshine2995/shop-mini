@@ -420,6 +420,9 @@ Page({
   },
 
   pay(e) {
+    this.setData({
+      isShowCurtain: false,
+    });
     this.data.payType = +e.currentTarget.dataset.payType;
     if (this.data.orderNo) {
       if (this.data.payType === 1) {
