@@ -15,7 +15,7 @@ Page({
   chooseCoupon(e) {
     const money = e.currentTarget.dataset.money;
     const couponId = e.currentTarget.dataset.couponId;
-    RouterUtil.go(`/pages/order/submit/submit?money=${money}&couponId=${couponId}`);
+    RouterUtil.go(`/pages/order/submit/submit?money=${money}&couponId=${couponId}&fromPath=cart`);
   },
 
   getCouponsList() {

@@ -104,12 +104,12 @@ Page({
               cancelText: '重选商品',
               success: (res) => {
                 if (res.confirm) {
-                  RouterUtil.go('/pages/order/submit/submit');
+                  RouterUtil.go('/pages/order/submit/submit?fromPath=cart');
                 }
               },
             });
           } else {
-            RouterUtil.go('/pages/order/submit/submit');
+            RouterUtil.go(`/pages/order/submit/submit?fromPath=cart`);
           }
         })
         .catch((error) => {
@@ -670,7 +670,13 @@ Page({
         } else {
           this.data.showGiftTip = false;
         }
-        if (res.data.data.satisfy_list.length) {
+        if (res.data.data.satisfy_list.length === 0) {
+          app.globalData.chooseGiftId = 0;
+          this.data.giftData = {};
+          this.setData({
+            giftData: this.data.giftData,
+          });
+        } else {
           const giftIds = [];
           res.data.data.satisfy_list.forEach((item) => {
             giftIds.push(item.gift_bind_user_id);
@@ -678,12 +684,12 @@ Page({
           if (app.globalData.chooseGiftId !== 0 && !giftIds.includes(app.globalData.chooseGiftId)) {
             app.globalData.chooseGiftId = 0;
           }
-          res.data.data.satisfy_list.forEach((item) => {
-            if (+item.activity_id === +this.data.activityId && app.globalData.chooseGiftId === 0) {
-              this.showCartGift(item.gift_bind_user_id);
-            }
-          });
         }
+        res.data.data.satisfy_list.forEach((item) => {
+          if (+item.activity_id === +this.data.activityId && app.globalData.chooseGiftId === 0) {
+            this.showCartGift(item.gift_bind_user_id);
+          }
+        });
         this.data.showGiftButton = res.data.data.flag === 1;
         this.data.giftTip = res.data.data.reason;
         this.setData({

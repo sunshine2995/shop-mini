@@ -40,7 +40,7 @@ Page({
   chooseAddress(e) {
     const id = e.currentTarget.dataset.addressId;
     app.globalData.chooseAddress = id;
-    RouterUtil.go(`/pages/order/submit/submit`);
+    RouterUtil.go(`/pages/order/submit/submit?fromPath=cart`);
   },
 
   overTip() {

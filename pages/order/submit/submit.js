@@ -44,6 +44,7 @@ Page({
     platform: '', // 设备型号
     version: '', // 微信版本号
     payType: 1, // 支付方式
+    fromPath: false, // 跳转来源
   },
 
   cancelPay() {
@@ -225,9 +226,8 @@ Page({
         wx.showToast({
           title: error.data.message,
           icon: 'none',
-          duration: 2000,
+          duration: 1000,
         });
-        RouterUtil.go('/pages/cart/cart');
       });
   },
 
@@ -696,6 +696,11 @@ Page({
       this.data.redMoney = options.money;
       this.data.couponId = options.couponId;
     }
+    this.data.fromPath = false;
+    if (options.fromPath === 'cart') {
+      this.data.fromPath = true;
+      this.checkout();
+    }
   },
 
   onShow() {
@@ -703,7 +708,6 @@ Page({
     moment.suppressDeprecationWarnings = true;
     this.data.mobile = app.globalData.userData.phone;
     this.data.skuIds = wx.getStorageSync('selectedIds');
-    this.checkout();
     this.getDeliveryTime();
     if (app.globalData.deliveryEnd) {
       if (moment(app.globalData.deliveryEnd).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')) {
