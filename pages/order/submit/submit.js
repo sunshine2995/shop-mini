@@ -362,6 +362,9 @@ Page({
               `/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true&showActivity=true&couponType=${this.data.couponType}&couponMoney=${this.data.couponMoney}`,
             );
           },
+          fail: () => {
+            RouterUtil.go(`/pages/order/detail/detail?orderNo=${this.data.orderNo}&ifSubmit=true`);
+          },
         });
       })
       .catch((error) => {
